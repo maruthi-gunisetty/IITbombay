@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-highest": "#d3e4fe", "on-tertiary-fixed": "#2a1700", "surface-container-high": "#dce9ff", "on-background": "#0b1c30", "on-tertiary-container": "#b87500", "secondary-container": "#fe932c", "on-tertiary-fixed-variant": "#653e00", "surface-tint": "#565e74", "surface-bright": "#f8f9ff", "surface-variant": "#d3e4fe", "tertiary": "#000000", "on-primary-fixed": "#131b2e", "on-secondary": "#ffffff", "surface": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary-container": "#2a1700", "primary-fixed": "#dae2fd", "on-secondary-fixed": "#2f1500", "inverse-primary": "#bec6e0", "surface-container": "#e5eeff", "on-surface": "#0b1c30", "on-tertiary": "#ffffff", "primary": "#000000", "background": "#f8f9ff", "tertiary-fixed": "#ffddb8", "inverse-on-surface": "#eaf1ff", "outline-variant": "#c6c6cd", "on-primary": "#ffffff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#3f465c", "surface-container-low": "#eff4ff", "on-primary-container": "#7c839b", "secondary": "#904d00", "surface-dim": "#cbdbf5", "outline": "#76777d", "on-secondary-fixed-variant": "#6e3900", "tertiary-fixed-dim": "#ffb95f", "secondary-fixed": "#ffdcc3", "primary-fixed-dim": "#bec6e0", "secondary-fixed-dim": "#ffb77d", "on-surface-variant": "#45464d", "on-error-container": "#93000a", "error": "#ba1a1a", "inverse-surface": "#213145", "primary-container": "#131b2e", "on-secondary-container": "#663500" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-lg": "1.5rem", "gutter-mobile": "1rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "3rem", "margin-mobile": "1.25rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-md": ["Newsreader"], "headline-lg-mobile": ["Newsreader"], "label-md": ["Manrope"], "label-caps": ["Manrope"], "title-lg": ["Manrope"], "body-sm": ["Manrope"], "display-hero-mobile": ["Newsreader"], "display-hero": ["Newsreader"], "title-md": ["Manrope"], "headline-lg": ["Newsreader"], "body-lg": ["Manrope"], "headline-sm": ["Newsreader"], "label-lg": ["Manrope"], "body-md": ["Manrope"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.1em", "fontWeight": "700" }], "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="buy" href="#"><img alt="Haven &amp; Key Real Estate Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface uppercase font-medium">Haven &amp; Key</span></a><nav class="hidden xl:flex items-center gap-space-md pl-space-md" data-active-classes="text-on-surface font-semibold"><a aria-current="page" class="transition-colors py-space-xs text-on-surface font-semibold" data-path="buy" href="#">Buy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="rent" href="#">Rent</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="sell" href="#">Sell</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="exclusive-estates" href="#">Exclusive Estates</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="neighborhoods" href="#">Neighborhoods</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="agents" href="#">Agents</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="market-insights" href="#">Market Insights</a></nav></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface py-space-xs px-space-sm transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span><span class="hidden 2xl:inline font-label-md text-label-md uppercase tracking-wider">Search</span></button><div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface cursor-pointer py-space-xs px-space-xs transition-colors"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-label-md text-label-md">SF / Bay Area</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><a class="flex items-center gap-space-xs py-space-xs px-space-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="saved-listings" href="#"><span class="material-symbols-outlined text-[20px] text-secondary">favorite</span><span class="font-label-md text-label-md font-semibold">Saved (4)</span></a><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container hover:text-on-secondary transition-all shadow-sm" data-path="list-property" href="#">List Your Property</a><div class="flex items-center pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP6eIXPDtV2Ea6EwvAWUsuoMxRnnkmbNZovKBTfdjO5_0FY-4EaI4Qot3zPet0LooPdKPHzH_jNZ_4rVHBtVubY1vnwxNkXcGfkbwepudMUfE1sc88EDlWoUV138z-yRjwVpgZBBi_-R-N2trWC9lI-sxb2B4uRTLwr_v0FguuJcBC0vcnovDLKgEmadGXG8OQC3efmSmw0zXyLHq5yABZYe6fZqB3XCrZe7pb0aw"/></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Status Bar & Sub-Navigation Header -->
+<section class="w-full bg-surface-container-lowest shadow-sm">
+<div class="max-w-7xl mx-auto px-margin py-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Breadcrumbs & Identifiers -->
+<div class="flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors" href="#">California</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">San Francisco</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Pacific Heights</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold">2840 Pacific Ave</span>
+</nav>
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps uppercase px-space-sm py-0.5 rounded">Active Exclusive</span>
+<span class="text-on-surface-variant font-label-md text-label-md">MLS #982410</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-on-surface-variant font-label-md text-label-md">Offered via Private Salon Advisory</span>
+</div>
+</div>
+<!-- Utility Action CTAs -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors shadow-sm" id="savePropertyBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary" id="saveIcon">favorite</span>
+<span id="saveText">Saved</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share Dossier</span>
+</button>
+<a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors shadow-sm" href="#floorplans">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Architectural PDF</span>
+</a>
+<a class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-secondary text-on-secondary hover:bg-secondary-container font-label-md text-label-md shadow-sm transition-all" href="#schedule-tour">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Book Private Salon</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Title & Headline Pricing Bar -->
+<section class="w-full bg-surface-container-low py-space-lg">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="flex flex-col">
+<p class="font-label-caps text-label-caps uppercase text-secondary tracking-widest mb-space-xs">Private Architectural Commission • Gold Coast Tier</p>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">The Pacific Heights Glass Residence</h1>
+<p class="font-title-md text-title-md text-on-surface-variant flex items-center gap-space-xs mt-space-xs">
+<span class="material-symbols-outlined text-[20px] text-secondary">pin_drop</span>
+            2840 Pacific Avenue, Pacific Heights, San Francisco, CA 94115
+          </p>
+</div>
+<div class="flex flex-col md:items-end bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-medium">$12,850,000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Est. <strong class="text-on-surface font-semibold">$68,400/mo</strong> • Private financing available</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Photo Mosaic Hero -->
+<section class="w-full max-w-7xl mx-auto px-margin pt-space-md pb-space-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm h-auto lg:h-[620px] relative rounded-xl overflow-hidden shadow-md">
+<!-- Panoramic Left Primary Image (65% width equiv: 8 cols) -->
+<div class="lg:col-span-8 relative group overflow-hidden h-[360px] lg:h-full bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Modern ultra-luxury architectural mansion in Pacific Heights San Francisco, dramatic floor-to-ceiling glass curtain facade, warm amber evening interior lighting, cantilevered black steel terraces framing views of the Golden Gate Bridge and misty blue bay waters under dusk sky, cinematic architectural photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq7mJpGOiK5VwiOU5IDSUSvRCQ2hGD6LI8Sl-FXSHH7w3gVOLBpj0xYUHXFLD1dr4PBPnLyYX32nLp1pOn53BVL5GjHQ0vEvFg9pT4OXcs9UjJazoeRMKZyxca2IXImTTt3UBxc2-gK5HuldGNuWAYFKFZYHL1v_b42odMa-XYZ5Kr0w98lVODRjc2r16P9rYxjj340Yz5adQLz0dcu0DYgfE_30AZHDjHeakM0O4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+<div class="absolute bottom-space-lg left-space-lg right-space-lg flex items-center justify-between pointer-events-auto">
+<div class="flex items-center gap-space-xs bg-surface/90 backdrop-blur-md px-space-md py-space-xs rounded-full shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-secondary">architecture</span>
+<span class="font-label-caps text-label-caps uppercase">North-Western Horizon • Custom Triple Acoustic Glazing</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-space-xs rounded-full font-label-md text-label-md flex items-center gap-space-xs shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px]">view_in_ar</span>
+<span>Launch 3D Matterport Tour</span>
+</button>
+</div>
+</div>
+<!-- Right Mosaic (4 cols, 2x2 grid) -->
+<div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-space-sm h-full">
+<!-- Photo 2: Living Room Skyline -->
+<div class="relative group overflow-hidden h-[180px] lg:h-[148px] bg-surface-container rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Spacious minimalist living salon with bespoke Italian walnut cabinetry, custom travertine fireplace, modern tailored furniture in oatmeal and navy hues, illuminated city view of San Francisco Bay, warm recessed architectural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ7OlWfwYAgEQuFAeu_8mx0Fjigt67ic2LTZsXTItU1WmH1YZuiLleeKibtwzBtaPYoL6FaHGFxQHrSgFNfDRnecECxXkubKGtYbdCYxRogLOOr7ZaGSk42dTHIQEtNfzyTnskV_c6ETwP0bDeN7IG3JB29qStYVA5B0DAYwOj6P2ks7yIhKaHrcT6ABqQ6ayuHMpTUY-CNcbf5IfgKbmK21minx1GivwN0OEpwsM"/>
+<div class="absolute bottom-2 left-2 bg-surface/90 backdrop-blur-sm px-space-xs py-0.5 rounded text-on-surface font-label-caps text-label-caps">Grand Salon</div>
+</div>
+<!-- Photo 3: Calacatta Chef Kitchen -->
+<div class="relative group overflow-hidden h-[180px] lg:h-[148px] bg-surface-container rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Editorial luxury kitchen with massive honed Calacatta marble island, fluted oak millwork, integrated Gaggenau appliances, minimalist matte brass faucet fixtures, soft daylight pouring through clerestory windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC-zHw1I7s0Cs34hoIF_jObWM7LGkcgqD1S1LxVlzRfU9KMq23-ZukUdWwjBqsA-bAzHUN6oZcyxkgj-1MQVo0EFL_wGoZstP8rVXp7VATw3NwvAPFK3jawa9_lp12sNptybbvSgCDklWBljPLseFQvgMVmFfHVW5YJjGhPO62rEfcSTnY_uQarB6I-vIa-iQwuqc2VREgehWfc6D99w8W7P-8xz_hF3vqOiYdpbk"/>
+<div class="absolute bottom-2 left-2 bg-surface/90 backdrop-blur-sm px-space-xs py-0.5 rounded text-on-surface font-label-caps text-label-caps">Culinary Studio</div>
+</div>
+<!-- Photo 4: Primary Spa Bath -->
+<div class="relative group overflow-hidden h-[180px] lg:h-[148px] bg-surface-container rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Monolithic bathroom spa with freestanding soaking tub carved from limestone, bookmatched marble slab walls, frameless rain shower with brass detail, overlooking manicured Japanese zen courtyard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFxaYxtD3KeZIXU4o_AqsVHXAR3V-NuBRgMjBlxhMWh5obTz82XQlp5iuewz03HfABYxGAJZw15vEV6OsM8zQp6txpeHtm_AdlEpLYgxmfUkHAb2F5Q_oPPdFyvzd4oqrjgrIPks6iYu6a5HLyOpnbGXGMd06cydeST5QndQ-IwXrBEq5XhY56CIDJWLKQswJuzNI9hLGUcGroAhbtkib32ybmw5goXCHV99CJVnc"/>
+<div class="absolute bottom-2 left-2 bg-surface/90 backdrop-blur-sm px-space-xs py-0.5 rounded text-on-surface font-label-caps text-label-caps">Primary Wellness Bath</div>
+</div>
+<!-- Photo 5: Outdoor Terrace Overlook -->
+<div class="relative group overflow-hidden h-[180px] lg:h-[148px] bg-surface-container rounded-lg cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Sunset view from an expansive rooftop ipe-wood terrace with glass railings, modern linear gas fire pit, outdoor lounge chairs overlooking twilight San Francisco skyline and twinkling bridge lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIbYz9hMHQcc1_LJBkZ1AvEoDDRoeoM8IAnABWBrUGciOYoI6TXzZD-wEL-xtNvCPJk3zin7YGoRHOYIEOevRSeavqGRKszZEw2Iayze5pgL9JW6v82QUPTmR2H0rm7MgobrpSCwOgD5bAglOXxxJv6AwqTO8C6Mtarw_AsBjsxo9K2fXK75h96RT0V9d5rsBP_8OJ91Ffc87v4cD_A4QlFYFBU9tdZoUlqWK0l4Q"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/50 transition-colors flex items-center justify-center">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest text-on-surface font-label-md text-label-md px-space-md py-space-xs rounded-full shadow-md">
+<span class="material-symbols-outlined text-[18px]">photo_library</span>
+<span>+28 Gallery Views</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Key Specification Attribute Ribbon -->
+<section class="w-full max-w-7xl mx-auto px-margin mb-space-xl">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-sm bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">bed</span> Suites
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">5 Beds</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All En-Suite</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">bathtub</span> Baths
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">6 Baths</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">5 Full, 2 Powder</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">square_foot</span> Interior
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">6,850</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gross Sq Ft ($1,875/sf)</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">crop_landscape</span> Grounds
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">0.35 Acre</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">15,246 sq ft parcel</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">garage</span> Motor Court
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">3-Car</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Heated + 2 EV Superchargers</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-lg">
+<span class="flex items-center gap-1 font-label-caps text-label-caps uppercase text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">event_available</span> Completed
+        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1">2022</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Snohetta Design Collab</span>
+</div>
+</div>
+</section>
+<!-- Two-Column Master Editorial Grid -->
+<section class="w-full max-w-7xl mx-auto px-margin mb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column (65% width: 8 columns) -->
+<div class="lg:col-span-8 flex flex-col gap-space-xl">
+<!-- Architectural Narrative -->
+<article class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Architectural Dossier</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Curated by Studio Pacifica</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">A Monument of Light, Pure Linearity, and Engineering Mastery</h2>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-space-md leading-relaxed">
+<p>
+              Commanding one of Pacific Heights’ most sovereign parcels, <strong>2840 Pacific Avenue</strong> introduces an uncompromising dialog between monumental architecture and the natural atmospheric theater of San Francisco Bay. Designed in deliberate contrast to the neighborhood's historic Victorian streetscape, this 2022 residence leverages structural steel moment framing to enable column-free interior expanses wrapped in triple-glazed acoustically isolated glass.
+            </p>
+<p>
+              Interior volumes celebrate pure material honesty: bookmatched Calacatta Borghini marble slabs, continuous planks of sustainably harvested Danish white oak, and hand-troweled Roman clay walls that capture shifting Northern California coastal daylight. An open-concept salon spills seamlessly onto 1,400 square feet of heated exterior terrace space equipped with an integrated stainless plunge spa, gas fire channels, and unobstructed vantage points framing Alcatraz, the Marin Headlands, and the Golden Gate Bridge.
+            </p>
+</div>
+<!-- Highlight Metric Badges -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Ceiling Height</p>
+<p class="font-title-lg text-title-lg text-on-surface font-semibold">11' 6" Vaulted</p>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Wine Cellar</p>
+<p class="font-title-lg text-title-lg text-on-surface font-semibold">900-Bottle Climate</p>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Private Elevators</p>
+<p class="font-title-lg text-title-lg text-on-surface font-semibold">Tri-Level Glass Cab</p>
+</div>
+</div>
+</article>
+<!-- Comprehensive Features Accordion / Categorized Bento -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Curated Estate Amenities</h3>
+<span class="font-label-caps text-label-caps text-secondary uppercase">All Inclusions</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Column 1: Interior Finishes -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">chair</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">Interior Finishes</span>
+</div>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-space-xs">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Poliform bespoke walk-in dressings</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Gaggenau 400 Series Dual Range</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Sculptural floating steel staircase</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Radiant heated Danish oak flooring</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Secondary Butler’s Catering Galley</span>
+</li>
+</ul>
+</div>
+<!-- Column 2: Grounds & Wellness -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">Grounds &amp; Spa</span>
+</div>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-space-xs">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Cantilevered infinity plunge spa</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Finnish cedar dry sauna &amp; cold dunk</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Outdoor Kalamazoo kitchen suite</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Zen reflection court with black bamboo</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Rooftop stargazing lounge &amp; hearth</span>
+</li>
+</ul>
+</div>
+<!-- Column 3: Tech & Security -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">nest_eco_leaf</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">Smart &amp; Energy</span>
+</div>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-space-xs">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Full Savant Smart Automation Core</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>14.8 kW Rooftop Solar + 3 Tesla Powerwalls</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Lutron HomeWorks Palladiom Keypads</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Commercial HEPA &amp; UV Air Filtration</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Biometric Entry &amp; Infrared Perimeter</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Interactive Floor Plans Preview -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md" id="floorplans">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Architectural Floorplans</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Scale-calibrated schematic blueprints</p>
+</div>
+<!-- Plan Tabs -->
+<div class="flex items-center p-1 bg-surface-container-low rounded-lg" id="planTabContainer">
+<button class="px-space-md py-space-xs rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all" id="tab-level1" onclick="switchPlan('level1')">Level 1: Grand Living</button>
+<button class="px-space-md py-space-xs rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-level2" onclick="switchPlan('level2')">Level 2: Primary Suite</button>
+<button class="px-space-md py-space-xs rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-level3" onclick="switchPlan('level3')">Lower: Cellar &amp; Spa</button>
+</div>
+</div>
+<!-- Floorplan Viewport Graphic -->
+<div class="relative w-full h-[380px] bg-surface-container-low rounded-xl overflow-hidden flex items-center justify-center p-space-md">
+<!-- Simulated SVG Blueprint Canvas -->
+<div class="w-full h-full flex flex-col items-center justify-center text-center" id="plan-display">
+<svg class="w-full max-h-[280px] text-on-surface" viewbox="0 0 760 300">
+<!-- Outer Envelope -->
+<rect fill="none" height="260" opacity="0.85" rx="4" stroke="currentColor" stroke-dasharray="0" stroke-width="2.5" width="720" x="20" y="20"></rect>
+<!-- Great Room Zone -->
+<rect fill="currentColor" fill-opacity="0.04" height="150" stroke="currentColor" stroke-width="1.5" width="380" x="30" y="30"></rect>
+<text class="font-label-caps text-[11px] fill-current uppercase tracking-wider font-bold" text-anchor="middle" x="220" y="105">Grand Reception &amp; View Loggia (38' x 24')</text>
+<!-- Calacatta Kitchen Zone -->
+<rect fill="currentColor" fill-opacity="0.04" height="150" stroke="currentColor" stroke-width="1.5" width="310" x="420" y="30"></rect>
+<text class="font-label-caps text-[11px] fill-current uppercase tracking-wider font-bold" text-anchor="middle" x="575" y="105">Culinary Studio &amp; Pantry (28' x 20')</text>
+<!-- Atrium & Elevator Core -->
+<rect fill="currentColor" fill-opacity="0.08" height="80" stroke="currentColor" stroke-width="1.5" width="160" x="300" y="190"></rect>
+<text class="font-label-caps text-[10px] fill-current uppercase tracking-wider" text-anchor="middle" x="380" y="235">Glass Atrium / Lift</text>
+<!-- Library Salon -->
+<rect fill="currentColor" fill-opacity="0.04" height="80" stroke="currentColor" stroke-width="1.5" width="260" x="30" y="190"></rect>
+<text class="font-label-caps text-[10px] fill-current uppercase tracking-wider" text-anchor="middle" x="160" y="235">Executive Library (22' x 16')</text>
+<!-- Dining Pavilion -->
+<rect fill="currentColor" fill-opacity="0.04" height="80" stroke="currentColor" stroke-width="1.5" width="260" x="470" y="190"></rect>
+<text class="font-label-caps text-[10px] fill-current uppercase tracking-wider" text-anchor="middle" x="600" y="235">Formal Banquet (24' x 16')</text>
+<!-- Dimension Marks -->
+<line stroke="currentColor" stroke-dasharray="4" stroke-width="1" x1="20" x2="740" y1="290" y2="290"></line>
+<text class="font-label-caps text-[9px] fill-current" text-anchor="middle" x="380" y="298">92 FEET 6 INCHES TOTAL FAÇADE</text>
+</svg>
+</div>
+<div class="absolute bottom-space-md right-space-md flex gap-space-xs">
+<button class="bg-surface-container-lowest text-on-surface hover:bg-surface-container px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">zoom_in</span> Fullscreen
+              </button>
+<button class="bg-surface-container-lowest text-on-surface hover:bg-surface-container px-space-md py-space-xs rounded-lg font-label-md text-label-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">download</span> CAD / Vector Spec
+              </button>
+</div>
+</div>
+</div>
+<!-- Interactive Mortgage & Investment Calculator -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Financial Structuring</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Acquisition &amp; Ownership Outlay</h3>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Assumes 30-Yr Fixed Jumbo Loan</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Inputs (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-space-xs">
+<span class="text-on-surface font-medium">Purchase Capital</span>
+<span class="font-semibold text-on-surface" id="calcPriceDisplay">$12,850,000</span>
+</div>
+<input class="w-full accent-secondary cursor-pointer h-2 bg-surface-container-high rounded-lg appearance-none" id="priceSlider" max="20000000" min="8000000" step="250000" type="range" value="12850000"/>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-space-xs">
+<span class="text-on-surface font-medium">Down Payment (20%)</span>
+<span class="font-semibold text-on-surface" id="downPaymentDisplay">$2,570,000</span>
+</div>
+<input class="w-full accent-secondary cursor-pointer h-2 bg-surface-container-high rounded-lg appearance-none" id="downSlider" max="60" min="10" step="5" type="range" value="20"/>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1">Interest Rate</label>
+<div class="font-title-md text-title-md text-on-surface font-semibold flex items-center justify-between">
+<span>5.85%</span>
+<span class="material-symbols-outlined text-[18px] text-outline">tune</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1">Annual Prop Tax Rate</label>
+<div class="font-title-md text-title-md text-on-surface font-semibold flex items-center justify-between">
+<span>1.18%</span>
+<span class="material-symbols-outlined text-[18px] text-outline">account_balance</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Calculated Breakdown Donut & Total (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-low p-space-md rounded-xl flex flex-col items-center">
+<!-- Inline SVG Donut -->
+<div class="relative w-36 h-36 flex items-center justify-center my-space-xs">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#d3e4fe" stroke-width="12"></circle>
+<!-- Principal & Interest: 70% -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="#000000" stroke-dasharray="176 251.2" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- Property Tax: 20% -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="#904d00" stroke-dasharray="50.2 251.2" stroke-dashoffset="-176" stroke-width="12"></circle>
+<!-- Insurance + HOA: 10% -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="#fe932c" stroke-dasharray="25 251.2" stroke-dashoffset="-226.2" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total/Mo</span>
+<span class="font-title-lg text-title-lg text-on-surface font-bold" id="monthlyTotalDisplay">$68,400</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="w-full flex flex-col gap-1.5 mt-space-sm font-body-sm text-body-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="text-on-surface-variant">Principal &amp; Interest</span>
+</div>
+<span class="font-semibold text-on-surface">$50,650</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="text-on-surface-variant">Property Tax (SF)</span>
+</div>
+<span class="font-semibold text-on-surface">$12,630</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="text-on-surface-variant">Hazard Ins. &amp; Reserve</span>
+</div>
+<span class="font-semibold text-on-surface">$5,120</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Neighborhood Context & Walkability Scores -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Enclave Intelligence</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pacific Heights • Gold Coast Corridor</h3>
+</div>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-space-sm py-1 rounded">Rank #1 SF Luxury ZIP</span>
+</div>
+<!-- Static Map Placeholder -->
+<div class="w-full h-56 bg-cover bg-center rounded-xl shadow-inner relative overflow-hidden" data-location="2840 Pacific Avenue, San Francisco, CA" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVvKzUy73X8ECX1zvnhLpn7zyoJLfsYVNSpRB4Q-nbc5kbqAGQbeCM0a_YR8BJHb3Ll1GtgYdsn-NR01tTewtwvevUfmYDcLZ82AavoddzXtSao9c9IlKdGZWlkjymwnWPcjMiaZrf2JxbdStrRLYRX7jSqps3K6lbB0pq2h-gSj7_NSCSex4sZnJIJTzip_O5UOBId6U-q_EEYdnong4OvUzgWg2MlIIObTzH_kA');">
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[1px]"></div>
+<div class="absolute top-4 left-4 bg-surface-container-lowest/95 backdrop-blur-md p-space-sm rounded-lg shadow-md flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">2840 Pacific Ave</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Between Divisadero &amp; Scott Streets</p>
+</div>
+</div>
+</div>
+<!-- Metrics Ribbon -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Walk Score</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">directions_walk</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">96 / 100</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Walker's Paradise • 4 blocks to Fillmore Street Boutiques</p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Top Academic Institutions</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">school</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">10 / 10</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Town School for Boys, Hamlin, Convent &amp; Stuart Hall</p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Transit &amp; Airport Access</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">flight</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">22 Mins</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SFO Signature Flight Support • 10 Mins to FiDi Financial</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (35% width: 4 columns) - Sticky Booking & Advisor Suite -->
+<aside class="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-space-lg">
+<!-- Private Tour Concierge Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md flex flex-col gap-space-md" id="schedule-tour">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Advisory Booking</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Concierge Ready
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Schedule a Private Showing</h3>
+<!-- Mode Toggle: In-Person vs Live Video -->
+<div class="grid grid-cols-2 p-1 bg-surface-container-low rounded-lg gap-1">
+<button class="py-space-xs px-space-sm rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-sm transition-all text-center" id="toggleInPerson" onclick="setTourType('in-person')">
+              In-Person Salon
+            </button>
+<button class="py-space-xs px-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all text-center" id="toggleVirtual" onclick="setTourType('virtual')">
+              Virtual Live Video
+            </button>
+</div>
+<!-- Date Selector (Next 4 Days Carousel) -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Select Inspection Date</label>
+<div class="grid grid-cols-4 gap-space-xs text-center">
+<button class="tour-date-btn p-space-xs rounded-lg bg-primary text-on-primary flex flex-col items-center transition-all" onclick="selectDate(this)">
+<span class="font-label-caps text-[10px] uppercase opacity-80">Thu</span>
+<span class="font-title-md text-title-md font-bold">24</span>
+<span class="font-label-caps text-[9px] uppercase">Oct</span>
+</button>
+<button class="tour-date-btn p-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex flex-col items-center transition-all" onclick="selectDate(this)">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Fri</span>
+<span class="font-title-md text-title-md font-bold">25</span>
+<span class="font-label-caps text-[9px] uppercase text-on-surface-variant">Oct</span>
+</button>
+<button class="tour-date-btn p-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex flex-col items-center transition-all" onclick="selectDate(this)">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Sat</span>
+<span class="font-title-md text-title-md font-bold">26</span>
+<span class="font-label-caps text-[9px] uppercase text-on-surface-variant">Oct</span>
+</button>
+<button class="tour-date-btn p-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex flex-col items-center transition-all" onclick="selectDate(this)">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Mon</span>
+<span class="font-title-md text-title-md font-bold">28</span>
+<span class="font-label-caps text-[9px] uppercase text-on-surface-variant">Oct</span>
+</button>
+</div>
+</div>
+<!-- Time Slot Selector -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Available Window</label>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="time-btn py-space-xs px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors text-center border-0" onclick="selectTime(this)">10:00 AM</button>
+<button class="time-btn py-space-xs px-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md text-center" onclick="selectTime(this)">1:30 PM</button>
+<button class="time-btn py-space-xs px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors text-center" onclick="selectTime(this)">3:45 PM</button>
+<button class="time-btn py-space-xs px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors text-center" onclick="selectTime(this)">Sunset 5:30 PM</button>
+</div>
+</div>
+<!-- Contact Inputs -->
+<div class="flex flex-col gap-space-sm">
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-sm text-body-sm outline-none focus:ring-1 focus:ring-secondary" placeholder="Full Legal Name" type="text"/>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-sm text-body-sm outline-none focus:ring-1 focus:ring-secondary" placeholder="Institutional or Private Email" type="email"/>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-sm text-body-sm outline-none focus:ring-1 focus:ring-secondary" placeholder="Mobile / WhatsApp (+1 ...)" type="tel"/>
+</div>
+<!-- Action Button -->
+<button class="w-full py-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md uppercase tracking-wider transition-all shadow-md" id="requestShowingBtn" onclick="confirmAppointment()">
+            Request Private Appointment
+          </button>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+            Subject to pre-qualification verification. Discrete NDA provided prior to arrival.
+          </p>
+</div>
+<!-- Listing Agent Authority Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-md">
+<img class="w-16 h-16 rounded-full object-cover shadow-sm ring-2 ring-secondary/20" data-alt="Monochrome professional headshot portrait of senior luxury real estate partner, elegant tailored dark Italian suit, confident approachable expression, clean architectural office backdrop with soft studio illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk_GJHzxkFUoxB4Ayc3x6GRAnwuQzVAYgDu8I4XmBY677up_cejV0qzGJKyltYiUUMw7dw37-hbZ-DaAcXFQxOLC4cbotkDl-t211b1PR6kdA05rfB-R3YTTPf0Cxz1RUgS_X8_K80ZjEr2Tmgc_cOLY0eVfGz4uH07_dxTH4UUiJNMSPv0v-aebH80ULzeSnlFxXTleWMT0Ji2moFsJzliF6oJ7fw772C633rSGQ"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps uppercase text-secondary">Exclusive Listing Partner</span>
+<h4 class="font-title-lg text-title-lg text-on-surface truncate">Julian Vance-Montague</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Managing Director • DRE #01894210</p>
+</div>
+</div>
+<!-- Track Record Metrics -->
+<div class="grid grid-cols-2 gap-space-sm py-space-xs">
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">$1.4B+</span>
+<p class="font-label-caps text-label-caps uppercase text-on-surface-variant">Career Volume</p>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">18 Days</span>
+<p class="font-label-caps text-label-caps uppercase text-on-surface-variant">Avg Exclusive Sale</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="flex-1 py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" href="tel:+14155550198">
+<span class="material-symbols-outlined text-[16px] text-secondary">call</span> Direct Call
+            </a>
+<a class="flex-1 py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" href="https://wa.me/14155550198" target="_blank">
+<span class="material-symbols-outlined text-[16px] text-secondary">chat</span> WhatsApp
+            </a>
+</div>
+<!-- Instant Question Hook -->
+<form class="flex flex-col gap-space-xs pt-space-xs" onsubmit="handleQuickQuestion(event)">
+<textarea class="w-full bg-surface-container-low text-on-surface p-space-sm rounded-lg font-body-sm text-body-sm outline-none resize-none focus:ring-1 focus:ring-secondary" placeholder="Send private inquiry to Julian..." rows="2"></textarea>
+<button class="w-full py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-center gap-1" type="submit">
+<span class="material-symbols-outlined text-[16px]">send</span> Send Confidential Message
+            </button>
+</form>
+</div>
+</aside>
+</div>
+</section>
+<!-- Similar Nearby Luxury Estates Section -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Comparable Portfolios</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Similar Flagship Residences</h2>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:text-on-tertiary-container flex items-center gap-1 transition-colors" href="#">
+<span>Explore All 14 Pacific Heights Listings</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Estate Showcase Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+<div class="relative w-full h-64 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="Classical San Francisco limestone manor in Presidio Heights with wrought iron entry gates, private hedged garden courtyard, elegant architectural slate mansard roofline, soft golden hour sunshine reflecting off large multi-pane windows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbbQxd1pHt9oFEHEIA_oCdHQ_7StEAq-qHOfj00itJJp3z1aWTcK_4nivs04hmgXOTGCngPm8FvFkw7mhScLGuqWF38w27lLnA_tVsZCAf6o3VYzYMQVcNS_kqPJxOGRsaeATQgTaL98cDzIlksPdrpkzDj5LwK7lHJdmHyF4T8Ut7DiGTC3eeErINNFzFSrpj6VhgN5kH-gtEfLGXwWXs9EBt7Oc0YEJylAuwhts"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-space-sm py-0.5 rounded font-label-caps text-label-caps uppercase text-on-surface">Presidio Heights</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">$14,500,000</p>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors mt-0.5">The Presidio Limestone Manor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3420 Washington Street, San Francisco</p>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm pt-space-sm">
+<span>6 Beds</span>
+<span class="text-outline-variant">•</span>
+<span>7.5 Baths</span>
+<span class="text-outline-variant">•</span>
+<span>7,400 Sq Ft</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+<div class="relative w-full h-64 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="Futuristic glass-encased penthouse in Russian Hill San Francisco with 360-degree wrap-around terrace overlooking Coit Tower, Bay Bridge, and downtown financial skyscrapers glowing at blue twilight hour." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWEFkgbVb_JaZc_HsfVGSSR4htdlHtTeXNIORlOqScBOWgAe76xy7G3XAOg5JLuryCemRPyCl6_SGIO2WULgD28QoKjt-0iXfDgpzXyd8ZUs8cXI2IhtQGX2HTww1bBwPNA4dkhyLSYs2Do2oonSGlEZuafmymuCQnbw90KHHgA_e-zI0f7Q-MQPev00POJD8YzzQpcsc99WaBOKnHMFRKriekbhkCp-k9buRfZfs"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-space-sm py-0.5 rounded font-label-caps text-label-caps uppercase text-on-surface">Russian Hill</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">$11,200,000</p>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors mt-0.5">The Summit Crown Penthouse</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">999 Green Street #PH2, San Francisco</p>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm pt-space-sm">
+<span>4 Beds</span>
+<span class="text-outline-variant">•</span>
+<span>4.5 Baths</span>
+<span class="text-outline-variant">•</span>
+<span>5,100 Sq Ft</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+<div class="relative w-full h-64 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="Immaculate Sea Cliff California modern coastal villa perched on rugged ocean cliffs, massive cantilevered concrete and glass terraces overlooking crashing Pacific waves and Golden Gate Bridge tower, minimalist coastal flora landscaping." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtQ88bKmCapYPntHPXJ90G7OZ6fcTF5z_Zj2iAK6CfcJ35C4LQ0mGlUE2g0niZXjO6xL38pow9LWkBgE1czGmORyHg0W4xDtPSO3NjlzFmpspn-1k_5Nq_8m7BpxlfiGPR4-NMh4awr5vDunOMpalNVFlmNFp1kNYuMlgHtTFZnQD_jjmYTwQqcXp0QbVxVE5lCoJvVX5_JJ_Jo3sSTQM7pthTWL0QuQSSYQjG1nU"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-space-sm py-0.5 rounded font-label-caps text-label-caps uppercase text-on-surface">Sea Cliff Oceanfront</div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">$16,750,000</p>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors mt-0.5">The Cliffside Cantilever Villa</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">224 Sea Cliff Avenue, San Francisco</p>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm pt-space-sm">
+<span>5 Beds</span>
+<span class="text-outline-variant">•</span>
+<span>6 Baths</span>
+<span class="text-outline-variant">•</span>
+<span>6,420 Sq Ft</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Interactive Scripts -->
+<script>
+    // Save to favorites toggle
+    const saveBtn = document.getElementById('savePropertyBtn');
+    const saveIcon = document.getElementById('saveIcon');
+    const saveText = document.getElementById('saveText');
+    let isSaved = true;
+
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        isSaved = !isSaved;
+        if (isSaved) {
+          saveIcon.textContent = 'favorite';
+          saveIcon.classList.add('text-secondary');
+          saveIcon.classList.remove('text-on-surface-variant');
+          saveText.textContent = 'Saved';
+        } else {
+          saveIcon.textContent = 'favorite_border';
+          saveIcon.classList.remove('text-secondary');
+          saveIcon.classList.add('text-on-surface-variant');
+          saveText.textContent = 'Save';
+        }
+      });
+    }
+
+    // Floorplan switcher
+    function switchPlan(level) {
+      const display = document.getElementById('plan-display');
+      const tabs = ['level1', 'level2', 'level3'];
+      
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (t === level) {
+          btn.className = 'px-space-md py-space-xs rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all';
+        } else {
+          btn.className = 'px-space-md py-space-xs rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        }
+      });
+
+      if (level === 'level1') {
+        display.innerHTML = `
+          <svg viewBox="0 0 760 300" class="w-full max-h-[280px] text-on-surface">
+            <rect x="20" y="20" width="720" height="260" rx="4" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.85"/>
+            <rect x="30" y="30" width="380" height="150" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="220" y="105" text-anchor="middle" class="font-label-caps text-[11px] fill-current uppercase tracking-wider font-bold">Grand Reception &amp; View Loggia (38' x 24')</text>
+            <rect x="420" y="30" width="310" height="150" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="575" y="105" text-anchor="middle" class="font-label-caps text-[11px] fill-current uppercase tracking-wider font-bold">Culinary Studio &amp; Pantry (28' x 20')</text>
+            <rect x="300" y="190" width="160" height="80" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="1.5"/>
+            <text x="380" y="235" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider">Glass Atrium / Lift</text>
+            <rect x="30" y="190" width="260" height="80" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="160" y="235" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider">Executive Library (22' x 16')</text>
+            <rect x="470" y="190" width="260" height="80" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="600" y="235" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider">Formal Banquet (24' x 16')</text>
+            <line x1="20" y1="290" x2="740" y2="290" stroke="currentColor" stroke-width="1" stroke-dasharray="4"/>
+            <text x="380" y="298" text-anchor="middle" class="font-label-caps text-[9px] fill-current">92 FEET 6 INCHES TOTAL FAÇADE &bull; LEVEL 1</text>
+          </svg>`;
+      } else if (level === 'level2') {
+        display.innerHTML = `
+          <svg viewBox="0 0 760 300" class="w-full max-h-[280px] text-on-surface">
+            <rect x="20" y="20" width="720" height="260" rx="4" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.85"/>
+            <rect x="30" y="30" width="440" height="240" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="250" y="140" text-anchor="middle" class="font-label-caps text-[12px] fill-current uppercase tracking-wider font-bold">Primary Sanctuary &amp; Private Sunset Terrace (42' x 26')</text>
+            <text x="250" y="165" text-anchor="middle" class="font-body-sm text-[10px] fill-current opacity-70">Dual Poliform Dressing Suites &bull; Limestone Bath</text>
+            <rect x="480" y="30" width="250" height="115" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="605" y="90" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider">Bedroom Suite 2 (19' x 15')</text>
+            <rect x="480" y="155" width="250" height="115" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="605" y="215" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider">Bedroom Suite 3 (18' x 16')</text>
+            <line x1="20" y1="290" x2="740" y2="290" stroke="currentColor" stroke-width="1" stroke-dasharray="4"/>
+            <text x="380" y="298" text-anchor="middle" class="font-label-caps text-[9px] fill-current">PRIMARY SLEEPING LEVEL &bull; LEVEL 2</text>
+          </svg>`;
+      } else {
+        display.innerHTML = `
+          <svg viewBox="0 0 760 300" class="w-full max-h-[280px] text-on-surface">
+            <rect x="20" y="20" width="720" height="260" rx="4" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.85"/>
+            <rect x="30" y="30" width="220" height="240" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="140" y="140" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider font-bold">Climate Cellar (900 Btls)</text>
+            <rect x="260" y="30" width="240" height="240" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="380" y="140" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider font-bold">Cedar Sauna &amp; Hydro Plunge</text>
+            <rect x="510" y="30" width="220" height="240" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1.5"/>
+            <text x="620" y="140" text-anchor="middle" class="font-label-caps text-[10px] fill-current uppercase tracking-wider font-bold">Heated 3-Bay Motor Gallery</text>
+            <line x1="20" y1="290" x2="740" y2="290" stroke="currentColor" stroke-width="1" stroke-dasharray="4"/>
+            <text x="380" y="298" text-anchor="middle" class="font-label-caps text-[9px] fill-current">SUB-GRADE WELLNESS &amp; CELLAR</text>
+          </svg>`;
+      }
+    }
+
+    // Mortgage calculator reactivity
+    const priceSlider = document.getElementById('priceSlider');
+    const downSlider = document.getElementById('downSlider');
+    const calcPriceDisplay = document.getElementById('calcPriceDisplay');
+    const downPaymentDisplay = document.getElementById('downPaymentDisplay');
+    const monthlyTotalDisplay = document.getElementById('monthlyTotalDisplay');
+
+    function updateMortgage() {
+      if (!priceSlider || !downSlider) return;
+      const price = parseFloat(priceSlider.value);
+      const downPercent = parseFloat(downSlider.value) / 100;
+      const downAmount = price * downPercent;
+      const loanAmount = price - downAmount;
+
+      calcPriceDisplay.textContent = '$' + price.toLocaleString();
+      downPaymentDisplay.textContent = '$' + Math.round(downAmount).toLocaleString() + ' (' + (downPercent * 100) + '%)';
+
+      // 30 yr loan at 5.85% monthly
+      const monthlyRate = 0.0585 / 12;
+      const numPayments = 360;
+      const monthlyPAndI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+      const monthlyTaxes = (price * 0.0118) / 12;
+      const monthlyIns = 5120;
+      const totalMonthly = Math.round(monthlyPAndI + monthlyTaxes + monthlyIns);
+
+      monthlyTotalDisplay.textContent = '$' + totalMonthly.toLocaleString();
+    }
+
+    if (priceSlider) priceSlider.addEventListener('input', updateMortgage);
+    if (downSlider) downSlider.addEventListener('input', updateMortgage);
+
+    // Tour toggle
+    function setTourType(type) {
+      const inPerson = document.getElementById('toggleInPerson');
+      const virtual = document.getElementById('toggleVirtual');
+      if (type === 'in-person') {
+        inPerson.className = 'py-space-xs px-space-sm rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-sm transition-all text-center';
+        virtual.className = 'py-space-xs px-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all text-center';
+      } else {
+        virtual.className = 'py-space-xs px-space-sm rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-sm transition-all text-center';
+        inPerson.className = 'py-space-xs px-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all text-center';
+      }
+    }
+
+    function selectDate(btn) {
+      document.querySelectorAll('.tour-date-btn').forEach(b => {
+        b.className = 'tour-date-btn p-space-xs rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex flex-col items-center transition-all';
+        const labels = b.querySelectorAll('span');
+        if (labels.length >= 3) {
+          labels[0].className = 'font-label-caps text-[10px] uppercase text-on-surface-variant';
+          labels[2].className = 'font-label-caps text-[9px] uppercase text-on-surface-variant';
+        }
+      });
+      btn.className = 'tour-date-btn p-space-xs rounded-lg bg-primary text-on-primary flex flex-col items-center transition-all';
+      const activeLabels = btn.querySelectorAll('span');
+      if (activeLabels.length >= 3) {
+        activeLabels[0].className = 'font-label-caps text-[10px] uppercase opacity-80';
+        activeLabels[2].className = 'font-label-caps text-[9px] uppercase';
+      }
+    }
+
+    function selectTime(btn) {
+      document.querySelectorAll('.time-btn').forEach(b => {
+        b.className = 'time-btn py-space-xs px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors text-center border-0';
+      });
+      btn.className = 'time-btn py-space-xs px-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md text-center';
+    }
+
+    function confirmAppointment() {
+      const btn = document.getElementById('requestShowingBtn');
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px] align-middle">check</span> Request Transmitted';
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-secondary', 'text-on-secondary');
+      setTimeout(() => {
+        btn.innerHTML = 'Request Private Appointment';
+        btn.classList.add('bg-primary');
+        btn.classList.remove('bg-secondary', 'text-on-secondary');
+      }, 4000);
+    }
+
+    function handleQuickQuestion(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button');
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">done</span> Inquiry Received';
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">send</span> Send Confidential Message';
+      }, 3500);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface-variant"><div class="max-w-7xl mx-auto px-margin pt-space-xl pb-space-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter mb-space-xl"><div class="lg:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Haven &amp; Key Real Estate Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"/><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface font-medium">Haven &amp; Key</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">Private advisory, premier residential brokerage, and off-market portfolio representation for discerning global acquisitions.</p><div class="mt-space-sm"><p class="font-label-caps text-label-caps uppercase text-secondary tracking-widest mb-space-xs">Private Off-Market Briefings</p><form class="flex items-center max-w-md gap-space-xs"><input class="flex-1 bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg border-0 outline-none font-body-sm text-body-sm shadow-[0_1px_3px_rgba(0,0,0,0.04)] placeholder:text-outline" placeholder="Enter institutional or personal email" type="email"/><button class="px-space-md py-space-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors" type="button">Subscribe</button></form></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Portfolio</h4><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="buy" href="#">Penthouses &amp; Mansions</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Coastal Enclaves</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Architectural Masterworks</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Private Equestrian</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="market-insights" href="#">Quarterly Market Reports</a></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Prime Salons</h4><div class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-space-xs"><div><span class="font-semibold text-on-surface">Beverly Hills:</span> 9460 Wilshire Blvd, Ste 400</div><div><span class="font-semibold text-on-surface">Manhattan:</span> 767 Fifth Avenue, 28th Fl</div><div><span class="font-semibold text-on-surface">Aspen:</span> 520 E Cooper Avenue, Ste 2B</div><div><span class="font-semibold text-on-surface">San Francisco:</span> 555 California St, Ste 3800</div></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Accreditation</h4><div class="flex flex-col gap-space-xs font-body-sm text-body-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Who's Who In Luxury Real Estate</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Global Advisory Board Member</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Licensed CA DRE #01948291</span></div></div><div class="flex items-center gap-space-md mt-space-md text-on-surface-variant"><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">share</span><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">mail</span><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">domain</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm"><p>© 2025 Haven &amp; Key Real Estate Inc. Equal Housing Opportunity. All rights reserved.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Advisory</a><a class="hover:text-on-surface transition-colors" href="#">Broker Disclosures</a><a class="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer></body></html>

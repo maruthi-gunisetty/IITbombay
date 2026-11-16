@@ -150,7 +150,11 @@ const Sidebar = () => {
         )}
 
         {/* ACCOUNT */}
-        <div className={collapsed ? 'hidden' : navSectionClass}>Account</div>
+        <div className={collapsed ? 'hidden' : navSectionClass}>Portal &amp; Account</div>
+        <NavLink to="/" className={linkClass} title="Haven & Key Public Portal">
+          <Building2 className="w-4 h-4 flex-shrink-0 text-[#29C5E8]" />
+          {!collapsed && <span className="text-[#29C5E8]">Public Estate Portal</span>}
+        </NavLink>
         <NavLink to="/dashboard/settings" className={linkClass} title="Settings & BYOK">
           <Settings className="w-4 h-4 flex-shrink-0" />
           {!collapsed && <span>Settings & BYOK</span>}

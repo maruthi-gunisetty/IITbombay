@@ -7,6 +7,9 @@ import DashboardLayout from './components/layout/DashboardLayout';
 
 // Public & Auth Pages
 import LandingPage from './pages/public/LandingPage';
+import PropertyCatalogPage from './pages/properties/PropertyCatalogPage';
+import PropertyDetailPage from './pages/properties/PropertyDetailPage';
+import AdvisorValuationPage from './pages/valuation/AdvisorValuationPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
@@ -49,6 +52,12 @@ const AppRoutes = () => {
     <Routes>
       {/* Public Pages */}
       <Route path="/" element={<LandingPage />} />
+      <Route path="/catalog" element={<PropertyCatalogPage />} />
+      <Route path="/properties" element={<PropertyCatalogPage />} />
+      <Route path="/property/:id" element={<PropertyDetailPage />} />
+      <Route path="/properties/:id" element={<PropertyDetailPage />} />
+      <Route path="/valuation" element={<AdvisorValuationPage />} />
+      <Route path="/advisor" element={<AdvisorValuationPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />

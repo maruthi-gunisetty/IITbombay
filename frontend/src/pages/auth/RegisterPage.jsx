@@ -73,20 +73,20 @@ const RegisterPage = () => {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <Link to="/" className="flex items-center justify-center space-x-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#29C5E8] flex items-center justify-center p-0.5 shadow-lg">
-            <div className="w-full h-full bg-[#080E1B] rounded-[10px] flex items-center justify-center">
-              <BarChart3 className="w-5 h-5 text-[#29C5E8]" />
-            </div>
-          </div>
-          <span className="text-2xl font-bold tracking-tight text-[#F5F7FC]">
-            PROPWISE <span className="text-[#3978F6]">AI</span>
+          <img
+            alt="Haven & Key Logo"
+            className="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"
+          />
+          <span className="font-headline-sm text-2xl tracking-tight text-[#F5F7FC] uppercase font-medium">
+            Haven &amp; Key <span className="text-xs text-[#29C5E8] normal-case tracking-normal ml-1">· PropWise AI</span>
           </span>
         </Link>
         <h2 className="text-center text-xl font-bold text-[#F5F7FC] tracking-tight">
-          Create Institutional Account
+          Create Client &amp; Advisory Account
         </h2>
         <p className="mt-2 text-center text-xs text-[#98A7BD]">
-          Register to access property intelligence, valuation tools, and underwriting workflows.
+          Register to access private estate portfolios, valuation models, and underwriting workflows.
         </p>
       </div>
 

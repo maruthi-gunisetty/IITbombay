@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-highest": "#d3e4fe", "on-tertiary-fixed": "#2a1700", "surface-container-high": "#dce9ff", "on-background": "#0b1c30", "on-tertiary-container": "#b87500", "secondary-container": "#fe932c", "on-tertiary-fixed-variant": "#653e00", "surface-tint": "#565e74", "surface-bright": "#f8f9ff", "surface-variant": "#d3e4fe", "tertiary": "#000000", "on-primary-fixed": "#131b2e", "on-secondary": "#ffffff", "surface": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary-container": "#2a1700", "primary-fixed": "#dae2fd", "on-secondary-fixed": "#2f1500", "inverse-primary": "#bec6e0", "surface-container": "#e5eeff", "on-surface": "#0b1c30", "on-tertiary": "#ffffff", "primary": "#000000", "background": "#f8f9ff", "tertiary-fixed": "#ffddb8", "inverse-on-surface": "#eaf1ff", "outline-variant": "#c6c6cd", "on-primary": "#ffffff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#3f465c", "surface-container-low": "#eff4ff", "on-primary-container": "#7c839b", "secondary": "#904d00", "surface-dim": "#cbdbf5", "outline": "#76777d", "on-secondary-fixed-variant": "#6e3900", "tertiary-fixed-dim": "#ffb95f", "secondary-fixed": "#ffdcc3", "primary-fixed-dim": "#bec6e0", "secondary-fixed-dim": "#ffb77d", "on-surface-variant": "#45464d", "on-error-container": "#93000a", "error": "#ba1a1a", "inverse-surface": "#213145", "primary-container": "#131b2e", "on-secondary-container": "#663500" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-lg": "1.5rem", "gutter-mobile": "1rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "3rem", "margin-mobile": "1.25rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-md": ["Newsreader"], "headline-lg-mobile": ["Newsreader"], "label-md": ["Manrope"], "label-caps": ["Manrope"], "title-lg": ["Manrope"], "body-sm": ["Manrope"], "display-hero-mobile": ["Newsreader"], "display-hero": ["Newsreader"], "title-md": ["Manrope"], "headline-lg": ["Newsreader"], "body-lg": ["Manrope"], "headline-sm": ["Newsreader"], "label-lg": ["Manrope"], "body-md": ["Manrope"] }, "fontSize": { "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.1em", "fontWeight": "700" }], "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="buy" href="#"><img alt="Haven &amp; Key Real Estate Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface uppercase font-medium">Haven &amp; Key</span></a><nav class="hidden xl:flex items-center gap-space-md pl-space-md" data-active-classes="text-on-surface font-semibold"><a aria-current="page" class="transition-colors py-space-xs text-on-surface font-semibold" data-path="buy" href="#">Buy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="rent" href="#">Rent</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="sell" href="#">Sell</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="exclusive-estates" href="#">Exclusive Estates</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="neighborhoods" href="#">Neighborhoods</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="agents" href="#">Agents</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="market-insights" href="#">Market Insights</a></nav></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface py-space-xs px-space-sm transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span><span class="hidden 2xl:inline font-label-md text-label-md uppercase tracking-wider">Search</span></button><div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface cursor-pointer py-space-xs px-space-xs transition-colors"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-label-md text-label-md">SF / Bay Area</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><a class="flex items-center gap-space-xs py-space-xs px-space-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="saved-listings" href="#"><span class="material-symbols-outlined text-[20px] text-secondary">favorite</span><span class="font-label-md text-label-md font-semibold">Saved (4)</span></a><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container hover:text-on-secondary transition-all shadow-sm" data-path="list-property" href="#">List Your Property</a><div class="flex items-center pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP6eIXPDtV2Ea6EwvAWUsuoMxRnnkmbNZovKBTfdjO5_0FY-4EaI4Qot3zPet0LooPdKPHzH_jNZ_4rVHBtVubY1vnwxNkXcGfkbwepudMUfE1sc88EDlWoUV138z-yRjwVpgZBBi_-R-N2trWC9lI-sxb2B4uRTLwr_v0FguuJcBC0vcnovDLKgEmadGXG8OQC3efmSmw0zXyLHq5yABZYe6fZqB3XCrZe7pb0aw"/></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Immersive Editorial Hero -->
+<section class="relative w-full -mt-20 pt-28 pb-20 md:pb-28 bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Ultra-luxury architectural minimalist villa overlooking the Pacific ocean coastline at golden twilight hour with floor to ceiling glass walls, warm ambient interior lighting, manicured cedar terraces, and sleek infinity pool reflecting slate blue dusk tones and warm amber hues, architectural photography 8k resolution" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnhhYbMFDT8kVBABLGaAsWFEzKiwfkb5G48FnvTc_ZnnxmDQXec3EkqK9cmkAoNKa84ndWqNM_NIityqIT4IySs_SzM3Jvi8SqpKaW6eXdNy2iEzsIU4X2n_utjkLbunTPG_BAgePKCfiuB83tTqcvw6UnM4vpEAMg8-DAi3WM8nhLQXsQtYkXiZ3A_qUKgAzN_e58gEJXWtNuJ74bSfWhaP2KzFBLEMHT3At8uSQ');">
+</div>
+<!-- Editorial Gradient Scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/60 to-on-background/30 mix-blend-multiply pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-on-background/80 via-transparent to-transparent pointer-events-none"></div>
+<div class="relative max-w-7xl mx-auto px-margin z-10 flex flex-col pt-12 md:pt-16">
+<!-- Monogram Tag & Issue Stamp -->
+<div class="flex items-center gap-space-sm mb-space-md">
+<span class="px-space-sm py-1 rounded bg-secondary/90 text-on-secondary font-label-caps text-label-caps uppercase tracking-widest shadow-sm">
+          Volume XXVI · Autumn Portfolio
+        </span>
+<span class="text-surface-variant font-label-md text-label-md tracking-wider uppercase opacity-80">
+          Private Client Advisory
+        </span>
+</div>
+<!-- Main Headline & Subtitle -->
+<div class="max-w-3xl mb-space-xl">
+<h1 class="font-display-hero text-display-hero text-surface-bright tracking-tight mb-space-md drop-shadow-sm font-light">
+          Exceptional Estates for <span class="italic font-normal text-secondary-fixed">Discerning Lives.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-xl leading-relaxed opacity-95">
+          Discover premier architectural residences, off-market penthouses, and bespoke coastal sanctuaries curated for generational legacy.
+        </p>
+</div>
+<!-- Modern Multi-Tab Search Filter Container -->
+<div class="w-full max-w-5xl bg-surface-container-lowest/95 backdrop-blur-md rounded-xl p-space-md md:p-space-lg shadow-xl shadow-on-background/20">
+<!-- Search Category Tabs -->
+<div class="flex items-center gap-space-md mb-space-md overflow-x-auto pb-1" id="search-tabs">
+<button class="tab-btn active px-space-md py-2 rounded-lg font-label-md text-label-md transition-all bg-primary text-on-primary font-semibold flex items-center gap-2" data-tab="buy" type="button">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+<span>Buy</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-semibold flex items-center gap-2" data-tab="rent" type="button">
+<span class="material-symbols-outlined text-[16px]">key</span>
+<span>Rent</span>
+</button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-semibold flex items-center gap-2" data-tab="offmarket" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">lock</span>
+<span class="text-secondary">Sold / Private Off-Market</span>
+</button>
+</div>
+<!-- Filter Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Location Input -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs focus-within:ring-2 focus-within:ring-secondary/50 transition-all">
+<span class="material-symbols-outlined text-secondary text-[20px] ml-1">travel_explore</span>
+<div class="flex flex-col flex-1">
+<label class="font-label-caps text-label-caps uppercase text-outline" for="location-input">Location or Zip</label>
+<input class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none placeholder:text-outline truncate" id="location-input" placeholder="e.g. Bel Air, Tribeca, Carmel" type="text" value="San Francisco &amp; Bay Area"/>
+</div>
+</div>
+<!-- Property Type Dropdown -->
+<div class="lg:col-span-3 bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs cursor-pointer focus-within:ring-2 focus-within:ring-secondary/50">
+<span class="material-symbols-outlined text-outline text-[20px] ml-1">villa</span>
+<div class="flex flex-col flex-1">
+<label class="font-label-caps text-label-caps uppercase text-outline">Property Type</label>
+<select class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none cursor-pointer">
+<option value="all">All Architectural Types</option>
+<option selected="" value="modern">Modern Villa</option>
+<option value="penthouse">Sky Penthouse</option>
+<option value="historic">Historic Manor</option>
+<option value="waterfront">Coastal Waterfront</option>
+</select>
+</div>
+</div>
+<!-- Price Range Dropdown -->
+<div class="lg:col-span-3 bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs cursor-pointer focus-within:ring-2 focus-within:ring-secondary/50">
+<span class="material-symbols-outlined text-outline text-[20px] ml-1">payments</span>
+<div class="flex flex-col flex-1">
+<label class="font-label-caps text-label-caps uppercase text-outline">Price Scale</label>
+<select class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none cursor-pointer">
+<option value="2-5">$2,000,000 – $5,000,000</option>
+<option selected="" value="5-10">$5,000,000 – $15,000,000</option>
+<option value="15-25">$15,000,000 – $25,000,000</option>
+<option value="25+">$25,000,000+ (Trophy)</option>
+</select>
+</div>
+</div>
+<!-- Bedrooms Select -->
+<div class="lg:col-span-2 bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs cursor-pointer focus-within:ring-2 focus-within:ring-secondary/50">
+<span class="material-symbols-outlined text-outline text-[20px] ml-1">bed</span>
+<div class="flex flex-col flex-1">
+<label class="font-label-caps text-label-caps uppercase text-outline">Beds</label>
+<select class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none cursor-pointer">
+<option value="any">Any</option>
+<option selected="" value="3">3+ Beds</option>
+<option value="4">4+ Beds</option>
+<option value="5">5+ Beds</option>
+<option value="private-estate">Compound (6+)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Primary CTA Strip & Quick Filters -->
+<div class="flex flex-col sm:flex-row items-center justify-between mt-space-md pt-space-sm gap-space-md">
+<div class="flex items-center flex-wrap gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="font-label-caps text-label-caps uppercase text-outline tracking-wider mr-1">Trending:</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors">Sea Cliff Oceanfront</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors">Tribeca Loft</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors">Wine Country Estate</span>
+</div>
+<button class="w-full sm:w-auto px-space-xl py-space-sm bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-on-tertiary-container transition-all flex items-center justify-center gap-space-xs shadow-md" type="button">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span>Search 1,420 Exclusive Estates</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Market Intelligence Ticker / Stats Bar -->
+<section class="w-full bg-surface-container py-space-md shadow-inner">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg items-center">
+<!-- Stat Item 1 -->
+<div class="flex flex-col items-start">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">$4.8B+</span>
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Closed Career Volume</span>
+</div>
+<!-- Stat Item 2 -->
+<div class="flex flex-col items-start">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">14 Days</span>
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Avg. Days on Market</span>
+</div>
+<!-- Stat Item 3 -->
+<div class="flex flex-col items-start">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">98.6%</span>
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">List-to-Sale Ratio</span>
+</div>
+<!-- Stat Item 4 -->
+<div class="flex flex-col items-start">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">180+</span>
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Private Off-Market Briefs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Curated Collections (Editorial 3-Card Spread) -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div class="max-w-xl">
+<div class="flex items-center gap-space-xs text-secondary font-label-caps text-label-caps uppercase tracking-widest mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+<span>Hand-Selected Masterworks</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-light">
+            Premier Curated Collections
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+            Distinctive architectural residences vetted for historical significance, bespoke interior provenance, and prime geography.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors flex items-center gap-1" type="button">
+<span>Filter By Region</span>
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+<a class="px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-on-tertiary-container transition-colors flex items-center gap-1" data-path="exclusive-estates" href="#">
+<span>View All Curations (42)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 3-Column Architectural Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1: Bel Air Glass Pavilion -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+<!-- Image Canvas with Overlay Badges -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern architectural glass pavilion villa in Bel Air California with panoramic infinity pool looking out over city lights, travertine stone accents, sculptural black steel frames, warm minimalist interior glow, professional luxury real estate capture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHcITZRaYwsrBLg4LtnJp7A21QnKSwagwTa_dIDwJO8nBKdrJ2xtLX3ihULXQewMnx4KSWlizWMMjm4zIwvOjP9U1S5PpIBLzIgZgQgVXusVoBVT-IPH62bh0KoTtH39VaXWS_7DhZ-Tgi2QIb91_L8nh0XFC8DIc0B2Rql4kejM4XSivNefodVgvaraqi43wFtqowMJdtm894r-b36ANn8Bhdes2Ek5R1QFxOB9o');">
+</div>
+<!-- Status Chips -->
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-wider shadow">
+                New Exclusive
+              </span>
+<span class="px-2.5 py-1 rounded bg-surface/90 backdrop-blur-md text-on-surface font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-1 shadow">
+<span class="material-symbols-outlined text-[14px] text-secondary">view_in_ar</span> 3D Tour
+              </span>
+</div>
+<!-- Favorite Quick Action -->
+<button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary hover:bg-surface transition-colors shadow" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
+                Bel Air · Los Angeles
+              </span>
+</div>
+</div>
+<!-- Metadata & Details -->
+<div class="p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-baseline justify-between gap-space-sm mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors font-medium">
+                  The Bel Air Glass Pavilion
+                </h3>
+</div>
+<p class="font-title-lg text-title-lg font-bold text-on-surface mb-space-md">
+                $18,500,000
+              </p>
+<!-- Specifications Strip -->
+<div class="grid grid-cols-4 gap-space-xs py-space-sm bg-surface-container-low rounded-lg text-center mb-space-md">
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">5</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Beds</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">7.5</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Baths</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">9,420</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Sq Ft</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">1.2 AC</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Lot</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-space-md">
+                Masterfully engineered by Olson Kundig collaborators, cantilevered glass expanses frame 270-degree canyon vistas with zero-edge reflection ponds.
+              </p>
+</div>
+<!-- Agent & Inquire Row -->
+<div class="pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Monochrome professional headshot of executive luxury real estate director in tailored blazer" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ-2ccnheJQMUP_hFtTaCBWm-B32jPa0q8VyXJ683_qkiVUAVitaSV4egO37w8BUrC2NQWQcNIoP8nWLryReiH3jl3WA6t51Cwdc2fP_BRZxkuCwHPL84FoFfQiDrVw6VOYgnp-woEjEEejuoz5BhL5_VDkhi-lzT4joJpggcczYV_51pmNX7dLH1fn4ktAwRB7eHwLJLCrkcz0tcNgwiBCRm_q4tn9Ps3VSKlPvg');"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Julian Vance · Partner</span>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates" href="#">
+<span>View Dossier</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 2: Pacific Heights Historic Villa -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+<!-- Image Canvas -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Restored historic Beaux-Arts European style villa in Pacific Heights San Francisco with limestone facade, classic arched entryways, private manicured courtyard with classical fountain, warm ambient evening interior light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAb01jMwKpWj8sCYypE8rhoPMuXjxIV3cg2TkuFB3A78aHe85QtmPD4FO2IY-Jxm5zMLGKCpkXyW2p8zWLn2Sf6eUpin5BRNeAb8BBgadNOzyH9iDJnEhv_Hl_bAMiaRx1kT53pE4-VKnvI4Ydook1ammIl4nI_JIknx4h7dEXzuyCJcrt_Egxs2ikY4NVSc-BfKCwXDz60f0JUFDEQwuOkxV3PXkeOFJSv3Co6ABs');">
+</div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-label-caps uppercase tracking-wider shadow">
+                Historic Landmark
+              </span>
+<span class="px-2.5 py-1 rounded bg-surface/90 backdrop-blur-md text-on-surface font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-1 shadow">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span> Arch Digest 2024
+              </span>
+</div>
+<button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary hover:bg-surface transition-colors shadow" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
+                Pacific Heights · San Francisco
+              </span>
+</div>
+</div>
+<!-- Metadata & Details -->
+<div class="p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-baseline justify-between gap-space-sm mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors font-medium">
+                  Pacific Heights Historic Villa
+                </h3>
+</div>
+<p class="font-title-lg text-title-lg font-bold text-on-surface mb-space-md">
+                $12,900,000
+              </p>
+<!-- Specifications Strip -->
+<div class="grid grid-cols-4 gap-space-xs py-space-sm bg-surface-container-low rounded-lg text-center mb-space-md">
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">6</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Beds</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">6.5</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Baths</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">7,850</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Sq Ft</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">Bay View</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Aspect</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-space-md">
+                A 1922 Willis Polk triumph, comprehensively modernized with custom Boffi culinary suites, subterranean 800-bottle wine cellar, and Golden Gate view salon.
+              </p>
+</div>
+<!-- Agent & Inquire Row -->
+<div class="pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Monochrome professional portrait of female luxury residential advisor in sharp minimalist attire" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuYwskQXYPTOHS3QftG33zFPnpK6ow9AF1KRLX4Ajefx8t9ILJmofGJUyT3SUfMFjzv4J7xPBW0_4Sz1S7NkQOU_j1wuMdBuOe_rMAFcyA35go6LoWP1DVcMu-nh6Lbu8NFpnzmVRDlo5B8Arqx2CudZbrWA5fOR9LdYOM_AvQwKhtsR2oUXm9eWqVcHKAYb5Xk-a90_wEhDqQNp5b24Jt4C1sEn4Ld6eEWWz2dnw');"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Eleanor Sterling · MD</span>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates" href="#">
+<span>View Dossier</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 3: Aspen Alpine Sanctuary -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+<!-- Image Canvas -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern alpine luxury retreat in Aspen Colorado nestled among snow tipped aspen trees and pines, dark timber and charcoal slate exterior, warm glowing hearth through floor to ceiling glass, twilight dusk winter mountain ambiance" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvEGNDT4SaJKcbjc2iOJA7ZFTzgSfuFM_zyLQt0QfF6zbQKM7OOrYGwo19D6VxWBpt7lVgmMvWE9Si72-Obp4eQFs7hwWFl1M3S55FILTHwLooNomIxjjNAdYA7rBIYg-nfEcY5ktq0Stse9Oic09eKIRQctSu9FuZ__CMtQ2GoTIKUYErMYKDseTGHImhXYQ5suuDGGWn4cFdXaTYlykhTRlylNBYweKAjEJh7l0');">
+</div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider shadow">
+                Ski-In / Ski-Out
+              </span>
+<span class="px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps uppercase tracking-wider shadow">
+                Price Upon Request
+              </span>
+</div>
+<button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:text-secondary hover:bg-surface transition-colors shadow" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
+                Red Mountain · Aspen
+              </span>
+</div>
+</div>
+<!-- Metadata & Details -->
+<div class="p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-baseline justify-between gap-space-sm mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors font-medium">
+                  Aspen Alpine Sanctuary
+                </h3>
+</div>
+<p class="font-title-lg text-title-lg font-bold text-on-surface mb-space-md">
+                $15,750,000
+              </p>
+<!-- Specifications Strip -->
+<div class="grid grid-cols-4 gap-space-xs py-space-sm bg-surface-container-low rounded-lg text-center mb-space-md">
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">4</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Beds</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">5</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Baths</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">6,120</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Sq Ft</div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">3.8 AC</div>
+<div class="font-label-caps text-label-caps uppercase text-outline">Private</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-space-md">
+                Direct ski access to Buttermilk Mountain, wrapped in blackened cedar and rough-cut Colorado granite with heated outdoor swimming grotto and private heli-pad.
+              </p>
+</div>
+<!-- Agent & Inquire Row -->
+<div class="pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Monochrome portrait of senior mountain luxury real estate director" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBR5XXVMbTSBDDjZK6BMw6hPFunPARl4_R6YewhztsEM_AlC53yteALWagDA__ww6_zAbPuf-xIZ3XeZiJZO1davUwkvmPEwARO7jcWULltNKxSuS13oaTVNqBRMf-0LD5rtfHqSiToGluVaVH2ujdMvgp4bnN6Bb9ucITPMvWzL6UrwsSjcY8-bDf3eRpLUoSk0fUpnxJ44VwX7RBGEEepa1yvYaoeU5Xiu9qfE_Y');"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Marcus Thorne · Principal</span>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates" href="#">
+<span>View Dossier</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Neighborhood Exploration Guide (Bento Map & Zip Codes) -->
+<section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Geographic Authority</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-light mt-1">
+            Premier Zip Code Indices
+          </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+          Live liquidity metrics, median values, and off-market inventory levels across America's most fortified high-wealth enclaves.
+        </p>
+</div>
+<!-- Bento Grid of Neighborhoods -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Neighborhood 1: Presidio Heights -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div>
+<div class="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-surface-container">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Quiet tree-lined residential street of grand brick colonial revival mansions in Presidio Heights San Francisco with fog clearing over greenery" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUZFYpy2p1Deujak9WuE_nnFX5TAqWZgUGWnVJwrjjY3fC7D4ze1nm00EMeQAJTk5jAcJSMWaULJYQ_TWn3yZQPs7d42lesR8StqDcxg1VtrP1iUjZPrO6K7JOnYeGyImQpFXEvbkJOu5wi2ZbLzPaqLPfhBD5F-QXO3UQJNo50KrzODPnJvReop5Qfy2YAX4Ot0OpTnE3AHHVgxo4tQeK0QJtSipp7Hllhy27ivM');"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-caps text-label-caps">
+                ZIP 94118
+              </div>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold">Presidio Heights</h4>
+<span class="material-symbols-outlined text-secondary text-[20px]">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">San Francisco, CA</p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-outline block">Avg. Price</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">$11.4M</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps uppercase text-outline block">Active Supply</span>
+<span class="font-title-md text-title-md font-bold text-secondary">8 Private Briefs</span>
+</div>
+</div>
+</div>
+<!-- Neighborhood 2: Tribeca -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div>
+<div class="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-surface-container">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Historic cobblestone street in Tribeca New York City with cast iron facade buildings, boutique residential entrance, dusk lighting, warm urban luxury editorial" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7jk2YJX1310OP8nju0c3cC0oQzkE5HKG40I5kMMqQLz1bj-OjwAlVnVEK0dWwpJ57oczE1u7GK2F0BIDkCswMzgVl35ngMhW_MNWpKPJ70bu9UtuTQljXClRwGv8BaJC7T1ptEyBnxDup3vTc_4baJebqSrBGrX2893yzWDtqy7Bsjt1PdkLY8pqKkPwhVKMo4HTbIJ1DpiOyfMUC5AnA5ZqloaKMYYEc5vGianE');"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-caps text-label-caps">
+                ZIP 10013
+              </div>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold">Tribeca</h4>
+<span class="material-symbols-outlined text-secondary text-[20px]">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">New York City, NY</p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-outline block">Avg. Price</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">$14.2M</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps uppercase text-outline block">Active Supply</span>
+<span class="font-title-md text-title-md font-bold text-secondary">14 Penthouses</span>
+</div>
+</div>
+</div>
+<!-- Neighborhood 3: Beverly Hills -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div>
+<div class="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-surface-container">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Lush palm tree lined wide avenue in Beverly Hills California with Mediterranean estate gates and sculpted private hedgerows bathed in golden sunlight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB15037MU-vbRvfQIfv69xxt1Ts6gMMHUEiAieLiRIff53GhcAOM9JUFOS0eGJOrCuAOQuPWLTivL5ij1ucLnVhUbSThz04EeNh14MuOSUF0Wv2CLVzH9LGeM9R6wK1IuqbZofQRox0symd54gVkx0hgO08XFIeHH0IPH0LAS3NUXebAmXZbU35208-izFfLQIj2ltzBTvl9onK1MX4CyyL-5SM6X8aMxooCuCR23I');"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-caps text-label-caps">
+                ZIP 90210
+              </div>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold">Beverly Hills</h4>
+<span class="material-symbols-outlined text-secondary text-[20px]">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Los Angeles, CA</p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-outline block">Avg. Price</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">$16.8M</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps uppercase text-outline block">Active Supply</span>
+<span class="font-title-md text-title-md font-bold text-secondary">22 Compounds</span>
+</div>
+</div>
+</div>
+<!-- Neighborhood 4: Carmel-by-the-Sea -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div>
+<div class="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-surface-container">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Rugged granite coastline of Carmel-by-the-Sea with iconic cypress trees framing a modernist cliffside estate overlooking turquoise ocean waves" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCB42M3sLAC7Q6HmOGf1086L0tiqsY69a2DQuPw86bgA047_PFjKwRflwy_UMawo9wZ0z3nkaqmVBFcSAH4WN8UiM-zFFjJNZD1FvePYxAYayvCSWI1_FH3Zzh5bT6rmHXVy6Gsx2SbgxuWVsvWfv3YEAKxqVRzGrOqCAVC0E18cYI2cB2dn3GpRX6YloYmyfHDk8E6AtBCbBoR42raNgaZyW0Z9FRXytRZkefx1Ho');"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-caps text-label-caps">
+                ZIP 93921
+              </div>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold">Carmel-by-the-Sea</h4>
+<span class="material-symbols-outlined text-secondary text-[20px]">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Monterey Peninsula, CA</p>
+</div>
+<div class="pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-outline block">Avg. Price</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">$9.8M</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps uppercase text-outline block">Active Supply</span>
+<span class="font-title-md text-title-md font-bold text-secondary">6 Coastal Enclaves</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Data Feature: The Haven & Key Liquidity Compass -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="bg-surface-container rounded-2xl p-space-lg md:p-space-xl flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<div class="max-w-lg">
+<span class="px-space-sm py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps uppercase tracking-wider mb-space-sm inline-block">
+            Proprietary Valuation Model
+          </span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-light leading-snug">
+            Institutional Insight. Quiet Capital Precision.
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm mb-space-md">
+            Our algorithmic valuation platform tracks micro-absorption rates, private non-MLS trades, and cross-border ultra-high-net-worth liquidity shifts with zero public footprint.
+          </p>
+<div class="flex flex-col gap-space-xs text-on-surface font-body-sm text-body-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span>Encrypted client ledger with audited non-disclosure protocols</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span>Private aircraft apron transfers for discreet inspections</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span>Dual-representation mitigation under independent fiduciary oversight</span>
+</div>
+</div>
+<button class="px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-on-tertiary-container transition-colors shadow" type="button">
+            Request Private Market Dossier
+          </button>
+</div>
+<!-- Inline Data Graphic: Absorption Velocity Sparkline & Chart -->
+<div class="w-full lg:w-[480px] bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-outline">Q3 / Q4 Absorption Index</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">$10M+ Segment Velocity</div>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container-highest text-on-primary-fixed font-label-caps text-label-caps">
+              +18.4% YoY
+            </span>
+</div>
+<!-- Minimalist Vector Chart -->
+<div class="w-full h-40 flex flex-col justify-end">
+<svg class="w-full h-32 overflow-visible" preserveaspectratio="none" viewbox="0 0 400 120">
+<defs>
+<lineargradient id="chartGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#904d00" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#904d00" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Filled Area -->
+<path d="M 0,100 Q 60,85 100,70 T 200,60 T 300,30 T 400,10 L 400,120 L 0,120 Z" fill="url(#chartGrad)"></path>
+<!-- Primary Line -->
+<path d="M 0,100 Q 60,85 100,70 T 200,60 T 300,30 T 400,10" fill="none" stroke="#904d00" stroke-linecap="round" stroke-width="3"></path>
+<!-- Dot Anchors -->
+<circle cx="100" cy="70" fill="#0b1c30" r="4"></circle>
+<circle cx="200" cy="60" fill="#0b1c30" r="4"></circle>
+<circle cx="300" cy="30" fill="#0b1c30" r="4"></circle>
+<circle cx="400" cy="10" fill="#fe932c" r="5"></circle>
+</svg>
+<div class="flex justify-between text-outline font-label-caps text-label-caps uppercase pt-2">
+<span>Nov 2024</span>
+<span>Jan 2025</span>
+<span>Mar 2025</span>
+<span>May 2025 (Forecast)</span>
+</div>
+</div>
+<!-- Quick Metrics Row -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs bg-surface-container-lowest">
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-caps text-label-caps text-outline block uppercase">Domestic Demand</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">62% Liquidity</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-caps text-label-caps text-outline block uppercase">Off-Shore Inflow</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">38% Global</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bespoke Concierge & Private Client Services -->
+<section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Unrivaled Advisory</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-light mt-1">
+          Private Client Services
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Beyond transaction execution. We orchestrate discrete acquisitions with specialized lifestyle infrastructure.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Service 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]">flight_takeoff</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mb-space-xs">
+              Private Aviation Logistics
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+              Seamless charter integration with NetJets and VistaJet for door-to-helipad viewing itineraries across remote coastal and alpine portfolios.
+            </p>
+</div>
+<div class="pt-space-sm flex items-center text-secondary font-label-md text-label-md font-bold gap-1">
+<span>Charter Concierge</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]">security</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mb-space-xs">
+              Confidential Representation
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+              Complete anonymity preservation for family offices, tech founders, and sovereign accounts with encrypted communication channels and blind trust title structuring.
+            </p>
+</div>
+<div class="pt-space-sm flex items-center text-secondary font-label-md text-label-md font-bold gap-1">
+<span>Fiduciary Protocols</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]">chair</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mb-space-xs">
+              Architectural &amp; Curation Advisory
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+              Direct relationships with premier interior ateliers, blue-chip fine art conservators, and historical preservation authorities for post-acquisition turnkey outfitting.
+            </p>
+</div>
+<div class="pt-space-sm flex items-center text-secondary font-label-md text-label-md font-bold gap-1">
+<span>Atelier Network</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Press Quotes & Client Testimonials -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Divider Header -->
+<div class="flex items-center justify-between pb-space-md mb-space-lg">
+<h3 class="font-label-caps text-label-caps uppercase tracking-widest text-outline">
+          Published Recognition · Global Press
+        </h3>
+<div class="flex items-center gap-space-md text-outline">
+<span class="font-label-md text-label-md italic">The Wall Street Journal</span>
+<span class="font-label-md text-label-md italic">Architectural Digest</span>
+<span class="font-label-md text-label-md italic">Financial Times</span>
+<span class="font-label-md text-label-md italic">Robb Report</span>
+</div>
+</div>
+<!-- Testimonial Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Prominent Quote Card -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-2xl p-space-xl relative overflow-hidden">
+<span class="material-symbols-outlined text-secondary/20 text-[96px] absolute -top-4 -left-2 pointer-events-none select-none">format_quote</span>
+<div class="relative z-10">
+<div class="flex items-center gap-1 text-secondary mb-space-md">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<blockquote class="font-headline-md text-headline-md text-on-surface font-light leading-relaxed mb-space-lg">
+              "Haven &amp; Key handled our off-market Sea Cliff acquisition with mathematical discretion. Not a single rumor breached the press, and every closing term reflected genuine fiduciary rigor."
+            </blockquote>
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Monochrome close up portrait of tech entrepreneur in subtle dark cashmere sweater looking confident and composed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD31WQ9lg17wjZNPi7HNHbtn8FkSQne5w66AZCj93VKW69PBeeWSJsXATF-CpyLyG1AH8Xfmm4ijCjc71Xp8M3sDTcFgfzWc8YQyDrfjMGXgRYk0O2T8GBx6loy8DpLssD8x9HGEzS_RYH8Cx6QOQcMqio5chZuVi-ou6vsWtgkeChn6X1-BOBDPGZm3WmTZYcBDcihibvBJu3vAzSXYea11pqqmqxR1S9r8Cnipz4');"></div>
+</div>
+<div>
+<div class="font-title-md text-title-md font-bold text-on-surface">Christian &amp; Sophia Lindqvist</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Principals, Apex Capital Holdings · San Francisco &amp; Geneva</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Press Snippets Column -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-bold block mb-1">Architectural Digest · Private Issue</span>
+<p class="font-body-md text-body-md text-on-surface italic mb-2">
+              "Haven &amp; Key has redefined the ultra-prime residential landscape by treating historic preservation with the curatorial precision of a world-class gallery."
+            </p>
+<span class="font-label-md text-label-md text-outline">Estate of the Year Feature · 2024</span>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-bold block mb-1">The Wall Street Journal · Mansions</span>
+<p class="font-body-md text-body-md text-on-surface italic mb-2">
+              "Leading the California and New York corridors in confidential trades exceeding $20 million, setting consecutive benchmark price-per-square-foot records."
+            </p>
+<span class="font-label-md text-label-md text-outline">Market Leadership Report</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Private Consultation Callout -->
+<section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="bg-primary text-on-primary rounded-2xl p-space-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-space-lg shadow-xl">
+<!-- Background subtle glow -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-xl">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary-container font-bold mb-space-xs block">
+            Direct Principal Access
+          </span>
+<h3 class="font-headline-lg text-headline-lg text-surface-bright font-light mb-space-xs">
+            Contemplating a Confidential Sale or Acquisition?
+          </h3>
+<p class="font-body-md text-body-md text-surface-variant leading-relaxed">
+            Schedule a private consultation with our managing partners. All inquiries are bound by our standard binding institutional non-disclosure protocol.
+          </p>
+</div>
+<div class="relative z-10 flex flex-col sm:flex-row items-center gap-space-sm w-full md:w-auto">
+<a class="w-full sm:w-auto px-space-xl py-3.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition-all text-center font-bold shadow-md" data-path="list-property" href="#">
+            Schedule Private Briefing
+          </a>
+<a class="w-full sm:w-auto px-space-lg py-3.5 rounded-lg bg-surface-container-highest text-on-primary-fixed font-label-md text-label-md hover:bg-surface-bright transition-all text-center font-bold" data-path="agents" href="#">
+            Meet Our Partners
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Client-side Interactive Tabs Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('#search-tabs .tab-btn');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('bg-primary', 'text-on-primary', 'active');
+            t.classList.add('text-on-surface-variant');
+          });
+          tab.classList.add('bg-primary', 'text-on-primary', 'active');
+          tab.classList.remove('text-on-surface-variant');
+        });
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface-variant"><div class="max-w-7xl mx-auto px-margin pt-space-xl pb-space-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter mb-space-xl"><div class="lg:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Haven &amp; Key Real Estate Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"/><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface font-medium">Haven &amp; Key</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">Private advisory, premier residential brokerage, and off-market portfolio representation for discerning global acquisitions.</p><div class="mt-space-sm"><p class="font-label-caps text-label-caps uppercase text-secondary tracking-widest mb-space-xs">Private Off-Market Briefings</p><form class="flex items-center max-w-md gap-space-xs"><input class="flex-1 bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg border-0 outline-none font-body-sm text-body-sm shadow-[0_1px_3px_rgba(0,0,0,0.04)] placeholder:text-outline" placeholder="Enter institutional or personal email" type="email"/><button class="px-space-md py-space-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors" type="button">Subscribe</button></form></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Portfolio</h4><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="buy" href="#">Penthouses &amp; Mansions</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Coastal Enclaves</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Architectural Masterworks</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="exclusive-estates" href="#">Private Equestrian</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="market-insights" href="#">Quarterly Market Reports</a></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Prime Salons</h4><div class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-space-xs"><div><span class="font-semibold text-on-surface">Beverly Hills:</span> 9460 Wilshire Blvd, Ste 400</div><div><span class="font-semibold text-on-surface">Manhattan:</span> 767 Fifth Avenue, 28th Fl</div><div><span class="font-semibold text-on-surface">Aspen:</span> 520 E Cooper Avenue, Ste 2B</div><div><span class="font-semibold text-on-surface">San Francisco:</span> 555 California St, Ste 3800</div></div></div><div class="lg:col-span-2 flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase text-on-surface font-bold tracking-widest mb-space-xs">Accreditation</h4><div class="flex flex-col gap-space-xs font-body-sm text-body-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Who's Who In Luxury Real Estate</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Global Advisory Board Member</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary">verified</span><span>Licensed CA DRE #01948291</span></div></div><div class="flex items-center gap-space-md mt-space-md text-on-surface-variant"><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">share</span><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">mail</span><span class="material-symbols-outlined hover:text-on-surface cursor-pointer text-[20px]">domain</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm"><p>© 2025 Haven &amp; Key Real Estate Inc. Equal Housing Opportunity. All rights reserved.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Advisory</a><a class="hover:text-on-surface transition-colors" href="#">Broker Disclosures</a><a class="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer></body></html>
