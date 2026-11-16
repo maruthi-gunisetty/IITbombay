@@ -1,734 +1,1069 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import HavenNavbar from '../../components/haven/HavenNavbar';
-import HavenFooter from '../../components/haven/HavenFooter';
+import {
+  Calculator, Landmark, ShieldAlert, FileText, AlertTriangle,
+  MapPin, TrendingUp, FileCheck2, Bot, ArrowRight, ShieldCheck,
+  CheckCircle2, Lock, Cpu, Eye, Users, FileSignature, Sparkles,
+  Building, ChevronRight, Activity, ArrowUpRight, Check, Play,
+  BarChart3, RefreshCw
+} from 'lucide-react';
+import Navbar from '../../components/layout/Navbar';
+import { propertiesAPI } from '../../services/api';
+
+const sampleAssets = [
+  {
+    id: "sample-1",
+    name: "Highline Horizon Penthouse",
+    locality: "Powai, Mumbai Suburban",
+    type: "Penthouse 4 BHK",
+    valuation: "INR 7.45 Cr",
+    confidence: "94.2% ML Bound",
+    rateSqft: "INR 26,140 / sqft",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+    applicationId: "LN-2026-89410A",
+    underwriting: "Prime File",
+    dti: "44.1%",
+    ltv: "64.4%",
+    emi: "INR 4,13,550",
+    tenure: "20 Year Amortization",
+    collateralRisk: "22.5 / 100",
+    borrowerRisk: "24.0 / 100",
+    riskCategory: "Low Risk",
+    riskColor: "#20C997"
+  },
+  {
+    id: "sample-2",
+    name: "DLF Magnolias Signature Golf Villa",
+    locality: "Golf Course Road, Gurugram",
+    type: "Ultra-Luxury Villa",
+    valuation: "INR 26.50 Cr",
+    confidence: "96.4% ML Bound",
+    rateSqft: "INR 41,400 / sqft",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
+    applicationId: "LN-2026-90241B",
+    underwriting: "HNW Private Tier",
+    dti: "31.8%",
+    ltv: "55.0%",
+    emi: "INR 11,28,400",
+    tenure: "15 Year Amortization",
+    collateralRisk: "16.8 / 100",
+    borrowerRisk: "18.2 / 100",
+    riskCategory: "Low Risk",
+    riskColor: "#20C997"
+  },
+  {
+    id: "sample-3",
+    name: "Jubilee Hills Private Hilltop Compound",
+    locality: "Jubilee Hills, Hyderabad",
+    type: "Hilltop Estate 5 BHK",
+    valuation: "INR 32.00 Cr",
+    confidence: "95.1% ML Bound",
+    rateSqft: "INR 37,200 / sqft",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    applicationId: "LN-2026-91480C",
+    underwriting: "Institutional File",
+    dti: "36.5%",
+    ltv: "50.0%",
+    emi: "INR 12,95,000",
+    tenure: "20 Year Amortization",
+    collateralRisk: "19.4 / 100",
+    borrowerRisk: "21.0 / 100",
+    riskCategory: "Low Risk",
+    riskColor: "#20C997"
+  }
+];
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('curated');
-  const [locationInput, setLocationInput] = useState('Mumbai & Top Metros');
-  const [propertyType, setPropertyType] = useState('modern');
-  const [priceScale, setPriceScale] = useState('5-10');
-  const [bedrooms, setBedrooms] = useState('3');
-  const [inquirySubmitted, setInquirySubmitted] = useState(false);
-  const [inquiryEmail, setInquiryEmail] = useState('');
+  const [activeAssetIndex, setActiveAssetIndex] = useState(0);
+  const [featuredProperties, setFeaturedProperties] = useState([]);
+  const [loadingProps, setLoadingProps] = useState(true);
 
-  const handleSearch = (e) => {
+  // Quick Valuation Playground State
+  const [calcCity, setCalcCity] = useState('Mumbai');
+  const [calcSqft, setCalcSqft] = useState(2400);
+  const [calcBhk, setCalcBhk] = useState(3);
+  const [calcQuality, setCalcQuality] = useState('Premium');
+  const [calcResult, setCalcResult] = useState(null);
+
+  const activeAsset = sampleAssets[activeAssetIndex];
+
+  useEffect(() => {
+    const fetchProps = async () => {
+      try {
+        const res = await propertiesAPI.list();
+        if (res.data && res.data.length > 0) {
+          setFeaturedProperties(res.data.slice(0, 3));
+        }
+      } catch (err) {
+        console.error("Failed to load featured properties:", err);
+      } finally {
+        setLoadingProps(false);
+      }
+    };
+    fetchProps();
+  }, []);
+
+  const runQuickValuation = (e) => {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (locationInput) params.set('location', locationInput);
-    if (propertyType && propertyType !== 'all') params.set('type', propertyType);
-    if (priceScale) params.set('price', priceScale);
-    if (bedrooms && bedrooms !== 'any') params.set('beds', bedrooms);
-    if (activeTab === 'offmarket') params.set('category', 'offmarket');
-    navigate(`/catalog?${params.toString()}`);
+    const cityRates = {
+      'Mumbai': 28500,
+      'Gurugram': 21000,
+      'Bengaluru': 14500,
+      'Hyderabad': 13200,
+      'Goa': 18500
+    };
+    const qualityMultipliers = {
+      'Standard': 0.85,
+      'Premium': 1.0,
+      'Luxury': 1.25,
+      'Ultra Luxury': 1.55
+    };
+    const baseRate = cityRates[calcCity] || 20000;
+    const mult = qualityMultipliers[calcQuality] || 1.0;
+    const estimatedValue = calcSqft * baseRate * mult;
+    const lower = estimatedValue * 0.94;
+    const upper = estimatedValue * 1.06;
+
+    setCalcResult({
+      estimated: estimatedValue,
+      lower: lower,
+      upper: upper,
+      ratePerSqft: Math.round(baseRate * mult),
+      confidence: 94.8
+    });
   };
 
+  const formatCurrency = (val) => {
+    if (!val) return 'INR 0';
+    if (val >= 10000000) {
+      return `INR ${(val / 10000000).toFixed(2)} Cr`;
+    }
+    return `INR ${(val / 100000).toFixed(2)} Lakhs`;
+  };
+
+  const features = [
+    {
+      icon: Calculator,
+      title: "AI Property Valuation",
+      tag: "Multi-Variable ML",
+      desc: "Multi-variable regression models with price-per-square-foot benchmarking, confidence intervals, and explainable feature contributions.",
+      link: "/valuation"
+    },
+    {
+      icon: Landmark,
+      title: "Mortgage Underwriting",
+      tag: "FinTech Decisioning",
+      desc: "Automated debt-to-income (DTI) and loan-to-value (LTV) calculations with amortization schedules and credit reviewer workflows.",
+      link: "/register"
+    },
+    {
+      icon: ShieldAlert,
+      title: "Unified Risk Intelligence",
+      tag: "Dual-Vector Policy",
+      desc: "Decoupled evaluation of collateral asset risk and borrower repayment capacity, aggregated through documented institutional policies.",
+      link: "/register"
+    },
+    {
+      icon: FileText,
+      title: "Document Intelligence",
+      tag: "Automated OCR",
+      desc: "Optical character recognition (OCR) and automated extraction for title deeds, income proofs, tax records, and bank statements.",
+      link: "/register"
+    },
+    {
+      icon: AlertTriangle,
+      title: "Fraud & Anomaly Detection",
+      tag: "Integrity Engine",
+      desc: "Real-time scans for valuation inflation spikes, geometric plot discrepancies, duplicate asset listings, and excessive leverage.",
+      link: "/register"
+    },
+    {
+      icon: MapPin,
+      title: "Location Intelligence",
+      tag: "Geospatial GIS",
+      desc: "Geospatial mapping and proximity analysis measuring transit connectivity, educational infrastructure, and locality density.",
+      link: "/register"
+    },
+    {
+      icon: TrendingUp,
+      title: "Market Analytics",
+      tag: "Price Velocity",
+      desc: "Longitudinal price velocity metrics, quarterly locality comparisons, and housing sector demand indices across primary clusters.",
+      link: "/register"
+    },
+    {
+      icon: FileCheck2,
+      title: "Automated Reporting",
+      tag: "Cryptographic PDF",
+      desc: "Institution-grade downloadable PDF dossiers with cryptographic reference numbers, assessment breakdowns, and policy disclosures.",
+      link: "/register"
+    },
+    {
+      icon: Bot,
+      title: "PropWise AI Assistant",
+      tag: "Dual BYOK Copilot",
+      desc: "Context-grounded assistant powered by dual API key management (BYOK), providing rigorous financial explanations without hallucinations.",
+      link: "/register"
+    }
+  ];
+
+  const workflowSteps = [
+    { step: "01", title: "Asset & Applicant Ingestion", desc: "Structured capture of property specifications, coordinates, and applicant financial profile." },
+    { step: "02", title: "AI Property Valuation", desc: "Multi-factor valuation regression generating price range, confidence score, and comparable metrics." },
+    { step: "03", title: "Borrower Capacity Analysis", desc: "Precise EMI amortization, debt-to-income (DTI) ratio, and disposable income stress testing." },
+    { step: "04", title: "Document OCR Extraction", desc: "Automated optical extraction and cross-consistency validation of identification and income deeds." },
+    { step: "05", title: "Anomaly & Fraud Scanning", desc: "Algorithmic screening for valuation spikes, duplicate registrations, and leverage boundaries." },
+    { step: "06", title: "Unified Risk Aggregation", desc: "Collateral risk and borrower capacity combined with transparent institutional policy weights." },
+    { step: "07", title: "Human Review Decision", desc: "Final underwriting determination authorized by certified banking officers with immutable audit logging." },
+  ];
+
+  const securityPillars = [
+    { icon: Lock, title: "AES-256-GCM Encryption", desc: "All BYOK personal API credentials encrypted at rest using authenticated cryptography." },
+    { icon: Cpu, title: "Explainable Machine Learning", desc: "Every valuation displays explicit factor contributions; zero black-box numerical hallucinations." },
+    { icon: Eye, title: "Human-in-the-Loop Governance", desc: "AI models serve strictly as decision support; lending sanction authority rests with credit officers." },
+    { icon: FileSignature, title: "Immutable Audit Traceability", desc: "Complete cryptographic audit logs for every valuation, credit inquiry, and status alteration." },
+    { icon: Users, title: "Role-Based Access Control", desc: "Strict data boundaries ensuring customers, property analysts, and bank officers access authorized records only." },
+    { icon: ShieldCheck, title: "Explicit User Consent", desc: "Transparent consent capture for credit bureau data processing and automated underwriting analytics." },
+  ];
+
   return (
-    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
-      <HavenNavbar />
+    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-sans antialiased selection:bg-[#3978F6] selection:text-white">
+      {/* Sticky Dark Navigation Bar */}
+      <Navbar />
 
       <main className="flex-1 w-full">
-<div className="flex flex-col w-full">
-{/* Immersive Editorial Hero */}
-<section className="relative w-full -mt-20 pt-28 pb-20 md:pb-28 bg-[#0D1628] overflow-hidden">
-<div className="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Ultra-luxury architectural minimalist villa overlooking the Pacific ocean coastline at golden twilight hour with floor to ceiling glass walls, warm ambient interior lighting, manicured cedar terraces, and sleek infinity pool reflecting slate blue dusk tones and warm amber hues, architectural photography 8k resolution" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuCnhhYbMFDT8kVBABLGaAsWFEzKiwfkb5G48FnvTc_ZnnxmDQXec3EkqK9cmkAoNKa84ndWqNM_NIityqIT4IySs_SzM3Jvi8SqpKaW6eXdNy2iEzsIU4X2n_utjkLbunTPG_BAgePKCfiuB83tTqcvw6UnM4vpEAMg8-DAi3WM8nhLQXsQtYkXiZ3A_qUKgAzN_e58gEJXWtNuJ74bSfWhaP2KzFBLEMHT3At8uSQ\')'}}>
-</div>
-{/* Editorial Gradient Scrim */}
-<div className="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/60 to-on-background/30 mix-blend-multiply pointer-events-none"></div>
-<div className="absolute inset-0 bg-gradient-to-r from-on-background/80 via-transparent to-transparent pointer-events-none"></div>
-<div className="relative max-w-7xl mx-auto px-margin z-10 flex flex-col pt-12 md:pt-16">
-{/* Monogram Tag & Issue Stamp */}
-<div className="flex items-center gap-space-sm mb-space-md">
-<span className="px-space-sm py-1 rounded bg-secondary/90 text-on-secondary font-label-caps text-label-caps uppercase tracking-widest shadow-sm">
-          Volume XXVI · Autumn Portfolio
-        </span>
-<span className="text-surface-variant font-label-md text-label-md tracking-wider uppercase opacity-80">
-          Private Client Advisory
-        </span>
-</div>
-{/* Main Headline & Subtitle */}
-<div className="max-w-3xl mb-space-xl">
-<h1 className="font-display-hero text-display-hero text-surface-bright tracking-tight mb-space-md drop-shadow-sm font-light">
-          Exceptional Estates for <span className="italic font-normal text-[#29C5E8]-fixed">Discerning Lives.</span>
-</h1>
-<p className="font-body-lg text-body-lg text-surface-variant max-w-xl leading-relaxed opacity-95">
-          Discover premier architectural residences, off-market penthouses, and bespoke coastal sanctuaries curated for generational legacy.
-        </p>
-</div>
-{/* Modern Multi-Tab Search Filter Container */}
-<div className="w-full max-w-5xl bg-[#111D32]/95 backdrop-blur-md rounded-xl p-space-md md:p-space-lg shadow-xl shadow-[#3978F6]/10">
-{/* Search Category Tabs */}
-<div className="flex items-center gap-space-md mb-space-md overflow-x-auto pb-1" id="search-tabs">
-<button onClick={handleSearch} className="w-full sm:w-auto px-10 py-3 bg-[#3978F6] text-white rounded-lg text-sm font-semibold hover:bg-[#2457C5] transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer" type="button"><span className="material-symbols-outlined text-[18px]">search</span><span>Search 1,420 Exclusive Estates</span></button>
-</div>
-</div>
-</div>
-</section>
-{/* Live Market Intelligence Ticker / Stats Bar */}
-<section className="w-full bg-[#0D1628] py-space-md shadow-inner">
-<div className="max-w-7xl mx-auto px-margin">
-<div className="grid grid-cols-2 md:grid-cols-4 gap-space-lg items-center">
-{/* Stat Item 1 */}
-<div className="flex flex-col items-start">
-<div className="flex items-center gap-1.5 text-[#29C5E8]">
-<span className="font-headline-md text-headline-md font-bold tracking-tight text-[#F5F7FC]">₹48,500 Cr+</span>
-<span className="material-symbols-outlined text-[20px]">trending_up</span>
-</div>
-<span className="font-label-caps text-label-caps uppercase tracking-wider text-[#98A7BD]">Closed Career Volume</span>
-</div>
-{/* Stat Item 2 */}
-<div className="flex flex-col items-start">
-<div className="flex items-center gap-1.5 text-[#29C5E8]">
-<span className="font-headline-md text-headline-md font-bold tracking-tight text-[#F5F7FC]">14 Days</span>
-<span className="material-symbols-outlined text-[20px]">timer</span>
-</div>
-<span className="font-label-caps text-label-caps uppercase tracking-wider text-[#98A7BD]">Avg. Days on Market</span>
-</div>
-{/* Stat Item 3 */}
-<div className="flex flex-col items-start">
-<div className="flex items-center gap-1.5 text-[#29C5E8]">
-<span className="font-headline-md text-headline-md font-bold tracking-tight text-[#F5F7FC]">98.6%</span>
-<span className="material-symbols-outlined text-[20px]">verified</span>
-</div>
-<span className="font-label-caps text-label-caps uppercase tracking-wider text-[#98A7BD]">List-to-Sale Ratio</span>
-</div>
-{/* Stat Item 4 */}
-<div className="flex flex-col items-start">
-<div className="flex items-center gap-1.5 text-[#29C5E8]">
-<span className="font-headline-md text-headline-md font-bold tracking-tight text-[#F5F7FC]">180+</span>
-<span className="material-symbols-outlined text-[20px]">visibility_off</span>
-</div>
-<span className="font-label-caps text-label-caps uppercase tracking-wider text-[#98A7BD]">Private Off-Market Briefs</span>
-</div>
-</div>
-</div>
-</section>
-{/* Featured Curated Collections (Editorial 3-Card Spread) */}
-<section className="w-full py-space-xl bg-[#080E1B]">
-<div className="max-w-7xl mx-auto px-margin">
-{/* Section Header */}
-<div className="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
-<div className="max-w-xl">
-<div className="flex items-center gap-space-xs text-[#29C5E8] font-label-caps text-label-caps uppercase tracking-widest mb-space-xs">
-<span className="material-symbols-outlined text-[16px]">stars</span>
-<span>Hand-Selected Masterworks</span>
-</div>
-<h2 className="font-headline-lg text-headline-lg text-[#F5F7FC] font-light">
-            Premier Curated Collections
-          </h2>
-<p className="font-body-md text-body-md text-[#98A7BD] mt-space-xs">
-            Distinctive architectural residences vetted for historical significance, bespoke interior provenance, and prime geography.
-          </p>
-</div>
-<div className="flex items-center gap-space-sm">
-<button className="px-space-md py-2.5 rounded-lg bg-[#0D1628] text-[#F5F7FC] font-label-md text-label-md hover:bg-[#111D32] transition-colors flex items-center gap-1" type="button">
-<span>Filter By Region</span>
-<span className="material-symbols-outlined text-[16px]">tune</span>
-</button>
-<Link className="px-space-md py-2.5 rounded-lg bg-[#3978F6] text-white font-label-md text-label-md hover:bg-on-tertiary-container transition-colors flex items-center gap-1" data-path="exclusive-estates"  to="/catalog">
-<span>View All Curations (42)</span>
-<span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-</Link>
-</div>
-</div>
-{/* 3-Column Architectural Cards */}
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
-{/* Card 1: Bel Air Glass Pavilion */}
-<article className="group bg-[#111D32] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-{/* Image Canvas with Overlay Badges */}
-<div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern architectural glass pavilion villa in Bel Air California with panoramic infinity pool looking out over city lights, travertine stone accents, sculptural black steel frames, warm minimalist interior glow, professional luxury real estate capture" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuAHcITZRaYwsrBLg4LtnJp7A21QnKSwagwTa_dIDwJO8nBKdrJ2xtLX3ihULXQewMnx4KSWlizWMMjm4zIwvOjP9U1S5PpIBLzIgZgQgVXusVoBVT-IPH62bh0KoTtH39VaXWS_7DhZ-Tgi2QIb91_L8nh0XFC8DIc0B2Rql4kejM4XSivNefodVgvaraqi43wFtqowMJdtm894r-b36ANn8Bhdes2Ek5R1QFxOB9o\')'}}>
-</div>
-{/* Status Chips */}
-<div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-<span className="px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-wider shadow">
-                New Exclusive
-              </span>
-<span className="px-2.5 py-1 rounded bg-[#080E1B]/90 backdrop-blur-md text-[#F5F7FC] font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-1 shadow">
-<span className="material-symbols-outlined text-[14px] text-[#29C5E8]">view_in_ar</span> 3D Tour
-              </span>
-</div>
-{/* Favorite Quick Action */}
-<button className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#080E1B]/80 backdrop-blur-md flex items-center justify-center text-[#F5F7FC] hover:text-[#29C5E8] hover:bg-[#080E1B] transition-colors shadow" type="button">
-<span className="material-symbols-outlined text-[18px]">favorite</span>
-</button>
-<div className="absolute bottom-3 left-3">
-<span className="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
-                Bel Air · Los Angeles
-              </span>
-</div>
-</div>
-{/* Metadata & Details */}
-<div className="p-space-lg flex-1 flex flex-col justify-between">
-<div>
-<div className="flex items-baseline justify-between gap-space-sm mb-1">
-<h3 className="font-headline-sm text-headline-sm text-[#F5F7FC] group-hover:text-[#29C5E8] transition-colors font-medium">
-                  The Bel Air Glass Pavilion
-                </h3>
-</div>
-<p className="font-title-lg text-title-lg font-bold text-[#F5F7FC] mb-space-md">
-                ₹18.50 Cr
-              </p>
-{/* Specifications Strip */}
-<div className="grid grid-cols-4 gap-space-xs py-space-sm bg-[#0D1628] rounded-lg text-center mb-space-md">
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">5</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Beds</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">7.5</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Baths</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">9,420</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Sq Ft</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">1.2 AC</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Lot</div>
-</div>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] line-clamp-2 mb-space-md">
-                Masterfully engineered by Olson Kundig collaborators, cantilevered glass expanses frame 270-degree canyon vistas with zero-edge reflection ponds.
-              </p>
-</div>
-{/* Agent & Inquire Row */}
-<div className="pt-space-sm flex items-center justify-between bg-[#111D32]">
-<div className="flex items-center gap-space-xs">
-<div className="w-7 h-7 rounded-full bg-[#0D1628] overflow-hidden">
-<div className="w-full h-full bg-cover bg-center" data-alt="Monochrome professional headshot of executive luxury real estate director in tailored blazer" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuAQ-2ccnheJQMUP_hFtTaCBWm-B32jPa0q8VyXJ683_qkiVUAVitaSV4egO37w8BUrC2NQWQcNIoP8nWLryReiH3jl3WA6t51Cwdc2fP_BRZxkuCwHPL84FoFfQiDrVw6VOYgnp-woEjEEejuoz5BhL5_VDkhi-lzT4joJpggcczYV_51pmNX7dLH1fn4ktAwRB7eHwLJLCrkcz0tcNgwiBCRm_q4tn9Ps3VSKlPvg\')'}}></div>
-</div>
-<span className="font-label-md text-label-md text-[#98A7BD]">Julian Vance · Partner</span>
-</div>
-<Link className="font-label-md text-label-md text-[#29C5E8] hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates"  to="/catalog">
-<span>View Dossier</span>
-<span className="material-symbols-outlined text-[16px]">chevron_right</span>
-</Link>
-</div>
-</div>
-</article>
-{/* Card 2: Pacific Heights Historic Villa */}
-<article className="group bg-[#111D32] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-{/* Image Canvas */}
-<div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Restored historic Beaux-Arts European style villa in Pacific Heights San Francisco with limestone facade, classic arched entryways, private manicured courtyard with classical fountain, warm ambient evening interior light" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuAb01jMwKpWj8sCYypE8rhoPMuXjxIV3cg2TkuFB3A78aHe85QtmPD4FO2IY-Jxm5zMLGKCpkXyW2p8zWLn2Sf6eUpin5BRNeAb8BBgadNOzyH9iDJnEhv_Hl_bAMiaRx1kT53pE4-VKnvI4Ydook1ammIl4nI_JIknx4h7dEXzuyCJcrt_Egxs2ikY4NVSc-BfKCwXDz60f0JUFDEQwuOkxV3PXkeOFJSv3Co6ABs\')'}}>
-</div>
-<div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-<span className="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-label-caps uppercase tracking-wider shadow">
-                Historic Landmark
-              </span>
-<span className="px-2.5 py-1 rounded bg-[#080E1B]/90 backdrop-blur-md text-[#F5F7FC] font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-1 shadow">
-<span className="material-symbols-outlined text-[14px] text-[#29C5E8]">verified</span> Arch Digest 2024
-              </span>
-</div>
-<button className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#080E1B]/80 backdrop-blur-md flex items-center justify-center text-[#F5F7FC] hover:text-[#29C5E8] hover:bg-[#080E1B] transition-colors shadow" type="button">
-<span className="material-symbols-outlined text-[18px]">favorite</span>
-</button>
-<div className="absolute bottom-3 left-3">
-<span className="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
-                Pacific Heights · San Francisco
-              </span>
-</div>
-</div>
-{/* Metadata & Details */}
-<div className="p-space-lg flex-1 flex flex-col justify-between">
-<div>
-<div className="flex items-baseline justify-between gap-space-sm mb-1">
-<h3 className="font-headline-sm text-headline-sm text-[#F5F7FC] group-hover:text-[#29C5E8] transition-colors font-medium">
-                  Pacific Heights Historic Villa
-                </h3>
-</div>
-<p className="font-title-lg text-title-lg font-bold text-[#F5F7FC] mb-space-md">
-                ₹14.50 Cr
-              </p>
-{/* Specifications Strip */}
-<div className="grid grid-cols-4 gap-space-xs py-space-sm bg-[#0D1628] rounded-lg text-center mb-space-md">
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">6</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Beds</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">6.5</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Baths</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">7,850</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Sq Ft</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">Bay View</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Aspect</div>
-</div>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] line-clamp-2 mb-space-md">
-                A 1922 Willis Polk triumph, comprehensively modernized with custom Boffi culinary suites, subterranean 800-bottle wine cellar, and Golden Gate view salon.
-              </p>
-</div>
-{/* Agent & Inquire Row */}
-<div className="pt-space-sm flex items-center justify-between bg-[#111D32]">
-<div className="flex items-center gap-space-xs">
-<div className="w-7 h-7 rounded-full bg-[#0D1628] overflow-hidden">
-<div className="w-full h-full bg-cover bg-center" data-alt="Monochrome professional portrait of female luxury residential advisor in sharp minimalist attire" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuDuYwskQXYPTOHS3QftG33zFPnpK6ow9AF1KRLX4Ajefx8t9ILJmofGJUyT3SUfMFjzv4J7xPBW0_4Sz1S7NkQOU_j1wuMdBuOe_rMAFcyA35go6LoWP1DVcMu-nh6Lbu8NFpnzmVRDlo5B8Arqx2CudZbrWA5fOR9LdYOM_AvQwKhtsR2oUXm9eWqVcHKAYb5Xk-a90_wEhDqQNp5b24Jt4C1sEn4Ld6eEWWz2dnw\')'}}></div>
-</div>
-<span className="font-label-md text-label-md text-[#98A7BD]">Eleanor Sterling · MD</span>
-</div>
-<Link className="font-label-md text-label-md text-[#29C5E8] hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates"  to="/catalog">
-<span>View Dossier</span>
-<span className="material-symbols-outlined text-[16px]">chevron_right</span>
-</Link>
-</div>
-</div>
-</article>
-{/* Card 3: Aspen Alpine Sanctuary */}
-<article className="group bg-[#111D32] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-{/* Image Canvas */}
-<div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern alpine luxury retreat in Aspen Colorado nestled among snow tipped aspen trees and pines, dark timber and charcoal slate exterior, warm glowing hearth through floor to ceiling glass, twilight dusk winter mountain ambiance" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuAvEGNDT4SaJKcbjc2iOJA7ZFTzgSfuFM_zyLQt0QfF6zbQKM7OOrYGwo19D6VxWBpt7lVgmMvWE9Si72-Obp4eQFs7hwWFl1M3S55FILTHwLooNomIxjjNAdYA7rBIYg-nfEcY5ktq0Stse9Oic09eKIRQctSu9FuZ__CMtQ2GoTIKUYErMYKDseTGHImhXYQ5suuDGGWn4cFdXaTYlykhTRlylNBYweKAjEJh7l0\')'}}>
-</div>
-<div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-<span className="px-2.5 py-1 rounded bg-[#3978F6] text-white font-label-caps text-label-caps uppercase tracking-wider shadow">
-                Ski-In / Ski-Out
-              </span>
-<span className="px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps uppercase tracking-wider shadow">
-                Price Upon Request
-              </span>
-</div>
-<button className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#080E1B]/80 backdrop-blur-md flex items-center justify-center text-[#F5F7FC] hover:text-[#29C5E8] hover:bg-[#080E1B] transition-colors shadow" type="button">
-<span className="material-symbols-outlined text-[18px]">favorite</span>
-</button>
-<div className="absolute bottom-3 left-3">
-<span className="px-2 py-0.5 rounded bg-on-background/70 backdrop-blur-sm text-surface-bright font-label-caps text-label-caps tracking-widest uppercase">
-                Red Mountain · Aspen
-              </span>
-</div>
-</div>
-{/* Metadata & Details */}
-<div className="p-space-lg flex-1 flex flex-col justify-between">
-<div>
-<div className="flex items-baseline justify-between gap-space-sm mb-1">
-<h3 className="font-headline-sm text-headline-sm text-[#F5F7FC] group-hover:text-[#29C5E8] transition-colors font-medium">
-                  Aspen Alpine Sanctuary
-                </h3>
-</div>
-<p className="font-title-lg text-title-lg font-bold text-[#F5F7FC] mb-space-md">
-                ₹38.50 Cr
-              </p>
-{/* Specifications Strip */}
-<div className="grid grid-cols-4 gap-space-xs py-space-sm bg-[#0D1628] rounded-lg text-center mb-space-md">
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">4</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Beds</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">5</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Baths</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">6,120</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Sq Ft</div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">3.8 AC</div>
-<div className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Private</div>
-</div>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] line-clamp-2 mb-space-md">
-                Direct ski access to Buttermilk Mountain, wrapped in blackened cedar and rough-cut Colorado granite with heated outdoor swimming grotto and private heli-pad.
-              </p>
-</div>
-{/* Agent & Inquire Row */}
-<div className="pt-space-sm flex items-center justify-between bg-[#111D32]">
-<div className="flex items-center gap-space-xs">
-<div className="w-7 h-7 rounded-full bg-[#0D1628] overflow-hidden">
-<div className="w-full h-full bg-cover bg-center" data-alt="Monochrome portrait of senior mountain luxury real estate director" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuBR5XXVMbTSBDDjZK6BMw6hPFunPARl4_R6YewhztsEM_AlC53yteALWagDA__ww6_zAbPuf-xIZ3XeZiJZO1davUwkvmPEwARO7jcWULltNKxSuS13oaTVNqBRMf-0LD5rtfHqSiToGluVaVH2ujdMvgp4bnN6Bb9ucITPMvWzL6UrwsSjcY8-bDf3eRpLUoSk0fUpnxJ44VwX7RBGEEepa1yvYaoeU5Xiu9qfE_Y\')'}}></div>
-</div>
-<span className="font-label-md text-label-md text-[#98A7BD]">Marcus Thorne · Principal</span>
-</div>
-<Link className="font-label-md text-label-md text-[#29C5E8] hover:text-on-tertiary-container font-semibold flex items-center gap-0.5" data-path="exclusive-estates"  to="/catalog">
-<span>View Dossier</span>
-<span className="material-symbols-outlined text-[16px]">chevron_right</span>
-</Link>
-</div>
-</div>
-</article>
-</div>
-</div>
-</section>
-{/* Neighborhood Exploration Guide (Bento Map & Zip Codes) */}
-<section className="w-full py-space-xl bg-[#0D1628]">
-<div className="max-w-7xl mx-auto px-margin">
-{/* Section Heading */}
-<div className="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
-<div>
-<span className="font-label-caps text-label-caps uppercase tracking-widest text-[#29C5E8] font-bold">Geographic Authority</span>
-<h2 className="font-headline-lg text-headline-lg text-[#F5F7FC] font-light mt-1">
-            Prime Metro Micro-Market Indices
-          </h2>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] max-w-md">
-          Live liquidity metrics, median values, and off-market inventory levels across America's most fortified high-wealth enclaves.
-        </p>
-</div>
-{/* Bento Grid of Neighborhoods */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
-{/* Neighborhood 1: Presidio Heights */}
-<div className="group bg-[#111D32] rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
-<div>
-<div className="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Quiet tree-lined residential street of grand brick colonial revival mansions in Presidio Heights San Francisco with fog clearing over greenery" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuAUZFYpy2p1Deujak9WuE_nnFX5TAqWZgUGWnVJwrjjY3fC7D4ze1nm00EMeQAJTk5jAcJSMWaULJYQ_TWn3yZQPs7d42lesR8StqDcxg1VtrP1iUjZPrO6K7JOnYeGyImQpFXEvbkJOu5wi2ZbLzPaqLPfhBD5F-QXO3UQJNo50KrzODPnJvReop5Qfy2YAX4Ot0OpTnE3AHHVgxo4tQeK0QJtSipp7Hllhy27ivM\')'}}></div>
-<div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#080E1B]/90 text-[#F5F7FC] font-label-caps text-label-caps">
-                ZIP 94118
-              </div>
-</div>
-<div className="flex items-center justify-between mb-1">
-<h4 className="font-title-lg text-title-lg text-[#F5F7FC] font-bold">Presidio Heights</h4>
-<span className="material-symbols-outlined text-[#29C5E8] text-[20px]">north_east</span>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] mb-space-md">San Francisco, CA</p>
-</div>
-<div className="pt-space-sm bg-[#0D1628] rounded-lg p-space-sm flex items-center justify-between">
-<div>
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Avg. Price</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">₹11.40 Cr</span>
-</div>
-<div className="text-right">
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Active Supply</span>
-<span className="font-title-md text-title-md font-bold text-[#29C5E8]">8 Private Briefs</span>
-</div>
-</div>
-</div>
-{/* Neighborhood 2: Tribeca */}
-<div className="group bg-[#111D32] rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
-<div>
-<div className="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Historic cobblestone street in Tribeca New York City with cast iron facade buildings, boutique residential entrance, dusk lighting, warm urban luxury editorial" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuA7jk2YJX1310OP8nju0c3cC0oQzkE5HKG40I5kMMqQLz1bj-OjwAlVnVEK0dWwpJ57oczE1u7GK2F0BIDkCswMzgVl35ngMhW_MNWpKPJ70bu9UtuTQljXClRwGv8BaJC7T1ptEyBnxDup3vTc_4baJebqSrBGrX2893yzWDtqy7Bsjt1PdkLY8pqKkPwhVKMo4HTbIJ1DpiOyfMUC5AnA5ZqloaKMYYEc5vGianE\')'}}></div>
-<div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#080E1B]/90 text-[#F5F7FC] font-label-caps text-label-caps">
-                ZIP 10013
-              </div>
-</div>
-<div className="flex items-center justify-between mb-1">
-<h4 className="font-title-lg text-title-lg text-[#F5F7FC] font-bold">Tribeca</h4>
-<span className="material-symbols-outlined text-[#29C5E8] text-[20px]">north_east</span>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] mb-space-md">New York City, NY</p>
-</div>
-<div className="pt-space-sm bg-[#0D1628] rounded-lg p-space-sm flex items-center justify-between">
-<div>
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Avg. Price</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">₹14.20 Cr</span>
-</div>
-<div className="text-right">
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Active Supply</span>
-<span className="font-title-md text-title-md font-bold text-[#29C5E8]">14 Penthouses</span>
-</div>
-</div>
-</div>
-{/* Neighborhood 3: Beverly Hills */}
-<div className="group bg-[#111D32] rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
-<div>
-<div className="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Lush palm tree lined wide avenue in Beverly Hills California with Mediterranean estate gates and sculpted private hedgerows bathed in golden sunlight" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuB15037MU-vbRvfQIfv69xxt1Ts6gMMHUEiAieLiRIff53GhcAOM9JUFOS0eGJOrCuAOQuPWLTivL5ij1ucLnVhUbSThz04EeNh14MuOSUF0Wv2CLVzH9LGeM9R6wK1IuqbZofQRox0symd54gVkx0hgO08XFIeHH0IPH0LAS3NUXebAmXZbU35208-izFfLQIj2ltzBTvl9onK1MX4CyyL-5SM6X8aMxooCuCR23I\')'}}></div>
-<div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#080E1B]/90 text-[#F5F7FC] font-label-caps text-label-caps">
-                ZIP 90210
-              </div>
-</div>
-<div className="flex items-center justify-between mb-1">
-<h4 className="font-title-lg text-title-lg text-[#F5F7FC] font-bold">Beverly Hills</h4>
-<span className="material-symbols-outlined text-[#29C5E8] text-[20px]">north_east</span>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] mb-space-md">Los Angeles, CA</p>
-</div>
-<div className="pt-space-sm bg-[#0D1628] rounded-lg p-space-sm flex items-center justify-between">
-<div>
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Avg. Price</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">₹16.80 Cr</span>
-</div>
-<div className="text-right">
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Active Supply</span>
-<span className="font-title-md text-title-md font-bold text-[#29C5E8]">22 Compounds</span>
-</div>
-</div>
-</div>
-{/* Neighborhood 4: Carmel-by-the-Sea */}
-<div className="group bg-[#111D32] rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer">
-<div>
-<div className="relative w-full h-44 rounded-lg overflow-hidden mb-space-md bg-[#0D1628]">
-<div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Rugged granite coastline of Carmel-by-the-Sea with iconic cypress trees framing a modernist cliffside estate overlooking turquoise ocean waves" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuCB42M3sLAC7Q6HmOGf1086L0tiqsY69a2DQuPw86bgA047_PFjKwRflwy_UMawo9wZ0z3nkaqmVBFcSAH4WN8UiM-zFFjJNZD1FvePYxAYayvCSWI1_FH3Zzh5bT6rmHXVy6Gsx2SbgxuWVsvWfv3YEAKxqVRzGrOqCAVC0E18cYI2cB2dn3GpRX6YloYmyfHDk8E6AtBCbBoR42raNgaZyW0Z9FRXytRZkefx1Ho\')'}}></div>
-<div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#080E1B]/90 text-[#F5F7FC] font-label-caps text-label-caps">
-                ZIP 93921
-              </div>
-</div>
-<div className="flex items-center justify-between mb-1">
-<h4 className="font-title-lg text-title-lg text-[#F5F7FC] font-bold">Carmel-by-the-Sea</h4>
-<span className="material-symbols-outlined text-[#29C5E8] text-[20px]">north_east</span>
-</div>
-<p className="font-body-sm text-body-sm text-[#98A7BD] mb-space-md">Monterey Peninsula, CA</p>
-</div>
-<div className="pt-space-sm bg-[#0D1628] rounded-lg p-space-sm flex items-center justify-between">
-<div>
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Avg. Price</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">₹9.80 Cr</span>
-</div>
-<div className="text-right">
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD] block">Active Supply</span>
-<span className="font-title-md text-title-md font-bold text-[#29C5E8]">6 Coastal Enclaves</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-{/* Interactive Data Feature: The Haven & Key Liquidity Compass */}
-<section className="w-full py-space-xl bg-[#080E1B]">
-<div className="max-w-7xl mx-auto px-margin">
-<div className="bg-[#0D1628] rounded-2xl p-space-lg md:p-space-xl flex flex-col lg:flex-row items-center justify-between gap-space-xl">
-<div className="max-w-lg">
-<span className="px-space-sm py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps uppercase tracking-wider mb-space-sm inline-block">
-            Proprietary Valuation Model
-          </span>
-<h3 className="font-headline-lg text-headline-lg text-[#F5F7FC] font-light leading-snug">
-            Institutional Insight. Quiet Capital Precision.
-          </h3>
-<p className="font-body-md text-body-md text-[#98A7BD] mt-space-sm mb-space-md">
-            Our algorithmic valuation platform tracks micro-absorption rates, private non-MLS trades, and cross-border ultra-high-net-worth liquidity shifts with zero public footprint.
-          </p>
-<div className="flex flex-col gap-space-xs text-[#F5F7FC] font-body-sm text-body-sm mb-space-md">
-<div className="flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-[#29C5E8] text-[18px]">check_circle</span>
-<span>Encrypted client ledger with audited non-disclosure protocols</span>
-</div>
-<div className="flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-[#29C5E8] text-[18px]">check_circle</span>
-<span>Private aircraft apron transfers for discreet inspections</span>
-</div>
-<div className="flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-[#29C5E8] text-[18px]">check_circle</span>
-<span>Dual-representation mitigation under independent fiduciary oversight</span>
-</div>
-</div>
-<button className="px-space-lg py-space-sm rounded-lg bg-[#3978F6] text-white font-label-md text-label-md hover:bg-on-tertiary-container transition-colors shadow" type="button">
-            Request Private Market Dossier
-          </button>
-</div>
-{/* Inline Data Graphic: Absorption Velocity Sparkline & Chart */}
-<div className="w-full lg:w-[480px] bg-[#111D32] rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
-<div className="flex items-center justify-between">
-<div>
-<span className="font-label-caps text-label-caps uppercase text-[#98A7BD]">Q3 / Q4 Absorption Index</span>
-<div className="font-headline-sm text-headline-sm text-[#F5F7FC] font-bold">$10M+ Segment Velocity</div>
-</div>
-<span className="px-2 py-1 rounded bg-[#111D32]est text-white-fixed font-label-caps text-label-caps">
-              +18.4% YoY
-            </span>
-</div>
-{/* Minimalist Vector Chart */}
-<div className="w-full h-40 flex flex-col justify-end">
-<svg className="w-full h-32 overflow-visible" preserveaspectratio="none" viewbox="0 0 400 120">
-<defs>
-<lineargradient id="chartGrad" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#904d00" stop-opacity="0.3"></stop>
-<stop offset="100%" stop-color="#904d00" stop-opacity="0.0"></stop>
-</lineargradient>
-</defs>
-{/* Filled Area */}
-<path d="M 0,100 Q 60,85 100,70 T 200,60 T 300,30 T 400,10 L 400,120 L 0,120 Z" fill="url(#chartGrad)"></path>
-{/* Primary Line */}
-<path d="M 0,100 Q 60,85 100,70 T 200,60 T 300,30 T 400,10" fill="none" stroke="#904d00" strokeLinecap="round" strokeWidth="3"></path>
-{/* Dot Anchors */}
-<circle cx="100" cy="70" fill="#0b1c30" r="4"></circle>
-<circle cx="200" cy="60" fill="#0b1c30" r="4"></circle>
-<circle cx="300" cy="30" fill="#0b1c30" r="4"></circle>
-<circle cx="400" cy="10" fill="#fe932c" r="5"></circle>
-</svg>
-<div className="flex justify-between text-[#98A7BD] font-label-caps text-label-caps uppercase pt-2">
-<span>Nov 2024</span>
-<span>Jan 2025</span>
-<span>Mar 2025</span>
-<span>May 2025 (Forecast)</span>
-</div>
-</div>
-{/* Quick Metrics Row */}
-<div className="grid grid-cols-2 gap-space-sm pt-space-xs bg-[#111D32]">
-<div className="bg-[#0D1628] p-space-sm rounded-lg">
-<span className="font-label-caps text-label-caps text-[#98A7BD] block uppercase">Domestic Demand</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">62% Liquidity</span>
-</div>
-<div className="bg-[#0D1628] p-space-sm rounded-lg">
-<span className="font-label-caps text-label-caps text-[#98A7BD] block uppercase">Off-Shore Inflow</span>
-<span className="font-title-md text-title-md font-bold text-[#F5F7FC]">38% Global</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-{/* Bespoke Concierge & Private Client Services */}
-<section className="w-full py-space-xl bg-[#0D1628]">
-<div className="max-w-7xl mx-auto px-margin">
-<div className="text-center max-w-2xl mx-auto mb-space-xl">
-<span className="font-label-caps text-label-caps uppercase tracking-widest text-[#29C5E8] font-bold">Unrivaled Advisory</span>
-<h2 className="font-headline-lg text-headline-lg text-[#F5F7FC] font-light mt-1">
-          Private Client Services
-        </h2>
-<p className="font-body-md text-body-md text-[#98A7BD] mt-space-xs">
-          Beyond transaction execution. We orchestrate discrete acquisitions with specialized lifestyle infrastructure.
-        </p>
-</div>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-{/* Service 1 */}
-<div className="bg-[#111D32] rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
-<div>
-<div className="w-12 h-12 rounded-lg bg-[#0D1628] flex items-center justify-center text-[#29C5E8] mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-<span className="material-symbols-outlined text-[24px]">flight_takeoff</span>
-</div>
-<h3 className="font-title-lg text-title-lg text-[#F5F7FC] font-semibold mb-space-xs">
-              Private Aviation Logistics
-            </h3>
-<p className="font-body-sm text-body-sm text-[#98A7BD] leading-relaxed mb-space-md">
-              Seamless charter integration with NetJets and VistaJet for door-to-helipad viewing itineraries across remote coastal and alpine portfolios.
-            </p>
-</div>
-<div className="pt-space-sm flex items-center text-[#29C5E8] font-label-md text-label-md font-bold gap-1">
-<span>Charter Concierge</span>
-<span className="material-symbols-outlined text-[16px]">arrow_right_alt</span>
-</div>
-</div>
-{/* Service 2 */}
-<div className="bg-[#111D32] rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
-<div>
-<div className="w-12 h-12 rounded-lg bg-[#0D1628] flex items-center justify-center text-[#29C5E8] mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-<span className="material-symbols-outlined text-[24px]">security</span>
-</div>
-<h3 className="font-title-lg text-title-lg text-[#F5F7FC] font-semibold mb-space-xs">
-              Confidential Representation
-            </h3>
-<p className="font-body-sm text-body-sm text-[#98A7BD] leading-relaxed mb-space-md">
-              Complete anonymity preservation for family offices, tech founders, and sovereign accounts with encrypted communication channels and blind trust title structuring.
-            </p>
-</div>
-<div className="pt-space-sm flex items-center text-[#29C5E8] font-label-md text-label-md font-bold gap-1">
-<span>Fiduciary Protocols</span>
-<span className="material-symbols-outlined text-[16px]">arrow_right_alt</span>
-</div>
-</div>
-{/* Service 3 */}
-<div className="bg-[#111D32] rounded-xl p-space-lg shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
-<div>
-<div className="w-12 h-12 rounded-lg bg-[#0D1628] flex items-center justify-center text-[#29C5E8] mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-<span className="material-symbols-outlined text-[24px]">chair</span>
-</div>
-<h3 className="font-title-lg text-title-lg text-[#F5F7FC] font-semibold mb-space-xs">
-              Architectural &amp; Curation Advisory
-            </h3>
-<p className="font-body-sm text-body-sm text-[#98A7BD] leading-relaxed mb-space-md">
-              Direct relationships with premier interior ateliers, blue-chip fine art conservators, and historical preservation authorities for post-acquisition turnkey outfitting.
-            </p>
-</div>
-<div className="pt-space-sm flex items-center text-[#29C5E8] font-label-md text-label-md font-bold gap-1">
-<span>Atelier Network</span>
-<span className="material-symbols-outlined text-[16px]">arrow_right_alt</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-{/* Editorial Press Quotes & Client Testimonials */}
-<section className="w-full py-space-xl bg-[#080E1B]">
-<div className="max-w-7xl mx-auto px-margin">
-{/* Section Divider Header */}
-<div className="flex items-center justify-between pb-space-md mb-space-lg">
-<h3 className="font-label-caps text-label-caps uppercase tracking-widest text-[#98A7BD]">
-          Published Recognition · Global Press
-        </h3>
-<div className="flex items-center gap-space-md text-[#98A7BD]">
-<span className="font-label-md text-label-md italic">The Wall Street Journal</span>
-<span className="font-label-md text-label-md italic">Architectural Digest</span>
-<span className="font-label-md text-label-md italic">Financial Times</span>
-<span className="font-label-md text-label-md italic">Robb Report</span>
-</div>
-</div>
-{/* Testimonial Bento */}
-<div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
-{/* Prominent Quote Card */}
-<div className="lg:col-span-7 bg-[#0D1628] rounded-2xl p-space-xl relative overflow-hidden">
-<span className="material-symbols-outlined text-[#29C5E8]/20 text-[96px] absolute -top-4 -left-2 pointer-events-none select-none">format_quote</span>
-<div className="relative z-10">
-<div className="flex items-center gap-1 text-[#29C5E8] mb-space-md">
-<span className="material-symbols-outlined text-[18px]">star</span>
-<span className="material-symbols-outlined text-[18px]">star</span>
-<span className="material-symbols-outlined text-[18px]">star</span>
-<span className="material-symbols-outlined text-[18px]">star</span>
-<span className="material-symbols-outlined text-[18px]">star</span>
-</div>
-<blockquote className="font-headline-md text-headline-md text-[#F5F7FC] font-light leading-relaxed mb-space-lg">
-              "Haven &amp; Key handled our off-market Sea Cliff acquisition with mathematical discretion. Not a single rumor breached the press, and every closing term reflected genuine fiduciary rigor."
-            </blockquote>
-<div className="flex items-center gap-space-sm">
-<div className="w-12 h-12 rounded-full bg-[#0D1628] overflow-hidden">
-<div className="w-full h-full bg-cover bg-center" data-alt="Monochrome close up portrait of tech entrepreneur in subtle dark cashmere sweater looking confident and composed" style={{'backgroundImage': 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuD31WQ9lg17wjZNPi7HNHbtn8FkSQne5w66AZCj93VKW69PBeeWSJsXATF-CpyLyG1AH8Xfmm4ijCjc71Xp8M3sDTcFgfzWc8YQyDrfjMGXgRYk0O2T8GBx6loy8DpLssD8x9HGEzS_RYH8Cx6QOQcMqio5chZuVi-ou6vsWtgkeChn6X1-BOBDPGZm3WmTZYcBDcihibvBJu3vAzSXYea11pqqmqxR1S9r8Cnipz4\')'}}></div>
-</div>
-<div>
-<div className="font-title-md text-title-md font-bold text-[#F5F7FC]">Christian &amp; Sophia Lindqvist</div>
-<div className="font-body-sm text-body-sm text-[#98A7BD]">Principals, Apex Capital Holdings · San Francisco &amp; Geneva</div>
-</div>
-</div>
-</div>
-</div>
-{/* Press Snippets Column */}
-<div className="lg:col-span-5 flex flex-col gap-space-md">
-<div className="bg-[#111D32] p-space-lg rounded-xl shadow-sm">
-<span className="font-label-caps text-label-caps uppercase text-[#29C5E8] font-bold block mb-1">Architectural Digest · Private Issue</span>
-<p className="font-body-md text-body-md text-[#F5F7FC] italic mb-2">
-              "Haven &amp; Key has redefined the ultra-prime residential landscape by treating historic preservation with the curatorial precision of a world-class gallery."
-            </p>
-<span className="font-label-md text-label-md text-[#98A7BD]">Estate of the Year Feature · 2024</span>
-</div>
-<div className="bg-[#111D32] p-space-lg rounded-xl shadow-sm">
-<span className="font-label-caps text-label-caps uppercase text-[#29C5E8] font-bold block mb-1">The Wall Street Journal · Mansions</span>
-<p className="font-body-md text-body-md text-[#F5F7FC] italic mb-2">
-              "Leading the California and New York corridors in confidential trades exceeding $20 million, setting consecutive benchmark price-per-square-foot records."
-            </p>
-<span className="font-label-md text-label-md text-[#98A7BD]">Market Leadership Report</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-{/* Interactive Private Consultation Callout */}
-<section className="w-full py-space-xl bg-[#0D1628]">
-<div className="max-w-7xl mx-auto px-margin">
-<div className="bg-[#3978F6] text-white rounded-2xl p-space-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-space-lg shadow-xl">
-{/* Background subtle glow */}
-<div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
-<div className="relative z-10 max-w-xl">
-<span className="font-label-caps text-label-caps uppercase tracking-widest text-[#29C5E8]-container font-bold mb-space-xs block">
-            Direct Principal Access
-          </span>
-<h3 className="font-headline-lg text-headline-lg text-surface-bright font-light mb-space-xs">
-            Contemplating a Confidential Sale or Acquisition?
-          </h3>
-<p className="font-body-md text-body-md text-surface-variant leading-relaxed">
-            Schedule a private consultation with our managing partners. All inquiries are bound by our standard binding institutional non-disclosure protocol.
-          </p>
-</div>
-<div className="relative z-10 flex flex-col sm:flex-row items-center gap-space-sm w-full md:w-auto">
-<Link className="w-full sm:w-auto px-space-xl py-3.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition-all text-center font-bold shadow-md" data-path="list-property"  to="/dashboard/properties">
-            Schedule Private Briefing
-          </Link>
-<Link className="w-full sm:w-auto px-space-lg py-3.5 rounded-lg bg-[#111D32]est text-white-fixed font-label-md text-label-md hover:bg-[#080E1B]-bright transition-all text-center font-bold" data-path="agents"  to="/advisor">
-            Meet Our Partners
-          </Link>
-</div>
-</div>
-</div>
-</section>
-{/* Client-side Interactive Tabs Logic */}
+        {/* HERO SECTION */}
+        <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-[#080E1B] overflow-hidden">
+          {/* Subtle Ambient Radial Glows */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#3978F6]/15 via-[#29C5E8]/5 to-transparent blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 left-10 w-72 h-72 bg-[#3978F6]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/4 right-10 w-80 h-80 bg-[#29C5E8]/10 rounded-full blur-3xl pointer-events-none" />
 
-</div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Header Text & Badges */}
+            <div className="text-center max-w-4xl mx-auto space-y-6">
+              
+              {/* Institutional Pill Badge */}
+              <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#111D32] border border-[#23324A] text-[11px] font-semibold text-[#29C5E8] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#20C997] animate-pulse" />
+                <span className="tracking-wide uppercase font-bold text-[#F5F7FC]">
+                  Enterprise Property Valuation &amp; Mortgage Underwriting Intelligence
+                </span>
+              </div>
+
+              {/* Master Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#F5F7FC] tracking-tight leading-[1.15]">
+                Transform Property Data Into <br className="hidden sm:inline" />
+                <span className="bg-gradient-to-r from-[#3978F6] via-[#29C5E8] to-[#20C997] bg-clip-text text-transparent">
+                  Smarter Lending Decisions.
+                </span>
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-[#98A7BD] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                An intelligent real estate and fintech platform combining AI-powered property valuation, 
+                mortgage underwriting, risk intelligence, and document verification.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <Link
+                  to="/register"
+                  className="px-7 py-3.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-[#3978F6]/30 flex items-center space-x-2 cursor-pointer"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <a
+                  href="#platform"
+                  className="px-6 py-3.5 rounded-xl bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2 cursor-pointer"
+                >
+                  <span>Explore Platform</span>
+                  <ChevronRight className="w-4 h-4 text-[#98A7BD]" />
+                </a>
+
+                <Link
+                  to="/catalog"
+                  className="px-6 py-3.5 rounded-xl bg-[#0D1628] hover:bg-[#111D32] text-[#29C5E8] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                >
+                  <Building className="w-4 h-4 text-[#29C5E8]" />
+                  <span>Browse Properties</span>
+                </Link>
+
+                <Link
+                  to="/valuation"
+                  className="px-6 py-3.5 rounded-xl bg-[#0D1628] hover:bg-[#111D32] text-[#20C997] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                >
+                  <Sparkles className="w-4 h-4 text-[#20C997]" />
+                  <span>AI Valuation Studio</span>
+                </Link>
+              </div>
+
+            </div>
+
+            {/* DASHBOARD PREVIEW COMPONENT (Exact UI Style as Dashboard) */}
+            <div className="mt-14 max-w-6xl mx-auto">
+              <div className="bg-[#111D32] border border-[#23324A] rounded-2xl shadow-2xl shadow-[#080E1B] overflow-hidden">
+                
+                {/* Browser-style Top Bar */}
+                <div className="bg-[#0A1222] px-5 py-3.5 border-b border-[#23324A] flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex space-x-1.5">
+                      <div className="w-3 h-3 rounded-full bg-[#EF5B67]/80" />
+                      <div className="w-3 h-3 rounded-full bg-[#F5B942]/80" />
+                      <div className="w-3 h-3 rounded-full bg-[#20C997]/80" />
+                    </div>
+                    <div className="px-3 py-1 rounded-md bg-[#080E1B] border border-[#23324A] text-[11px] font-mono text-[#98A7BD] flex items-center space-x-1.5">
+                      <Lock className="w-3 h-3 text-[#20C997]" />
+                      <span>propwise.ai/dashboard/intelligence</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#29C5E8] bg-[#080E1B] px-2.5 py-1 rounded border border-[#23324A]">
+                      Institutional Decision Engine
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#20C997]" />
+                  </div>
+                </div>
+
+                {/* Interactive Sample Asset Selector */}
+                <div className="bg-[#0D1628] px-5 py-2.5 border-b border-[#23324A] flex items-center space-x-2 overflow-x-auto text-xs">
+                  <span className="text-[#98A7BD] text-[11px] font-semibold whitespace-nowrap mr-2">Sample Portfolio Files:</span>
+                  {sampleAssets.map((asset, idx) => (
+                    <button
+                      key={asset.id}
+                      onClick={() => setActiveAssetIndex(idx)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap cursor-pointer flex items-center space-x-1.5 ${
+                        activeAssetIndex === idx
+                          ? 'bg-[#3978F6] text-white shadow-sm'
+                          : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC] border border-[#23324A]'
+                      }`}
+                    >
+                      <span>{asset.name}</span>
+                      <span className="text-[10px] opacity-75">({asset.valuation})</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Dashboard Decision Engine Layout */}
+                <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#080E1B]/70">
+                  
+                  {/* Left Column: Collateral Snapshot Card */}
+                  <div className="lg:col-span-5 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#29C5E8]">
+                          {activeAsset.type}
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#20C997]/15 text-[#20C997] border border-[#20C997]/30">
+                          Active Collateral
+                        </span>
+                      </div>
+
+                      {/* Property Image with Fallback */}
+                      <div className="relative h-44 rounded-lg overflow-hidden border border-[#23324A] mb-4 bg-[#0A1222]">
+                        <img
+                          src={activeAsset.image}
+                          alt={activeAsset.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
+                          }}
+                        />
+                        <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-[#080E1B]/90 backdrop-blur-sm border border-[#23324A] text-[11px] font-semibold text-[#F5F7FC] flex items-center space-x-1">
+                          <MapPin className="w-3 h-3 text-[#3978F6]" />
+                          <span>{activeAsset.locality}</span>
+                        </div>
+                      </div>
+
+                      <h3 className="text-base font-bold text-[#F5F7FC] leading-snug">
+                        {activeAsset.name}
+                      </h3>
+                    </div>
+
+                    <div className="pt-4 border-t border-[#23324A] mt-4 flex items-end justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-[#98A7BD] tracking-wider block">
+                          AI Assessed Valuation
+                        </span>
+                        <span className="text-2xl font-extrabold text-[#20C997] tracking-tight block">
+                          {activeAsset.valuation}
+                        </span>
+                        <span className="text-[10px] text-[#98A7BD]">Benchmark: {activeAsset.rateSqft}</span>
+                      </div>
+
+                      <div className="text-right">
+                        <span className="text-[10px] uppercase font-bold text-[#98A7BD] tracking-wider block">Confidence</span>
+                        <span className="text-xs font-bold text-[#29C5E8] bg-[#29C5E8]/10 px-2.5 py-1 rounded-md border border-[#29C5E8]/20 inline-block mt-0.5">
+                          {activeAsset.confidence}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Middle Column: Mortgage Underwriting Assessment */}
+                  <div className="lg:col-span-4 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD] block">Underwriting File</span>
+                          <span className="text-xs font-mono font-bold text-[#F5F7FC]">{activeAsset.applicationId}</span>
+                        </div>
+                        <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-[#3978F6]/20 text-[#3978F6] border border-[#3978F6]/40">
+                          {activeAsset.underwriting}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="bg-[#080E1B] p-3 rounded-lg border border-[#23324A]">
+                          <div className="flex justify-between items-center text-xs mb-1">
+                            <span className="text-[#98A7BD]">Debt-to-Income (DTI)</span>
+                            <span className="font-bold text-[#F5F7FC]">{activeAsset.dti}</span>
+                          </div>
+                          <div className="w-full bg-[#111D32] h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-[#3978F6] h-full rounded-full" style={{ width: activeAsset.dti }} />
+                          </div>
+                          <span className="text-[9px] text-[#20C997] mt-1 block">Within institutional threshold (&lt; 45%)</span>
+                        </div>
+
+                        <div className="bg-[#080E1B] p-3 rounded-lg border border-[#23324A]">
+                          <div className="flex justify-between items-center text-xs mb-1">
+                            <span className="text-[#98A7BD]">Loan-to-Value (LTV)</span>
+                            <span className="font-bold text-[#F5F7FC]">{activeAsset.ltv}</span>
+                          </div>
+                          <div className="w-full bg-[#111D32] h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-[#29C5E8] h-full rounded-full" style={{ width: activeAsset.ltv }} />
+                          </div>
+                          <span className="text-[9px] text-[#20C997] mt-1 block">Comfortable collateral cushion (&lt; 75%)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-[#23324A] mt-3">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[#98A7BD]">Monthly Debt Service:</span>
+                        <span className="font-bold text-[#F5F7FC]">{activeAsset.emi}</span>
+                      </div>
+                      <span className="text-[10px] text-[#98A7BD] block mt-0.5">{activeAsset.tenure}</span>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Unified Risk Matrix */}
+                  <div className="lg:col-span-3 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD]">Unified Risk Matrix</span>
+                        <span className="text-[10px] font-semibold text-[#29C5E8]">v3.1 Policy</span>
+                      </div>
+
+                      <div className="text-center py-2">
+                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 border-[#20C997] bg-[#080E1B] shadow-lg shadow-[#20C997]/20">
+                          <span className="text-xl font-extrabold text-[#20C997]">A+</span>
+                        </div>
+                        <div className="mt-2">
+                          <span className="text-xs font-bold text-[#20C997] block">{activeAsset.riskCategory}</span>
+                          <span className="text-[10px] text-[#98A7BD]">Decoupled Vector Score</span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 text-xs">
+                        <div className="flex justify-between items-center py-1 border-b border-[#23324A]/50">
+                          <span className="text-[#98A7BD]">Collateral Risk</span>
+                          <span className="font-bold text-[#20C997]">{activeAsset.collateralRisk}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-1">
+                          <span className="text-[#98A7BD]">Borrower Risk</span>
+                          <span className="font-bold text-[#20C997]">{activeAsset.borrowerRisk}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <Link
+                      to="/login"
+                      className="w-full mt-4 py-2.5 rounded-lg bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold text-center transition-colors flex items-center justify-center space-x-1 shadow-md shadow-[#3978F6]/20"
+                    >
+                      <span>Inspect Credit Dossier</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+
+                </div>
+
+                {/* Live Underwriting Activity Ticker */}
+                <div className="bg-[#0A1222] px-6 py-3 border-t border-[#23324A] flex flex-wrap items-center justify-between text-xs text-[#98A7BD] gap-3">
+                  <div className="flex items-center space-x-3">
+                    <span className="inline-flex items-center space-x-1.5 text-[#20C997] font-semibold text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#20C997]" />
+                      <span>LIVE SYSTEM METRICS</span>
+                    </span>
+                    <span className="hidden sm:inline text-[#23324A]">|</span>
+                    <span className="hidden sm:inline">Active Loan Book: <b className="text-[#F5F7FC]">INR 48,500 Cr+</b></span>
+                    <span className="hidden md:inline text-[#23324A]">|</span>
+                    <span className="hidden md:inline">Mean ML Valuation Variance: <b className="text-[#20C997]">&lt; 3.2%</b></span>
+                  </div>
+
+                  <Link to="/catalog" className="text-[#3978F6] hover:text-[#29C5E8] text-xs font-medium flex items-center space-x-1">
+                    <span>Explore All Live Properties</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* PLATFORM FEATURES SECTION */}
+        <section id="features" className="py-24 bg-[#0D1628] border-t border-[#23324A] relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <span className="text-xs font-bold tracking-wider text-[#3978F6] uppercase bg-[#3978F6]/10 px-3 py-1 rounded-full border border-[#3978F6]/20">
+                Integrated Intelligence Suite
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+                Comprehensive Real Estate &amp; Lending Modules
+              </h2>
+              <p className="text-[#98A7BD] text-base leading-relaxed">
+                Every critical dimension of real estate appraisal and mortgage risk assessment unified into one interconnected enterprise environment.
+              </p>
+            </div>
+
+            {/* 9 Features Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((f, i) => {
+                const Icon = f.icon;
+                return (
+                  <div
+                    key={i}
+                    className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/60 rounded-xl p-6 transition-all duration-200 shadow-md flex flex-col justify-between group"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#3978F6]/20 to-[#29C5E8]/20 border border-[#23324A] flex items-center justify-center text-[#29C5E8] group-hover:text-white group-hover:border-[#3978F6] transition-colors">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD] bg-[#080E1B] px-2.5 py-1 rounded border border-[#23324A]">
+                          {f.tag}
+                        </span>
+                      </div>
+
+                      <div>
+                        <h3 className="text-base font-bold text-[#F5F7FC] group-hover:text-[#29C5E8] transition-colors">
+                          {f.title}
+                        </h3>
+                        <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">
+                          {f.desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-[#23324A] mt-5">
+                      <Link
+                        to={f.link}
+                        className="text-xs font-semibold text-[#3978F6] hover:text-[#29C5E8] inline-flex items-center space-x-1.5 transition-colors"
+                      >
+                        <span>Launch Module</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </section>
+
+        {/* HOW IT WORKS SECTION (7-Step Workflow) */}
+        <section id="workflow" className="py-24 bg-[#080E1B] border-t border-[#23324A]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <span className="text-xs font-bold tracking-wider text-[#29C5E8] uppercase bg-[#29C5E8]/10 px-3 py-1 rounded-full border border-[#29C5E8]/20">
+                End-to-End Orchestration
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+                How It Works: Institutional Lending Lifecycle
+              </h2>
+              <p className="text-[#98A7BD] text-base leading-relaxed">
+                Structured sequence connecting automated ingestion, algorithmic appraisal, fraud verification, and certified credit committee sign-off.
+              </p>
+            </div>
+
+            {/* Workflow Steps 1 to 4 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {workflowSteps.slice(0, 4).map((ws, i) => (
+                <div key={i} className="bg-[#111D32] border border-[#23324A] rounded-xl p-5 relative flex flex-col justify-between">
+                  <div>
+                    <span className="text-3xl font-extrabold text-[#3978F6]/30 block mb-2 font-mono">
+                      {ws.step}
+                    </span>
+                    <h4 className="text-sm font-bold text-[#F5F7FC]">{ws.title}</h4>
+                    <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">{ws.desc}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-[#23324A]/60 flex items-center text-[10px] text-[#29C5E8]">
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#20C997]" />
+                    <span>Automated Protocol</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Workflow Steps 5 to 7 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+              {workflowSteps.slice(4).map((ws, i) => (
+                <div key={i} className="bg-[#111D32] border border-[#23324A] rounded-xl p-5 relative flex flex-col justify-between">
+                  <div>
+                    <span className="text-3xl font-extrabold text-[#29C5E8]/30 block mb-2 font-mono">
+                      {ws.step}
+                    </span>
+                    <h4 className="text-sm font-bold text-[#F5F7FC]">{ws.title}</h4>
+                    <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">{ws.desc}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-[#23324A]/60 flex items-center text-[10px] text-[#20C997]">
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#20C997]" />
+                    <span>{ws.step === "07" ? "Certified Sign-Off" : "Automated Protocol"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* LIVE FEATURED PROPERTIES PORTFOLIO (Exact Same Card UI as Dashboard) */}
+        <section id="properties" className="py-24 bg-[#0D1628] border-t border-[#23324A]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+              <div>
+                <span className="text-xs font-bold tracking-wider text-[#20C997] uppercase bg-[#20C997]/10 px-3 py-1 rounded-full border border-[#20C997]/20">
+                  Collateral Asset Directory
+                </span>
+                <h2 className="text-3xl font-extrabold text-[#F5F7FC] tracking-tight mt-2">
+                  Featured Prime Properties
+                </h2>
+                <p className="text-[#98A7BD] text-sm mt-1">
+                  Verified real estate collateral records currently managed across the platform.
+                </p>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                <Link
+                  to="/catalog"
+                  className="px-5 py-2.5 rounded-lg bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold transition-colors flex items-center space-x-1.5 cursor-pointer shadow-md shadow-[#3978F6]/20"
+                >
+                  <span>View All Properties ({featuredProperties.length > 0 ? '12+' : '6'})</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  to="/register"
+                  className="px-4 py-2.5 rounded-lg bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-xs font-semibold transition-colors"
+                >
+                  + Register Asset
+                </Link>
+              </div>
+            </div>
+
+            {/* Properties Grid (Styled exactly like dashboard cards in Image 2) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(featuredProperties.length > 0 ? featuredProperties : [
+                {
+                  id: "p1",
+                  name: "Assagao Heritage Portuguese Estate",
+                  city: "Assagao, Goa",
+                  property_type: "Historic Estate",
+                  bedrooms: 4,
+                  bathrooms: 5,
+                  parking_spaces: 4,
+                  built_up_area_sqft: 6200,
+                  construction_quality: "Restored Indo-Portuguese",
+                  estimated_value: 185000000,
+                  status: "Off-Market",
+                  image_url: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                  id: "p2",
+                  name: "DLF Magnolias Signature Golf Villa",
+                  city: "Golf Course Road, Gurugram",
+                  property_type: "Penthouse",
+                  bedrooms: 4,
+                  bathrooms: 5,
+                  parking_spaces: 4,
+                  built_up_area_sqft: 6400,
+                  construction_quality: "Ultra Luxury Specification",
+                  estimated_value: 265000000,
+                  status: "Available",
+                  image_url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                  id: "p3",
+                  name: "Jubilee Hills Private Hilltop Compound",
+                  city: "Jubilee Hills, Hyderabad",
+                  property_type: "Villa",
+                  bedrooms: 5,
+                  bathrooms: 7,
+                  parking_spaces: 5,
+                  built_up_area_sqft: 8600,
+                  construction_quality: "Ultra Luxury Specification",
+                  estimated_value: 320000000,
+                  status: "Available",
+                  image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                }
+              ]).map((prop) => (
+                <div
+                  key={prop.id}
+                  className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/60 rounded-xl overflow-hidden shadow-lg transition-all duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Image Header with badges */}
+                    <div className="relative h-48 bg-[#0A1222] overflow-hidden">
+                      <img
+                        src={prop.image_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"}
+                        alt={prop.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
+                        }}
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#080E1B]/85 text-[#29C5E8] border border-[#23324A] backdrop-blur-sm">
+                          {prop.property_type || "Residential"}
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
+                          prop.status === 'Off-Market'
+                            ? 'bg-[#EF5B67]/20 text-[#EF5B67] border border-[#EF5B67]/40'
+                            : 'bg-[#20C997]/20 text-[#20C997] border border-[#20C997]/40'
+                        }`}>
+                          {prop.status || 'Active'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="p-5 space-y-3">
+                      <div>
+                        <h3 className="text-base font-bold text-[#F5F7FC] leading-snug line-clamp-1">
+                          {prop.name}
+                        </h3>
+                        <div className="flex items-center space-x-1.5 text-xs text-[#98A7BD] mt-1">
+                          <MapPin className="w-3.5 h-3.5 text-[#3978F6]" />
+                          <span>{prop.locality ? `${prop.locality}, ${prop.city}` : prop.city}</span>
+                        </div>
+                      </div>
+
+                      {/* Spec Matrix */}
+                      <div className="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-lg bg-[#080E1B] border border-[#23324A] text-xs">
+                        <div className="text-center">
+                          <span className="text-[#98A7BD] text-[10px] block">Bedrooms</span>
+                          <span className="font-bold text-[#F5F7FC]">{prop.bedrooms || 3} BHK</span>
+                        </div>
+                        <div className="text-center border-x border-[#23324A]">
+                          <span className="text-[#98A7BD] text-[10px] block">Bathrooms</span>
+                          <span className="font-bold text-[#F5F7FC]">{prop.bathrooms || 3} Baths</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-[#98A7BD] text-[10px] block">Parking</span>
+                          <span className="font-bold text-[#F5F7FC]">{prop.parking_spaces || 2} Park</span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-1 text-xs text-[#98A7BD] pt-1">
+                        <div className="flex justify-between">
+                          <span>Built-up Area:</span>
+                          <span className="text-[#F5F7FC] font-semibold">{prop.built_up_area_sqft || 2800} sqft</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Quality Grade:</span>
+                          <span className="text-[#20C997] font-semibold">{prop.construction_quality || 'Premium'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Valuation and Action Footer */}
+                  <div className="px-5 py-4 bg-[#0D1628] border-t border-[#23324A] flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-[#98A7BD] block">
+                        Assessed ML Value
+                      </span>
+                      <span className="text-base font-extrabold text-[#20C997]">
+                        {formatCurrency(prop.estimated_value)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Link
+                        to={`/property/${prop.id}`}
+                        className="px-3.5 py-1.5 rounded-lg bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold transition-colors flex items-center space-x-1"
+                      >
+                        <span>Inspect</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* INSTANT VALUATION CALCULATOR PLAYGROUND */}
+        <section className="py-20 bg-[#080E1B] border-t border-[#23324A]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 sm:p-10 shadow-2xl">
+              
+              <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#29C5E8]">Interactive Simulation</span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F5F7FC]">
+                  Run Instant AI Property Appraisal
+                </h3>
+                <p className="text-xs sm:text-sm text-[#98A7BD]">
+                  Test our multi-variable price-per-square-foot regression model right now without signing in.
+                </p>
+              </div>
+
+              <form onSubmit={runQuickValuation} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div>
+                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Metropolitan Cluster</label>
+                  <select
+                    value={calcCity}
+                    onChange={(e) => setCalcCity(e.target.value)}
+                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                  >
+                    <option value="Mumbai">Mumbai Metropolitan (MMR)</option>
+                    <option value="Gurugram">Gurugram / NCR Cyber City</option>
+                    <option value="Bengaluru">Bengaluru Tech Corridor</option>
+                    <option value="Hyderabad">Hyderabad Financial District</option>
+                    <option value="Goa">North Goa Coastal Enclaves</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Built-up Area (Sq Ft)</label>
+                  <input
+                    type="number"
+                    min="500"
+                    max="20000"
+                    step="50"
+                    value={calcSqft}
+                    onChange={(e) => setCalcSqft(Number(e.target.value))}
+                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Bedroom Configuration</label>
+                  <select
+                    value={calcBhk}
+                    onChange={(e) => setCalcBhk(Number(e.target.value))}
+                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                  >
+                    <option value="2">2 BHK Executive</option>
+                    <option value="3">3 BHK Premium</option>
+                    <option value="4">4 BHK Penthouse</option>
+                    <option value="5">5+ BHK Estate Compound</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Specification Grade</label>
+                  <select
+                    value={calcQuality}
+                    onChange={(e) => setCalcQuality(e.target.value)}
+                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                  >
+                    <option value="Standard">Standard Finishes</option>
+                    <option value="Premium">Premium Architecture</option>
+                    <option value="Luxury">Luxury Grade Specification</option>
+                    <option value="Ultra Luxury">Ultra Luxury Bespoke</option>
+                  </select>
+                </div>
+
+                <div className="sm:col-span-2 lg:col-span-4 mt-2">
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#3978F6] to-[#29C5E8] hover:opacity-95 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-[#3978F6]/25 cursor-pointer flex items-center justify-center space-x-2"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Calculate Instant AI Valuation Regression</span>
+                  </button>
+                </div>
+              </form>
+
+              {/* Instant Valuation Result Display */}
+              {calcResult && (
+                <div className="bg-[#080E1B] border border-[#20C997]/40 rounded-xl p-6 mt-6 transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#23324A] gap-4">
+                    <div>
+                      <span className="text-[11px] font-bold uppercase text-[#29C5E8] tracking-wider block">Estimated Market Valuation</span>
+                      <span className="text-3xl font-extrabold text-[#20C997] tracking-tight">
+                        {formatCurrency(calcResult.estimated)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-4 text-xs">
+                      <div className="bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A]">
+                        <span className="text-[#98A7BD] block text-[10px]">Benchmarked Rate</span>
+                        <span className="font-bold text-[#F5F7FC]">INR {calcResult.ratePerSqft.toLocaleString()} / sqft</span>
+                      </div>
+                      <div className="bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A]">
+                        <span className="text-[#98A7BD] block text-[10px]">ML Confidence</span>
+                        <span className="font-bold text-[#20C997]">{calcResult.confidence}%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#98A7BD] gap-3">
+                    <span>
+                      Confidence Interval (95% ML Bound): <b className="text-[#F5F7FC]">{formatCurrency(calcResult.lower)} — {formatCurrency(calcResult.upper)}</b>
+                    </span>
+                    <Link
+                      to="/valuation"
+                      className="text-[#3978F6] hover:text-[#29C5E8] font-semibold flex items-center space-x-1"
+                    >
+                      <span>Open Full Multi-Factor Valuation Studio</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </div>
+        </section>
+
+        {/* TRUST, SECURITY & GOVERNANCE SECTION */}
+        <section id="security" className="py-24 bg-[#0D1628] border-t border-[#23324A]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <span className="text-xs font-bold tracking-wider text-[#20C997] uppercase bg-[#20C997]/10 px-3 py-1 rounded-full border border-[#20C997]/20">
+                Enterprise Security &amp; Governance
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+                Security Built for Regulated Institutions
+              </h2>
+              <p className="text-[#98A7BD] text-base leading-relaxed">
+                Engineered with authenticated encryption, non-delegable human authority, and transparent model explainability.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {securityPillars.map((pillar, i) => {
+                const Icon = pillar.icon;
+                return (
+                  <div key={i} className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/40 rounded-xl p-6 space-y-3 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-[#080E1B] border border-[#23324A] flex items-center justify-center text-[#20C997]">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-bold text-[#F5F7FC]">{pillar.title}</h3>
+                    <p className="text-xs text-[#98A7BD] leading-relaxed">{pillar.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </section>
+
+        {/* INSTITUTIONAL CALL TO ACTION BANNER */}
+        <section className="py-20 bg-gradient-to-b from-[#080E1B] to-[#0D1628] border-t border-[#23324A] relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#3978F6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+          
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#29C5E8] bg-[#111D32] px-4 py-1.5 rounded-full border border-[#23324A]">
+              Next-Gen Real Estate &amp; FinTech Infrastructure
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#F5F7FC] tracking-tight">
+              Ready to Upgrade Your Lending Infrastructure?
+            </h2>
+            <p className="text-[#98A7BD] text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              Experience explainable AI property valuation, automated mortgage underwriting, and instant document extraction today.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                to="/register"
+                className="px-8 py-3.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-[#3978F6]/30 flex items-center space-x-2"
+              >
+                <span>Create Institutional Account</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/login"
+                className="px-8 py-3.5 rounded-xl bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-sm font-semibold transition-all duration-200"
+              >
+                Sign In to Portal
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <HavenFooter />
+      {/* FOOTER (Exact Dark FinTech Style) */}
+      <footer className="bg-[#0A1222] border-t border-[#23324A] py-16 text-xs text-[#98A7BD]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8">
+          
+          {/* Brand Info */}
+          <div className="col-span-2 space-y-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#29C5E8] flex items-center justify-center p-0.5">
+                <div className="w-full h-full bg-[#0A1222] rounded-[6px] flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-[#29C5E8]" />
+                </div>
+              </div>
+              <span className="text-lg font-bold text-[#F5F7FC] tracking-tight block">
+                PROPWISE <span className="text-[#3978F6]">AI</span>
+              </span>
+            </div>
+            <p className="text-xs text-[#98A7BD] max-w-sm leading-relaxed">
+              Smarter Property Valuation. Safer Lending Decisions. Enterprise real estate and fintech intelligence ecosystem combining AI valuation, mortgage underwriting, and document verification.
+            </p>
+            <p className="text-[11px] text-[#98A7BD]/70 pt-2">
+              &copy; 2026 PROPWISE AI. All rights reserved.
+            </p>
+          </div>
+
+          {/* Platform Links */}
+          <div className="space-y-2.5">
+            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Platform</span>
+            <Link to="/valuation" className="block hover:text-[#F5F7FC] transition-colors">AI Property Valuation</Link>
+            <Link to="/catalog" className="block hover:text-[#F5F7FC] transition-colors">Property Catalog</Link>
+            <Link to="/dashboard/mortgage" className="block hover:text-[#F5F7FC] transition-colors">Mortgage Underwriting</Link>
+            <Link to="/dashboard/risk" className="block hover:text-[#F5F7FC] transition-colors">Risk Intelligence</Link>
+            <Link to="/dashboard/documents" className="block hover:text-[#F5F7FC] transition-colors">Document OCR</Link>
+          </div>
+
+          {/* Governance & Security */}
+          <div className="space-y-2.5">
+            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Governance</span>
+            <a href="#security" className="block hover:text-[#F5F7FC] transition-colors">Trust &amp; Security</a>
+            <Link to="/dashboard/compliance" className="block hover:text-[#F5F7FC] transition-colors">Responsible AI Charter</Link>
+            <Link to="/dashboard/compliance" className="block hover:text-[#F5F7FC] transition-colors">Privacy Architecture</Link>
+            <Link to="/dashboard/admin/audit-logs" className="block hover:text-[#F5F7FC] transition-colors">Audit Traceability</Link>
+          </div>
+
+          {/* Support & Account */}
+          <div className="space-y-2.5">
+            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Support</span>
+            <Link to="/login" className="block hover:text-[#F5F7FC] transition-colors">Client Portal Sign In</Link>
+            <Link to="/register" className="block hover:text-[#F5F7FC] transition-colors">Register Account</Link>
+            <Link to="/dashboard/help" className="block hover:text-[#F5F7FC] transition-colors">Knowledge Base</Link>
+            <Link to="/dashboard/settings" className="block hover:text-[#F5F7FC] transition-colors">BYOK API Setup</Link>
+          </div>
+
+        </div>
+      </footer>
     </div>
   );
 }
