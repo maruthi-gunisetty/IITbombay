@@ -6,7 +6,7 @@ import { propertiesAPI } from '../../services/api';
 
 export default function PropertyCatalogPage() {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,8 +18,8 @@ export default function PropertyCatalogPage() {
   const [priceRange, setPriceRange] = useState(searchParams.get('price') || 'all');
   const [minBeds, setMinBeds] = useState(searchParams.get('beds') || 'any');
   const [sortBy, setSortBy] = useState('newest');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'map'
-  const [savedProperties, setSavedProperties] = useState([5, 7]);
+  const [viewMode, setViewMode] = useState('grid');
+  const [savedProperties, setSavedProperties] = useState([1, 2, 5]);
   const [inquiryEmail, setInquiryEmail] = useState('');
   const [inquiryNotes, setInquiryNotes] = useState('');
   const [inquirySent, setInquirySent] = useState(false);
@@ -75,7 +75,6 @@ export default function PropertyCatalogPage() {
   // Filter and sort properties
   const filteredProperties = properties
     .filter((p) => {
-      // Search term filter (matches name, locality, city, full_address)
       if (searchTerm.trim()) {
         const term = searchTerm.toLowerCase();
         const matchesLoc =
@@ -86,27 +85,23 @@ export default function PropertyCatalogPage() {
         if (!matchesLoc) return false;
       }
 
-      // Property type filter
       if (propertyType !== 'all') {
         const pType = (p.property_type || '').toLowerCase();
         const target = propertyType.toLowerCase();
         if (!pType.includes(target) && !target.includes(pType)) return false;
       }
 
-      // Beds filter
       if (minBeds !== 'any') {
         const targetBeds = parseInt(minBeds, 10);
         if (targetBeds && (p.bedrooms || 0) < targetBeds) return false;
       }
 
-      // Price filter
       const price = p.estimated_value || 0;
       if (priceRange === '2-5' && (price < 2000000 || price > 5000000)) return false;
       if (priceRange === '5-10' && (price < 5000000 || price > 15000000)) return false;
       if (priceRange === '15-25' && (price < 15000000 || price > 25000000)) return false;
       if (priceRange === '25+' && price < 25000000) return false;
 
-      // Saved filter if param exists
       if (searchParams.get('filter') === 'saved' && !savedProperties.includes(p.id)) return false;
 
       return true;
@@ -115,27 +110,27 @@ export default function PropertyCatalogPage() {
       if (sortBy === 'price_asc') return (a.estimated_value || 0) - (b.estimated_value || 0);
       if (sortBy === 'price_desc') return (b.estimated_value || 0) - (a.estimated_value || 0);
       if (sortBy === 'area_desc') return (b.built_up_area_sqft || 0) - (a.built_up_area_sqft || 0);
-      return (b.id || 0) - (a.id || 0); // newest default
+      return (b.id || 0) - (a.id || 0);
     });
 
   return (
-    <div className="bg-[#f8f9ff] text-[#0b1c30] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#904d00] selection:text-white">
+    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
       <HavenNavbar savedCount={savedProperties.length} />
 
       <main className="flex-1 w-full">
         <div className="flex flex-col w-full">
           {/* Sticky Context & Filter Control Suite */}
-          <section className="sticky top-20 z-40 bg-[#f8f9ff]/95 backdrop-blur-md shadow-sm border-b border-[#e5eeff]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex flex-col gap-3">
+          <section className="sticky top-20 z-40 bg-[#0D1628]/95 backdrop-blur-md shadow-xl border-b border-[#23324A]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3.5 flex flex-col gap-3">
               {/* Top Primary Filtering Strip */}
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-1 flex-wrap items-center gap-3 min-w-0">
                   {/* Keyword Search */}
-                  <div className="relative flex items-center min-w-[240px] flex-1 max-w-sm bg-white rounded-lg shadow-sm border border-[#cbdbf5] focus-within:border-[#904d00] transition-colors">
-                    <span className="material-symbols-outlined text-[#76777d] pl-3 text-[20px]">search</span>
+                  <div className="relative flex items-center min-w-[240px] flex-1 max-w-sm bg-[#111D32] rounded-xl border border-[#23324A] focus-within:border-[#3978F6] transition-colors shadow-inner">
+                    <span className="material-symbols-outlined text-[#29C5E8] pl-3 text-[20px]">search</span>
                     <input
-                      className="w-full bg-transparent px-3 py-2 text-sm text-[#0b1c30] outline-none placeholder:text-[#76777d]"
-                      placeholder="City, locality, or address..."
+                      className="w-full bg-transparent px-3 py-2 text-xs text-[#F5F7FC] outline-none placeholder:text-[#98A7BD]"
+                      placeholder="Search city, neighborhood, or title..."
                       type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -143,7 +138,7 @@ export default function PropertyCatalogPage() {
                     {searchTerm && (
                       <button
                         onClick={() => setSearchTerm('')}
-                        className="pr-3 text-[#76777d] hover:text-[#0b1c30] cursor-pointer"
+                        className="pr-3 text-[#98A7BD] hover:text-[#F5F7FC] cursor-pointer"
                       >
                         <span className="material-symbols-outlined text-[18px]">cancel</span>
                       </button>
@@ -151,51 +146,52 @@ export default function PropertyCatalogPage() {
                   </div>
 
                   {/* Property Type Dropdown */}
-                  <div className="relative bg-white rounded-lg border border-[#cbdbf5] px-3 py-1.5 shadow-sm flex items-center gap-2">
-                    <span className="text-xs text-[#76777d]">Type:</span>
+                  <div className="relative bg-[#111D32] rounded-xl border border-[#23324A] px-3 py-1.5 shadow-inner flex items-center gap-2">
+                    <span className="text-xs text-[#98A7BD]">Type:</span>
                     <select
                       value={propertyType}
                       onChange={(e) => setPropertyType(e.target.value)}
-                      className="bg-transparent text-xs font-semibold text-[#0b1c30] outline-none cursor-pointer"
+                      className="bg-transparent text-xs font-semibold text-[#F5F7FC] outline-none cursor-pointer"
                     >
-                      <option value="all">All Styles</option>
-                      <option value="Penthouse">Sky Penthouse</option>
-                      <option value="Villa">Villa / Modern</option>
-                      <option value="Historic">Historic Manor</option>
-                      <option value="Waterfront">Waterfront Estate</option>
-                      <option value="Apartment">Luxury Apartment</option>
+                      <option value="all" className="bg-[#111D32] text-[#F5F7FC]">All Property Types</option>
+                      <option value="Penthouse" className="bg-[#111D32] text-[#F5F7FC]">Sky Penthouse</option>
+                      <option value="Villa" className="bg-[#111D32] text-[#F5F7FC]">Modern Villa</option>
+                      <option value="Historic" className="bg-[#111D32] text-[#F5F7FC]">Historic Manor</option>
+                      <option value="Waterfront" className="bg-[#111D32] text-[#F5F7FC]">Waterfront Estate</option>
+                      <option value="Apartment" className="bg-[#111D32] text-[#F5F7FC]">Apartment Flat</option>
+                      <option value="Commercial" className="bg-[#111D32] text-[#F5F7FC]">Commercial Suite</option>
                     </select>
                   </div>
 
                   {/* Price Range Filter */}
-                  <div className="relative bg-white rounded-lg border border-[#cbdbf5] px-3 py-1.5 shadow-sm flex items-center gap-2">
-                    <span className="text-xs text-[#76777d]">Price:</span>
+                  <div className="relative bg-[#111D32] rounded-xl border border-[#23324A] px-3 py-1.5 shadow-inner flex items-center gap-2">
+                    <span className="text-xs text-[#98A7BD]">Scale:</span>
                     <select
                       value={priceRange}
                       onChange={(e) => setPriceRange(e.target.value)}
-                      className="bg-transparent text-xs font-semibold text-[#0b1c30] outline-none cursor-pointer"
+                      className="bg-transparent text-xs font-semibold text-[#20C997] outline-none cursor-pointer"
                     >
-                      <option value="all">Any Price</option>
-                      <option value="2-5">$2M – $5M</option>
-                      <option value="5-10">$5M – $15M</option>
-                      <option value="15-25">$15M – $25M</option>
-                      <option value="25+">$25M+ (Trophy)</option>
+                      <option value="all" className="bg-[#111D32] text-[#F5F7FC]">Any Valuation</option>
+                      <option value="2-5" className="bg-[#111D32] text-[#F5F7FC]">$2M – $5M / Cr 15–40</option>
+                      <option value="5-10" className="bg-[#111D32] text-[#F5F7FC]">$5M – $15M / Cr 40–120</option>
+                      <option value="15-25" className="bg-[#111D32] text-[#F5F7FC]">$15M – $25M / Cr 120–200</option>
+                      <option value="25+" className="bg-[#111D32] text-[#F5F7FC]">$25M+ (Trophy Estate)</option>
                     </select>
                   </div>
 
                   {/* Bedroom Selector Pills */}
-                  <div className="flex items-center bg-[#eff4ff] p-0.5 rounded-lg border border-[#dce9ff]">
+                  <div className="flex items-center bg-[#080E1B] p-0.5 rounded-xl border border-[#23324A]">
                     {['any', '2', '3', '4', '5'].map((b) => (
                       <button
                         key={b}
                         onClick={() => setMinBeds(b)}
-                        className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                        className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                           minBeds === b
-                            ? 'bg-[#000000] text-white shadow-sm'
-                            : 'text-[#45464d] hover:text-[#0b1c30]'
+                            ? 'bg-[#3978F6] text-white shadow-sm'
+                            : 'text-[#98A7BD] hover:text-[#F5F7FC]'
                         }`}
                       >
-                        {b === 'any' ? 'Any Bed' : `${b}+ Beds`}
+                        {b === 'any' ? 'Any Bed' : `${b}+ BHK`}
                       </button>
                     ))}
                   </div>
@@ -204,26 +200,26 @@ export default function PropertyCatalogPage() {
                 {/* View & Sort Utilities */}
                 <div className="flex items-center gap-3">
                   {/* Sort By Dropdown */}
-                  <div className="flex items-center bg-white rounded-lg border border-[#cbdbf5] px-3 py-1.5 shadow-sm gap-2">
-                    <span className="text-xs text-[#76777d]">Sort:</span>
+                  <div className="flex items-center bg-[#111D32] rounded-xl border border-[#23324A] px-3 py-1.5 shadow-inner gap-2">
+                    <span className="text-xs text-[#98A7BD]">Sort:</span>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="bg-transparent text-xs font-semibold text-[#0b1c30] outline-none cursor-pointer"
+                      className="bg-transparent text-xs font-semibold text-[#F5F7FC] outline-none cursor-pointer"
                     >
-                      <option value="newest">Featured / Newest</option>
-                      <option value="price_asc">Price: Low to High</option>
-                      <option value="price_desc">Price: High to Low</option>
-                      <option value="area_desc">Size: Largest Area</option>
+                      <option value="newest" className="bg-[#111D32] text-[#F5F7FC]">Newest Catalog</option>
+                      <option value="price_asc" className="bg-[#111D32] text-[#F5F7FC]">Price: Low to High</option>
+                      <option value="price_desc" className="bg-[#111D32] text-[#F5F7FC]">Price: High to Low</option>
+                      <option value="area_desc" className="bg-[#111D32] text-[#F5F7FC]">Size: Largest Living Area</option>
                     </select>
                   </div>
 
                   {/* View Mode Toggle: Grid vs Map */}
-                  <div className="flex items-center bg-[#eff4ff] p-0.5 rounded-lg border border-[#dce9ff]">
+                  <div className="flex items-center bg-[#080E1B] p-0.5 rounded-xl border border-[#23324A]">
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`p-1.5 rounded transition-all cursor-pointer ${
-                        viewMode === 'grid' ? 'bg-white text-[#0b1c30] shadow-sm' : 'text-[#76777d]'
+                      className={`p-1.5 rounded-lg transition-all cursor-pointer ${
+                        viewMode === 'grid' ? 'bg-[#111D32] text-[#29C5E8] shadow-sm' : 'text-[#98A7BD]'
                       }`}
                       title="Grid View"
                     >
@@ -231,8 +227,8 @@ export default function PropertyCatalogPage() {
                     </button>
                     <button
                       onClick={() => setViewMode('map')}
-                      className={`p-1.5 rounded transition-all cursor-pointer ${
-                        viewMode === 'map' ? 'bg-white text-[#0b1c30] shadow-sm' : 'text-[#76777d]'
+                      className={`p-1.5 rounded-lg transition-all cursor-pointer ${
+                        viewMode === 'map' ? 'bg-[#111D32] text-[#29C5E8] shadow-sm' : 'text-[#98A7BD]'
                       }`}
                       title="Map View"
                     >
@@ -243,25 +239,25 @@ export default function PropertyCatalogPage() {
               </div>
 
               {/* Active Filter Tags Strip */}
-              <div className="flex items-center justify-between text-xs text-[#45464d]">
+              <div className="flex items-center justify-between text-xs text-[#98A7BD]">
                 <div className="flex items-center flex-wrap gap-2">
-                  <span className="font-semibold text-[#0b1c30]">{filteredProperties.length} Properties Available</span>
+                  <span className="font-semibold text-[#29C5E8]">{filteredProperties.length} Properties Indexed</span>
                   {searchTerm && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white border border-[#cbdbf5] text-[#0b1c30]">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#111D32] border border-[#23324A] text-[#F5F7FC]">
                       Location: {searchTerm}
-                      <button onClick={() => setSearchTerm('')} className="hover:text-[#ba1a1a]">×</button>
+                      <button onClick={() => setSearchTerm('')} className="hover:text-[#EF5B67] ml-1">×</button>
                     </span>
                   )}
                   {propertyType !== 'all' && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white border border-[#cbdbf5] text-[#0b1c30]">
-                      Style: {propertyType}
-                      <button onClick={() => setPropertyType('all')} className="hover:text-[#ba1a1a]">×</button>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#111D32] border border-[#23324A] text-[#F5F7FC]">
+                      Type: {propertyType}
+                      <button onClick={() => setPropertyType('all')} className="hover:text-[#EF5B67] ml-1">×</button>
                     </span>
                   )}
                   {priceRange !== 'all' && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white border border-[#cbdbf5] text-[#0b1c30]">
-                      Price: {priceRange}
-                      <button onClick={() => setPriceRange('all')} className="hover:text-[#ba1a1a]">×</button>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#111D32] border border-[#23324A] text-[#F5F7FC]">
+                      Scale: {priceRange}
+                      <button onClick={() => setPriceRange('all')} className="hover:text-[#EF5B67] ml-1">×</button>
                     </span>
                   )}
                   {(searchTerm || propertyType !== 'all' || priceRange !== 'all' || minBeds !== 'any') && (
@@ -272,74 +268,86 @@ export default function PropertyCatalogPage() {
                         setPriceRange('all');
                         setMinBeds('any');
                       }}
-                      className="text-[#904d00] hover:underline font-semibold ml-2"
+                      className="text-[#3978F6] hover:underline font-semibold ml-2 cursor-pointer"
                     >
-                      Reset All Filters
+                      Reset Filters
                     </button>
                   )}
                 </div>
 
                 <Link
                   to="/valuation"
-                  className="hidden md:inline-flex items-center gap-1 text-[#904d00] hover:underline font-semibold"
+                  className="hidden md:inline-flex items-center gap-1 text-[#29C5E8] hover:underline font-semibold"
                 >
                   <span className="material-symbols-outlined text-[16px]">calculate</span>
-                  Instant AI Property Valuation Tool →
+                  Instant AI Valuation Engine →
                 </Link>
               </div>
             </div>
           </section>
 
           {/* Results Area */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 w-full">
             {loading ? (
-              <div className="py-20 flex flex-col items-center justify-center text-center">
-                <div className="w-10 h-10 border-3 border-[#904d00] border-t-transparent rounded-full animate-spin mb-4" />
-                <p className="text-sm font-semibold text-[#0b1c30]">Querying verified luxury registry...</p>
+              <div className="py-24 flex flex-col items-center justify-center text-center">
+                <div className="w-10 h-10 border-3 border-[#3978F6] border-t-transparent rounded-full animate-spin mb-4" />
+                <p className="text-sm font-semibold text-[#F5F7FC]">Querying verified collateral registry...</p>
               </div>
             ) : viewMode === 'map' ? (
               /* Map View */
-              <div className="w-full bg-white rounded-xl shadow-sm border border-[#e5eeff] p-4 flex flex-col gap-4">
-                <div className="h-[500px] w-full rounded-lg bg-[#eff4ff] relative overflow-hidden flex items-center justify-center border border-[#cbdbf5]">
+              <div className="w-full bg-[#111D32] rounded-2xl shadow-2xl border border-[#23324A] p-4 flex flex-col gap-4">
+                <div className="h-[520px] w-full rounded-xl bg-[#0A1222] relative overflow-hidden flex items-center justify-center border border-[#23324A]">
                   <iframe
                     title="Property Map Location"
-                    className="w-full h-full border-0"
+                    className="w-full h-full border-0 filter invert-[0.9] hue-rotate-180 contrast-125"
                     src="https://www.openstreetmap.org/export/embed.html?bbox=-122.52%2C37.73%2C-122.38%2C37.82&amp;layer=mapnik"
                   />
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-3 rounded-lg shadow-md border border-[#cbdbf5] max-w-xs text-xs">
-                    <p className="font-bold text-[#0b1c30]">Prime Bay Area &amp; Metro Registry</p>
-                    <p className="text-[#45464d] mt-1">{filteredProperties.length} Flagship estates mapped with satellite telemetry.</p>
+                  <div className="absolute top-4 left-4 bg-[#0D1628]/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-[#23324A] max-w-xs text-xs">
+                    <p className="font-bold text-[#F5F7FC] flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[18px] text-[#29C5E8]">satellite_alt</span>
+                      GIS Location Telemetry
+                    </p>
+                    <p className="text-[#98A7BD] mt-1.5">
+                      {filteredProperties.length} Verified property parcels indexed with municipal geo-coordinates.
+                    </p>
                   </div>
                 </div>
 
-                {/* Properties horizontal strip below map */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {filteredProperties.slice(0, 3).map((p) => (
                     <Link
                       key={p.id}
                       to={`/property/${p.id}`}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-[#f8f9ff] border border-[#e5eeff] hover:border-[#904d00] transition-colors group"
+                      className="flex items-center gap-3 p-3.5 rounded-xl bg-[#0D1628] border border-[#23324A] hover:border-[#3978F6] transition-colors group"
                     >
                       <img
-                        src={p.image_url || 'https://lh3.googleusercontent.com/aida-public/AB6AXuAP6eIXPDtV2Ea6EwvAWUsuoMxRnnkmbNZovKBTfdjO5_0FY-4EaI4Qot3zPet0LooPdKPHzH_jNZ_4rVHBtVubY1vnwxNkXcGfkbwepudMUfE1sc88EDlWoUV138z-yRjwVpgZBBi_-R-N2trWC9lI-sxb2B4uRTLwr_v0FguuJcBC0vcnovDLKgEmadGXG8OQC3efmSmw0zXyLHq5yABZYe6fZqB3XCrZe7pb0aw'}
+                        src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
                         alt={p.name}
-                        className="w-20 h-16 object-cover rounded"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
+                        }}
+                        className="w-20 h-16 object-cover rounded-lg"
                       />
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-[#0b1c30] truncate group-hover:text-[#904d00]">{p.name}</p>
-                        <p className="text-[11px] text-[#45464d] truncate">{p.locality}, {p.city}</p>
-                        <p className="text-xs font-bold text-[#904d00] mt-0.5">${(p.estimated_value || 0).toLocaleString()}</p>
+                        <p className="text-xs font-bold text-[#F5F7FC] truncate group-hover:text-[#29C5E8]">{p.name}</p>
+                        <p className="text-[11px] text-[#98A7BD] truncate">{p.locality}, {p.city}</p>
+                        <p className="text-xs font-bold text-[#20C997] mt-0.5">
+                          {p.estimated_value > 10000000
+                            ? `INR ${(p.estimated_value / 10000000).toFixed(2)} Cr`
+                            : `$${p.estimated_value.toLocaleString()}`}
+                        </p>
                       </div>
                     </Link>
                   ))}
                 </div>
               </div>
             ) : filteredProperties.length === 0 ? (
-              <div className="py-20 text-center bg-white rounded-xl border border-[#e5eeff] p-8">
-                <span className="material-symbols-outlined text-[48px] text-[#cbdbf5]">search_off</span>
-                <h3 className="font-headline-sm text-lg text-[#0b1c30] mt-3">No matching estates found</h3>
-                <p className="text-xs text-[#45464d] mt-1 max-w-md mx-auto">
-                  Try adjusting your location search or removing price filters to explore our full global placement portfolio.
+              <div className="py-24 text-center bg-[#111D32] rounded-2xl border border-[#23324A] p-8">
+                <span className="material-symbols-outlined text-[48px] text-[#23324A]">search_off</span>
+                <h3 className="font-headline-sm text-lg text-[#F5F7FC] mt-3">No matching properties found</h3>
+                <p className="text-xs text-[#98A7BD] mt-1 max-w-md mx-auto">
+                  Try adjusting your location search or removing price tier constraints to explore all registered assets.
                 </p>
                 <button
                   onClick={() => {
@@ -348,147 +356,148 @@ export default function PropertyCatalogPage() {
                     setPriceRange('all');
                     setMinBeds('any');
                   }}
-                  className="mt-4 px-4 py-2 bg-[#000000] text-white text-xs font-semibold rounded-lg hover:bg-[#131b2e] transition-colors"
+                  className="mt-4 px-5 py-2.5 bg-[#3978F6] text-white text-xs font-semibold rounded-lg hover:bg-[#2457C5] transition-colors shadow-md"
                 >
                   Clear All Filters
                 </button>
               </div>
             ) : (
-              /* Grid of Luxury Property Cards */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              /* Grid of Luxury Property Cards Matching Dashboard Design Exactly */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProperties.map((p) => {
                   const isSaved = savedProperties.includes(p.id);
-                  const priceFormatted = `$${(p.estimated_value || 0).toLocaleString()}`;
+                  const priceDisplay =
+                    p.estimated_value > 10000000
+                      ? `INR ${(p.estimated_value / 10000000).toFixed(2)} Cr`
+                      : `$${(p.estimated_value || 0).toLocaleString()}`;
                   const pricePerSqFt = p.built_up_area_sqft
                     ? Math.round(p.estimated_value / p.built_up_area_sqft)
                     : 2450;
 
                   return (
-                    <article
+                    <div
                       key={p.id}
-                      className="group bg-white rounded-xl overflow-hidden border border-[#e5eeff] hover:border-[#cbdbf5] hover:shadow-xl transition-all duration-300 flex flex-col"
+                      className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/50 rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 shadow-xl flex flex-col justify-between group"
                     >
-                      {/* Photo Container */}
-                      <div className="relative aspect-[16/10] overflow-hidden bg-[#eff4ff]">
-                        <img
-                          src={
-                            p.image_url ||
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuAP6eIXPDtV2Ea6EwvAWUsuoMxRnnkmbNZovKBTfdjO5_0FY-4EaI4Qot3zPet0LooPdKPHzH_jNZ_4rVHBtVubY1vnwxNkXcGfkbwepudMUfE1sc88EDlWoUV138z-yRjwVpgZBBi_-R-N2trWC9lI-sxb2B4uRTLwr_v0FguuJcBC0vcnovDLKgEmadGXG8OQC3efmSmw0zXyLHq5yABZYe6fZqB3XCrZe7pb0aw'
-                          }
-                          alt={p.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                      <div>
+                        {/* Image Banner */}
+                        <div className="h-48 bg-[#0A1222] relative overflow-hidden">
+                          <img
+                            src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
+                            alt={p.name}
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
+                            }}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
 
-                        {/* Top Badges */}
-                        <div className="absolute top-3 left-3 flex items-center gap-2">
-                          <span className="px-2.5 py-1 rounded bg-[#0b1c30]/85 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white">
-                            {p.status === 'Off-Market' ? 'Off-Market Private' : 'Curated Exclusive'}
-                          </span>
-                        </div>
+                          {/* Property Type Badge */}
+                          <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#080E1B]/80 backdrop-blur-sm border border-[#23324A] text-[10px] font-semibold text-[#29C5E8]">
+                            {p.property_type || 'Residential'}
+                          </div>
 
-                        {/* Save Favorite Button */}
-                        <button
-                          onClick={(e) => toggleSave(e, p.id)}
-                          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#45464d] hover:text-[#904d00] transition-colors shadow-sm cursor-pointer"
-                          title={isSaved ? 'Remove from Saved' : 'Save Property'}
-                        >
-                          <span
-                            className={`material-symbols-outlined text-[18px] ${
-                              isSaved ? 'text-[#904d00]' : ''
-                            }`}
+                          {/* Status Badge */}
+                          <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#20C997]/20 border border-[#20C997]/40 text-[10px] font-bold text-[#20C997]">
+                            {p.status || 'Available'}
+                          </div>
+
+                          {/* Bookmark Toggle */}
+                          <button
+                            onClick={(e) => toggleSave(e, p.id)}
+                            className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-[#080E1B]/80 backdrop-blur-sm flex items-center justify-center text-[#98A7BD] hover:text-[#EF5B67] transition-colors border border-[#23324A] cursor-pointer"
+                            title={isSaved ? 'Remove from Saved' : 'Save Property'}
                           >
-                            {isSaved ? 'favorite' : 'favorite_border'}
+                            <span className={`material-symbols-outlined text-[18px] ${isSaved ? 'text-[#EF5B67]' : ''}`}>
+                              {isSaved ? 'favorite' : 'favorite_border'}
+                            </span>
+                          </button>
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="p-5 space-y-3">
+                          <div>
+                            <h3 className="text-sm font-bold text-[#F5F7FC] truncate group-hover:text-[#29C5E8] transition-colors">
+                              <Link to={`/property/${p.id}`}>{p.name}</Link>
+                            </h3>
+                            <div className="flex items-center space-x-1 text-xs text-[#98A7BD] mt-1">
+                              <span className="material-symbols-outlined text-[14px] text-[#3978F6]">location_on</span>
+                              <span className="truncate">{p.locality}, {p.city}</span>
+                            </div>
+                          </div>
+
+                          {/* Specs Bar matching dashboard exactly */}
+                          <div className="grid grid-cols-3 gap-2 py-2 border-y border-[#23324A] text-center text-xs text-[#98A7BD]">
+                            <div className="flex items-center justify-center space-x-1">
+                              <span className="material-symbols-outlined text-[14px] text-[#29C5E8]">bed</span>
+                              <span>{p.bedrooms} BHK</span>
+                            </div>
+                            <div className="flex items-center justify-center space-x-1">
+                              <span className="material-symbols-outlined text-[14px] text-[#29C5E8]">bathtub</span>
+                              <span>{p.bathrooms} Baths</span>
+                            </div>
+                            <div className="flex items-center justify-center space-x-1">
+                              <span className="material-symbols-outlined text-[14px] text-[#29C5E8]">directions_car</span>
+                              <span>{p.parking_spaces || 2} Park</span>
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between items-center text-xs">
+                            <span className="text-[#98A7BD]">Built-up Area:</span>
+                            <span className="font-semibold text-[#F5F7FC]">{(p.built_up_area_sqft || 0).toLocaleString()} sqft</span>
+                          </div>
+                          <div className="flex justify-between items-center text-xs">
+                            <span className="text-[#98A7BD]">Quality Grade:</span>
+                            <span className="font-semibold text-[#20C997]">{p.construction_quality || 'A Grade'}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Footer with Valuation & Inspect Action */}
+                      <div className="px-5 py-3.5 bg-[#0D1628] border-t border-[#23324A] flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] text-[#98A7BD] uppercase block">Assessed ML Value</span>
+                          <span className="text-base font-extrabold text-[#20C997]">
+                            {priceDisplay}
                           </span>
-                        </button>
-
-                        {/* Bottom Metric Pill */}
-                        <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-bold text-[#0b1c30] shadow-sm">
-                          {p.property_type || 'Estate'} · ${pricePerSqFt.toLocaleString()}/sq ft
                         </div>
+                        <Link
+                          to={`/property/${p.id}`}
+                          className="px-4 py-2 bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1 shadow-md shadow-[#3978F6]/20"
+                        >
+                          <span>Inspect</span>
+                          <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </Link>
                       </div>
-
-                      {/* Content Block */}
-                      <div className="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                          <div className="flex items-center justify-between text-xs text-[#76777d] uppercase tracking-wider font-semibold mb-1">
-                            <span>{p.locality}, {p.city}</span>
-                            <span className="text-[#904d00]">MLS #{p.id * 1042 + 8100}</span>
-                          </div>
-
-                          <h3 className="font-headline-sm text-lg text-[#0b1c30] font-semibold leading-tight mb-2 group-hover:text-[#904d00] transition-colors">
-                            <Link to={`/property/${p.id}`}>{p.name}</Link>
-                          </h3>
-
-                          <p className="text-xs text-[#45464d] line-clamp-1 mb-4">
-                            {p.full_address}
-                          </p>
-                        </div>
-
-                        <div>
-                          {/* Specs Row */}
-                          <div className="flex items-center justify-between py-3 border-y border-[#eff4ff] text-xs text-[#45464d]">
-                            <div className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-[16px] text-[#76777d]">bed</span>
-                              <span className="font-semibold text-[#0b1c30]">{p.bedrooms}</span> Beds
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-[16px] text-[#76777d]">bathtub</span>
-                              <span className="font-semibold text-[#0b1c30]">{p.bathrooms}</span> Baths
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span className="material-symbols-outlined text-[16px] text-[#76777d]">square_foot</span>
-                              <span className="font-semibold text-[#0b1c30]">{(p.built_up_area_sqft || 0).toLocaleString()}</span> Sq Ft
-                            </div>
-                          </div>
-
-                          {/* Price & Action Row */}
-                          <div className="flex items-center justify-between pt-4 mt-1">
-                            <div>
-                              <p className="text-[10px] text-[#76777d] uppercase font-bold tracking-wider">Estimated Valuation</p>
-                              <p className="font-headline-sm text-xl font-bold text-[#0b1c30]">
-                                {priceFormatted}
-                              </p>
-                            </div>
-
-                            <Link
-                              to={`/property/${p.id}`}
-                              className="px-4 py-2 rounded-lg bg-[#000000] text-white text-xs font-semibold hover:bg-[#131b2e] transition-colors flex items-center gap-1 shadow-sm"
-                            >
-                              <span>Inspect</span>
-                              <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
+                    </div>
                   );
                 })}
               </div>
             )}
           </div>
 
-          {/* Seeking Off-Market Placements Section */}
-          <section className="w-full bg-[#e5eeff] py-14 border-t border-[#cbdbf5]">
+          {/* Confidential Placements Section in Dark Theme */}
+          <section className="w-full bg-[#0D1628] py-16 border-t border-[#23324A]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-              <div className="bg-white rounded-2xl p-8 sm:p-12 shadow-sm border border-[#cbdbf5] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="bg-[#111D32] rounded-2xl p-8 sm:p-12 shadow-2xl border border-[#23324A] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-7 flex flex-col gap-3">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#904d00]">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">
                     Confidential Acquisition Mandates
                   </span>
-                  <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#0b1c30]">
+                  <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#F5F7FC]">
                     Seeking Off-Market or Private Placements?
                   </h2>
-                  <p className="text-sm leading-relaxed text-[#45464d] max-w-xl">
-                    Over 40% of our ultra-prime transactions transpire strictly off-market without public MLS indexing.
-                    Register an institutional acquisition mandate to receive curated briefings directly from our Managing Partners.
+                  <p className="text-xs sm:text-sm leading-relaxed text-[#98A7BD] max-w-xl">
+                    Over 40% of our institutional transactions transpire strictly off-market without public listing indexing.
+                    Register an institutional acquisition mandate to receive curated briefings directly from our advisory partners.
                   </p>
                 </div>
 
-                <div className="lg:col-span-5 bg-[#f8f9ff] p-6 rounded-xl border border-[#dce9ff]">
+                <div className="lg:col-span-5 bg-[#0D1628] p-6 rounded-xl border border-[#23324A]">
                   <form onSubmit={handleInquiry} className="flex flex-col gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#0b1c30] mb-1">
-                        Institutional or Private Email
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#F5F7FC] mb-1">
+                        Corporate or Private Email
                       </label>
                       <input
                         type="email"
@@ -496,29 +505,29 @@ export default function PropertyCatalogPage() {
                         value={inquiryEmail}
                         onChange={(e) => setInquiryEmail(e.target.value)}
                         placeholder="e.g. principal@familyoffice.com"
-                        className="w-full bg-white px-3 py-2 rounded-lg border border-[#cbdbf5] text-xs text-[#0b1c30] outline-none focus:border-[#904d00]"
+                        className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#0b1c30] mb-1">
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#F5F7FC] mb-1">
                         Target Acquisition Scope (Optional)
                       </label>
                       <input
                         type="text"
                         value={inquiryNotes}
                         onChange={(e) => setInquiryNotes(e.target.value)}
-                        placeholder="e.g. Pacific Heights $15M-$30M or Napa Compound"
-                        className="w-full bg-white px-3 py-2 rounded-lg border border-[#cbdbf5] text-xs text-[#0b1c30] outline-none focus:border-[#904d00]"
+                        placeholder="e.g. Worli Sea Face Villa or Penthouse INR 30-50 Cr"
+                        className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-2.5 bg-[#904d00] hover:bg-[#663500] text-white rounded-lg text-xs font-semibold transition-all shadow-sm cursor-pointer mt-1"
+                      className="w-full py-3 bg-[#3978F6] hover:bg-[#2457C5] text-white rounded-lg text-xs font-semibold transition-all shadow-md shadow-[#3978F6]/20 cursor-pointer mt-1"
                     >
                       {inquirySent ? 'Mandate Registered ✓' : 'Register Private Placement Mandate'}
                     </button>
                     {inquirySent && (
-                      <p className="text-[11px] text-[#20c997] font-medium text-center">
+                      <p className="text-[11px] text-[#20C997] font-medium text-center">
                         Mandate received. An executive advisor will initiate a secure briefing.
                       </p>
                     )}

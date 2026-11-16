@@ -182,7 +182,15 @@ const PropertyList = () => {
               <div>
                 {/* Image Banner */}
                 <div className="h-44 bg-[#0A1222] relative overflow-hidden">
-                  <img src={p.image_url} alt={p.name} className="w-full h-full object-cover" />
+                  <img
+                    src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
+                    alt={p.name}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
                   <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#080E1B]/80 backdrop-blur-sm border border-[#23324A] text-[10px] font-semibold text-[#29C5E8]">
                     {p.property_type}
                   </div>
