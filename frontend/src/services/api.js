@@ -47,10 +47,12 @@ export const propertiesAPI = {
   get: (id) => api.get(`/properties/${id}`),
   create: (data) => api.post('/properties', data),
   delete: (id) => api.delete(`/properties/${id}`),
+  inquire: (data) => api.post('/properties/inquire', data),
 };
 
 export const valuationAPI = {
   predict: (data) => api.post('/valuation/predict', data),
+  calculate: (data) => api.post('/valuation/predict', data),
   history: (params) => api.get('/valuation/history', { params }),
 };
 

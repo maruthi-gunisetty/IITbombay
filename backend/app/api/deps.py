@@ -5,6 +5,7 @@ from backend.app.security.crypto import decode_access_token
 from backend.app.database.repo import repo
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="/api/auth/login", auto_error=False)
 
 def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any]:
     credentials_exception = HTTPException(
@@ -22,6 +23,23 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> Dict[str, Any]:
     if user is None or not user.get("is_active"):
         raise HTTPException(status_code=400, detail="Inactive user or user not found")
     return user
+
+def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme_optional)) -> Optional[Dict[str, Any]]:
+    if not token:
+        return None
+    try:
+        payload = decode_access_token(token)
+        if not payload:
+            return None
+        user_id = payload.get("sub")
+        if not user_id:
+            return None
+        user = repo.get_user_by_id(int(user_id))
+        if user and user.get("is_active"):
+            return user
+    except Exception:
+        pass
+    return None
 
 def require_admin(current_user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
     if current_user.get("account_type") != "Admin":

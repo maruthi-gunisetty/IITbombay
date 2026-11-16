@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from typing import Optional, Dict, Any
 from backend.app.schemas.schemas import ValuationInput
-from backend.app.api.deps import get_current_user, record_audit
+from backend.app.api.deps import get_current_user, get_current_user_optional, record_audit
 from backend.app.services.valuation_service import valuation_service
 from backend.app.database.repo import repo
 
@@ -10,9 +10,10 @@ router = APIRouter(prefix="/valuation", tags=["Property Valuation"])
 @router.post("/predict")
 def predict_property_valuation(
     input_data: ValuationInput,
-    current_user: Dict[str, Any] = Depends(get_current_user)
+    current_user: Optional[Dict[str, Any]] = Depends(get_current_user_optional)
 ):
     result = valuation_service.predict_valuation(input_data.dict())
+    user_id = current_user["id"] if current_user else 1
     
     val_record = repo.create_valuation({
         "property_id": input_data.property_id,
@@ -27,12 +28,13 @@ def predict_property_valuation(
         "comparable_sales": result["comparable_sales"],
         "location_insights": result["location_insights"],
         "notes": f"Automated ML valuation executed for {input_data.locality}, {input_data.city}"
-    }, user_id=current_user["id"])
+    }, user_id=user_id)
 
     if input_data.property_id:
         repo.update_property_valuation(input_data.property_id, result["estimated_value"])
 
-    record_audit(current_user, "VALUATION_EXECUTED", "PropertyValuation", str(val_record["id"]), f"Valuation computed: INR {result['estimated_value']}")
+    if current_user:
+        record_audit(current_user, "VALUATION_EXECUTED", "PropertyValuation", str(val_record["id"]), f"Valuation computed: INR {result['estimated_value']}")
 
     return {
         "id": val_record["id"],

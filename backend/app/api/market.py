@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from typing import Optional, Dict, Any
-from backend.app.api.deps import get_current_user
+from backend.app.api.deps import get_current_user, get_current_user_optional
 
 router = APIRouter(prefix="/market", tags=["Market Analytics"])
 
 @router.get("/analytics")
 def get_market_analytics(
     city: Optional[str] = None,
-    current_user: Dict[str, Any] = Depends(get_current_user)
+    current_user: Optional[Dict[str, Any]] = Depends(get_current_user_optional)
 ):
     trends = [
         {"quarter": "Q1 2025", "mumbai_avg": 28400, "bengaluru_avg": 9200, "hyderabad_avg": 8100, "pune_avg": 7600},

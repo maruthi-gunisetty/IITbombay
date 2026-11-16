@@ -92,7 +92,7 @@ const RegisterPage = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
         <div className="bg-[#0D1628] border border-[#23324A] py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
-          
+
           {error && (
             <div className="mb-5 p-3.5 rounded-xl bg-[#EF5B67]/10 border border-[#EF5B67]/30 flex items-start space-x-2.5 text-xs text-[#EF5B67]">
               <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
@@ -101,7 +101,7 @@ const RegisterPage = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            
+
             {/* Account Type Selector */}
             <div>
               <label className="block text-xs font-semibold text-[#F5F7FC] mb-1.5">
@@ -117,11 +117,10 @@ const RegisterPage = () => {
                     key={role}
                     type="button"
                     onClick={() => setFormData({ ...formData, accountType: role })}
-                    className={`py-2 px-1 text-center rounded-xl border text-[11px] font-semibold transition-all ${
-                      formData.accountType === role
+                    className={`py-2 px-1 text-center rounded-xl border text-[11px] font-semibold transition-all ${formData.accountType === role
                         ? 'bg-[#3978F6]/20 border-[#3978F6] text-[#29C5E8]'
                         : 'bg-[#111D32] border-[#23324A] text-[#98A7BD] hover:text-[#F5F7FC]'
-                    }`}
+                      }`}
                   >
                     <span className="block truncate">{role}</span>
                     <span className="block text-[9px] opacity-60 font-normal truncate">{label}</span>
@@ -209,13 +208,12 @@ const RegisterPage = () => {
                   {[1, 2, 3, 4].map((step) => (
                     <div
                       key={step}
-                      className={`h-1 flex-1 rounded-full ${
-                        strength >= step
+                      className={`h-1 flex-1 rounded-full ${strength >= step
                           ? strength >= 3
                             ? 'bg-[#20C997]'
                             : 'bg-[#F5B942]'
                           : 'bg-[#23324A]'
-                      }`}
+                        }`}
                     />
                   ))}
                   <span className="text-[10px] text-[#98A7BD] pl-1">
