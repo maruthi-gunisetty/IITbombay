@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import HavenNavbar from '../../components/haven/HavenNavbar';
 import HavenFooter from '../../components/haven/HavenFooter';
 import { propertiesAPI } from '../../services/api';
+import PropertyImage from '../../components/common/PropertyImage';
 
 export default function PropertyCatalogPage() {
   const navigate = useNavigate();
@@ -320,15 +321,14 @@ export default function PropertyCatalogPage() {
                       to={`/property/${p.id}`}
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] hover:border-[#3978F6] transition-colors group"
                     >
-                      <img
-                        src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
-                        alt={p.name}
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
-                        }}
-                        className="w-20 h-16 object-cover rounded-lg"
-                      />
+                      <div className="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-[#E2E8F0]">
+                        <PropertyImage
+                          src={p.image_url}
+                          alt={p.name}
+                          propertyType={p.property_type}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-bold text-[#0F172A] truncate group-hover:text-[#0284C7]">{p.name}</p>
                         <p className="text-[11px] text-[#475569] truncate">{p.locality}, {p.city}</p>
@@ -381,14 +381,11 @@ export default function PropertyCatalogPage() {
                     >
                       <div>
                         {/* Image Banner */}
-                        <div className="h-48 bg-[#FFFFFF] relative overflow-hidden">
-                          <img
-                            src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
+                        <div className="h-48 bg-[#F8FAFC] relative overflow-hidden">
+                          <PropertyImage
+                            src={p.image_url}
                             alt={p.name}
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
-                            }}
+                            propertyType={p.property_type}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
 

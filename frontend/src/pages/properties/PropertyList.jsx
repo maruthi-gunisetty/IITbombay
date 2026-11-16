@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { propertiesAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import PropertyImage from '../../components/common/PropertyImage';
 
 const PropertyList = () => {
   const { user } = useAuth();
@@ -181,20 +182,17 @@ const PropertyList = () => {
             >
               <div>
                 {/* Image Banner */}
-                <div className="h-44 bg-[#FFFFFF] relative overflow-hidden">
-                  <img
-                    src={p.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'}
+                <div className="h-44 bg-[#F8FAFC] relative overflow-hidden">
+                  <PropertyImage
+                    src={p.image_url}
                     alt={p.name}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
-                    }}
+                    propertyType={p.property_type}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#F8FAFC]/80 backdrop-blur-sm border border-[#E2E8F0] text-[10px] font-semibold text-[#0284C7]">
+                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#FFFFFF]/90 backdrop-blur-sm border border-[#E2E8F0] text-[10px] font-semibold text-[#0284C7] shadow-sm">
                     {p.property_type}
                   </div>
-                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#059669]/20 border border-[#059669]/40 text-[10px] font-bold text-[#059669]">
+                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#059669]/15 border border-[#059669]/40 text-[10px] font-bold text-[#059669] shadow-sm">
                     {p.status}
                   </div>
                 </div>
@@ -490,8 +488,13 @@ const PropertyList = () => {
               </button>
             </div>
 
-            <div className="h-44 rounded-xl overflow-hidden">
-              <img src={selectedProperty.image_url} alt={selectedProperty.name} className="w-full h-full object-cover" />
+            <div className="h-44 rounded-xl overflow-hidden border border-[#E2E8F0]">
+              <PropertyImage
+                src={selectedProperty.image_url}
+                alt={selectedProperty.name}
+                propertyType={selectedProperty.property_type}
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">

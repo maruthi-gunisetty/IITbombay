@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import Navbar from '../../components/layout/Navbar';
 import { propertiesAPI } from '../../services/api';
+import PropertyImage from '../../components/common/PropertyImage';
+import { getPropertyFallbackImage } from '../../utils/propertyImages';
 
 const sampleAssets = [
   {
@@ -364,17 +366,18 @@ export default function LandingPage() {
                       </div>
 
                       {/* Property Image with Fallback */}
-                      <div className="relative h-44 rounded-lg overflow-hidden border border-[#E2E8F0] mb-4 bg-[#FFFFFF]">
+                      <div className="relative h-44 rounded-lg overflow-hidden border border-[#E2E8F0] mb-4 bg-[#F8FAFC]">
                         <img
                           src={activeAsset.image}
                           alt={activeAsset.name}
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
+                            e.target.src = getPropertyFallbackImage(activeAsset.type, activeAsset.name);
+                            e.target.alt = '';
                           }}
                         />
-                        <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-[#F8FAFC]/90 backdrop-blur-sm border border-[#E2E8F0] text-[11px] font-semibold text-[#0F172A] flex items-center space-x-1">
+                        <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-[#FFFFFF]/90 backdrop-blur-sm border border-[#E2E8F0] text-[11px] font-semibold text-[#0F172A] flex items-center space-x-1 shadow-sm">
                           <MapPin className="w-3 h-3 text-[#3978F6]" />
                           <span>{activeAsset.locality}</span>
                         </div>
@@ -723,26 +726,23 @@ export default function LandingPage() {
                 >
                   <div>
                     {/* Image Header with badges */}
-                    <div className="relative h-48 bg-[#FFFFFF] overflow-hidden">
-                      <img
-                        src={prop.image_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"}
+                    <div className="relative h-48 bg-[#F8FAFC] overflow-hidden">
+                      <PropertyImage
+                        src={prop.image_url}
                         alt={prop.name}
+                        propertyType={prop.property_type}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
-                        }}
                       />
                       <div className="absolute top-3 left-3">
-                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#F8FAFC]/85 text-[#0284C7] border border-[#E2E8F0] backdrop-blur-sm">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#FFFFFF]/90 text-[#0284C7] border border-[#E2E8F0] backdrop-blur-sm shadow-sm">
                           {prop.property_type || "Residential"}
                         </span>
                       </div>
                       <div className="absolute top-3 right-3">
-                        <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
+                        <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm shadow-sm ${
                           prop.status === 'Off-Market'
-                            ? 'bg-[#DC2626]/20 text-[#DC2626] border border-[#DC2626]/40'
-                            : 'bg-[#059669]/20 text-[#059669] border border-[#059669]/40'
+                            ? 'bg-[#DC2626]/15 text-[#DC2626] border border-[#DC2626]/40'
+                            : 'bg-[#059669]/15 text-[#059669] border border-[#059669]/40'
                         }`}>
                           {prop.status || 'Active'}
                         </span>

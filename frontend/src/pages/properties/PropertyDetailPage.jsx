@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import HavenNavbar from '../../components/haven/HavenNavbar';
 import HavenFooter from '../../components/haven/HavenFooter';
 import { propertiesAPI } from '../../services/api';
+import { getPropertyFallbackImage } from '../../utils/propertyImages';
 
 export default function PropertyDetailPage() {
   const navigate = useNavigate();
@@ -221,21 +222,22 @@ export default function PropertyDetailPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Primary Big Photo */}
-            <div className="lg:col-span-8 relative aspect-[16/10] bg-[#FFFFFF] rounded-2xl overflow-hidden shadow-2xl border border-[#E2E8F0]">
+            <div className="lg:col-span-8 relative aspect-[16/10] bg-[#F8FAFC] rounded-2xl overflow-hidden shadow-2xl border border-[#E2E8F0]">
               <img
                 src={galleryImages[activePhoto] || galleryImages[0]}
                 alt={property.name}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80';
+                  e.target.src = getPropertyFallbackImage(property.property_type, property.name);
+                  e.target.alt = '';
                 }}
                 className="w-full h-full object-cover transition-all duration-500"
               />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#F8FAFC]/85 backdrop-blur-md text-[#0284C7] text-[10px] font-bold uppercase tracking-wider border border-[#E2E8F0]">
+                <span className="px-3 py-1 rounded-full bg-[#FFFFFF]/90 backdrop-blur-md text-[#0284C7] text-[10px] font-bold uppercase tracking-wider border border-[#E2E8F0] shadow-sm">
                   {property.status || 'Verified Collateral'}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-[#059669]/20 backdrop-blur-md text-[#059669] text-[10px] font-bold uppercase tracking-wider border border-[#059669]/40">
+                <span className="px-3 py-1 rounded-full bg-[#059669]/15 backdrop-blur-md text-[#059669] text-[10px] font-bold uppercase tracking-wider border border-[#059669]/40 shadow-sm">
                   MLS Verified Asset #{property.id * 1042 + 8100}
                 </span>
               </div>
@@ -247,7 +249,7 @@ export default function PropertyDetailPage() {
                 <button
                   key={idx}
                   onClick={() => setActivePhoto(idx)}
-                  className={`relative flex-1 aspect-[16/9] lg:aspect-auto rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-[#FFFFFF] ${
+                  className={`relative flex-1 aspect-[16/9] lg:aspect-auto rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-[#F8FAFC] ${
                     activePhoto === idx ? 'border-[#3978F6] shadow-lg shadow-[#3978F6]/20' : 'border-[#E2E8F0] opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -256,7 +258,8 @@ export default function PropertyDetailPage() {
                     alt={`Angle ${idx + 1}`}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80';
+                      e.target.src = getPropertyFallbackImage(property.property_type, property.name);
+                      e.target.alt = '';
                     }}
                     className="w-full h-full object-cover"
                   />
