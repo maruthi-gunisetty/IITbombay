@@ -74,16 +74,16 @@ const TopBar = () => {
   };
 
   return (
-    <header className="h-16 bg-[#080E1B] border-b border-[#23324A] flex items-center justify-between px-6 sticky top-0 z-30">
+    <header className="h-16 bg-white border-b border-[#E2E8F0] flex items-center justify-between px-6 sticky top-0 z-30">
       
       {/* Title & Breadcrumb */}
       <div>
-        <div className="flex items-center space-x-2 text-[11px] text-[#98A7BD]">
+        <div className="flex items-center space-x-2 text-[11px] text-[#475569]">
           <span>PropWise</span>
           <span>/</span>
           <span className="text-[#3978F6] font-medium">{pageTitle}</span>
         </div>
-        <h1 className="text-base font-bold text-[#F5F7FC] tracking-tight leading-none mt-0.5">
+        <h1 className="text-base font-bold text-[#0F172A] tracking-tight leading-none mt-0.5">
           {pageTitle}
         </h1>
       </div>
@@ -91,13 +91,13 @@ const TopBar = () => {
       {/* Center Global Search */}
       <div className="hidden lg:block w-80">
         <form onSubmit={handleSearchSubmit} className="relative">
-          <Search className="w-4 h-4 text-[#98A7BD] absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#475569] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search properties, loan IDs, reports..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#111D32] border border-[#23324A] rounded-lg pl-9 pr-4 py-1.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD] focus:outline-none focus:border-[#3978F6] transition-colors"
+            className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-lg pl-9 pr-4 py-1.5 text-xs text-[#0F172A] placeholder-[#475569] focus:outline-none focus:border-[#3978F6] transition-colors"
           />
         </form>
       </div>
@@ -106,8 +106,8 @@ const TopBar = () => {
       <div className="flex items-center space-x-5">
         
         {/* Date Pill */}
-        <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#111D32]/70 border border-[#23324A] text-xs text-[#98A7BD]">
-          <Calendar className="w-3.5 h-3.5 text-[#29C5E8]" />
+        <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#FFFFFF]/70 border border-[#E2E8F0] text-xs text-[#475569]">
+          <Calendar className="w-3.5 h-3.5 text-[#0284C7]" />
           <span>{formattedDate}</span>
         </div>
 
@@ -115,21 +115,21 @@ const TopBar = () => {
         <div className="relative">
           <button
             onClick={() => setNotifOpen(!notifOpen)}
-            className="p-2 rounded-lg bg-[#111D32] border border-[#23324A] text-[#98A7BD] hover:text-[#F5F7FC] transition-colors relative"
+            className="p-2 rounded-lg bg-[#FFFFFF] border border-[#E2E8F0] text-[#475569] hover:text-[#0F172A] transition-colors relative"
             title="Notifications"
           >
             <Bell className="w-4 h-4" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#EF5B67] text-[9px] font-bold text-white flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#DC2626] text-[9px] font-bold text-white flex items-center justify-center">
                 {unreadCount}
               </span>
             )}
           </button>
 
           {notifOpen && (
-            <div className="absolute right-0 mt-2 w-80 bg-[#111D32] border border-[#23324A] rounded-xl shadow-2xl p-4 z-50">
-              <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
-                <span className="text-xs font-bold text-[#F5F7FC]">Notifications ({unreadCount} unread)</span>
+            <div className="absolute right-0 mt-2 w-80 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl shadow-2xl p-4 z-50">
+              <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+                <span className="text-xs font-bold text-[#0F172A]">Notifications ({unreadCount} unread)</span>
                 {unreadCount > 0 && (
                   <button
                     onClick={handleMarkAllRead}
@@ -139,22 +139,22 @@ const TopBar = () => {
                   </button>
                 )}
               </div>
-              <div className="max-h-64 overflow-y-auto divide-y divide-[#23324A]/50 py-1">
+              <div className="max-h-64 overflow-y-auto divide-y divide-[#E2E8F0]/50 py-1">
                 {notifications.length === 0 ? (
-                  <p className="text-xs text-[#98A7BD] text-center py-4">No recent notifications</p>
+                  <p className="text-xs text-[#475569] text-center py-4">No recent notifications</p>
                 ) : (
                   notifications.slice(0, 5).map(n => (
                     <div key={n.id} className="py-2.5 space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-semibold text-[#29C5E8]">{n.title}</span>
-                        <span className="text-[9px] text-[#98A7BD]">{n.category}</span>
+                        <span className="text-[11px] font-semibold text-[#0284C7]">{n.title}</span>
+                        <span className="text-[9px] text-[#475569]">{n.category}</span>
                       </div>
-                      <p className="text-[11px] text-[#98A7BD] leading-relaxed">{n.message}</p>
+                      <p className="text-[11px] text-[#475569] leading-relaxed">{n.message}</p>
                     </div>
                   ))
                 )}
               </div>
-              <div className="pt-2 border-t border-[#23324A] text-center">
+              <div className="pt-2 border-t border-[#E2E8F0] text-center">
                 <Link
                   to="/dashboard/notifications"
                   onClick={() => setNotifOpen(false)}
@@ -172,34 +172,34 @@ const TopBar = () => {
         <div className="relative">
           <button
             onClick={() => setUserMenuOpen(!userMenuOpen)}
-            className="flex items-center space-x-3 p-1 rounded-lg hover:bg-[#111D32] transition-colors"
+            className="flex items-center space-x-3 p-1 rounded-lg hover:bg-[#FFFFFF] transition-colors"
           >
             <div className="text-right hidden sm:block">
-              <div className="text-xs font-semibold text-[#F5F7FC]">{user?.full_name || 'User'}</div>
-              <div className="text-[10px] text-[#20C997] font-medium">{user?.account_type || 'Customer'}</div>
+              <div className="text-xs font-semibold text-[#0F172A]">{user?.full_name || 'User'}</div>
+              <div className="text-[10px] text-[#059669] font-medium">{user?.account_type || 'Customer'}</div>
             </div>
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#3978F6] to-[#29C5E8] flex items-center justify-center text-xs font-bold text-white shadow-md">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#3978F6] to-[#0284C7] flex items-center justify-center text-xs font-bold text-white shadow-md">
               {user?.full_name?.charAt(0) || 'U'}
             </div>
           </button>
 
           {userMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-[#111D32] border border-[#23324A] rounded-xl shadow-2xl py-2 z-50">
-              <div className="px-4 py-2 border-b border-[#23324A]">
-                <p className="text-xs font-bold text-[#F5F7FC] truncate">{user?.full_name}</p>
-                <p className="text-[10px] text-[#98A7BD] truncate">{user?.email}</p>
+            <div className="absolute right-0 mt-2 w-48 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl shadow-2xl py-2 z-50">
+              <div className="px-4 py-2 border-b border-[#E2E8F0]">
+                <p className="text-xs font-bold text-[#0F172A] truncate">{user?.full_name}</p>
+                <p className="text-[10px] text-[#475569] truncate">{user?.email}</p>
               </div>
               <Link
                 to="/dashboard/settings"
                 onClick={() => setUserMenuOpen(false)}
-                className="block px-4 py-2 text-xs text-[#98A7BD] hover:text-[#F5F7FC] hover:bg-[#0D1628]"
+                className="block px-4 py-2 text-xs text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9]"
               >
                 Account Settings
               </Link>
               <Link
                 to="/dashboard/settings"
                 onClick={() => setUserMenuOpen(false)}
-                className="block px-4 py-2 text-xs text-[#98A7BD] hover:text-[#F5F7FC] hover:bg-[#0D1628]"
+                className="block px-4 py-2 text-xs text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9]"
               >
                 API Key Management (BYOK)
               </Link>
@@ -209,7 +209,7 @@ const TopBar = () => {
                   logout();
                   navigate('/login');
                 }}
-                className="w-full text-left px-4 py-2 text-xs text-[#EF5B67] hover:bg-[#0D1628] border-t border-[#23324A]"
+                className="w-full text-left px-4 py-2 text-xs text-[#DC2626] hover:bg-[#F1F5F9] border-t border-[#E2E8F0]"
               >
                 Sign Out
               </button>

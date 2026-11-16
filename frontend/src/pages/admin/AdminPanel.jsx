@@ -63,43 +63,43 @@ const AdminPanel = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Enterprise Administration & Governance</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Enterprise Administration & Governance</h2>
+        <p className="text-xs text-[#475569]">
           User directory management, role-based access governance, and immutable institutional audit traceability.
         </p>
       </div>
 
       {/* System Status Banner */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] block">Registered Users</span>
-          <div className="text-2xl font-black text-[#F5F7FC] mt-1">{overview?.total_users || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] block">Registered Users</span>
+          <div className="text-2xl font-black text-[#0F172A] mt-1">{overview?.total_users || 0}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] block">Active User Accounts</span>
-          <div className="text-2xl font-black text-[#20C997] mt-1">{overview?.active_users || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] block">Active User Accounts</span>
+          <div className="text-2xl font-black text-[#059669] mt-1">{overview?.active_users || 0}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] block">Audit Event Count</span>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] block">Audit Event Count</span>
           <div className="text-2xl font-black text-[#3978F6] mt-1">{auditLogs.length}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] block">System Health</span>
-          <div className="text-sm font-bold text-[#20C997] mt-2 flex items-center space-x-1">
-            <span className="w-2 h-2 rounded-full bg-[#20C997] animate-pulse"></span>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] block">System Health</span>
+          <div className="text-sm font-bold text-[#059669] mt-2 flex items-center space-x-1">
+            <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
             <span>{overview?.system_status || 'Operational'}</span>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2 border-b border-[#23324A] pb-3 text-xs">
+      <div className="flex space-x-2 border-b border-[#E2E8F0] pb-3 text-xs">
         <button
           onClick={() => setActiveTab('users')}
           className={`px-4 py-2 rounded-xl font-semibold flex items-center space-x-2 transition-colors ${
             activeTab === 'users'
               ? 'bg-[#3978F6] text-white shadow-md'
-              : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC]'
+              : 'bg-[#FFFFFF] text-[#475569] hover:text-[#0F172A]'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
@@ -110,7 +110,7 @@ const AdminPanel = () => {
           className={`px-4 py-2 rounded-xl font-semibold flex items-center space-x-2 transition-colors ${
             activeTab === 'audit'
               ? 'bg-[#3978F6] text-white shadow-md'
-              : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC]'
+              : 'bg-[#FFFFFF] text-[#475569] hover:text-[#0F172A]'
           }`}
         >
           <History className="w-3.5 h-3.5" />
@@ -120,26 +120,26 @@ const AdminPanel = () => {
 
       {/* USER MANAGEMENT TAB */}
       {activeTab === 'users' && (
-        <div className="bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl space-y-4 p-5">
-          <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
-            <h3 className="text-xs font-bold text-[#F5F7FC] uppercase tracking-wider">
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl space-y-4 p-5">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+            <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider">
               Assigned User Accounts ({users.length})
             </h3>
             <div className="w-64 relative">
-              <Search className="w-3.5 h-3.5 text-[#98A7BD] absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-[#475569] absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search user name or email..."
                 value={searchUser}
                 onChange={(e) => setSearchUser(e.target.value)}
-                className="w-full bg-[#0D1628] border border-[#23324A] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD] focus:outline-none focus:border-[#3978F6]"
+                className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#0F172A] placeholder-[#475569] focus:outline-none focus:border-[#3978F6]"
               />
             </div>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#0D1628] text-[#98A7BD] border-b border-[#23324A]">
+              <thead className="bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
                 <tr>
                   <th className="py-2.5 px-3 font-semibold">User</th>
                   <th className="py-2.5 px-3 font-semibold">Account Role</th>
@@ -148,12 +148,12 @@ const AdminPanel = () => {
                   <th className="py-2.5 px-3 font-semibold text-right">Role Governance</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#23324A]">
+              <tbody className="divide-y divide-[#E2E8F0]">
                 {filteredUsers.map(u => (
-                  <tr key={u.id} className="hover:bg-[#0D1628]/60 transition-colors">
+                  <tr key={u.id} className="hover:bg-[#F1F5F9]/60 transition-colors">
                     <td className="py-3 px-3">
-                      <span className="font-semibold text-[#F5F7FC] block">{u.full_name}</span>
-                      <span className="text-[10px] text-[#98A7BD]">{u.email}</span>
+                      <span className="font-semibold text-[#0F172A] block">{u.full_name}</span>
+                      <span className="text-[10px] text-[#475569]">{u.email}</span>
                     </td>
                     <td className="py-3 px-3">
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#3978F6]/15 text-[#3978F6] border border-[#3978F6]/30">
@@ -165,21 +165,21 @@ const AdminPanel = () => {
                         onClick={() => handleToggleActive(u.id, u.is_active)}
                         className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${
                           u.is_active
-                            ? 'bg-[#20C997]/15 text-[#20C997] border-[#20C997]/40'
-                            : 'bg-[#EF5B67]/15 text-[#EF5B67] border-[#EF5B67]/40'
+                            ? 'bg-[#059669]/15 text-[#059669] border-[#059669]/40'
+                            : 'bg-[#DC2626]/15 text-[#DC2626] border-[#DC2626]/40'
                         }`}
                       >
                         {u.is_active ? 'Active' : 'Deactivated'}
                       </button>
                     </td>
-                    <td className="py-3 px-3 text-[#98A7BD]">
+                    <td className="py-3 px-3 text-[#475569]">
                       {new Date(u.created_at).toLocaleDateString()}
                     </td>
                     <td className="py-3 px-3 text-right">
                       <select
                         value={u.account_type}
                         onChange={(e) => handleRoleChange(u.id, e.target.value)}
-                        className="bg-[#080E1B] border border-[#23324A] rounded-lg px-2.5 py-1 text-xs text-[#F5F7FC]"
+                        className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-2.5 py-1 text-xs text-[#0F172A]"
                       >
                         <option value="Customer">Customer</option>
                         <option value="Bank Officer">Bank Officer</option>
@@ -197,16 +197,16 @@ const AdminPanel = () => {
 
       {/* AUDIT LOGS TAB */}
       {activeTab === 'audit' && (
-        <div className="bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl p-5 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
-            <h3 className="text-xs font-bold text-[#F5F7FC] uppercase tracking-wider">
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl p-5 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+            <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider">
               Immutable System Audit Logs ({auditLogs.length})
             </h3>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#0D1628] text-[#98A7BD] border-b border-[#23324A]">
+              <thead className="bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
                 <tr>
                   <th className="py-2.5 px-3 font-semibold">Timestamp</th>
                   <th className="py-2.5 px-3 font-semibold">User Principal</th>
@@ -216,17 +216,17 @@ const AdminPanel = () => {
                   <th className="py-2.5 px-3 font-semibold text-right">Host IP</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#23324A]">
+              <tbody className="divide-y divide-[#E2E8F0]">
                 {auditLogs.map(log => (
-                  <tr key={log.id} className="hover:bg-[#0D1628]/60 transition-colors">
-                    <td className="py-2.5 px-3 font-mono text-[11px] text-[#98A7BD]">
+                  <tr key={log.id} className="hover:bg-[#F1F5F9]/60 transition-colors">
+                    <td className="py-2.5 px-3 font-mono text-[11px] text-[#475569]">
                       {new Date(log.timestamp).toLocaleString()}
                     </td>
-                    <td className="py-2.5 px-3 font-semibold text-[#F5F7FC]">{log.user_email}</td>
-                    <td className="py-2.5 px-3 font-mono font-bold text-[#29C5E8]">{log.action}</td>
-                    <td className="py-2.5 px-3 text-[#98A7BD]">{log.resource_type} #{log.resource_id || ''}</td>
-                    <td className="py-2.5 px-3 text-[#F5F7FC] max-w-xs truncate">{log.details || ''}</td>
-                    <td className="py-2.5 px-3 font-mono text-[10px] text-[#98A7BD] text-right">{log.ip_address}</td>
+                    <td className="py-2.5 px-3 font-semibold text-[#0F172A]">{log.user_email}</td>
+                    <td className="py-2.5 px-3 font-mono font-bold text-[#0284C7]">{log.action}</td>
+                    <td className="py-2.5 px-3 text-[#475569]">{log.resource_type} #{log.resource_id || ''}</td>
+                    <td className="py-2.5 px-3 text-[#0F172A] max-w-xs truncate">{log.details || ''}</td>
+                    <td className="py-2.5 px-3 font-mono text-[10px] text-[#475569] text-right">{log.ip_address}</td>
                   </tr>
                 ))}
               </tbody>

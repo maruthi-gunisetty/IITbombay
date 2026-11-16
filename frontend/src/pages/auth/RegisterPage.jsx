@@ -68,8 +68,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080E1B] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative selection:bg-[#3978F6] selection:text-white">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#29C5E8]/10 blur-[130px] rounded-full pointer-events-none" />
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative selection:bg-[#3978F6] selection:text-white">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#0284C7]/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <Link to="/" className="flex items-center justify-center space-x-3 mb-6">
@@ -78,23 +78,23 @@ const RegisterPage = () => {
             className="h-8 w-auto object-contain"
             src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"
           />
-          <span className="font-headline-sm text-2xl tracking-tight text-[#F5F7FC] uppercase font-medium">
-            Haven &amp; Key <span className="text-xs text-[#29C5E8] normal-case tracking-normal ml-1">· PropWise AI</span>
+          <span className="font-headline-sm text-2xl tracking-tight text-[#0F172A] uppercase font-medium">
+            Haven &amp; Key <span className="text-xs text-[#0284C7] normal-case tracking-normal ml-1">· PropWise AI</span>
           </span>
         </Link>
-        <h2 className="text-center text-xl font-bold text-[#F5F7FC] tracking-tight">
+        <h2 className="text-center text-xl font-bold text-[#0F172A] tracking-tight">
           Create Client &amp; Advisory Account
         </h2>
-        <p className="mt-2 text-center text-xs text-[#98A7BD]">
+        <p className="mt-2 text-center text-xs text-[#475569]">
           Register to access private estate portfolios, valuation models, and underwriting workflows.
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
-        <div className="bg-[#0D1628] border border-[#23324A] py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
+        <div className="bg-[#F1F5F9] border border-[#E2E8F0] py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
 
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-[#EF5B67]/10 border border-[#EF5B67]/30 flex items-start space-x-2.5 text-xs text-[#EF5B67]">
+            <div className="mb-5 p-3.5 rounded-xl bg-[#DC2626]/10 border border-[#DC2626]/30 flex items-start space-x-2.5 text-xs text-[#DC2626]">
               <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -104,7 +104,7 @@ const RegisterPage = () => {
 
             {/* Account Type Selector */}
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
                 Designated Account Role
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -118,8 +118,8 @@ const RegisterPage = () => {
                     type="button"
                     onClick={() => setFormData({ ...formData, accountType: role })}
                     className={`py-2 px-1 text-center rounded-xl border text-[11px] font-semibold transition-all ${formData.accountType === role
-                        ? 'bg-[#3978F6]/20 border-[#3978F6] text-[#29C5E8]'
-                        : 'bg-[#111D32] border-[#23324A] text-[#98A7BD] hover:text-[#F5F7FC]'
+                        ? 'bg-[#3978F6]/20 border-[#3978F6] text-[#0284C7]'
+                        : 'bg-[#FFFFFF] border-[#E2E8F0] text-[#475569] hover:text-[#0F172A]'
                       }`}
                   >
                     <span className="block truncate">{role}</span>
@@ -130,73 +130,73 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Full Name
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-[#98A7BD] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 text-[#475569] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   placeholder="Rahul Sharma"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-[#475569]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#98A7BD] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#475569] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="name@organization.com"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-[#475569]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Phone Number
               </label>
               <div className="relative">
-                <Phone className="w-4 h-4 text-[#98A7BD] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Phone className="w-4 h-4 text-[#475569] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="tel"
                   value={formData.phoneNumber}
                   onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                   placeholder="+91 98200 00000"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-[#475569]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#98A7BD] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#475569] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   placeholder="Min 8 characters"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl pl-10 pr-10 py-2.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl pl-10 pr-10 py-2.5 text-xs text-[#0F172A] placeholder-[#475569]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#98A7BD] hover:text-[#F5F7FC]"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#475569] hover:text-[#0F172A]"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -210,13 +210,13 @@ const RegisterPage = () => {
                       key={step}
                       className={`h-1 flex-1 rounded-full ${strength >= step
                           ? strength >= 3
-                            ? 'bg-[#20C997]'
-                            : 'bg-[#F5B942]'
-                          : 'bg-[#23324A]'
+                            ? 'bg-[#059669]'
+                            : 'bg-[#D97706]'
+                          : 'bg-[#E2E8F0]'
                         }`}
                     />
                   ))}
-                  <span className="text-[10px] text-[#98A7BD] pl-1">
+                  <span className="text-[10px] text-[#475569] pl-1">
                     {strength <= 2 ? 'Moderate' : 'Strong'}
                   </span>
                 </div>
@@ -224,18 +224,18 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#F5F7FC] mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#98A7BD] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#475569] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   placeholder="Repeat your password"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#F5F7FC] placeholder-[#98A7BD]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-[#475569]/60 focus:outline-none focus:border-[#3978F6] transition-colors"
                 />
               </div>
             </div>
@@ -246,9 +246,9 @@ const RegisterPage = () => {
                   type="checkbox"
                   checked={agreeTerms}
                   onChange={(e) => setAgreeTerms(e.target.checked)}
-                  className="w-4 h-4 mt-0.5 rounded bg-[#111D32] border-[#23324A] text-[#3978F6] focus:ring-0"
+                  className="w-4 h-4 mt-0.5 rounded bg-[#FFFFFF] border-[#E2E8F0] text-[#3978F6] focus:ring-0"
                 />
-                <span className="text-[11px] text-[#98A7BD] leading-tight">
+                <span className="text-[11px] text-[#475569] leading-tight">
                   I accept the institutional terms of service, AI decision support disclosures, and privacy policies.
                 </span>
               </label>
@@ -264,9 +264,9 @@ const RegisterPage = () => {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-[#98A7BD]">
+          <div className="mt-6 text-center text-xs text-[#475569]">
             Already have an account?{' '}
-            <Link to="/login" className="text-[#3978F6] hover:text-[#29C5E8] font-semibold">
+            <Link to="/login" className="text-[#3978F6] hover:text-[#0284C7] font-semibold">
               Sign In
             </Link>
           </div>

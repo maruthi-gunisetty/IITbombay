@@ -29,7 +29,7 @@ const sampleAssets = [
     collateralRisk: "22.5 / 100",
     borrowerRisk: "24.0 / 100",
     riskCategory: "Low Risk",
-    riskColor: "#20C997"
+    riskColor: "#059669"
   },
   {
     id: "sample-2",
@@ -49,7 +49,7 @@ const sampleAssets = [
     collateralRisk: "16.8 / 100",
     borrowerRisk: "18.2 / 100",
     riskCategory: "Low Risk",
-    riskColor: "#20C997"
+    riskColor: "#059669"
   },
   {
     id: "sample-3",
@@ -69,7 +69,7 @@ const sampleAssets = [
     collateralRisk: "19.4 / 100",
     borrowerRisk: "21.0 / 100",
     riskCategory: "Low Risk",
-    riskColor: "#20C997"
+    riskColor: "#059669"
   }
 ];
 
@@ -228,40 +228,40 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-sans antialiased selection:bg-[#3978F6] selection:text-white">
+    <div className="bg-white text-[#0F172A] min-h-screen flex flex-col font-sans antialiased selection:bg-[#3978F6] selection:text-white">
       {/* Sticky Dark Navigation Bar */}
       <Navbar />
 
       <main className="flex-1 w-full">
         {/* HERO SECTION */}
-        <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-[#080E1B] overflow-hidden">
+        <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-white overflow-hidden">
           {/* Subtle Ambient Radial Glows */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#3978F6]/15 via-[#29C5E8]/5 to-transparent blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#3978F6]/15 via-[#0284C7]/5 to-transparent blur-3xl pointer-events-none" />
           <div className="absolute top-1/3 left-10 w-72 h-72 bg-[#3978F6]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/4 right-10 w-80 h-80 bg-[#29C5E8]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/4 right-10 w-80 h-80 bg-[#0284C7]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Header Text & Badges */}
             <div className="text-center max-w-4xl mx-auto space-y-6">
               
               {/* Institutional Pill Badge */}
-              <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#111D32] border border-[#23324A] text-[11px] font-semibold text-[#29C5E8] shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#20C997] animate-pulse" />
-                <span className="tracking-wide uppercase font-bold text-[#F5F7FC]">
+              <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E2E8F0] text-[11px] font-semibold text-[#0284C7] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
+                <span className="tracking-wide uppercase font-bold text-[#0F172A]">
                   Enterprise Property Valuation &amp; Mortgage Underwriting Intelligence
                 </span>
               </div>
 
               {/* Master Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#F5F7FC] tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15]">
                 Transform Property Data Into <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-[#3978F6] via-[#29C5E8] to-[#20C997] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#3978F6] via-[#0284C7] to-[#059669] bg-clip-text text-transparent">
                   Smarter Lending Decisions.
                 </span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-[#98A7BD] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[#475569] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
                 An intelligent real estate and fintech platform combining AI-powered property valuation, 
                 mortgage underwriting, risk intelligence, and document verification.
               </p>
@@ -278,25 +278,25 @@ export default function LandingPage() {
 
                 <a
                   href="#platform"
-                  className="px-6 py-3.5 rounded-xl bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Explore Platform</span>
-                  <ChevronRight className="w-4 h-4 text-[#98A7BD]" />
+                  <ChevronRight className="w-4 h-4 text-[#475569]" />
                 </a>
 
                 <Link
                   to="/catalog"
-                  className="px-6 py-3.5 rounded-xl bg-[#0D1628] hover:bg-[#111D32] text-[#29C5E8] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-3.5 rounded-xl bg-[#F1F5F9] hover:bg-[#FFFFFF] text-[#0284C7] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
                 >
-                  <Building className="w-4 h-4 text-[#29C5E8]" />
+                  <Building className="w-4 h-4 text-[#0284C7]" />
                   <span>Browse Properties</span>
                 </Link>
 
                 <Link
                   to="/valuation"
-                  className="px-6 py-3.5 rounded-xl bg-[#0D1628] hover:bg-[#111D32] text-[#20C997] border border-[#23324A] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-3.5 rounded-xl bg-[#F1F5F9] hover:bg-[#FFFFFF] text-[#059669] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
                 >
-                  <Sparkles className="w-4 h-4 text-[#20C997]" />
+                  <Sparkles className="w-4 h-4 text-[#059669]" />
                   <span>AI Valuation Studio</span>
                 </Link>
               </div>
@@ -305,33 +305,33 @@ export default function LandingPage() {
 
             {/* DASHBOARD PREVIEW COMPONENT (Exact UI Style as Dashboard) */}
             <div className="mt-14 max-w-6xl mx-auto">
-              <div className="bg-[#111D32] border border-[#23324A] rounded-2xl shadow-2xl shadow-[#080E1B] overflow-hidden">
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl shadow-2xl shadow-[#F8FAFC] overflow-hidden">
                 
                 {/* Browser-style Top Bar */}
-                <div className="bg-[#0A1222] px-5 py-3.5 border-b border-[#23324A] flex flex-wrap items-center justify-between gap-3">
+                <div className="bg-slate-100 px-5 py-3.5 border-b border-[#E2E8F0] flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center space-x-3">
                     <div className="flex space-x-1.5">
-                      <div className="w-3 h-3 rounded-full bg-[#EF5B67]/80" />
-                      <div className="w-3 h-3 rounded-full bg-[#F5B942]/80" />
-                      <div className="w-3 h-3 rounded-full bg-[#20C997]/80" />
+                      <div className="w-3 h-3 rounded-full bg-[#DC2626]/80" />
+                      <div className="w-3 h-3 rounded-full bg-[#D97706]/80" />
+                      <div className="w-3 h-3 rounded-full bg-[#059669]/80" />
                     </div>
-                    <div className="px-3 py-1 rounded-md bg-[#080E1B] border border-[#23324A] text-[11px] font-mono text-[#98A7BD] flex items-center space-x-1.5">
-                      <Lock className="w-3 h-3 text-[#20C997]" />
+                    <div className="px-3 py-1 rounded-md bg-white border border-[#E2E8F0] text-[11px] font-mono text-[#475569] flex items-center space-x-1.5">
+                      <Lock className="w-3 h-3 text-[#059669]" />
                       <span>propwise.ai/dashboard/intelligence</span>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#29C5E8] bg-[#080E1B] px-2.5 py-1 rounded border border-[#23324A]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-white px-2.5 py-1 rounded border border-[#E2E8F0]">
                       Institutional Decision Engine
                     </span>
-                    <span className="w-2 h-2 rounded-full bg-[#20C997]" />
+                    <span className="w-2 h-2 rounded-full bg-[#059669]" />
                   </div>
                 </div>
 
                 {/* Interactive Sample Asset Selector */}
-                <div className="bg-[#0D1628] px-5 py-2.5 border-b border-[#23324A] flex items-center space-x-2 overflow-x-auto text-xs">
-                  <span className="text-[#98A7BD] text-[11px] font-semibold whitespace-nowrap mr-2">Sample Portfolio Files:</span>
+                <div className="bg-slate-50 px-5 py-2.5 border-b border-[#E2E8F0] flex items-center space-x-2 overflow-x-auto text-xs">
+                  <span className="text-[#475569] text-[11px] font-semibold whitespace-nowrap mr-2">Sample Portfolio Files:</span>
                   {sampleAssets.map((asset, idx) => (
                     <button
                       key={asset.id}
@@ -339,7 +339,7 @@ export default function LandingPage() {
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap cursor-pointer flex items-center space-x-1.5 ${
                         activeAssetIndex === idx
                           ? 'bg-[#3978F6] text-white shadow-sm'
-                          : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC] border border-[#23324A]'
+                          : 'bg-[#FFFFFF] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0]'
                       }`}
                     >
                       <span>{asset.name}</span>
@@ -349,22 +349,22 @@ export default function LandingPage() {
                 </div>
 
                 {/* Dashboard Decision Engine Layout */}
-                <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#080E1B]/70">
+                <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-50/60">
                   
                   {/* Left Column: Collateral Snapshot Card */}
-                  <div className="lg:col-span-5 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                  <div className="lg:col-span-5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#29C5E8]">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#0284C7]">
                           {activeAsset.type}
                         </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#20C997]/15 text-[#20C997] border border-[#20C997]/30">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#059669]/15 text-[#059669] border border-[#059669]/30">
                           Active Collateral
                         </span>
                       </div>
 
                       {/* Property Image with Fallback */}
-                      <div className="relative h-44 rounded-lg overflow-hidden border border-[#23324A] mb-4 bg-[#0A1222]">
+                      <div className="relative h-44 rounded-lg overflow-hidden border border-[#E2E8F0] mb-4 bg-[#FFFFFF]">
                         <img
                           src={activeAsset.image}
                           alt={activeAsset.name}
@@ -374,31 +374,31 @@ export default function LandingPage() {
                             e.target.src = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
                           }}
                         />
-                        <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-[#080E1B]/90 backdrop-blur-sm border border-[#23324A] text-[11px] font-semibold text-[#F5F7FC] flex items-center space-x-1">
+                        <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-[#F8FAFC]/90 backdrop-blur-sm border border-[#E2E8F0] text-[11px] font-semibold text-[#0F172A] flex items-center space-x-1">
                           <MapPin className="w-3 h-3 text-[#3978F6]" />
                           <span>{activeAsset.locality}</span>
                         </div>
                       </div>
 
-                      <h3 className="text-base font-bold text-[#F5F7FC] leading-snug">
+                      <h3 className="text-base font-bold text-[#0F172A] leading-snug">
                         {activeAsset.name}
                       </h3>
                     </div>
 
-                    <div className="pt-4 border-t border-[#23324A] mt-4 flex items-end justify-between">
+                    <div className="pt-4 border-t border-[#E2E8F0] mt-4 flex items-end justify-between">
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-[#98A7BD] tracking-wider block">
+                        <span className="text-[10px] uppercase font-bold text-[#475569] tracking-wider block">
                           AI Assessed Valuation
                         </span>
-                        <span className="text-2xl font-extrabold text-[#20C997] tracking-tight block">
+                        <span className="text-2xl font-extrabold text-[#059669] tracking-tight block">
                           {activeAsset.valuation}
                         </span>
-                        <span className="text-[10px] text-[#98A7BD]">Benchmark: {activeAsset.rateSqft}</span>
+                        <span className="text-[10px] text-[#475569]">Benchmark: {activeAsset.rateSqft}</span>
                       </div>
 
                       <div className="text-right">
-                        <span className="text-[10px] uppercase font-bold text-[#98A7BD] tracking-wider block">Confidence</span>
-                        <span className="text-xs font-bold text-[#29C5E8] bg-[#29C5E8]/10 px-2.5 py-1 rounded-md border border-[#29C5E8]/20 inline-block mt-0.5">
+                        <span className="text-[10px] uppercase font-bold text-[#475569] tracking-wider block">Confidence</span>
+                        <span className="text-xs font-bold text-[#0284C7] bg-[#0284C7]/10 px-2.5 py-1 rounded-md border border-[#0284C7]/20 inline-block mt-0.5">
                           {activeAsset.confidence}
                         </span>
                       </div>
@@ -406,12 +406,12 @@ export default function LandingPage() {
                   </div>
 
                   {/* Middle Column: Mortgage Underwriting Assessment */}
-                  <div className="lg:col-span-4 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                  <div className="lg:col-span-4 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 flex flex-col justify-between">
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+                      <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
                         <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD] block">Underwriting File</span>
-                          <span className="text-xs font-mono font-bold text-[#F5F7FC]">{activeAsset.applicationId}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#475569] block">Underwriting File</span>
+                          <span className="text-xs font-mono font-bold text-[#0F172A]">{activeAsset.applicationId}</span>
                         </div>
                         <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-[#3978F6]/20 text-[#3978F6] border border-[#3978F6]/40">
                           {activeAsset.underwriting}
@@ -419,65 +419,65 @@ export default function LandingPage() {
                       </div>
 
                       <div className="space-y-3">
-                        <div className="bg-[#080E1B] p-3 rounded-lg border border-[#23324A]">
+                        <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
                           <div className="flex justify-between items-center text-xs mb-1">
-                            <span className="text-[#98A7BD]">Debt-to-Income (DTI)</span>
-                            <span className="font-bold text-[#F5F7FC]">{activeAsset.dti}</span>
+                            <span className="text-[#475569]">Debt-to-Income (DTI)</span>
+                            <span className="font-bold text-[#0F172A]">{activeAsset.dti}</span>
                           </div>
-                          <div className="w-full bg-[#111D32] h-1.5 rounded-full overflow-hidden">
+                          <div className="w-full bg-[#FFFFFF] h-1.5 rounded-full overflow-hidden">
                             <div className="bg-[#3978F6] h-full rounded-full" style={{ width: activeAsset.dti }} />
                           </div>
-                          <span className="text-[9px] text-[#20C997] mt-1 block">Within institutional threshold (&lt; 45%)</span>
+                          <span className="text-[9px] text-[#059669] mt-1 block">Within institutional threshold (&lt; 45%)</span>
                         </div>
 
-                        <div className="bg-[#080E1B] p-3 rounded-lg border border-[#23324A]">
+                        <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
                           <div className="flex justify-between items-center text-xs mb-1">
-                            <span className="text-[#98A7BD]">Loan-to-Value (LTV)</span>
-                            <span className="font-bold text-[#F5F7FC]">{activeAsset.ltv}</span>
+                            <span className="text-[#475569]">Loan-to-Value (LTV)</span>
+                            <span className="font-bold text-[#0F172A]">{activeAsset.ltv}</span>
                           </div>
-                          <div className="w-full bg-[#111D32] h-1.5 rounded-full overflow-hidden">
-                            <div className="bg-[#29C5E8] h-full rounded-full" style={{ width: activeAsset.ltv }} />
+                          <div className="w-full bg-[#FFFFFF] h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-[#0284C7] h-full rounded-full" style={{ width: activeAsset.ltv }} />
                           </div>
-                          <span className="text-[9px] text-[#20C997] mt-1 block">Comfortable collateral cushion (&lt; 75%)</span>
+                          <span className="text-[9px] text-[#059669] mt-1 block">Comfortable collateral cushion (&lt; 75%)</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="pt-3 border-t border-[#23324A] mt-3">
+                    <div className="pt-3 border-t border-[#E2E8F0] mt-3">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-[#98A7BD]">Monthly Debt Service:</span>
-                        <span className="font-bold text-[#F5F7FC]">{activeAsset.emi}</span>
+                        <span className="text-[#475569]">Monthly Debt Service:</span>
+                        <span className="font-bold text-[#0F172A]">{activeAsset.emi}</span>
                       </div>
-                      <span className="text-[10px] text-[#98A7BD] block mt-0.5">{activeAsset.tenure}</span>
+                      <span className="text-[10px] text-[#475569] block mt-0.5">{activeAsset.tenure}</span>
                     </div>
                   </div>
 
                   {/* Right Column: Unified Risk Matrix */}
-                  <div className="lg:col-span-3 bg-[#111D32] border border-[#23324A] rounded-xl p-5 flex flex-col justify-between">
+                  <div className="lg:col-span-3 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 flex flex-col justify-between">
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD]">Unified Risk Matrix</span>
-                        <span className="text-[10px] font-semibold text-[#29C5E8]">v3.1 Policy</span>
+                      <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#475569]">Unified Risk Matrix</span>
+                        <span className="text-[10px] font-semibold text-[#0284C7]">v3.1 Policy</span>
                       </div>
 
                       <div className="text-center py-2">
-                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 border-[#20C997] bg-[#080E1B] shadow-lg shadow-[#20C997]/20">
-                          <span className="text-xl font-extrabold text-[#20C997]">A+</span>
+                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 border-[#059669] bg-[#F8FAFC] shadow-lg shadow-[#059669]/20">
+                          <span className="text-xl font-extrabold text-[#059669]">A+</span>
                         </div>
                         <div className="mt-2">
-                          <span className="text-xs font-bold text-[#20C997] block">{activeAsset.riskCategory}</span>
-                          <span className="text-[10px] text-[#98A7BD]">Decoupled Vector Score</span>
+                          <span className="text-xs font-bold text-[#059669] block">{activeAsset.riskCategory}</span>
+                          <span className="text-[10px] text-[#475569]">Decoupled Vector Score</span>
                         </div>
                       </div>
 
                       <div className="space-y-2 text-xs">
-                        <div className="flex justify-between items-center py-1 border-b border-[#23324A]/50">
-                          <span className="text-[#98A7BD]">Collateral Risk</span>
-                          <span className="font-bold text-[#20C997]">{activeAsset.collateralRisk}</span>
+                        <div className="flex justify-between items-center py-1 border-b border-[#E2E8F0]/50">
+                          <span className="text-[#475569]">Collateral Risk</span>
+                          <span className="font-bold text-[#059669]">{activeAsset.collateralRisk}</span>
                         </div>
                         <div className="flex justify-between items-center py-1">
-                          <span className="text-[#98A7BD]">Borrower Risk</span>
-                          <span className="font-bold text-[#20C997]">{activeAsset.borrowerRisk}</span>
+                          <span className="text-[#475569]">Borrower Risk</span>
+                          <span className="font-bold text-[#059669]">{activeAsset.borrowerRisk}</span>
                         </div>
                       </div>
                     </div>
@@ -494,19 +494,19 @@ export default function LandingPage() {
                 </div>
 
                 {/* Live Underwriting Activity Ticker */}
-                <div className="bg-[#0A1222] px-6 py-3 border-t border-[#23324A] flex flex-wrap items-center justify-between text-xs text-[#98A7BD] gap-3">
+                <div className="bg-slate-100 px-6 py-3 border-t border-[#E2E8F0] flex flex-wrap items-center justify-between text-xs text-[#475569] gap-3">
                   <div className="flex items-center space-x-3">
-                    <span className="inline-flex items-center space-x-1.5 text-[#20C997] font-semibold text-[11px]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#20C997]" />
+                    <span className="inline-flex items-center space-x-1.5 text-[#059669] font-semibold text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />
                       <span>LIVE SYSTEM METRICS</span>
                     </span>
-                    <span className="hidden sm:inline text-[#23324A]">|</span>
-                    <span className="hidden sm:inline">Active Loan Book: <b className="text-[#F5F7FC]">INR 48,500 Cr+</b></span>
-                    <span className="hidden md:inline text-[#23324A]">|</span>
-                    <span className="hidden md:inline">Mean ML Valuation Variance: <b className="text-[#20C997]">&lt; 3.2%</b></span>
+                    <span className="hidden sm:inline text-[#E2E8F0]">|</span>
+                    <span className="hidden sm:inline">Active Loan Book: <b className="text-[#0F172A]">INR 48,500 Cr+</b></span>
+                    <span className="hidden md:inline text-[#E2E8F0]">|</span>
+                    <span className="hidden md:inline">Mean ML Valuation Variance: <b className="text-[#059669]">&lt; 3.2%</b></span>
                   </div>
 
-                  <Link to="/catalog" className="text-[#3978F6] hover:text-[#29C5E8] text-xs font-medium flex items-center space-x-1">
+                  <Link to="/catalog" className="text-[#3978F6] hover:text-[#0284C7] text-xs font-medium flex items-center space-x-1">
                     <span>Explore All Live Properties</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
@@ -519,17 +519,17 @@ export default function LandingPage() {
         </section>
 
         {/* PLATFORM FEATURES SECTION */}
-        <section id="features" className="py-24 bg-[#0D1628] border-t border-[#23324A] relative">
+        <section id="features" className="py-24 bg-[#F1F5F9] border-t border-[#E2E8F0] relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-wider text-[#3978F6] uppercase bg-[#3978F6]/10 px-3 py-1 rounded-full border border-[#3978F6]/20">
                 Integrated Intelligence Suite
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
                 Comprehensive Real Estate &amp; Lending Modules
               </h2>
-              <p className="text-[#98A7BD] text-base leading-relaxed">
+              <p className="text-[#475569] text-base leading-relaxed">
                 Every critical dimension of real estate appraisal and mortgage risk assessment unified into one interconnected enterprise environment.
               </p>
             </div>
@@ -541,32 +541,32 @@ export default function LandingPage() {
                 return (
                   <div
                     key={i}
-                    className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/60 rounded-xl p-6 transition-all duration-200 shadow-md flex flex-col justify-between group"
+                    className="bg-[#FFFFFF] border border-[#E2E8F0] hover:border-[#3978F6]/60 rounded-xl p-6 transition-all duration-200 shadow-md flex flex-col justify-between group"
                   >
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#3978F6]/20 to-[#29C5E8]/20 border border-[#23324A] flex items-center justify-center text-[#29C5E8] group-hover:text-white group-hover:border-[#3978F6] transition-colors">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#3978F6]/20 to-[#0284C7]/20 border border-[#E2E8F0] flex items-center justify-center text-[#0284C7] group-hover:text-white group-hover:border-[#3978F6] transition-colors">
                           <Icon className="w-6 h-6" />
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#98A7BD] bg-[#080E1B] px-2.5 py-1 rounded border border-[#23324A]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#475569] bg-white px-2.5 py-1 rounded border border-[#E2E8F0]">
                           {f.tag}
                         </span>
                       </div>
 
                       <div>
-                        <h3 className="text-base font-bold text-[#F5F7FC] group-hover:text-[#29C5E8] transition-colors">
+                        <h3 className="text-base font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors">
                           {f.title}
                         </h3>
-                        <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">
+                        <p className="text-xs text-[#475569] mt-2 leading-relaxed">
                           {f.desc}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#23324A] mt-5">
+                    <div className="pt-4 border-t border-[#E2E8F0] mt-5">
                       <Link
                         to={f.link}
-                        className="text-xs font-semibold text-[#3978F6] hover:text-[#29C5E8] inline-flex items-center space-x-1.5 transition-colors"
+                        className="text-xs font-semibold text-[#3978F6] hover:text-[#0284C7] inline-flex items-center space-x-1.5 transition-colors"
                       >
                         <span>Launch Module</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -581,17 +581,17 @@ export default function LandingPage() {
         </section>
 
         {/* HOW IT WORKS SECTION (7-Step Workflow) */}
-        <section id="workflow" className="py-24 bg-[#080E1B] border-t border-[#23324A]">
+        <section id="workflow" className="py-24 bg-white border-t border-[#E2E8F0]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-              <span className="text-xs font-bold tracking-wider text-[#29C5E8] uppercase bg-[#29C5E8]/10 px-3 py-1 rounded-full border border-[#29C5E8]/20">
+              <span className="text-xs font-bold tracking-wider text-[#0284C7] uppercase bg-[#0284C7]/10 px-3 py-1 rounded-full border border-[#0284C7]/20">
                 End-to-End Orchestration
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
                 How It Works: Institutional Lending Lifecycle
               </h2>
-              <p className="text-[#98A7BD] text-base leading-relaxed">
+              <p className="text-[#475569] text-base leading-relaxed">
                 Structured sequence connecting automated ingestion, algorithmic appraisal, fraud verification, and certified credit committee sign-off.
               </p>
             </div>
@@ -599,16 +599,16 @@ export default function LandingPage() {
             {/* Workflow Steps 1 to 4 */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {workflowSteps.slice(0, 4).map((ws, i) => (
-                <div key={i} className="bg-[#111D32] border border-[#23324A] rounded-xl p-5 relative flex flex-col justify-between">
+                <div key={i} className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 relative flex flex-col justify-between">
                   <div>
                     <span className="text-3xl font-extrabold text-[#3978F6]/30 block mb-2 font-mono">
                       {ws.step}
                     </span>
-                    <h4 className="text-sm font-bold text-[#F5F7FC]">{ws.title}</h4>
-                    <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">{ws.desc}</p>
+                    <h4 className="text-sm font-bold text-[#0F172A]">{ws.title}</h4>
+                    <p className="text-xs text-[#475569] mt-2 leading-relaxed">{ws.desc}</p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#23324A]/60 flex items-center text-[10px] text-[#29C5E8]">
-                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#20C997]" />
+                  <div className="mt-4 pt-3 border-t border-[#E2E8F0]/60 flex items-center text-[10px] text-[#0284C7]">
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#059669]" />
                     <span>Automated Protocol</span>
                   </div>
                 </div>
@@ -618,16 +618,16 @@ export default function LandingPage() {
             {/* Workflow Steps 5 to 7 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
               {workflowSteps.slice(4).map((ws, i) => (
-                <div key={i} className="bg-[#111D32] border border-[#23324A] rounded-xl p-5 relative flex flex-col justify-between">
+                <div key={i} className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 relative flex flex-col justify-between">
                   <div>
-                    <span className="text-3xl font-extrabold text-[#29C5E8]/30 block mb-2 font-mono">
+                    <span className="text-3xl font-extrabold text-[#0284C7]/30 block mb-2 font-mono">
                       {ws.step}
                     </span>
-                    <h4 className="text-sm font-bold text-[#F5F7FC]">{ws.title}</h4>
-                    <p className="text-xs text-[#98A7BD] mt-2 leading-relaxed">{ws.desc}</p>
+                    <h4 className="text-sm font-bold text-[#0F172A]">{ws.title}</h4>
+                    <p className="text-xs text-[#475569] mt-2 leading-relaxed">{ws.desc}</p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#23324A]/60 flex items-center text-[10px] text-[#20C997]">
-                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#20C997]" />
+                  <div className="mt-4 pt-3 border-t border-[#E2E8F0]/60 flex items-center text-[10px] text-[#059669]">
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#059669]" />
                     <span>{ws.step === "07" ? "Certified Sign-Off" : "Automated Protocol"}</span>
                   </div>
                 </div>
@@ -638,18 +638,18 @@ export default function LandingPage() {
         </section>
 
         {/* LIVE FEATURED PROPERTIES PORTFOLIO (Exact Same Card UI as Dashboard) */}
-        <section id="properties" className="py-24 bg-[#0D1628] border-t border-[#23324A]">
+        <section id="properties" className="py-24 bg-[#F1F5F9] border-t border-[#E2E8F0]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div>
-                <span className="text-xs font-bold tracking-wider text-[#20C997] uppercase bg-[#20C997]/10 px-3 py-1 rounded-full border border-[#20C997]/20">
+                <span className="text-xs font-bold tracking-wider text-[#059669] uppercase bg-[#059669]/10 px-3 py-1 rounded-full border border-[#059669]/20">
                   Collateral Asset Directory
                 </span>
-                <h2 className="text-3xl font-extrabold text-[#F5F7FC] tracking-tight mt-2">
+                <h2 className="text-3xl font-extrabold text-[#0F172A] tracking-tight mt-2">
                   Featured Prime Properties
                 </h2>
-                <p className="text-[#98A7BD] text-sm mt-1">
+                <p className="text-[#475569] text-sm mt-1">
                   Verified real estate collateral records currently managed across the platform.
                 </p>
               </div>
@@ -664,7 +664,7 @@ export default function LandingPage() {
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4 py-2.5 rounded-lg bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-xs font-semibold transition-colors"
+                  className="px-4 py-2.5 rounded-lg bg-[#FFFFFF] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] text-xs font-semibold transition-colors"
                 >
                   + Register Asset
                 </Link>
@@ -719,11 +719,11 @@ export default function LandingPage() {
               ]).map((prop) => (
                 <div
                   key={prop.id}
-                  className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/60 rounded-xl overflow-hidden shadow-lg transition-all duration-200 flex flex-col justify-between"
+                  className="bg-[#FFFFFF] border border-[#E2E8F0] hover:border-[#3978F6]/60 rounded-xl overflow-hidden shadow-lg transition-all duration-200 flex flex-col justify-between"
                 >
                   <div>
                     {/* Image Header with badges */}
-                    <div className="relative h-48 bg-[#0A1222] overflow-hidden">
+                    <div className="relative h-48 bg-[#FFFFFF] overflow-hidden">
                       <img
                         src={prop.image_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"}
                         alt={prop.name}
@@ -734,15 +734,15 @@ export default function LandingPage() {
                         }}
                       />
                       <div className="absolute top-3 left-3">
-                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#080E1B]/85 text-[#29C5E8] border border-[#23324A] backdrop-blur-sm">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#F8FAFC]/85 text-[#0284C7] border border-[#E2E8F0] backdrop-blur-sm">
                           {prop.property_type || "Residential"}
                         </span>
                       </div>
                       <div className="absolute top-3 right-3">
                         <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
                           prop.status === 'Off-Market'
-                            ? 'bg-[#EF5B67]/20 text-[#EF5B67] border border-[#EF5B67]/40'
-                            : 'bg-[#20C997]/20 text-[#20C997] border border-[#20C997]/40'
+                            ? 'bg-[#DC2626]/20 text-[#DC2626] border border-[#DC2626]/40'
+                            : 'bg-[#059669]/20 text-[#059669] border border-[#059669]/40'
                         }`}>
                           {prop.status || 'Active'}
                         </span>
@@ -752,51 +752,51 @@ export default function LandingPage() {
                     {/* Content Section */}
                     <div className="p-5 space-y-3">
                       <div>
-                        <h3 className="text-base font-bold text-[#F5F7FC] leading-snug line-clamp-1">
+                        <h3 className="text-base font-bold text-[#0F172A] leading-snug line-clamp-1">
                           {prop.name}
                         </h3>
-                        <div className="flex items-center space-x-1.5 text-xs text-[#98A7BD] mt-1">
+                        <div className="flex items-center space-x-1.5 text-xs text-[#475569] mt-1">
                           <MapPin className="w-3.5 h-3.5 text-[#3978F6]" />
                           <span>{prop.locality ? `${prop.locality}, ${prop.city}` : prop.city}</span>
                         </div>
                       </div>
 
                       {/* Spec Matrix */}
-                      <div className="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-lg bg-[#080E1B] border border-[#23324A] text-xs">
+                      <div className="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs">
                         <div className="text-center">
-                          <span className="text-[#98A7BD] text-[10px] block">Bedrooms</span>
-                          <span className="font-bold text-[#F5F7FC]">{prop.bedrooms || 3} BHK</span>
+                          <span className="text-[#475569] text-[10px] block">Bedrooms</span>
+                          <span className="font-bold text-[#0F172A]">{prop.bedrooms || 3} BHK</span>
                         </div>
-                        <div className="text-center border-x border-[#23324A]">
-                          <span className="text-[#98A7BD] text-[10px] block">Bathrooms</span>
-                          <span className="font-bold text-[#F5F7FC]">{prop.bathrooms || 3} Baths</span>
+                        <div className="text-center border-x border-[#E2E8F0]">
+                          <span className="text-[#475569] text-[10px] block">Bathrooms</span>
+                          <span className="font-bold text-[#0F172A]">{prop.bathrooms || 3} Baths</span>
                         </div>
                         <div className="text-center">
-                          <span className="text-[#98A7BD] text-[10px] block">Parking</span>
-                          <span className="font-bold text-[#F5F7FC]">{prop.parking_spaces || 2} Park</span>
+                          <span className="text-[#475569] text-[10px] block">Parking</span>
+                          <span className="font-bold text-[#0F172A]">{prop.parking_spaces || 2} Park</span>
                         </div>
                       </div>
 
-                      <div className="space-y-1 text-xs text-[#98A7BD] pt-1">
+                      <div className="space-y-1 text-xs text-[#475569] pt-1">
                         <div className="flex justify-between">
                           <span>Built-up Area:</span>
-                          <span className="text-[#F5F7FC] font-semibold">{prop.built_up_area_sqft || 2800} sqft</span>
+                          <span className="text-[#0F172A] font-semibold">{prop.built_up_area_sqft || 2800} sqft</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Quality Grade:</span>
-                          <span className="text-[#20C997] font-semibold">{prop.construction_quality || 'Premium'}</span>
+                          <span className="text-[#059669] font-semibold">{prop.construction_quality || 'Premium'}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Valuation and Action Footer */}
-                  <div className="px-5 py-4 bg-[#0D1628] border-t border-[#23324A] flex items-center justify-between">
+                  <div className="px-5 py-4 bg-[#F1F5F9] border-t border-[#E2E8F0] flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-[#98A7BD] block">
+                      <span className="text-[10px] uppercase font-bold text-[#475569] block">
                         Assessed ML Value
                       </span>
-                      <span className="text-base font-extrabold text-[#20C997]">
+                      <span className="text-base font-extrabold text-[#059669]">
                         {formatCurrency(prop.estimated_value)}
                       </span>
                     </div>
@@ -819,27 +819,27 @@ export default function LandingPage() {
         </section>
 
         {/* INSTANT VALUATION CALCULATOR PLAYGROUND */}
-        <section className="py-20 bg-[#080E1B] border-t border-[#23324A]">
+        <section className="py-20 bg-white border-t border-[#E2E8F0]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 sm:p-10 shadow-2xl">
+            <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 sm:p-10 shadow-2xl">
               
               <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#29C5E8]">Interactive Simulation</span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F5F7FC]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7]">Interactive Simulation</span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
                   Run Instant AI Property Appraisal
                 </h3>
-                <p className="text-xs sm:text-sm text-[#98A7BD]">
+                <p className="text-xs sm:text-sm text-[#475569]">
                   Test our multi-variable price-per-square-foot regression model right now without signing in.
                 </p>
               </div>
 
               <form onSubmit={runQuickValuation} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Metropolitan Cluster</label>
+                  <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1.5">Metropolitan Cluster</label>
                   <select
                     value={calcCity}
                     onChange={(e) => setCalcCity(e.target.value)}
-                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-3.5 py-2.5 text-xs text-[#0F172A] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
                   >
                     <option value="Mumbai">Mumbai Metropolitan (MMR)</option>
                     <option value="Gurugram">Gurugram / NCR Cyber City</option>
@@ -850,7 +850,7 @@ export default function LandingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Built-up Area (Sq Ft)</label>
+                  <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1.5">Built-up Area (Sq Ft)</label>
                   <input
                     type="number"
                     min="500"
@@ -858,16 +858,16 @@ export default function LandingPage() {
                     step="50"
                     value={calcSqft}
                     onChange={(e) => setCalcSqft(Number(e.target.value))}
-                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none"
+                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-3.5 py-2.5 text-xs text-[#0F172A] font-semibold focus:border-[#3978F6] outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Bedroom Configuration</label>
+                  <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1.5">Bedroom Configuration</label>
                   <select
                     value={calcBhk}
                     onChange={(e) => setCalcBhk(Number(e.target.value))}
-                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-3.5 py-2.5 text-xs text-[#0F172A] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
                   >
                     <option value="2">2 BHK Executive</option>
                     <option value="3">3 BHK Premium</option>
@@ -877,11 +877,11 @@ export default function LandingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1.5">Specification Grade</label>
+                  <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1.5">Specification Grade</label>
                   <select
                     value={calcQuality}
                     onChange={(e) => setCalcQuality(e.target.value)}
-                    className="w-full bg-[#080E1B] border border-[#23324A] rounded-lg px-3.5 py-2.5 text-xs text-[#F5F7FC] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
+                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-3.5 py-2.5 text-xs text-[#0F172A] font-semibold focus:border-[#3978F6] outline-none cursor-pointer"
                   >
                     <option value="Standard">Standard Finishes</option>
                     <option value="Premium">Premium Architecture</option>
@@ -893,7 +893,7 @@ export default function LandingPage() {
                 <div className="sm:col-span-2 lg:col-span-4 mt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#3978F6] to-[#29C5E8] hover:opacity-95 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-[#3978F6]/25 cursor-pointer flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#3978F6] to-[#0284C7] hover:opacity-95 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-[#3978F6]/25 cursor-pointer flex items-center justify-center space-x-2"
                   >
                     <Sparkles className="w-4 h-4" />
                     <span>Calculate Instant AI Valuation Regression</span>
@@ -903,34 +903,34 @@ export default function LandingPage() {
 
               {/* Instant Valuation Result Display */}
               {calcResult && (
-                <div className="bg-[#080E1B] border border-[#20C997]/40 rounded-xl p-6 mt-6 transition-all duration-300">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#23324A] gap-4">
+                <div className="bg-[#F8FAFC] border border-[#059669]/40 rounded-xl p-6 mt-6 transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-4">
                     <div>
-                      <span className="text-[11px] font-bold uppercase text-[#29C5E8] tracking-wider block">Estimated Market Valuation</span>
-                      <span className="text-3xl font-extrabold text-[#20C997] tracking-tight">
+                      <span className="text-[11px] font-bold uppercase text-[#0284C7] tracking-wider block">Estimated Market Valuation</span>
+                      <span className="text-3xl font-extrabold text-[#059669] tracking-tight">
                         {formatCurrency(calcResult.estimated)}
                       </span>
                     </div>
 
                     <div className="flex items-center space-x-4 text-xs">
-                      <div className="bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A]">
-                        <span className="text-[#98A7BD] block text-[10px]">Benchmarked Rate</span>
-                        <span className="font-bold text-[#F5F7FC]">INR {calcResult.ratePerSqft.toLocaleString()} / sqft</span>
+                      <div className="bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0]">
+                        <span className="text-[#475569] block text-[10px]">Benchmarked Rate</span>
+                        <span className="font-bold text-[#0F172A]">INR {calcResult.ratePerSqft.toLocaleString()} / sqft</span>
                       </div>
-                      <div className="bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A]">
-                        <span className="text-[#98A7BD] block text-[10px]">ML Confidence</span>
-                        <span className="font-bold text-[#20C997]">{calcResult.confidence}%</span>
+                      <div className="bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0]">
+                        <span className="text-[#475569] block text-[10px]">ML Confidence</span>
+                        <span className="font-bold text-[#059669]">{calcResult.confidence}%</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#98A7BD] gap-3">
+                  <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#475569] gap-3">
                     <span>
-                      Confidence Interval (95% ML Bound): <b className="text-[#F5F7FC]">{formatCurrency(calcResult.lower)} — {formatCurrency(calcResult.upper)}</b>
+                      Confidence Interval (95% ML Bound): <b className="text-[#0F172A]">{formatCurrency(calcResult.lower)} — {formatCurrency(calcResult.upper)}</b>
                     </span>
                     <Link
                       to="/valuation"
-                      className="text-[#3978F6] hover:text-[#29C5E8] font-semibold flex items-center space-x-1"
+                      className="text-[#3978F6] hover:text-[#0284C7] font-semibold flex items-center space-x-1"
                     >
                       <span>Open Full Multi-Factor Valuation Studio</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -944,17 +944,17 @@ export default function LandingPage() {
         </section>
 
         {/* TRUST, SECURITY & GOVERNANCE SECTION */}
-        <section id="security" className="py-24 bg-[#0D1628] border-t border-[#23324A]">
+        <section id="security" className="py-24 bg-[#F1F5F9] border-t border-[#E2E8F0]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-              <span className="text-xs font-bold tracking-wider text-[#20C997] uppercase bg-[#20C997]/10 px-3 py-1 rounded-full border border-[#20C997]/20">
+              <span className="text-xs font-bold tracking-wider text-[#059669] uppercase bg-[#059669]/10 px-3 py-1 rounded-full border border-[#059669]/20">
                 Enterprise Security &amp; Governance
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F7FC] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
                 Security Built for Regulated Institutions
               </h2>
-              <p className="text-[#98A7BD] text-base leading-relaxed">
+              <p className="text-[#475569] text-base leading-relaxed">
                 Engineered with authenticated encryption, non-delegable human authority, and transparent model explainability.
               </p>
             </div>
@@ -963,12 +963,12 @@ export default function LandingPage() {
               {securityPillars.map((pillar, i) => {
                 const Icon = pillar.icon;
                 return (
-                  <div key={i} className="bg-[#111D32] border border-[#23324A] hover:border-[#3978F6]/40 rounded-xl p-6 space-y-3 transition-colors">
-                    <div className="w-10 h-10 rounded-lg bg-[#080E1B] border border-[#23324A] flex items-center justify-center text-[#20C997]">
+                  <div key={i} className="bg-[#FFFFFF] border border-[#E2E8F0] hover:border-[#3978F6]/40 rounded-xl p-6 space-y-3 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-[#059669]">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base font-bold text-[#F5F7FC]">{pillar.title}</h3>
-                    <p className="text-xs text-[#98A7BD] leading-relaxed">{pillar.desc}</p>
+                    <h3 className="text-base font-bold text-[#0F172A]">{pillar.title}</h3>
+                    <p className="text-xs text-[#475569] leading-relaxed">{pillar.desc}</p>
                   </div>
                 );
               })}
@@ -978,17 +978,17 @@ export default function LandingPage() {
         </section>
 
         {/* INSTITUTIONAL CALL TO ACTION BANNER */}
-        <section className="py-20 bg-gradient-to-b from-[#080E1B] to-[#0D1628] border-t border-[#23324A] relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-b from-[#F8FAFC] to-[#F1F5F9] border-t border-[#E2E8F0] relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(#3978F6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#29C5E8] bg-[#111D32] px-4 py-1.5 rounded-full border border-[#23324A]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0284C7] bg-[#FFFFFF] px-4 py-1.5 rounded-full border border-[#E2E8F0]">
               Next-Gen Real Estate &amp; FinTech Infrastructure
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#F5F7FC] tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight">
               Ready to Upgrade Your Lending Infrastructure?
             </h2>
-            <p className="text-[#98A7BD] text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#475569] text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
               Experience explainable AI property valuation, automated mortgage underwriting, and instant document extraction today.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -1001,7 +1001,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 to="/login"
-                className="px-8 py-3.5 rounded-xl bg-[#111D32] hover:bg-[#15233c] text-[#F5F7FC] border border-[#23324A] text-sm font-semibold transition-all duration-200"
+                className="px-8 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200"
               >
                 Sign In to Portal
               </Link>
@@ -1011,55 +1011,55 @@ export default function LandingPage() {
       </main>
 
       {/* FOOTER (Exact Dark FinTech Style) */}
-      <footer className="bg-[#0A1222] border-t border-[#23324A] py-16 text-xs text-[#98A7BD]">
+      <footer className="bg-[#FFFFFF] border-t border-[#E2E8F0] py-16 text-xs text-[#475569]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8">
           
           {/* Brand Info */}
           <div className="col-span-2 space-y-3">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#29C5E8] flex items-center justify-center p-0.5">
-                <div className="w-full h-full bg-[#0A1222] rounded-[6px] flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-[#29C5E8]" />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5">
+                <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-[#0284C7]" />
                 </div>
               </div>
-              <span className="text-lg font-bold text-[#F5F7FC] tracking-tight block">
+              <span className="text-lg font-bold text-[#0F172A] tracking-tight block">
                 PROPWISE <span className="text-[#3978F6]">AI</span>
               </span>
             </div>
-            <p className="text-xs text-[#98A7BD] max-w-sm leading-relaxed">
+            <p className="text-xs text-[#475569] max-w-sm leading-relaxed">
               Smarter Property Valuation. Safer Lending Decisions. Enterprise real estate and fintech intelligence ecosystem combining AI valuation, mortgage underwriting, and document verification.
             </p>
-            <p className="text-[11px] text-[#98A7BD]/70 pt-2">
+            <p className="text-[11px] text-[#475569]/70 pt-2">
               &copy; 2026 PROPWISE AI. All rights reserved.
             </p>
           </div>
 
           {/* Platform Links */}
           <div className="space-y-2.5">
-            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Platform</span>
-            <Link to="/valuation" className="block hover:text-[#F5F7FC] transition-colors">AI Property Valuation</Link>
-            <Link to="/catalog" className="block hover:text-[#F5F7FC] transition-colors">Property Catalog</Link>
-            <Link to="/dashboard/mortgage" className="block hover:text-[#F5F7FC] transition-colors">Mortgage Underwriting</Link>
-            <Link to="/dashboard/risk" className="block hover:text-[#F5F7FC] transition-colors">Risk Intelligence</Link>
-            <Link to="/dashboard/documents" className="block hover:text-[#F5F7FC] transition-colors">Document OCR</Link>
+            <span className="font-bold text-[#0F172A] uppercase text-[11px] tracking-wider block">Platform</span>
+            <Link to="/valuation" className="block hover:text-[#0F172A] transition-colors">AI Property Valuation</Link>
+            <Link to="/catalog" className="block hover:text-[#0F172A] transition-colors">Property Catalog</Link>
+            <Link to="/dashboard/mortgage" className="block hover:text-[#0F172A] transition-colors">Mortgage Underwriting</Link>
+            <Link to="/dashboard/risk" className="block hover:text-[#0F172A] transition-colors">Risk Intelligence</Link>
+            <Link to="/dashboard/documents" className="block hover:text-[#0F172A] transition-colors">Document OCR</Link>
           </div>
 
           {/* Governance & Security */}
           <div className="space-y-2.5">
-            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Governance</span>
-            <a href="#security" className="block hover:text-[#F5F7FC] transition-colors">Trust &amp; Security</a>
-            <Link to="/dashboard/compliance" className="block hover:text-[#F5F7FC] transition-colors">Responsible AI Charter</Link>
-            <Link to="/dashboard/compliance" className="block hover:text-[#F5F7FC] transition-colors">Privacy Architecture</Link>
-            <Link to="/dashboard/admin/audit-logs" className="block hover:text-[#F5F7FC] transition-colors">Audit Traceability</Link>
+            <span className="font-bold text-[#0F172A] uppercase text-[11px] tracking-wider block">Governance</span>
+            <a href="#security" className="block hover:text-[#0F172A] transition-colors">Trust &amp; Security</a>
+            <Link to="/dashboard/compliance" className="block hover:text-[#0F172A] transition-colors">Responsible AI Charter</Link>
+            <Link to="/dashboard/compliance" className="block hover:text-[#0F172A] transition-colors">Privacy Architecture</Link>
+            <Link to="/dashboard/admin/audit-logs" className="block hover:text-[#0F172A] transition-colors">Audit Traceability</Link>
           </div>
 
           {/* Support & Account */}
           <div className="space-y-2.5">
-            <span className="font-bold text-[#F5F7FC] uppercase text-[11px] tracking-wider block">Support</span>
-            <Link to="/login" className="block hover:text-[#F5F7FC] transition-colors">Client Portal Sign In</Link>
-            <Link to="/register" className="block hover:text-[#F5F7FC] transition-colors">Register Account</Link>
-            <Link to="/dashboard/help" className="block hover:text-[#F5F7FC] transition-colors">Knowledge Base</Link>
-            <Link to="/dashboard/settings" className="block hover:text-[#F5F7FC] transition-colors">BYOK API Setup</Link>
+            <span className="font-bold text-[#0F172A] uppercase text-[11px] tracking-wider block">Support</span>
+            <Link to="/login" className="block hover:text-[#0F172A] transition-colors">Client Portal Sign In</Link>
+            <Link to="/register" className="block hover:text-[#0F172A] transition-colors">Register Account</Link>
+            <Link to="/dashboard/help" className="block hover:text-[#0F172A] transition-colors">Knowledge Base</Link>
+            <Link to="/dashboard/settings" className="block hover:text-[#0F172A] transition-colors">BYOK API Setup</Link>
           </div>
 
         </div>

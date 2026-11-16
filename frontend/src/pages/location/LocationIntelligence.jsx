@@ -51,14 +51,14 @@ const LocationIntelligence = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Geospatial Location Intelligence</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Geospatial Location Intelligence</h2>
+        <p className="text-xs text-[#475569]">
           Interactive spatial radius mapping, infrastructure proximity, transit corridors, and locality liquidity scores.
         </p>
       </div>
 
       {/* City Tabs Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#111D32] border border-[#23324A] rounded-xl p-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-3">
         <div className="flex items-center space-x-2">
           {['Mumbai', 'Bengaluru', 'Hyderabad', 'Pune'].map(city => (
             <button
@@ -67,14 +67,14 @@ const LocationIntelligence = () => {
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                 activeCity === city
                   ? 'bg-[#3978F6] text-white shadow-sm'
-                  : 'bg-[#0D1628] text-[#98A7BD] hover:text-[#F5F7FC]'
+                  : 'bg-[#F1F5F9] text-[#475569] hover:text-[#0F172A]'
               }`}
             >
               {city}
             </button>
           ))}
         </div>
-        <div className="text-xs text-[#98A7BD] hidden sm:block">
+        <div className="text-xs text-[#475569] hidden sm:block">
           OpenStreetMap Cartography Engine Active
         </div>
       </div>
@@ -82,7 +82,7 @@ const LocationIntelligence = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Interactive Map Canvas (8 cols) */}
-        <div className="lg:col-span-8 bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl h-[520px] relative">
+        <div className="lg:col-span-8 bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl h-[520px] relative">
           <MapContainer
             center={center}
             zoom={12}
@@ -104,7 +104,7 @@ const LocationIntelligence = () => {
                   }}
                 >
                   <Popup>
-                    <div className="text-xs text-[#080E1B] p-1">
+                    <div className="text-xs text-[#F8FAFC] p-1">
                       <strong className="block text-sm">{p.name}</strong>
                       <span>{p.locality}, {p.city}</span>
                       <div className="mt-1 font-bold text-[#3978F6]">
@@ -119,14 +119,14 @@ const LocationIntelligence = () => {
         </div>
 
         {/* Selected Property Proximity Dossier (4 cols) */}
-        <div className="lg:col-span-4 bg-[#111D32] border border-[#23324A] rounded-2xl p-5 shadow-xl space-y-4 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-5 shadow-xl space-y-4 flex flex-col justify-between">
           <div>
-            <div className="pb-3 border-b border-[#23324A]">
-              <span className="text-[10px] text-[#29C5E8] uppercase tracking-wider font-semibold block">Locality Profile</span>
-              <h3 className="text-sm font-bold text-[#F5F7FC] truncate">
+            <div className="pb-3 border-b border-[#E2E8F0]">
+              <span className="text-[10px] text-[#0284C7] uppercase tracking-wider font-semibold block">Locality Profile</span>
+              <h3 className="text-sm font-bold text-[#0F172A] truncate">
                 {selectedProp ? selectedProp.name : 'Select a Pin on Map'}
               </h3>
-              <p className="text-xs text-[#98A7BD] mt-0.5">
+              <p className="text-xs text-[#475569] mt-0.5">
                 {selectedProp ? `${selectedProp.locality}, ${selectedProp.city}` : 'Spatial attributes will populate here'}
               </p>
             </div>
@@ -134,38 +134,38 @@ const LocationIntelligence = () => {
             {selectedProp && (
               <div className="mt-4 space-y-3.5 text-xs">
                 
-                <div className="p-3 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-1">
-                  <span className="text-[#98A7BD] block">Geo Coordinates</span>
-                  <span className="font-mono text-xs text-[#20C997] font-semibold">
+                <div className="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-1">
+                  <span className="text-[#475569] block">Geo Coordinates</span>
+                  <span className="font-mono text-xs text-[#059669] font-semibold">
                     {selectedProp.latitude}° N, {selectedProp.longitude}° E
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <span className="font-bold text-[#F5F7FC] block">Verified Proximity & Infrastructure</span>
+                  <span className="font-bold text-[#0F172A] block">Verified Proximity & Infrastructure</span>
                   
-                  <div className="p-2.5 rounded-lg bg-[#0D1628] border border-[#23324A] flex items-center justify-between">
+                  <div className="p-2.5 rounded-lg bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Bus className="w-4 h-4 text-[#3978F6]" />
-                      <span className="text-[#F5F7FC]">Metro Station</span>
+                      <span className="text-[#0F172A]">Metro Station</span>
                     </div>
-                    <span className="text-[11px] font-semibold text-[#20C997]">0.4 km</span>
+                    <span className="text-[11px] font-semibold text-[#059669]">0.4 km</span>
                   </div>
 
-                  <div className="p-2.5 rounded-lg bg-[#0D1628] border border-[#23324A] flex items-center justify-between">
+                  <div className="p-2.5 rounded-lg bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <School className="w-4 h-4 text-[#29C5E8]" />
-                      <span className="text-[#F5F7FC]">International School</span>
+                      <School className="w-4 h-4 text-[#0284C7]" />
+                      <span className="text-[#0F172A]">International School</span>
                     </div>
-                    <span className="text-[11px] font-semibold text-[#20C997]">1.2 km</span>
+                    <span className="text-[11px] font-semibold text-[#059669]">1.2 km</span>
                   </div>
 
-                  <div className="p-2.5 rounded-lg bg-[#0D1628] border border-[#23324A] flex items-center justify-between">
+                  <div className="p-2.5 rounded-lg bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <Hospital className="w-4 h-4 text-[#EF5B67]" />
-                      <span className="text-[#F5F7FC]">Multispecialty Hospital</span>
+                      <Hospital className="w-4 h-4 text-[#DC2626]" />
+                      <span className="text-[#0F172A]">Multispecialty Hospital</span>
                     </div>
-                    <span className="text-[11px] font-semibold text-[#20C997]">1.8 km</span>
+                    <span className="text-[11px] font-semibold text-[#059669]">1.8 km</span>
                   </div>
                 </div>
 
@@ -173,8 +173,8 @@ const LocationIntelligence = () => {
             )}
           </div>
 
-          <div className="pt-3 border-t border-[#23324A] text-[11px] text-[#98A7BD]">
-            Locality Demand Score: <strong className="text-[#20C997]">92 / 100 (Tier-1 Primary Liquidity Zone)</strong>
+          <div className="pt-3 border-t border-[#E2E8F0] text-[11px] text-[#475569]">
+            Locality Demand Score: <strong className="text-[#059669]">92 / 100 (Tier-1 Primary Liquidity Zone)</strong>
           </div>
         </div>
 

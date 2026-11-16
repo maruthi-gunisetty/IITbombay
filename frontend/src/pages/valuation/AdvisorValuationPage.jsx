@@ -156,18 +156,18 @@ export default function AdvisorValuationPage() {
   };
 
   return (
-    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
+    <div className="bg-[#F8FAFC] text-[#0F172A] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
       <HavenNavbar />
 
       <main className="flex-1 w-full">
         {/* Advisor Profile Header Hero */}
-        <section className="bg-[#0D1628] border-b border-[#23324A] py-14">
+        <section className="bg-[#F1F5F9] border-b border-[#E2E8F0] py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Photo & Badge */}
               <div className="lg:col-span-4 flex flex-col items-center sm:items-start">
                 <div className="relative">
-                  <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-[#111D32] border-2 border-[#3978F6] flex items-center justify-center p-1 shadow-2xl shadow-[#3978F6]/20">
+                  <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-[#FFFFFF] border-2 border-[#3978F6] flex items-center justify-center p-1 shadow-2xl shadow-[#3978F6]/20">
                     <img
                       src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
                       alt="Eleanor Vance"
@@ -183,40 +183,40 @@ export default function AdvisorValuationPage() {
               {/* Bio & Credentials */}
               <div className="lg:col-span-8 flex flex-col gap-4 text-center sm:text-left">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">
                     Chief Valuation Officer &amp; Private Wealth Advisor
                   </span>
-                  <h1 className="font-headline-lg text-3xl sm:text-4xl text-[#F5F7FC] font-semibold mt-1">
+                  <h1 className="font-headline-lg text-3xl sm:text-4xl text-[#0F172A] font-semibold mt-1">
                     Eleanor Vance
                   </h1>
-                  <p className="text-xs text-[#98A7BD] mt-1 font-semibold">
+                  <p className="text-xs text-[#475569] mt-1 font-semibold">
                     RICS Fellow · MAI Certified Commercial Appraiser · Regulatory Arbitrage Fellow
                   </p>
                 </div>
 
-                <p className="text-sm leading-relaxed text-[#98A7BD] max-w-2xl">
+                <p className="text-sm leading-relaxed text-[#475569] max-w-2xl">
                   Specializing in institutional property portfolios, high-value collateral asset valuations, and confidential debt advisory.
                   With over 18 years in institutional appraisal and INR 15,000+ Crores in verified transaction assessments,
                   Eleanor couples statistical hedonic regression modeling with rigorous underwriting compliance.
                 </p>
 
                 {/* Performance Metric Badges */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#23324A]">
-                  <div className="p-3.5 bg-[#111D32] rounded-xl border border-[#23324A]">
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Assessed Volume</p>
-                    <p className="text-lg font-bold text-[#F5F7FC] mt-0.5">INR 15,200 Cr+</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#E2E8F0]">
+                  <div className="p-3.5 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Assessed Volume</p>
+                    <p className="text-lg font-bold text-[#0F172A] mt-0.5">INR 15,200 Cr+</p>
                   </div>
-                  <div className="p-3.5 bg-[#111D32] rounded-xl border border-[#23324A]">
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Accuracy Index</p>
-                    <p className="text-lg font-bold text-[#20C997] mt-0.5">99.4% Verified</p>
+                  <div className="p-3.5 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Accuracy Index</p>
+                    <p className="text-lg font-bold text-[#059669] mt-0.5">99.4% Verified</p>
                   </div>
-                  <div className="p-3.5 bg-[#111D32] rounded-xl border border-[#23324A]">
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Off-Market Scope</p>
-                    <p className="text-lg font-bold text-[#29C5E8] mt-0.5">48% Private</p>
+                  <div className="p-3.5 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Off-Market Scope</p>
+                    <p className="text-lg font-bold text-[#0284C7] mt-0.5">48% Private</p>
                   </div>
-                  <div className="p-3.5 bg-[#111D32] rounded-xl border border-[#23324A]">
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Advisory Desk</p>
-                    <p className="text-xs font-bold text-[#F5F7FC] mt-1.5">+1 (415) 890-4200</p>
+                  <div className="p-3.5 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Advisory Desk</p>
+                    <p className="text-xs font-bold text-[#0F172A] mt-1.5">+1 (415) 890-4200</p>
                   </div>
                 </div>
               </div>
@@ -228,12 +228,12 @@ export default function AdvisorValuationPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">Advisory Track Record</span>
-              <h2 className="font-headline-md text-2xl text-[#F5F7FC] font-semibold mt-0.5">Curated Portfolios &amp; Record Valuations</h2>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">Advisory Track Record</span>
+              <h2 className="font-headline-md text-2xl text-[#0F172A] font-semibold mt-0.5">Curated Portfolios &amp; Record Valuations</h2>
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center bg-[#0D1628] p-1 rounded-xl border border-[#23324A]">
+            <div className="flex items-center bg-[#F1F5F9] p-1 rounded-xl border border-[#E2E8F0]">
               {[
                 { key: 'all', label: 'All Portfolios' },
                 { key: 'active', label: 'Active Placements' },
@@ -244,7 +244,7 @@ export default function AdvisorValuationPage() {
                   key={tab.key}
                   onClick={() => setPortfolioTab(tab.key)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    portfolioTab === tab.key ? 'bg-[#3978F6] text-white shadow-md' : 'text-[#98A7BD] hover:text-[#F5F7FC]'
+                    portfolioTab === tab.key ? 'bg-[#3978F6] text-white shadow-md' : 'text-[#475569] hover:text-[#0F172A]'
                   }`}
                 >
                   {tab.label}
@@ -257,29 +257,29 @@ export default function AdvisorValuationPage() {
             {filteredPortfolio.map((item) => (
               <div
                 key={item.id}
-                className="group bg-[#111D32] rounded-2xl overflow-hidden border border-[#23324A] hover:border-[#3978F6]/50 hover:shadow-2xl transition-all flex flex-col justify-between"
+                className="group bg-[#FFFFFF] rounded-2xl overflow-hidden border border-[#E2E8F0] hover:border-[#3978F6]/50 hover:shadow-2xl transition-all flex flex-col justify-between"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#0A1222]">
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#FFFFFF]">
                   <img
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#080E1B]/85 border border-[#23324A] text-[#29C5E8] text-[10px] font-bold uppercase">
+                  <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#F8FAFC]/85 border border-[#E2E8F0] text-[#0284C7] text-[10px] font-bold uppercase">
                     {item.badge}
                   </span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">{item.locality}</p>
-                    <h4 className="font-headline-sm text-sm font-bold text-[#F5F7FC] mt-0.5 truncate group-hover:text-[#29C5E8] transition-colors">{item.name}</h4>
-                    <p className="text-xs text-[#98A7BD] mt-1">{item.specs}</p>
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">{item.locality}</p>
+                    <h4 className="font-headline-sm text-sm font-bold text-[#0F172A] mt-0.5 truncate group-hover:text-[#0284C7] transition-colors">{item.name}</h4>
+                    <p className="text-xs text-[#475569] mt-1">{item.specs}</p>
                   </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-[#23324A]">
-                    <span className="font-headline-sm text-base font-bold text-[#20C997]">{item.price}</span>
+                  <div className="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
+                    <span className="font-headline-sm text-base font-bold text-[#059669]">{item.price}</span>
                     <Link
                       to={`/property/${item.id}`}
-                      className="text-xs text-[#3978F6] hover:text-[#29C5E8] font-bold flex items-center gap-0.5"
+                      className="text-xs text-[#3978F6] hover:text-[#0284C7] font-bold flex items-center gap-0.5"
                     >
                       <span>Inspect</span>
                       <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -292,16 +292,16 @@ export default function AdvisorValuationPage() {
         </section>
 
         {/* The Core AI Valuation Engine ("What Is Your Property Worth in Today's Real Market?") */}
-        <section className="bg-[#0D1628] py-16 border-y border-[#23324A]" id="valuation-engine">
+        <section className="bg-[#F1F5F9] py-16 border-y border-[#E2E8F0]" id="valuation-engine">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">
                 Institutional Hedonic Valuation Matrix
               </span>
-              <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#F5F7FC] font-semibold mt-1">
+              <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#0F172A] font-semibold mt-1">
                 What Is Your Property Worth in Today's Real Market?
               </h2>
-              <p className="text-xs sm:text-sm text-[#98A7BD] mt-2">
+              <p className="text-xs sm:text-sm text-[#475569] mt-2">
                 Powered by PropWise AI's multi-variable machine learning engine. Synthesizes registered comp deeds,
                 construction grade coefficients, and neighborhood telemetry in real time.
               </p>
@@ -309,67 +309,67 @@ export default function AdvisorValuationPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Form Input Column */}
-              <div className="lg:col-span-6 bg-[#111D32] p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#23324A]">
+              <div className="lg:col-span-6 bg-[#FFFFFF] p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#E2E8F0]">
                 <form onSubmit={handleRunValuation} className="flex flex-col gap-4">
-                  <h3 className="font-headline-sm text-lg text-[#F5F7FC] font-semibold mb-1">
+                  <h3 className="font-headline-sm text-lg text-[#0F172A] font-semibold mb-1">
                     Property Characteristics &amp; Location
                   </h3>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">City</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">City</label>
                       <input
                         type="text"
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        className="w-full bg-[#0D1628] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#F1F5F9] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Locality</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Locality</label>
                       <input
                         type="text"
                         value={formData.locality}
                         onChange={(e) => setFormData({ ...formData, locality: e.target.value })}
-                        className="w-full bg-[#0D1628] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#F1F5F9] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Property Type</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Property Type</label>
                       <select
                         value={formData.propertyType}
                         onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                        className="w-full bg-[#0D1628] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC] outline-none cursor-pointer"
+                        className="w-full bg-[#F1F5F9] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A] outline-none cursor-pointer"
                       >
-                        <option value="Penthouse" className="bg-[#111D32]">Sky Penthouse</option>
-                        <option value="Villa" className="bg-[#111D32]">Modern Architectural Villa</option>
-                        <option value="Historic" className="bg-[#111D32]">Historic Manor</option>
-                        <option value="Waterfront" className="bg-[#111D32]">Waterfront Sanctuary</option>
-                        <option value="Apartment" className="bg-[#111D32]">Luxury Apartment</option>
-                        <option value="Commercial" className="bg-[#111D32]">Commercial Floor</option>
+                        <option value="Penthouse" className="bg-[#FFFFFF]">Sky Penthouse</option>
+                        <option value="Villa" className="bg-[#FFFFFF]">Modern Architectural Villa</option>
+                        <option value="Historic" className="bg-[#FFFFFF]">Historic Manor</option>
+                        <option value="Waterfront" className="bg-[#FFFFFF]">Waterfront Sanctuary</option>
+                        <option value="Apartment" className="bg-[#FFFFFF]">Luxury Apartment</option>
+                        <option value="Commercial" className="bg-[#FFFFFF]">Commercial Floor</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Construction Grade</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Construction Grade</label>
                       <select
                         value={formData.constructionQuality}
                         onChange={(e) => setFormData({ ...formData, constructionQuality: e.target.value })}
-                        className="w-full bg-[#0D1628] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC] outline-none cursor-pointer"
+                        className="w-full bg-[#F1F5F9] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A] outline-none cursor-pointer"
                       >
-                        <option value="Ultra Luxury" className="bg-[#111D32]">Ultra Luxury Specification</option>
-                        <option value="Premium" className="bg-[#111D32]">Premium Architectural</option>
-                        <option value="Standard" className="bg-[#111D32]">Custom Grade</option>
+                        <option value="Ultra Luxury" className="bg-[#FFFFFF]">Ultra Luxury Specification</option>
+                        <option value="Premium" className="bg-[#FFFFFF]">Premium Architectural</option>
+                        <option value="Standard" className="bg-[#FFFFFF]">Custom Grade</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">
                         Built-Up Area ({formData.builtUpArea} sq ft)
                       </label>
                       <input
@@ -383,7 +383,7 @@ export default function AdvisorValuationPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">
                         Land Area ({formData.landArea} sq ft)
                       </label>
                       <input
@@ -400,40 +400,40 @@ export default function AdvisorValuationPage() {
 
                   <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Bedrooms</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Bedrooms</label>
                       <select
                         value={formData.bedrooms}
                         onChange={(e) => setFormData({ ...formData, bedrooms: Number(e.target.value) })}
-                        className="w-full bg-[#0D1628] px-3 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC]"
+                        className="w-full bg-[#F1F5F9] px-3 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A]"
                       >
-                        <option value="2" className="bg-[#111D32]">2 BHK</option>
-                        <option value="3" className="bg-[#111D32]">3 BHK</option>
-                        <option value="4" className="bg-[#111D32]">4 BHK</option>
-                        <option value="5" className="bg-[#111D32]">5+ BHK</option>
+                        <option value="2" className="bg-[#FFFFFF]">2 BHK</option>
+                        <option value="3" className="bg-[#FFFFFF]">3 BHK</option>
+                        <option value="4" className="bg-[#FFFFFF]">4 BHK</option>
+                        <option value="5" className="bg-[#FFFFFF]">5+ BHK</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Bathrooms</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Bathrooms</label>
                       <select
                         value={formData.bathrooms}
                         onChange={(e) => setFormData({ ...formData, bathrooms: Number(e.target.value) })}
-                        className="w-full bg-[#0D1628] px-3 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC]"
+                        className="w-full bg-[#F1F5F9] px-3 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A]"
                       >
-                        <option value="2" className="bg-[#111D32]">2 Baths</option>
-                        <option value="3" className="bg-[#111D32]">3 Baths</option>
-                        <option value="4" className="bg-[#111D32]">4 Baths</option>
-                        <option value="5" className="bg-[#111D32]">5+ Baths</option>
+                        <option value="2" className="bg-[#FFFFFF]">2 Baths</option>
+                        <option value="3" className="bg-[#FFFFFF]">3 Baths</option>
+                        <option value="4" className="bg-[#FFFFFF]">4 Baths</option>
+                        <option value="5" className="bg-[#FFFFFF]">5+ Baths</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Age (Years)</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Age (Years)</label>
                       <input
                         type="number"
                         min="0"
                         max="80"
                         value={formData.propertyAge}
                         onChange={(e) => setFormData({ ...formData, propertyAge: Number(e.target.value) })}
-                        className="w-full bg-[#0D1628] px-3 py-2 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC]"
+                        className="w-full bg-[#F1F5F9] px-3 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A]"
                       />
                     </div>
                   </div>
@@ -461,37 +461,37 @@ export default function AdvisorValuationPage() {
               {/* Valuation Output Display Column */}
               <div className="lg:col-span-6 flex flex-col gap-4">
                 {valuationResult ? (
-                  <div className="bg-[#111D32] p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#3978F6]/40 flex flex-col gap-6 animate-in fade-in">
+                  <div className="bg-[#FFFFFF] p-6 sm:p-8 rounded-2xl shadow-2xl border border-[#3978F6]/40 flex flex-col gap-6 animate-in fade-in">
                     <div>
-                      <div className="flex items-center justify-between text-xs text-[#98A7BD] uppercase font-bold tracking-wider mb-1">
+                      <div className="flex items-center justify-between text-xs text-[#475569] uppercase font-bold tracking-wider mb-1">
                         <span>AI Confidence Score: {valuationResult.confidence_score}%</span>
-                        <span className="text-[#20C997]">Hedonic Matrix v2026.2</span>
+                        <span className="text-[#059669]">Hedonic Matrix v2026.2</span>
                       </div>
-                      <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">Estimated Property Fair Value</h4>
-                      <p className="font-headline-lg text-3xl sm:text-4xl font-extrabold text-[#20C997] mt-1">
+                      <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">Estimated Property Fair Value</h4>
+                      <p className="font-headline-lg text-3xl sm:text-4xl font-extrabold text-[#059669] mt-1">
                         {valuationResult.estimated_value > 10000000
                           ? `INR ${(valuationResult.estimated_value / 10000000).toFixed(2)} Crores`
                           : `$${(valuationResult.estimated_value || 0).toLocaleString()}`}
                       </p>
-                      <p className="text-xs text-[#98A7BD] mt-1">
+                      <p className="text-xs text-[#475569] mt-1">
                         90% Confidence Interval: INR {(valuationResult.lower_bound / 10000000).toFixed(2)} Cr – {(valuationResult.upper_bound / 10000000).toFixed(2)} Cr
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-[#0D1628] border border-[#23324A]">
+                    <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-[#F1F5F9] border border-[#E2E8F0]">
                       <div>
-                        <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Price / Sq Ft</p>
-                        <p className="text-lg font-bold text-[#F5F7FC]">INR {(valuationResult.price_per_sqft || 0).toLocaleString()}</p>
+                        <p className="text-[10px] text-[#475569] uppercase font-bold">Price / Sq Ft</p>
+                        <p className="text-lg font-bold text-[#0F172A]">INR {(valuationResult.price_per_sqft || 0).toLocaleString()}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Model Classification</p>
-                        <p className="text-xs font-bold text-[#29C5E8] mt-1 truncate">{valuationResult.model_mode || 'Trained Gradient Regressor'}</p>
+                        <p className="text-[10px] text-[#475569] uppercase font-bold">Model Classification</p>
+                        <p className="text-xs font-bold text-[#0284C7] mt-1 truncate">{valuationResult.model_mode || 'Trained Gradient Regressor'}</p>
                       </div>
                     </div>
 
                     {/* Feature Attribution Matrix */}
                     <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#F5F7FC] mb-2">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#0F172A] mb-2">
                         Explainable Feature Contributions (SHAP Attribution)
                       </p>
                       <div className="flex flex-col gap-2">
@@ -500,9 +500,9 @@ export default function AdvisorValuationPage() {
                           { feature: 'Prime Locality Index', impact: '+INR 1.85 Cr' },
                           { feature: 'Construction Quality Grade', impact: '+INR 95 Lakh' }
                         ]).map((fc, i) => (
-                          <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-[#23324A]">
-                            <span className="text-[#98A7BD]">{fc.feature}</span>
-                            <span className="font-bold text-[#F5F7FC]">{fc.impact}</span>
+                          <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-[#E2E8F0]">
+                            <span className="text-[#475569]">{fc.feature}</span>
+                            <span className="font-bold text-[#0F172A]">{fc.impact}</span>
                           </div>
                         ))}
                       </div>
@@ -519,17 +519,17 @@ export default function AdvisorValuationPage() {
 
                       <Link
                         to={`/dashboard/mortgage?valuation=${valuationResult.estimated_value}`}
-                        className="flex-1 py-3 bg-[#0D1628] border border-[#23324A] text-[#F5F7FC] rounded-xl text-xs font-semibold hover:bg-[#111D32] transition-colors text-center"
+                        className="flex-1 py-3 bg-[#F1F5F9] border border-[#E2E8F0] text-[#0F172A] rounded-xl text-xs font-semibold hover:bg-[#FFFFFF] transition-colors text-center"
                       >
                         Model Underwriting &amp; LTV
                       </Link>
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-[#111D32] p-8 rounded-2xl shadow-xl border border-[#23324A] text-center flex flex-col items-center justify-center h-full min-h-[350px]">
-                    <span className="material-symbols-outlined text-[54px] text-[#23324A] mb-3">analytics</span>
-                    <h4 className="font-headline-sm text-lg text-[#F5F7FC] font-semibold">Ready for Computation</h4>
-                    <p className="text-xs text-[#98A7BD] max-w-sm mt-1">
+                  <div className="bg-[#FFFFFF] p-8 rounded-2xl shadow-xl border border-[#E2E8F0] text-center flex flex-col items-center justify-center h-full min-h-[350px]">
+                    <span className="material-symbols-outlined text-[54px] text-[#E2E8F0] mb-3">analytics</span>
+                    <h4 className="font-headline-sm text-lg text-[#0F172A] font-semibold">Ready for Computation</h4>
+                    <p className="text-xs text-[#475569] max-w-sm mt-1">
                       Adjust your property's built-up area, bedroom count, and locality on the left, then click Calculate
                       to execute real-time hedonic valuation algorithms.
                     </p>
@@ -542,69 +542,69 @@ export default function AdvisorValuationPage() {
 
         {/* Schedule a Private Advisory Session */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
-          <div className="bg-[#111D32] rounded-2xl p-8 sm:p-12 shadow-2xl border border-[#23324A] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="bg-[#FFFFFF] rounded-2xl p-8 sm:p-12 shadow-2xl border border-[#E2E8F0] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 flex flex-col gap-3">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8]">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">
                 Private Client Representation
               </span>
-              <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#F5F7FC] font-semibold">
+              <h2 className="font-headline-lg text-2xl sm:text-3xl text-[#0F172A] font-semibold">
                 Schedule an Executive Advisory Session
               </h2>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#98A7BD] max-w-xl">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#475569] max-w-xl">
                 Whether you are contemplating an off-market disposition or acquiring an irreplaceable collateral asset,
                 our advisory partners provide comprehensive valuation modeling, tax optimization insights, and absolute confidentiality.
               </p>
             </div>
 
-            <div className="lg:col-span-5 bg-[#0D1628] p-6 rounded-2xl border border-[#23324A]">
+            <div className="lg:col-span-5 bg-[#F1F5F9] p-6 rounded-2xl border border-[#E2E8F0]">
               {consultStatus === 'success' ? (
                 <div className="text-center py-6">
-                  <span className="material-symbols-outlined text-[40px] text-[#20C997]">verified</span>
-                  <p className="text-sm font-bold text-[#F5F7FC] mt-2">Advisory Session Requested</p>
-                  <p className="text-xs text-[#98A7BD] mt-1">Eleanor Vance's office will reach out within 2 business hours.</p>
+                  <span className="material-symbols-outlined text-[40px] text-[#059669]">verified</span>
+                  <p className="text-sm font-bold text-[#0F172A] mt-2">Advisory Session Requested</p>
+                  <p className="text-xs text-[#475569] mt-1">Eleanor Vance's office will reach out within 2 business hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleBookConsultation} className="flex flex-col gap-3">
                   <div>
-                    <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Full Legal Name</label>
+                    <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Full Legal Name</label>
                     <input
                       type="text"
                       required
                       value={consultForm.fullName}
                       onChange={(e) => setConsultForm({ ...consultForm, fullName: e.target.value })}
                       placeholder="e.g. Katherine Sterling"
-                      className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                      className="w-full bg-[#FFFFFF] px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Email</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Email</label>
                       <input
                         type="email"
                         required
                         value={consultForm.email}
                         onChange={(e) => setConsultForm({ ...consultForm, email: e.target.value })}
                         placeholder="katherine@familyoffice.com"
-                        className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#FFFFFF] px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Direct Phone</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Direct Phone</label>
                       <input
                         type="tel"
                         value={consultForm.phone}
                         onChange={(e) => setConsultForm({ ...consultForm, phone: e.target.value })}
                         placeholder="+91 98200 00000"
-                        className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#FFFFFF] px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold uppercase text-[#98A7BD] mb-1">Advisory Mandate</label>
+                    <label className="block text-[11px] font-bold uppercase text-[#475569] mb-1">Advisory Mandate</label>
                     <select
                       value={consultForm.portfolioScope}
                       onChange={(e) => setConsultForm({ ...consultForm, portfolioScope: e.target.value })}
-                      className="w-full bg-[#111D32] px-3.5 py-2.5 rounded-lg border border-[#23324A] text-xs font-semibold text-[#F5F7FC] outline-none cursor-pointer"
+                      className="w-full bg-[#FFFFFF] px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#0F172A] outline-none cursor-pointer"
                     >
                       <option value="Off-Market Acquisition">Private Off-Market Acquisition</option>
                       <option value="Property Valuation & Disposal">Estate Valuation &amp; Confidential Disposal</option>

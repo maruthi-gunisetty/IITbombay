@@ -6,7 +6,7 @@ import AIAssistantModal from '../ai/AIAssistantModal';
 
 const DashboardLayout = () => {
   return (
-    <div className="flex min-h-screen bg-[#080E1B] text-[#F5F7FC]">
+    <div className="flex min-h-screen bg-[#F8FAFC] text-[#0F172A]">
       {/* Permanent Dark Sidebar */}
       <Sidebar />
 
@@ -14,7 +14,7 @@ const DashboardLayout = () => {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <TopBar />
         
-        <main className="flex-1 overflow-y-auto p-6 bg-[#080E1B]">
+        <main className="flex-1 overflow-y-auto p-6 bg-[#F8FAFC]">
           <div className="max-w-7xl mx-auto space-y-6">
             <Outlet />
           </div>

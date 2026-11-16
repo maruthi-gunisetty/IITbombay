@@ -18,34 +18,34 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  const navSectionClass = "text-[11px] font-semibold text-[#98A7BD]/70 uppercase tracking-wider px-3 mb-2 mt-6";
+  const navSectionClass = "text-[11px] font-semibold text-[#475569]/70 uppercase tracking-wider px-3 mb-2 mt-6";
 
   const linkClass = ({ isActive }) =>
     `flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group relative ${
       isActive
-        ? 'bg-[#111D32] text-[#29C5E8] border border-[#3978F6]/40 shadow-sm shadow-[#3978F6]/10'
-        : 'text-[#98A7BD] hover:text-[#F5F7FC] hover:bg-[#111D32]/60'
+        ? 'bg-blue-50 text-blue-700 font-semibold border border-blue-200 shadow-sm'
+        : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-100'
     } ${collapsed ? 'justify-center px-0' : ''}`;
 
   return (
     <aside
-      className={`h-screen sticky top-0 bg-[#0A1222] border-r border-[#23324A] flex flex-col transition-all duration-300 z-40 select-none ${
+      className={`h-screen sticky top-0 bg-[#FFFFFF] border-r border-[#E2E8F0] flex flex-col transition-all duration-300 z-40 select-none ${
         collapsed ? 'w-20' : 'w-64'
       }`}
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-[#23324A]">
+      <div className="h-16 flex items-center justify-between px-4 border-b border-[#E2E8F0]">
         <div className={`flex items-center space-x-3 ${collapsed ? 'hidden' : 'flex'}`}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#29C5E8] flex items-center justify-center p-0.5 shadow-md">
-            <div className="w-full h-full bg-[#0A1222] rounded-[6px] flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-[#29C5E8]" />
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-md">
+            <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] flex items-center justify-center">
+              <BarChart3 className="w-4 h-4 text-[#0284C7]" />
             </div>
           </div>
           <div>
-            <span className="text-base font-bold text-[#F5F7FC] tracking-tight block leading-none">
+            <span className="text-base font-bold text-[#0F172A] tracking-tight block leading-none">
               PROPWISE <span className="text-[#3978F6]">AI</span>
             </span>
-            <span className="text-[9px] text-[#98A7BD] uppercase tracking-wider block font-medium mt-0.5">
+            <span className="text-[9px] text-[#475569] uppercase tracking-wider block font-medium mt-0.5">
               Enterprise Suite
             </span>
           </div>
@@ -61,7 +61,7 @@ const Sidebar = () => {
 
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className={`p-1.5 rounded-lg text-[#98A7BD] hover:text-white hover:bg-[#111D32] transition-colors ${
+          className={`p-1.5 rounded-lg text-[#475569] hover:text-white hover:bg-[#FFFFFF] transition-colors ${
             collapsed ? 'hidden' : 'block'
           }`}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -95,19 +95,19 @@ const Sidebar = () => {
         {/* INTELLIGENCE */}
         <div className={collapsed ? 'hidden' : navSectionClass}>Intelligence</div>
         <NavLink to="/dashboard/risk" className={linkClass} title="Risk Intelligence">
-          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#29C5E8]" />
+          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
           {!collapsed && <span>Risk Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/documents" className={linkClass} title="Document Intelligence">
-          <FileText className="w-4 h-4 flex-shrink-0 text-[#29C5E8]" />
+          <FileText className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
           {!collapsed && <span>Document Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/fraud" className={linkClass} title="Fraud Detection">
-          <AlertTriangle className="w-4 h-4 flex-shrink-0 text-[#F5B942]" />
+          <AlertTriangle className="w-4 h-4 flex-shrink-0 text-[#D97706]" />
           {!collapsed && <span>Fraud & Anomalies</span>}
         </NavLink>
         <NavLink to="/dashboard/location" className={linkClass} title="Location Intelligence">
-          <MapPin className="w-4 h-4 flex-shrink-0 text-[#20C997]" />
+          <MapPin className="w-4 h-4 flex-shrink-0 text-[#059669]" />
           {!collapsed && <span>Location Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/market" className={linkClass} title="Market Analytics">
@@ -126,7 +126,7 @@ const Sidebar = () => {
           {!collapsed && <span>Notifications</span>}
         </NavLink>
         <NavLink to="/dashboard/ai-chat" className={linkClass} title="PropWise Assistant">
-          <Bot className="w-4 h-4 flex-shrink-0 text-[#29C5E8]" />
+          <Bot className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
           {!collapsed && <span>PropWise Assistant</span>}
         </NavLink>
 
@@ -152,8 +152,8 @@ const Sidebar = () => {
         {/* ACCOUNT */}
         <div className={collapsed ? 'hidden' : navSectionClass}>Portal &amp; Account</div>
         <NavLink to="/" className={linkClass} title="Haven & Key Public Portal">
-          <Building2 className="w-4 h-4 flex-shrink-0 text-[#29C5E8]" />
-          {!collapsed && <span className="text-[#29C5E8]">Public Estate Portal</span>}
+          <Building2 className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
+          {!collapsed && <span className="text-[#0284C7]">Public Estate Portal</span>}
         </NavLink>
         <NavLink to="/dashboard/settings" className={linkClass} title="Settings & BYOK">
           <Settings className="w-4 h-4 flex-shrink-0" />
@@ -166,23 +166,23 @@ const Sidebar = () => {
       </div>
 
       {/* Sidebar Footer with User Card & Logout */}
-      <div className="p-3 border-t border-[#23324A] bg-[#080E1B]/50">
+      <div className="p-3 border-t border-[#E2E8F0] bg-[#F8FAFC]/50">
         {!collapsed ? (
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-[#111D32] border border-[#3978F6]/40 flex items-center justify-center text-xs font-bold text-[#29C5E8]">
+              <div className="w-8 h-8 rounded-full bg-[#FFFFFF] border border-[#3978F6]/40 flex items-center justify-center text-xs font-bold text-[#0284C7]">
                 {user?.full_name?.charAt(0) || 'U'}
               </div>
               <div className="overflow-hidden">
-                <p className="text-xs font-semibold text-[#F5F7FC] truncate">{user?.full_name || 'User'}</p>
-                <span className="text-[10px] text-[#20C997] font-medium block truncate">
+                <p className="text-xs font-semibold text-[#0F172A] truncate">{user?.full_name || 'User'}</p>
+                <span className="text-[10px] text-[#059669] font-medium block truncate">
                   {user?.account_type || 'Customer'}
                 </span>
               </div>
             </div>
             <button
               onClick={handleLogout}
-              className="p-1.5 text-[#98A7BD] hover:text-[#EF5B67] hover:bg-[#111D32] rounded-lg transition-colors"
+              className="p-1.5 text-[#475569] hover:text-[#DC2626] hover:bg-rose-50 rounded-lg transition-colors"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />
@@ -191,7 +191,7 @@ const Sidebar = () => {
         ) : (
           <button
             onClick={() => setCollapsed(false)}
-            className="w-full flex justify-center p-2 text-[#98A7BD] hover:text-[#F5F7FC]"
+            className="w-full flex justify-center p-2 text-[#475569] hover:text-[#0F172A]"
             title="Expand Sidebar"
           >
             <ChevronRight className="w-4 h-4" />

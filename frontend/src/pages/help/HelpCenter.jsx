@@ -64,8 +64,8 @@ const HelpCenter = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Help Center & Knowledge Base</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Help Center & Knowledge Base</h2>
+        <p className="text-xs text-[#475569]">
           Operational guides, algorithmic methodology disclosures, and technical support desk.
         </p>
       </div>
@@ -75,20 +75,20 @@ const HelpCenter = () => {
         {guides.map((g, i) => {
           const Icon = g.icon;
           return (
-            <div key={i} className="bg-[#111D32] border border-[#23324A] rounded-xl p-5 space-y-2">
-              <div className="w-9 h-9 rounded-lg bg-[#0D1628] border border-[#23324A] flex items-center justify-center text-[#29C5E8]">
+            <div key={i} className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-5 space-y-2">
+              <div className="w-9 h-9 rounded-lg bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-center text-[#0284C7]">
                 <Icon className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-bold text-[#F5F7FC]">{g.title}</h3>
-              <p className="text-xs text-[#98A7BD] leading-relaxed">{g.desc}</p>
+              <h3 className="text-sm font-bold text-[#0F172A]">{g.title}</h3>
+              <p className="text-xs text-[#475569] leading-relaxed">{g.desc}</p>
             </div>
           );
         })}
       </div>
 
       {/* FAQ Accordion */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4">
-        <h3 className="text-sm font-bold text-[#F5F7FC] pb-3 border-b border-[#23324A]">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4">
+        <h3 className="text-sm font-bold text-[#0F172A] pb-3 border-b border-[#E2E8F0]">
           Frequently Asked Questions
         </h3>
 
@@ -96,17 +96,17 @@ const HelpCenter = () => {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="bg-[#080E1B] border border-[#23324A] rounded-xl overflow-hidden transition-colors"
+              className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden transition-colors"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full p-4 flex items-center justify-between text-left text-xs font-bold text-[#F5F7FC]"
+                className="w-full p-4 flex items-center justify-between text-left text-xs font-bold text-[#0F172A]"
               >
                 <span>{faq.q}</span>
-                {openFaq === i ? <ChevronUp className="w-4 h-4 text-[#3978F6]" /> : <ChevronDown className="w-4 h-4 text-[#98A7BD]" />}
+                {openFaq === i ? <ChevronUp className="w-4 h-4 text-[#3978F6]" /> : <ChevronDown className="w-4 h-4 text-[#475569]" />}
               </button>
               {openFaq === i && (
-                <div className="px-4 pb-4 text-xs text-[#98A7BD] leading-relaxed border-t border-[#23324A]/40 pt-2.5">
+                <div className="px-4 pb-4 text-xs text-[#475569] leading-relaxed border-t border-[#E2E8F0]/40 pt-2.5">
                   {faq.a}
                 </div>
               )}
@@ -116,14 +116,14 @@ const HelpCenter = () => {
       </div>
 
       {/* Support Ticket Desk Form */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4 max-w-xl">
-        <h3 className="text-sm font-bold text-[#F5F7FC]">Submit Support Request to Engineering Desk</h3>
-        <p className="text-xs text-[#98A7BD]">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4 max-w-xl">
+        <h3 className="text-sm font-bold text-[#0F172A]">Submit Support Request to Engineering Desk</h3>
+        <p className="text-xs text-[#475569]">
           Direct inquiry to technical support and model operations team. Responses are provided within 24 business hours.
         </p>
 
         {ticketSent && (
-          <div className="p-3.5 rounded-xl bg-[#20C997]/10 border border-[#20C997]/30 text-xs text-[#20C997] flex items-center space-x-2">
+          <div className="p-3.5 rounded-xl bg-[#059669]/10 border border-[#059669]/30 text-xs text-[#059669] flex items-center space-x-2">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
             <span>Support ticket recorded successfully. An engineering specialist will follow up shortly.</span>
           </div>
@@ -131,26 +131,26 @@ const HelpCenter = () => {
 
         <form onSubmit={handleSupportSubmit} className="space-y-3.5 text-xs">
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Issue Topic</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Issue Topic</label>
             <input
               type="text"
               required
               value={ticketSubject}
               onChange={(e) => setTicketSubject(e.target.value)}
               placeholder="e.g. BYOK validation inquiry or valuation question"
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
             />
           </div>
 
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Detailed Technical Explanation</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Detailed Technical Explanation</label>
             <textarea
               rows={3}
               required
               value={ticketMsg}
               onChange={(e) => setTicketMsg(e.target.value)}
               placeholder="Describe the question or behavior observed"
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
             />
           </div>
 

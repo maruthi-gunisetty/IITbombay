@@ -89,7 +89,7 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-gradient-to-tr from-[#2457C5] to-[#3978F6] text-white shadow-2xl hover:shadow-[#3978F6]/40 transition-all duration-300 hover:scale-105 flex items-center space-x-2 border border-[#29C5E8]/40"
+        className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-gradient-to-tr from-[#2457C5] to-[#3978F6] text-white shadow-2xl hover:shadow-[#3978F6]/40 transition-all duration-300 hover:scale-105 flex items-center space-x-2 border border-[#0284C7]/40"
         title="Open PropWise Intelligence Assistant"
       >
         <Bot className="w-5 h-5 text-white" />
@@ -98,40 +98,40 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
 
       {/* Slide-out Chat Panel */}
       {isOpen && (
-        <div className="fixed bottom-20 right-6 z-50 w-[420px] max-w-[calc(100vw-2rem)] h-[600px] bg-[#0D1628] border border-[#23324A] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-20 right-6 z-50 w-[420px] max-w-[calc(100vw-2rem)] h-[600px] bg-[#F1F5F9] border border-[#E2E8F0] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
           
           {/* Header */}
-          <div className="p-4 bg-[#0A1222] border-b border-[#23324A] flex items-center justify-between">
+          <div className="p-4 bg-[#FFFFFF] border-b border-[#E2E8F0] flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-xl bg-[#111D32] border border-[#3978F6]/40 flex items-center justify-center">
-                <Bot className="w-5 h-5 text-[#29C5E8]" />
+              <div className="w-9 h-9 rounded-xl bg-[#FFFFFF] border border-[#3978F6]/40 flex items-center justify-center">
+                <Bot className="w-5 h-5 text-[#0284C7]" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-[#F5F7FC] leading-none">PropWise Intelligence</h3>
+                <h3 className="text-sm font-bold text-[#0F172A] leading-none">PropWise Intelligence</h3>
                 <div className="flex items-center space-x-2 mt-1">
-                  <span className="w-2 h-2 rounded-full bg-[#20C997] animate-pulse"></span>
-                  <span className="text-[10px] text-[#98A7BD]">
-                    Active Provider: <strong className="text-[#F5F7FC]">{byokStatus?.active_provider || 'Platform'}</strong>
+                  <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
+                  <span className="text-[10px] text-[#475569]">
+                    Active Provider: <strong className="text-[#0F172A]">{byokStatus?.active_provider || 'Platform'}</strong>
                   </span>
                 </div>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-lg text-[#98A7BD] hover:text-white hover:bg-[#111D32] transition-colors"
+              className="p-1 rounded-lg text-[#475569] hover:text-white hover:bg-[#FFFFFF] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* BYOK Status Banner */}
-          <div className="px-4 py-2 bg-[#111D32]/60 border-b border-[#23324A] flex items-center justify-between text-[11px] text-[#98A7BD]">
+          <div className="px-4 py-2 bg-[#FFFFFF]/60 border-b border-[#E2E8F0] flex items-center justify-between text-[11px] text-[#475569]">
             <div className="flex items-center space-x-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#20C997]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" />
               <span>Grounded Institutional Analysis</span>
             </div>
             {byokStatus?.masked_key && (
-              <span className="text-[10px] text-[#29C5E8] font-mono">
+              <span className="text-[10px] text-[#0284C7] font-mono">
                 BYOK: {byokStatus.masked_key}
               </span>
             )}
@@ -148,12 +148,12 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
                   className={`max-w-[85%] rounded-xl px-3.5 py-2.5 leading-relaxed whitespace-pre-wrap ${
                     m.sender === 'user'
                       ? 'bg-[#3978F6] text-white rounded-br-none shadow-md'
-                      : 'bg-[#111D32] text-[#F5F7FC] border border-[#23324A] rounded-bl-none shadow-sm'
+                      : 'bg-[#FFFFFF] text-[#0F172A] border border-[#E2E8F0] rounded-bl-none shadow-sm'
                   }`}
                 >
                   <p>{m.content}</p>
                   {m.provider_used && (
-                    <div className="mt-2 pt-1 border-t border-[#23324A]/40 text-[9px] text-[#98A7BD] flex items-center justify-between">
+                    <div className="mt-2 pt-1 border-t border-[#E2E8F0]/40 text-[9px] text-[#475569] flex items-center justify-between">
                       <span>Source: {m.provider_used}</span>
                     </div>
                   )}
@@ -162,8 +162,8 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#111D32] border border-[#23324A] rounded-xl px-3.5 py-2 text-xs text-[#98A7BD] flex items-center space-x-2">
-                  <RefreshCw className="w-3.5 h-3.5 text-[#29C5E8] animate-spin" />
+                <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3.5 py-2 text-xs text-[#475569] flex items-center space-x-2">
+                  <RefreshCw className="w-3.5 h-3.5 text-[#0284C7] animate-spin" />
                   <span>Synthesizing institutional context...</span>
                 </div>
               </div>
@@ -172,12 +172,12 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
           </div>
 
           {/* Quick Prompts */}
-          <div className="px-4 py-2 bg-[#0A1222]/60 border-t border-[#23324A] flex items-center space-x-2 overflow-x-auto no-scrollbar">
+          <div className="px-4 py-2 bg-[#FFFFFF]/60 border-t border-[#E2E8F0] flex items-center space-x-2 overflow-x-auto no-scrollbar">
             {quickPrompts.map((p, i) => (
               <button
                 key={i}
                 onClick={() => handleSendMessage(p)}
-                className="whitespace-nowrap px-2.5 py-1 rounded-md bg-[#111D32] hover:bg-[#3978F6]/20 border border-[#23324A] text-[10px] text-[#98A7BD] hover:text-[#F5F7FC] transition-colors"
+                className="whitespace-nowrap px-2.5 py-1 rounded-md bg-[#FFFFFF] hover:bg-[#3978F6]/20 border border-[#E2E8F0] text-[10px] text-[#475569] hover:text-[#0F172A] transition-colors"
               >
                 {p}
               </button>
@@ -185,7 +185,7 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
           </div>
 
           {/* Input Footer */}
-          <div className="p-3 bg-[#0A1222] border-t border-[#23324A]">
+          <div className="p-3 bg-[#FFFFFF] border-t border-[#E2E8F0]">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -199,7 +199,7 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 disabled={loading}
-                className="flex-1 bg-[#111D32] border border-[#23324A] rounded-xl px-3.5 py-2 text-xs text-[#F5F7FC] placeholder-[#98A7BD] focus:outline-none focus:border-[#3978F6] transition-colors disabled:opacity-50"
+                className="flex-1 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3.5 py-2 text-xs text-[#0F172A] placeholder-[#475569] focus:outline-none focus:border-[#3978F6] transition-colors disabled:opacity-50"
               />
               <button
                 type="submit"

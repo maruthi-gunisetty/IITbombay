@@ -53,14 +53,14 @@ const NotificationCenter = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Notification Center</h2>
-          <p className="text-xs text-[#98A7BD]">
+          <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Notification Center</h2>
+          <p className="text-xs text-[#475569]">
             System events, valuation completions, underwriting status transitions, and risk alerts.
           </p>
         </div>
         <button
           onClick={handleMarkAllRead}
-          className="px-4 py-2 rounded-xl bg-[#111D32] hover:bg-[#0D1628] border border-[#23324A] text-xs font-semibold text-[#29C5E8] flex items-center space-x-1.5 transition-colors"
+          className="px-4 py-2 rounded-xl bg-[#FFFFFF] hover:bg-[#F1F5F9] border border-[#E2E8F0] text-xs font-semibold text-[#0284C7] flex items-center space-x-1.5 transition-colors"
         >
           <Check className="w-3.5 h-3.5" />
           <span>Mark All as Read</span>
@@ -68,7 +68,7 @@ const NotificationCenter = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex space-x-2 border-b border-[#23324A] pb-3 text-xs">
+      <div className="flex space-x-2 border-b border-[#E2E8F0] pb-3 text-xs">
         {['all', 'unread', 'read'].map(f => (
           <button
             key={f}
@@ -76,7 +76,7 @@ const NotificationCenter = () => {
             className={`px-3.5 py-1.5 rounded-lg capitalize font-semibold transition-colors ${
               filter === f
                 ? 'bg-[#3978F6] text-white'
-                : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC]'
+                : 'bg-[#FFFFFF] text-[#475569] hover:text-[#0F172A]'
             }`}
           >
             {f} Notifications
@@ -85,35 +85,35 @@ const NotificationCenter = () => {
       </div>
 
       {/* Notifications List */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl divide-y divide-[#23324A] overflow-hidden shadow-xl">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl divide-y divide-[#E2E8F0] overflow-hidden shadow-xl">
         {loading ? (
-          <div className="text-center py-12 text-xs text-[#98A7BD]">Loading notifications...</div>
+          <div className="text-center py-12 text-xs text-[#475569]">Loading notifications...</div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-12 text-xs text-[#98A7BD]">No notifications in this view.</div>
+          <div className="text-center py-12 text-xs text-[#475569]">No notifications in this view.</div>
         ) : (
           filtered.map(n => (
             <div
               key={n.id}
               className={`p-4 flex items-start justify-between transition-colors ${
-                !n.is_read ? 'bg-[#0D1628]/80' : 'hover:bg-[#080E1B]/40'
+                !n.is_read ? 'bg-[#F1F5F9]/80' : 'hover:bg-[#F8FAFC]/40'
               }`}
             >
               <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 rounded-lg bg-[#080E1B] border border-[#23324A] flex items-center justify-center text-[#29C5E8] mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-[#0284C7] mt-0.5">
                   <Bell className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="flex items-center space-x-2">
-                    <h4 className="text-xs font-bold text-[#F5F7FC]">{n.title}</h4>
+                    <h4 className="text-xs font-bold text-[#0F172A]">{n.title}</h4>
                     <span className="px-2 py-0.2 rounded bg-[#3978F6]/20 text-[#3978F6] text-[10px] font-bold">
                       {n.category}
                     </span>
                     {!n.is_read && (
-                      <span className="w-2 h-2 rounded-full bg-[#EF5B67]"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
                     )}
                   </div>
-                  <p className="text-xs text-[#98A7BD] mt-1 leading-relaxed">{n.message}</p>
-                  <span className="text-[10px] text-[#98A7BD]/60 block mt-1">
+                  <p className="text-xs text-[#475569] mt-1 leading-relaxed">{n.message}</p>
+                  <span className="text-[10px] text-[#475569]/60 block mt-1">
                     {new Date(n.created_at).toLocaleString()}
                   </span>
                 </div>
@@ -122,7 +122,7 @@ const NotificationCenter = () => {
               {!n.is_read && (
                 <button
                   onClick={() => handleMarkRead(n.id)}
-                  className="p-1.5 rounded-lg text-[#98A7BD] hover:text-[#20C997] hover:bg-[#080E1B] transition-colors"
+                  className="p-1.5 rounded-lg text-[#475569] hover:text-[#059669] hover:bg-[#F8FAFC] transition-colors"
                   title="Mark as read"
                 >
                   <CheckCircle2 className="w-4 h-4" />

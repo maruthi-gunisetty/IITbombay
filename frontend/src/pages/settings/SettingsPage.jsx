@@ -112,14 +112,14 @@ const SettingsPage = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">System Configuration & BYOK</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">System Configuration & BYOK</h2>
+        <p className="text-xs text-[#475569]">
           Manage account parameters, security settings, and dual API key management (Bring Your Own Key).
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2 border-b border-[#23324A] pb-3 text-xs">
+      <div className="flex space-x-2 border-b border-[#E2E8F0] pb-3 text-xs">
         {[
           { id: 'ai_keys', label: 'AI & BYOK Key Management', icon: Key },
           { id: 'profile', label: 'Profile Information', icon: User },
@@ -133,7 +133,7 @@ const SettingsPage = () => {
               className={`px-4 py-2 rounded-xl font-semibold flex items-center space-x-2 transition-colors ${
                 activeTab === tab.id
                   ? 'bg-[#3978F6] text-white shadow-md shadow-[#3978F6]/20'
-                  : 'bg-[#111D32] text-[#98A7BD] hover:text-[#F5F7FC]'
+                  : 'bg-[#FFFFFF] text-[#475569] hover:text-[#0F172A]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -150,46 +150,46 @@ const SettingsPage = () => {
           {/* Status Overview Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4 space-y-2">
-              <span className="text-[10px] text-[#98A7BD] uppercase block font-semibold">Active Inference Gateway</span>
+            <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4 space-y-2">
+              <span className="text-[10px] text-[#475569] uppercase block font-semibold">Active Inference Gateway</span>
               <div className="flex items-center space-x-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20C997] animate-pulse"></span>
-                <span className="text-lg font-bold text-[#F5F7FC]">{byokStatus?.active_provider || 'Platform'}</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#059669] animate-pulse"></span>
+                <span className="text-lg font-bold text-[#0F172A]">{byokStatus?.active_provider || 'Platform'}</span>
               </div>
-              <p className="text-[11px] text-[#98A7BD]">
+              <p className="text-[11px] text-[#475569]">
                 {byokStatus?.active_provider === 'Personal'
                   ? 'Requests billed directly to your personal OpenRouter account.'
                   : 'Platform pool active with automatic BYOK fallback enabled.'}
               </p>
             </div>
 
-            <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4 space-y-2">
-              <span className="text-[10px] text-[#98A7BD] uppercase block font-semibold">Platform Key Status</span>
-              <span className="text-sm font-bold text-[#20C997] block">
+            <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4 space-y-2">
+              <span className="text-[10px] text-[#475569] uppercase block font-semibold">Platform Key Status</span>
+              <span className="text-sm font-bold text-[#059669] block">
                 {byokStatus?.platform_api_status || 'Operational'}
               </span>
-              <p className="text-[11px] text-[#98A7BD]">
+              <p className="text-[11px] text-[#475569]">
                 Managed infrastructure pool providing standard quota allocations.
               </p>
             </div>
 
-            <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4 space-y-2">
-              <span className="text-[10px] text-[#98A7BD] uppercase block font-semibold">Personal BYOK Key</span>
+            <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4 space-y-2">
+              <span className="text-[10px] text-[#475569] uppercase block font-semibold">Personal BYOK Key</span>
               <div className="flex items-center justify-between">
-                <span className="text-sm font-mono font-bold text-[#29C5E8]">
+                <span className="text-sm font-mono font-bold text-[#0284C7]">
                   {byokStatus?.masked_key || 'Not Configured'}
                 </span>
                 {byokStatus?.masked_key && (
                   <button
                     onClick={handleDeleteKey}
-                    className="text-[#EF5B67] hover:text-[#EF5B67]/80 text-xs"
+                    className="text-[#DC2626] hover:text-[#DC2626]/80 text-xs"
                     title="Purge Key"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
-              <p className="text-[11px] text-[#98A7BD]">
+              <p className="text-[11px] text-[#475569]">
                 Stored securely via AES-256-GCM authenticated encryption.
               </p>
             </div>
@@ -197,11 +197,11 @@ const SettingsPage = () => {
           </div>
 
           {/* BYOK Controls & Actions */}
-          <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#23324A] gap-3">
+          <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-3">
               <div>
-                <h3 className="text-sm font-bold text-[#F5F7FC]">Bring Your Own Key (BYOK) Configuration</h3>
-                <p className="text-xs text-[#98A7BD]">
+                <h3 className="text-sm font-bold text-[#0F172A]">Bring Your Own Key (BYOK) Configuration</h3>
+                <p className="text-xs text-[#475569]">
                   Connect your OpenRouter account to enable dedicated capacity and custom model endpoints.
                 </p>
               </div>
@@ -219,10 +219,10 @@ const SettingsPage = () => {
             {/* Preference Toggles */}
             <div className="space-y-4 text-xs">
               
-              <div className="p-4 rounded-xl bg-[#080E1B] border border-[#23324A] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-[#F5F7FC]">Automatic Quota Fallback Routing</h4>
-                  <p className="text-[#98A7BD] mt-0.5">
+                  <h4 className="font-bold text-[#0F172A]">Automatic Quota Fallback Routing</h4>
+                  <p className="text-[#475569] mt-0.5">
                     If platform API limits or rate quotas are reached, automatically fall back to your personal key.
                   </p>
                 </div>
@@ -233,14 +233,14 @@ const SettingsPage = () => {
                     onChange={(e) => handleTogglePreference('is_automatic_fallback_enabled', e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-[#23324A] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#3978F6]"></div>
+                  <div className="w-11 h-6 bg-[#E2E8F0] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#3978F6]"></div>
                 </label>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#080E1B] border border-[#23324A] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-[#F5F7FC]">Enable Personal Key Usage</h4>
-                  <p className="text-[#98A7BD] mt-0.5">
+                  <h4 className="font-bold text-[#0F172A]">Enable Personal Key Usage</h4>
+                  <p className="text-[#475569] mt-0.5">
                     Permit the platform to utilize your stored OpenRouter key for AI requests.
                   </p>
                 </div>
@@ -252,14 +252,14 @@ const SettingsPage = () => {
                     onChange={(e) => handleTogglePreference('is_personal_key_enabled', e.target.checked)}
                     className="sr-only peer disabled:opacity-50"
                   />
-                  <div className="w-11 h-6 bg-[#23324A] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#20C997]"></div>
+                  <div className="w-11 h-6 bg-[#E2E8F0] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#059669]"></div>
                 </label>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#080E1B] border border-[#23324A] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-[#F5F7FC]">Preferred Primary Provider</h4>
-                  <p className="text-[#98A7BD] mt-0.5">
+                  <h4 className="font-bold text-[#0F172A]">Preferred Primary Provider</h4>
+                  <p className="text-[#475569] mt-0.5">
                     Select which API source is evaluated first before fallback.
                   </p>
                 </div>
@@ -267,7 +267,7 @@ const SettingsPage = () => {
                   value={byokStatus?.preferred_source || 'Platform'}
                   onChange={(e) => handleTogglePreference('preferred_source', e.target.value)}
                   disabled={!byokStatus?.is_personal_key_enabled}
-                  className="bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-1.5 text-xs text-[#F5F7FC] disabled:opacity-50"
+                  className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-1.5 text-xs text-[#0F172A] disabled:opacity-50"
                 >
                   <option value="Platform">Platform Managed Key</option>
                   <option value="Personal">Personal BYOK Key</option>
@@ -277,13 +277,13 @@ const SettingsPage = () => {
             </div>
 
             {/* Instruction Link */}
-            <div className="p-3 bg-[#080E1B] border border-[#23324A] rounded-xl text-xs text-[#98A7BD] flex items-center justify-between">
+            <div className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-xs text-[#475569] flex items-center justify-between">
               <span>Need an OpenRouter API key? Generate one with credits from the official console:</span>
               <a
                 href="https://openrouter.ai/keys"
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#29C5E8] hover:underline font-semibold inline-flex items-center space-x-1"
+                className="text-[#0284C7] hover:underline font-semibold inline-flex items-center space-x-1"
               >
                 <span>openrouter.ai/keys</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -293,25 +293,25 @@ const SettingsPage = () => {
           </div>
 
           {/* Usage Statistics Dashboard */}
-          <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 className="text-sm font-bold text-[#F5F7FC]">Gateway Usage & Fallback Telemetry</h3>
+          <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4">
+            <h3 className="text-sm font-bold text-[#0F172A]">Gateway Usage & Fallback Telemetry</h3>
             
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs">
-              <div className="p-3.5 bg-[#080E1B] rounded-xl border border-[#23324A]">
-                <span className="text-[#98A7BD] block">Total Inferences</span>
-                <span className="text-xl font-bold text-[#F5F7FC]">{usageStats?.total_requests || 0}</span>
+              <div className="p-3.5 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
+                <span className="text-[#475569] block">Total Inferences</span>
+                <span className="text-xl font-bold text-[#0F172A]">{usageStats?.total_requests || 0}</span>
               </div>
-              <div className="p-3.5 bg-[#080E1B] rounded-xl border border-[#23324A]">
-                <span className="text-[#98A7BD] block">Successful Inferences</span>
-                <span className="text-xl font-bold text-[#20C997]">{usageStats?.successful_requests || 0}</span>
+              <div className="p-3.5 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
+                <span className="text-[#475569] block">Successful Inferences</span>
+                <span className="text-xl font-bold text-[#059669]">{usageStats?.successful_requests || 0}</span>
               </div>
-              <div className="p-3.5 bg-[#080E1B] rounded-xl border border-[#23324A]">
-                <span className="text-[#98A7BD] block">Platform Pool Usage</span>
+              <div className="p-3.5 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
+                <span className="text-[#475569] block">Platform Pool Usage</span>
                 <span className="text-xl font-bold text-[#3978F6]">{usageStats?.platform_requests || 0}</span>
               </div>
-              <div className="p-3.5 bg-[#080E1B] rounded-xl border border-[#23324A]">
-                <span className="text-[#98A7BD] block">BYOK Usage</span>
-                <span className="text-xl font-bold text-[#29C5E8]">{usageStats?.personal_requests || 0}</span>
+              <div className="p-3.5 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
+                <span className="text-[#475569] block">BYOK Usage</span>
+                <span className="text-xl font-bold text-[#0284C7]">{usageStats?.personal_requests || 0}</span>
               </div>
             </div>
           </div>
@@ -321,38 +321,38 @@ const SettingsPage = () => {
 
       {/* TAB 2: PROFILE INFORMATION */}
       {activeTab === 'profile' && (
-        <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4 text-xs max-w-xl">
-          <h3 className="text-sm font-bold text-[#F5F7FC]">User Profile Information</h3>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4 text-xs max-w-xl">
+          <h3 className="text-sm font-bold text-[#0F172A]">User Profile Information</h3>
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Full Name</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Full Name</label>
             <input
               type="text"
               value={profileName}
               onChange={(e) => setProfileName(e.target.value)}
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
             />
           </div>
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Email (Permanent)</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Email (Permanent)</label>
             <input
               type="email"
               disabled
               value={user?.email || ''}
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#98A7BD] opacity-60"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#475569] opacity-60"
             />
           </div>
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Phone Number</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Phone Number</label>
             <input
               type="tel"
               value={profilePhone}
               onChange={(e) => setProfilePhone(e.target.value)}
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
             />
           </div>
-          <div className="p-3 bg-[#080E1B] rounded-xl border border-[#23324A]">
-            <span className="text-[#98A7BD] block">Assigned Account Role</span>
-            <span className="font-bold text-[#20C997] text-sm">{user?.account_type}</span>
+          <div className="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
+            <span className="text-[#475569] block">Assigned Account Role</span>
+            <span className="font-bold text-[#059669] text-sm">{user?.account_type}</span>
           </div>
           <button
             onClick={() => alert("Profile updated successfully.")}
@@ -365,29 +365,29 @@ const SettingsPage = () => {
 
       {/* TAB 3: SECURITY */}
       {activeTab === 'security' && (
-        <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4 text-xs max-w-xl">
-          <h3 className="text-sm font-bold text-[#F5F7FC]">Change Password</h3>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4 text-xs max-w-xl">
+          <h3 className="text-sm font-bold text-[#0F172A]">Change Password</h3>
           {passMsg && (
-            <div className="p-3 rounded-xl bg-[#20C997]/10 border border-[#20C997]/30 text-[#20C997]">
+            <div className="p-3 rounded-xl bg-[#059669]/10 border border-[#059669]/30 text-[#059669]">
               {passMsg}
             </div>
           )}
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">Current Password</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">Current Password</label>
             <input
               type="password"
               value={currentPass}
               onChange={(e) => setCurrentPass(e.target.value)}
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
             />
           </div>
           <div>
-            <label className="block text-[#F5F7FC] font-semibold mb-1">New Password (Min 8 characters)</label>
+            <label className="block text-[#0F172A] font-semibold mb-1">New Password (Min 8 characters)</label>
             <input
               type="password"
               value={newPass}
               onChange={(e) => setNewPass(e.target.value)}
-              className="w-full bg-[#080E1B] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
             />
           </div>
           <button
@@ -410,26 +410,26 @@ const SettingsPage = () => {
       {/* Add / Update Personal Key Modal */}
       {keyModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="bg-[#0D1628] border border-[#23324A] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+          <div className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
               <div>
-                <h3 className="text-sm font-bold text-[#F5F7FC]">Configure Personal OpenRouter API Key</h3>
-                <p className="text-[11px] text-[#98A7BD]">Key will be validated and authenticated via AES-256-GCM.</p>
+                <h3 className="text-sm font-bold text-[#0F172A]">Configure Personal OpenRouter API Key</h3>
+                <p className="text-[11px] text-[#475569]">Key will be validated and authenticated via AES-256-GCM.</p>
               </div>
-              <button onClick={() => setKeyModalOpen(false)} className="text-[#98A7BD] hover:text-white">
+              <button onClick={() => setKeyModalOpen(false)} className="text-[#475569] hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {keyError && (
-              <div className="p-3 rounded-xl bg-[#EF5B67]/10 border border-[#EF5B67]/30 text-[#EF5B67] flex items-center space-x-2">
+              <div className="p-3 rounded-xl bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#DC2626] flex items-center space-x-2">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 <span>{keyError}</span>
               </div>
             )}
 
             {validationResult && (
-              <div className="p-3 rounded-xl bg-[#20C997]/10 border border-[#20C997]/30 text-[#20C997] flex items-center space-x-2">
+              <div className="p-3 rounded-xl bg-[#059669]/10 border border-[#059669]/30 text-[#059669] flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                 <span>{validationResult.message}</span>
               </div>
@@ -438,7 +438,7 @@ const SettingsPage = () => {
             <form onSubmit={handleSaveKey} className="space-y-4">
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <label className="text-[#F5F7FC] font-semibold">OpenRouter Key (sk-or-v1-...)</label>
+                  <label className="text-[#0F172A] font-semibold">OpenRouter Key (sk-or-v1-...)</label>
                   <a
                     href="https://openrouter.ai/keys"
                     target="_blank"
@@ -455,29 +455,29 @@ const SettingsPage = () => {
                     value={apiKeyInput}
                     onChange={(e) => setApiKeyInput(e.target.value)}
                     placeholder="sk-or-v1-..."
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2.5 text-[#F5F7FC] font-mono text-xs focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-[#0F172A] font-mono text-xs focus:outline-none focus:border-[#3978F6]"
                   />
                   <button
                     type="button"
                     onClick={() => setShowKeyInput(!showKeyInput)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#98A7BD]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#475569]"
                   >
                     {showKeyInput ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              <div className="p-3 bg-[#080E1B] rounded-xl border border-[#23324A] text-[11px] text-[#98A7BD] space-y-1">
-                <span className="text-[#20C997] font-semibold block">Security Protection Protocol</span>
+              <div className="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] text-[11px] text-[#475569] space-y-1">
+                <span className="text-[#059669] font-semibold block">Security Protection Protocol</span>
                 <p>Your API key is never transmitted in plaintext to client browsers or stored in localStorage. It is encrypted on the server with AES-256-GCM.</p>
               </div>
 
-              <div className="pt-3 border-t border-[#23324A] flex justify-between items-center">
+              <div className="pt-3 border-t border-[#E2E8F0] flex justify-between items-center">
                 <button
                   type="button"
                   onClick={handleTestKey}
                   disabled={validatingKey || !apiKeyInput.trim()}
-                  className="px-3 py-2 rounded-xl bg-[#111D32] text-[#29C5E8] hover:bg-[#0D1628] border border-[#23324A] font-semibold"
+                  className="px-3 py-2 rounded-xl bg-[#FFFFFF] text-[#0284C7] hover:bg-[#F1F5F9] border border-[#E2E8F0] font-semibold"
                 >
                   {validatingKey ? 'Testing Connection...' : 'Verify Key'}
                 </button>
@@ -485,7 +485,7 @@ const SettingsPage = () => {
                   <button
                     type="button"
                     onClick={() => setKeyModalOpen(false)}
-                    className="px-4 py-2 rounded-xl bg-[#111D32] text-[#98A7BD]"
+                    className="px-4 py-2 rounded-xl bg-[#FFFFFF] text-[#475569]"
                   >
                     Cancel
                   </button>

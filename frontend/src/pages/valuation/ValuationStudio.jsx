@@ -86,8 +86,8 @@ const ValuationStudio = () => {
       
       {/* Page Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">AI Property Valuation Studio</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">AI Property Valuation Studio</h2>
+        <p className="text-xs text-[#475569]">
           Execute multi-parameter automated valuation model (AVM) with explainable SHAP-style factor contributions and uncertainty bounds.
         </p>
       </div>
@@ -95,21 +95,21 @@ const ValuationStudio = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Input Parameters Column (5 cols) */}
-        <div className="lg:col-span-5 bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4">
-          <div className="flex items-center space-x-2 pb-3 border-b border-[#23324A]">
+        <div className="lg:col-span-5 bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="flex items-center space-x-2 pb-3 border-b border-[#E2E8F0]">
             <Calculator className="w-5 h-5 text-[#3978F6]" />
-            <h3 className="text-sm font-bold text-[#F5F7FC]">Asset Appraisal Parameters</h3>
+            <h3 className="text-sm font-bold text-[#0F172A]">Asset Appraisal Parameters</h3>
           </div>
 
           <form onSubmit={handlePredict} className="space-y-3.5 text-xs">
             
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">City</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">City</label>
                 <select
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="Mumbai">Mumbai</option>
                   <option value="Bengaluru">Bengaluru</option>
@@ -118,11 +118,11 @@ const ValuationStudio = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Locality</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Locality</label>
                 <select
                   value={formData.locality}
                   onChange={(e) => setFormData({ ...formData, locality: e.target.value })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="worli">Worli</option>
                   <option value="bandra west">Bandra West</option>
@@ -138,11 +138,11 @@ const ValuationStudio = () => {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Property Category</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Property Category</label>
                 <select
                   value={formData.property_type}
                   onChange={(e) => setFormData({ ...formData, property_type: e.target.value })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="Penthouse">Penthouse</option>
                   <option value="Apartment">Apartment</option>
@@ -151,53 +151,53 @@ const ValuationStudio = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Built-up Area (sqft)</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Built-up Area (sqft)</label>
                 <input
                   type="number"
                   value={formData.built_up_area_sqft}
                   onChange={(e) => setFormData({ ...formData, built_up_area_sqft: parseFloat(e.target.value) || 0 })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Bedrooms</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Bedrooms</label>
                 <input
                   type="number"
                   value={formData.bedrooms}
                   onChange={(e) => setFormData({ ...formData, bedrooms: parseInt(e.target.value) || 0 })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Bathrooms</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Bathrooms</label>
                 <input
                   type="number"
                   value={formData.bathrooms}
                   onChange={(e) => setFormData({ ...formData, bathrooms: parseInt(e.target.value) || 0 })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Age (Years)</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Age (Years)</label>
                 <input
                   type="number"
                   value={formData.property_age_years}
                   onChange={(e) => setFormData({ ...formData, property_age_years: parseInt(e.target.value) || 0 })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Construction Grade</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Construction Grade</label>
                 <select
                   value={formData.construction_quality}
                   onChange={(e) => setFormData({ ...formData, construction_quality: e.target.value })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="Premium">Premium</option>
                   <option value="A Grade">A Grade</option>
@@ -206,11 +206,11 @@ const ValuationStudio = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Physical Condition</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Physical Condition</label>
                 <select
                   value={formData.property_condition}
                   onChange={(e) => setFormData({ ...formData, property_condition: e.target.value })}
-                  className="w-full bg-[#0D1628] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="Excellent">Excellent</option>
                   <option value="Good">Good</option>
@@ -246,12 +246,12 @@ const ValuationStudio = () => {
         <div className="lg:col-span-7 space-y-6">
           
           {!valuationResult ? (
-            <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-12 text-center flex flex-col items-center justify-center min-h-[420px]">
-              <div className="w-16 h-16 rounded-2xl bg-[#0D1628] border border-[#23324A] flex items-center justify-center text-[#3978F6] mb-4">
+            <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-12 text-center flex flex-col items-center justify-center min-h-[420px]">
+              <div className="w-16 h-16 rounded-2xl bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-center text-[#3978F6] mb-4">
                 <Calculator className="w-8 h-8" />
               </div>
-              <h3 className="text-base font-bold text-[#F5F7FC]">Awaiting Input Parameters</h3>
-              <p className="text-xs text-[#98A7BD] max-w-sm mt-1 leading-relaxed">
+              <h3 className="text-base font-bold text-[#0F172A]">Awaiting Input Parameters</h3>
+              <p className="text-xs text-[#475569] max-w-sm mt-1 leading-relaxed">
                 Configure property dimensions, locality benchmark, and quality parameters on the left to trigger the valuation regression engine.
               </p>
               <button
@@ -264,16 +264,16 @@ const ValuationStudio = () => {
           ) : (
             <>
               {/* Valuation Summary Card */}
-              <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#23324A] gap-2">
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-2">
                   <div>
-                    <span className="text-[10px] text-[#29C5E8] uppercase tracking-wider font-semibold">
+                    <span className="text-[10px] text-[#0284C7] uppercase tracking-wider font-semibold">
                       {valuationResult.model_version} • {valuationResult.model_mode}
                     </span>
-                    <h3 className="text-xs font-bold text-[#98A7BD]">Estimated Collateral Asset Valuation</h3>
+                    <h3 className="text-xs font-bold text-[#475569]">Estimated Collateral Asset Valuation</h3>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="px-2.5 py-1 rounded-full bg-[#20C997]/15 border border-[#20C997]/30 text-[10px] font-bold text-[#20C997]">
+                    <span className="px-2.5 py-1 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[10px] font-bold text-[#059669]">
                       {Math.round(valuationResult.confidence_score * 100)}% Model Confidence
                     </span>
                   </div>
@@ -281,34 +281,34 @@ const ValuationStudio = () => {
 
                 <div className="py-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-3xl sm:text-4xl font-black text-[#20C997] tracking-tight">
+                    <div className="text-3xl sm:text-4xl font-black text-[#059669] tracking-tight">
                       INR {(valuationResult.estimated_value / 10000000).toFixed(2)} Cr
                     </div>
-                    <div className="text-xs text-[#98A7BD] mt-1">
-                      Unit Rate: <strong className="text-[#F5F7FC]">INR {valuationResult.price_per_sqft.toLocaleString()} / sqft</strong>
+                    <div className="text-xs text-[#475569] mt-1">
+                      Unit Rate: <strong className="text-[#0F172A]">INR {valuationResult.price_per_sqft.toLocaleString()} / sqft</strong>
                     </div>
                   </div>
 
-                  <div className="p-3 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-1 text-xs">
+                  <div className="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-1 text-xs">
                     <div className="flex justify-between">
-                      <span className="text-[#98A7BD]">Prudent Lower Bound:</span>
-                      <span className="font-semibold text-[#F5F7FC]">INR {(valuationResult.lower_bound / 10000000).toFixed(2)} Cr</span>
+                      <span className="text-[#475569]">Prudent Lower Bound:</span>
+                      <span className="font-semibold text-[#0F172A]">INR {(valuationResult.lower_bound / 10000000).toFixed(2)} Cr</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#98A7BD]">Upper Market Bound:</span>
-                      <span className="font-semibold text-[#F5F7FC]">INR {(valuationResult.upper_bound / 10000000).toFixed(2)} Cr</span>
+                      <span className="text-[#475569]">Upper Market Bound:</span>
+                      <span className="font-semibold text-[#0F172A]">INR {(valuationResult.upper_bound / 10000000).toFixed(2)} Cr</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#23324A] flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-[11px] text-[#98A7BD]">
+                <div className="pt-4 border-t border-[#E2E8F0] flex flex-wrap items-center justify-between gap-3">
+                  <div className="text-[11px] text-[#475569]">
                     Evaluation Timestamp: {new Date(valuationResult.valuation_timestamp || Date.now()).toLocaleDateString()}
                   </div>
                   <button
                     onClick={handleGenerateReport}
                     disabled={generatingReport}
-                    className="px-4 py-2 rounded-xl bg-[#20C997] hover:bg-[#20C997]/80 text-[#080E1B] font-bold text-xs flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+                    className="px-4 py-2 rounded-xl bg-[#059669] hover:bg-[#059669]/80 text-[#F8FAFC] font-bold text-xs flex items-center space-x-1.5 transition-colors disabled:opacity-50"
                   >
                     <FileCheck2 className="w-3.5 h-3.5" />
                     <span>{generatingReport ? 'Generating Dossier...' : 'Generate PDF Report'}</span>
@@ -317,11 +317,11 @@ const ValuationStudio = () => {
               </div>
 
               {/* Explainability Breakdown (SHAP-style Feature Contributions) */}
-              <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4">
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-[#F5F7FC]">Explainable Feature Attribution (SHAP-style)</h3>
-                    <p className="text-[11px] text-[#98A7BD]">Incremental valuation impact attributed to individual physical and locality parameters</p>
+                    <h3 className="text-sm font-bold text-[#0F172A]">Explainable Feature Attribution (SHAP-style)</h3>
+                    <p className="text-[11px] text-[#475569]">Incremental valuation impact attributed to individual physical and locality parameters</p>
                   </div>
                 </div>
 
@@ -332,24 +332,24 @@ const ValuationStudio = () => {
                       layout="vertical"
                       margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#23324A" horizontal={false} />
-                      <XAxis type="number" stroke="#98A7BD" fontSize={10} tickFormatter={(v) => `INR ${(v / 100000).toFixed(0)}L`} />
-                      <YAxis type="category" dataKey="feature" stroke="#98A7BD" fontSize={10} tickLine={false} width={120} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" horizontal={false} />
+                      <XAxis type="number" stroke="#475569" fontSize={10} tickFormatter={(v) => `INR ${(v / 100000).toFixed(0)}L`} />
+                      <YAxis type="category" dataKey="feature" stroke="#475569" fontSize={10} tickLine={false} width={120} />
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#0D1628', borderColor: '#23324A', borderRadius: '8px', fontSize: '11px' }}
+                        contentStyle={{ backgroundColor: '#F1F5F9', borderColor: '#E2E8F0', borderRadius: '8px', fontSize: '11px' }}
                         formatter={(val) => [`INR ${Number(val).toLocaleString()}`, 'Attribution Impact']}
                       />
                       <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                         {contributionData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.isPositive ? '#3978F6' : '#EF5B67'} />
+                          <Cell key={`cell-${index}`} fill={entry.isPositive ? '#3978F6' : '#DC2626'} />
                         ))}
                       </Bar>
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#080E1B] border border-[#23324A] text-[11px] text-[#98A7BD] flex items-start space-x-2">
-                  <ShieldCheck className="w-4 h-4 text-[#20C997] flex-shrink-0 mt-0.5" />
+                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] text-[#475569] flex items-start space-x-2">
+                  <ShieldCheck className="w-4 h-4 text-[#059669] flex-shrink-0 mt-0.5" />
                   <span>
                     Transparent Attribution Notice: Locality base rates account for baseline collateral valuation; quality and condition multipliers apply calibrated non-linear premiums.
                   </span>
@@ -357,18 +357,18 @@ const ValuationStudio = () => {
               </div>
 
               {/* Comparable Sales */}
-              <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-3">
-                <h3 className="text-sm font-bold text-[#F5F7FC]">Recent Local Cluster Comparables</h3>
-                <div className="divide-y divide-[#23324A]">
+              <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-3">
+                <h3 className="text-sm font-bold text-[#0F172A]">Recent Local Cluster Comparables</h3>
+                <div className="divide-y divide-[#E2E8F0]">
                   {(valuationResult.comparable_sales || []).map((c, i) => (
                     <div key={i} className="py-2.5 flex items-center justify-between text-xs">
                       <div>
-                        <span className="font-semibold text-[#F5F7FC] block">{c.reference} ({c.locality})</span>
-                        <span className="text-[10px] text-[#98A7BD]">{c.area_sqft} sqft • {c.sale_date}</span>
+                        <span className="font-semibold text-[#0F172A] block">{c.reference} ({c.locality})</span>
+                        <span className="text-[10px] text-[#475569]">{c.area_sqft} sqft • {c.sale_date}</span>
                       </div>
                       <div className="text-right">
-                        <span className="font-bold text-[#20C997] block">INR {(c.sold_price / 10000000).toFixed(2)} Cr</span>
-                        <span className="text-[10px] text-[#29C5E8]">Match: {c.similarity_score}%</span>
+                        <span className="font-bold text-[#059669] block">INR {(c.sold_price / 10000000).toFixed(2)} Cr</span>
+                        <span className="text-[10px] text-[#0284C7]">Match: {c.similarity_score}%</span>
                       </div>
                     </div>
                   ))}

@@ -33,63 +33,63 @@ const ComplianceCenter = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Compliance & Responsible AI Governance</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Compliance & Responsible AI Governance</h2>
+        <p className="text-xs text-[#475569]">
           Digital lending compliance policies, user consent tracking, and ethical algorithmic guardrails.
         </p>
       </div>
 
       {/* Governance Charter Box */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl p-6 shadow-xl space-y-4">
-        <div className="flex items-center space-x-2.5 pb-3 border-b border-[#23324A]">
-          <Scale className="w-5 h-5 text-[#20C997]" />
-          <h3 className="text-sm font-bold text-[#F5F7FC]">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-6 shadow-xl space-y-4">
+        <div className="flex items-center space-x-2.5 pb-3 border-b border-[#E2E8F0]">
+          <Scale className="w-5 h-5 text-[#059669]" />
+          <h3 className="text-sm font-bold text-[#0F172A]">
             {governance?.framework_version || 'PropWise Responsible AI Charter v2.4 (2026)'}
           </h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-2">
-            <span className="font-bold text-[#20C997] block">Non-Delegable Human Lending Mandate</span>
-            <p className="text-[#98A7BD] leading-relaxed">
+          <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-2">
+            <span className="font-bold text-[#059669] block">Non-Delegable Human Lending Mandate</span>
+            <p className="text-[#475569] leading-relaxed">
               {governance?.human_in_the_loop_mandate || 'All underwriting decisions and mortgage sanctions require explicit human officer verification.'}
             </p>
           </div>
 
-          <div className="p-4 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-2">
+          <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-2">
             <span className="font-bold text-[#3978F6] block">Protected Attributes Exclusion</span>
-            <p className="text-[#98A7BD] leading-relaxed">
+            <p className="text-[#475569] leading-relaxed">
               {governance?.protected_characteristics_policy || 'Strict exclusion of protected attributes from all predictive valuation and credit models.'}
             </p>
           </div>
 
-          <div className="p-4 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-2">
-            <span className="font-bold text-[#29C5E8] block">Statutory Banking Data Retention</span>
-            <p className="text-[#98A7BD] leading-relaxed">
+          <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-2">
+            <span className="font-bold text-[#0284C7] block">Statutory Banking Data Retention</span>
+            <p className="text-[#475569] leading-relaxed">
               Enforced data retention window: 1,825 days (5 years) pursuant to financial recordkeeping mandates.
             </p>
           </div>
 
-          <div className="p-4 bg-[#080E1B] rounded-xl border border-[#23324A] space-y-2">
-            <span className="font-bold text-[#F5B942] block">Institutional Grievance Contact</span>
-            <p className="text-[#98A7BD] leading-relaxed">
-              Official Grievance Officer: <strong className="text-[#F5F7FC]">compliance@propwise.ai</strong>. Inquiries addressed within 48 business hours.
+          <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-2">
+            <span className="font-bold text-[#D97706] block">Institutional Grievance Contact</span>
+            <p className="text-[#475569] leading-relaxed">
+              Official Grievance Officer: <strong className="text-[#0F172A]">compliance@propwise.ai</strong>. Inquiries addressed within 48 business hours.
             </p>
           </div>
         </div>
       </div>
 
       {/* User Consent Registry */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl p-5 space-y-4">
-        <div className="pb-3 border-b border-[#23324A]">
-          <h3 className="text-xs font-bold text-[#F5F7FC] uppercase tracking-wider">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl p-5 space-y-4">
+        <div className="pb-3 border-b border-[#E2E8F0]">
+          <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider">
             Active Digital Consent Records ({consents.length})
           </h3>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#0D1628] text-[#98A7BD] border-b border-[#23324A]">
+            <thead className="bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
               <tr>
                 <th className="py-2.5 px-3 font-semibold">Consent Category</th>
                 <th className="py-2.5 px-3 font-semibold">Version Stamped</th>
@@ -97,14 +97,14 @@ const ComplianceCenter = () => {
                 <th className="py-2.5 px-3 font-semibold text-right">Verification Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#23324A]">
+            <tbody className="divide-y divide-[#E2E8F0]">
               {consents.map(c => (
-                <tr key={c.id} className="hover:bg-[#0D1628]/60 transition-colors">
-                  <td className="py-3 px-3 font-semibold text-[#F5F7FC]">{c.consent_type}</td>
-                  <td className="py-3 px-3 font-mono text-[#29C5E8]">{c.consent_version}</td>
-                  <td className="py-3 px-3 text-[#98A7BD]">{new Date(c.granted_at).toLocaleDateString()}</td>
+                <tr key={c.id} className="hover:bg-[#F1F5F9]/60 transition-colors">
+                  <td className="py-3 px-3 font-semibold text-[#0F172A]">{c.consent_type}</td>
+                  <td className="py-3 px-3 font-mono text-[#0284C7]">{c.consent_version}</td>
+                  <td className="py-3 px-3 text-[#475569]">{new Date(c.granted_at).toLocaleDateString()}</td>
                   <td className="py-3 px-3 text-right">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#20C997]/15 text-[#20C997] border border-[#20C997]/30">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#059669]/15 text-[#059669] border border-[#059669]/30">
                       Consented & Active
                     </span>
                   </td>

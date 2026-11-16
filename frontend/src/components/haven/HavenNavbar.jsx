@@ -27,21 +27,21 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A1222]/95 backdrop-blur-xl shadow-xl border-b border-[#23324A] text-[#F5F7FC]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#FFFFFF]/95 backdrop-blur-xl shadow-xl border-b border-[#E2E8F0] text-[#0F172A]">
         <div className="h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4">
           {/* Logo & Main Nav */}
           <div className="flex items-center gap-6 lg:gap-8">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#29C5E8] flex items-center justify-center p-0.5 shadow-lg shadow-[#3978F6]/20">
-                <div className="w-full h-full bg-[#0A1222] rounded-[10px] flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[20px] text-[#29C5E8]">domain</span>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-lg shadow-[#3978F6]/20">
+                <div className="w-full h-full bg-[#FFFFFF] rounded-[10px] flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[20px] text-[#0284C7]">domain</span>
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-headline-sm text-[20px] tracking-tight text-[#F5F7FC] uppercase font-bold leading-none">
+                <span className="font-headline-sm text-[20px] tracking-tight text-[#0F172A] uppercase font-bold leading-none">
                   PROPWISE <span className="text-[#3978F6]">AI</span>
                 </span>
-                <span className="text-[10px] uppercase tracking-widest text-[#29C5E8] font-semibold mt-0.5">
+                <span className="text-[10px] uppercase tracking-widest text-[#0284C7] font-semibold mt-0.5">
                   Haven &amp; Key Estates
                 </span>
               </div>
@@ -54,8 +54,8 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                   to={link.path}
                   className={`text-[14px] font-medium transition-colors py-1 ${
                     isActive(link.path)
-                      ? 'text-[#29C5E8] font-semibold border-b-2 border-[#3978F6]'
-                      : 'text-[#98A7BD] hover:text-[#F5F7FC]'
+                      ? 'text-[#0284C7] font-semibold border-b-2 border-[#3978F6]'
+                      : 'text-[#475569] hover:text-[#0F172A]'
                   }`}
                 >
                   {link.label}
@@ -68,16 +68,16 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
           <div className="flex items-center gap-3 md:gap-4">
             <button
               onClick={onOpenSearch || (() => { window.location.href = '/catalog'; })}
-              className="flex items-center gap-1.5 text-[#98A7BD] hover:text-[#F5F7FC] py-1 px-2 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-[#475569] hover:text-[#0F172A] py-1 px-2 transition-colors cursor-pointer"
               type="button"
             >
-              <span className="material-symbols-outlined text-[20px] text-[#29C5E8]">search</span>
+              <span className="material-symbols-outlined text-[20px] text-[#0284C7]">search</span>
               <span className="hidden 2xl:inline text-[12px] uppercase font-semibold tracking-wider">Search</span>
             </button>
 
             <Link
               to="/catalog"
-              className="hidden lg:flex items-center gap-1 text-[#98A7BD] hover:text-[#F5F7FC] py-1 px-2 transition-colors"
+              className="hidden lg:flex items-center gap-1 text-[#475569] hover:text-[#0F172A] py-1 px-2 transition-colors"
             >
               <span className="material-symbols-outlined text-[18px] text-[#3978F6]">location_on</span>
               <span className="text-[12px] font-semibold">SF / Bay Area</span>
@@ -87,10 +87,10 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
             <Link
               to="/catalog?filter=saved"
               onClick={onOpenSaved}
-              className="flex items-center gap-1.5 py-1 px-2 text-[#98A7BD] hover:text-[#F5F7FC] transition-colors"
+              className="flex items-center gap-1.5 py-1 px-2 text-[#475569] hover:text-[#0F172A] transition-colors"
             >
-              <span className="material-symbols-outlined text-[20px] text-[#EF5B67]">favorite</span>
-              <span className="text-[12px] font-semibold text-[#F5F7FC]">Saved ({savedCount})</span>
+              <span className="material-symbols-outlined text-[20px] text-[#DC2626]">favorite</span>
+              <span className="text-[12px] font-semibold text-[#0F172A]">Saved ({savedCount})</span>
             </Link>
 
             <Link
@@ -107,20 +107,20 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                   className="flex items-center gap-2 pl-1 cursor-pointer focus:outline-none"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[#111D32] border border-[#3978F6]/50 flex items-center justify-center text-xs font-bold text-[#29C5E8]">
+                  <div className="w-8 h-8 rounded-full bg-[#FFFFFF] border border-[#3978F6]/50 flex items-center justify-center text-xs font-bold text-[#0284C7]">
                     {user.full_name?.charAt(0) || 'U'}
                   </div>
-                  <span className="hidden md:inline text-xs font-semibold text-[#F5F7FC] max-w-[100px] truncate">
+                  <span className="hidden md:inline text-xs font-semibold text-[#0F172A] max-w-[100px] truncate">
                     {user.full_name?.split(' ')[0]}
                   </span>
                 </button>
 
                 {profileDropdownOpen && (
-                  <div className="absolute right-0 mt-3 w-56 bg-[#0D1628] rounded-xl shadow-2xl border border-[#23324A] py-2 z-50 animate-in fade-in zoom-in-95">
-                    <div className="px-4 py-2 border-b border-[#23324A]">
-                      <p className="text-xs text-[#98A7BD]">Signed in as</p>
-                      <p className="text-sm font-semibold text-[#F5F7FC] truncate">{user.email}</p>
-                      <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#111D32] text-[#29C5E8] border border-[#23324A]">
+                  <div className="absolute right-0 mt-3 w-56 bg-[#F1F5F9] rounded-xl shadow-2xl border border-[#E2E8F0] py-2 z-50 animate-in fade-in zoom-in-95">
+                    <div className="px-4 py-2 border-b border-[#E2E8F0]">
+                      <p className="text-xs text-[#475569]">Signed in as</p>
+                      <p className="text-sm font-semibold text-[#0F172A] truncate">{user.email}</p>
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#FFFFFF] text-[#0284C7] border border-[#E2E8F0]">
                         {user.role}
                       </span>
                     </div>
@@ -128,7 +128,7 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                     <Link
                       to="/dashboard"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#F5F7FC] hover:bg-[#111D32] font-medium"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#0F172A] hover:bg-[#FFFFFF] font-medium"
                     >
                       <span className="material-symbols-outlined text-[18px] text-[#3978F6]">dashboard</span>
                       Client Dashboard
@@ -136,35 +136,35 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                     <Link
                       to="/dashboard/valuation"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#F5F7FC] hover:bg-[#111D32] font-medium"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#0F172A] hover:bg-[#FFFFFF] font-medium"
                     >
-                      <span className="material-symbols-outlined text-[18px] text-[#29C5E8]">calculate</span>
+                      <span className="material-symbols-outlined text-[18px] text-[#0284C7]">calculate</span>
                       AI Valuation Studio
                     </Link>
                     <Link
                       to="/dashboard/mortgage"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#F5F7FC] hover:bg-[#111D32] font-medium"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#0F172A] hover:bg-[#FFFFFF] font-medium"
                     >
-                      <span className="material-symbols-outlined text-[18px] text-[#20C997]">account_balance</span>
+                      <span className="material-symbols-outlined text-[18px] text-[#059669]">account_balance</span>
                       Mortgage Desk
                     </Link>
                     <Link
                       to="/dashboard/settings"
                       onClick={() => setProfileDropdownOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#F5F7FC] hover:bg-[#111D32] font-medium"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-[#0F172A] hover:bg-[#FFFFFF] font-medium"
                     >
-                      <span className="material-symbols-outlined text-[18px] text-[#98A7BD]">settings</span>
+                      <span className="material-symbols-outlined text-[18px] text-[#475569]">settings</span>
                       Account Settings
                     </Link>
 
-                    <div className="border-t border-[#23324A] mt-1 pt-1">
+                    <div className="border-t border-[#E2E8F0] mt-1 pt-1">
                       <button
                         onClick={() => {
                           setProfileDropdownOpen(false);
                           logout();
                         }}
-                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-xs text-[#EF5B67] hover:bg-[#EF5B67]/10 font-medium cursor-pointer"
+                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-xs text-[#DC2626] hover:bg-[#DC2626]/10 font-medium cursor-pointer"
                       >
                         <span className="material-symbols-outlined text-[18px]">logout</span>
                         Sign Out
@@ -176,7 +176,7 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
             ) : (
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-[#23324A] hover:border-[#3978F6] text-[#F5F7FC] text-[12px] font-semibold transition-all hover:bg-[#111D32]"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-[#E2E8F0] hover:border-[#3978F6] text-[#0F172A] text-[12px] font-semibold transition-all hover:bg-[#FFFFFF]"
               >
                 Sign In
               </Link>
@@ -185,7 +185,7 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-[#F5F7FC] hover:bg-[#111D32] rounded-lg transition-colors"
+              className="xl:hidden p-2 text-[#0F172A] hover:bg-[#FFFFFF] rounded-lg transition-colors"
               aria-label="Toggle navigation menu"
             >
               <span className="material-symbols-outlined text-[24px]">
@@ -197,7 +197,7 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#0A1222] border-t border-[#23324A] px-6 py-6 flex flex-col gap-4 shadow-2xl">
+          <div className="xl:hidden bg-[#FFFFFF] border-t border-[#E2E8F0] px-6 py-6 flex flex-col gap-4 shadow-2xl">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -205,20 +205,20 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                 onClick={() => setMobileMenuOpen(false)}
                 className={`text-[15px] font-medium py-1.5 transition-colors ${
                   isActive(link.path)
-                    ? 'text-[#29C5E8] font-bold'
-                    : 'text-[#98A7BD] hover:text-[#F5F7FC]'
+                    ? 'text-[#0284C7] font-bold'
+                    : 'text-[#475569] hover:text-[#0F172A]'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-[#23324A] pt-4 flex flex-col gap-3">
+            <div className="border-t border-[#E2E8F0] pt-4 flex flex-col gap-3">
               <Link
                 to="/catalog?filter=saved"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-sm text-[#F5F7FC] font-semibold"
+                className="flex items-center gap-2 text-sm text-[#0F172A] font-semibold"
               >
-                <span className="material-symbols-outlined text-[20px] text-[#EF5B67]">favorite</span>
+                <span className="material-symbols-outlined text-[20px] text-[#DC2626]">favorite</span>
                 Saved Estates ({savedCount})
               </Link>
               {user ? (
@@ -234,7 +234,7 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 text-center py-2 rounded-lg border border-[#23324A] text-sm font-semibold text-[#F5F7FC]"
+                    className="flex-1 text-center py-2 rounded-lg border border-[#E2E8F0] text-sm font-semibold text-[#0F172A]"
                   >
                     Sign In
                   </Link>

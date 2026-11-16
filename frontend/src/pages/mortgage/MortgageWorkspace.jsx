@@ -120,8 +120,8 @@ const MortgageWorkspace = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Mortgage Underwriting Engine</h2>
-          <p className="text-xs text-[#98A7BD]">
+          <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Mortgage Underwriting Engine</h2>
+          <p className="text-xs text-[#475569]">
             Automated financial ratio analysis (EMI, DTI, LTV) with human-in-the-loop credit officer decisioning.
           </p>
         </div>
@@ -135,8 +135,8 @@ const MortgageWorkspace = () => {
       </div>
 
       {/* Human Review Safeguard Notice */}
-      <div className="p-4 rounded-xl bg-[#111D32] border border-[#23324A] flex items-center space-x-3 text-xs text-[#98A7BD]">
-        <ShieldCheck className="w-5 h-5 text-[#20C997] flex-shrink-0" />
+      <div className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] flex items-center space-x-3 text-xs text-[#475569]">
+        <ShieldCheck className="w-5 h-5 text-[#059669] flex-shrink-0" />
         <span>
           Regulatory Safeguard: Automated debt-to-income and collateral valuations serve strictly as institutional decision support.
           All final loan sanctions enforce certified human credit officer authorization.
@@ -144,19 +144,19 @@ const MortgageWorkspace = () => {
       </div>
 
       {/* Applications Table */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl">
-        <div className="p-4 border-b border-[#23324A] flex items-center justify-between">
-          <span className="text-xs font-bold text-[#F5F7FC]">Underwriting Dossiers ({loans.length})</span>
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl">
+        <div className="p-4 border-b border-[#E2E8F0] flex items-center justify-between">
+          <span className="text-xs font-bold text-[#0F172A]">Underwriting Dossiers ({loans.length})</span>
         </div>
 
         {loading ? (
-          <div className="text-center py-12 text-xs text-[#98A7BD]">Loading underwriting queue...</div>
+          <div className="text-center py-12 text-xs text-[#475569]">Loading underwriting queue...</div>
         ) : loans.length === 0 ? (
-          <div className="p-12 text-center text-xs text-[#98A7BD]">No mortgage applications filed yet.</div>
+          <div className="p-12 text-center text-xs text-[#475569]">No mortgage applications filed yet.</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#0D1628] text-[#98A7BD] border-b border-[#23324A]">
+              <thead className="bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
                 <tr>
                   <th className="py-3 px-4 font-semibold">Application Reference</th>
                   <th className="py-3 px-4 font-semibold">Borrower Name</th>
@@ -168,24 +168,24 @@ const MortgageWorkspace = () => {
                   <th className="py-3 px-4 font-semibold text-right">Officer Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#23324A]">
+              <tbody className="divide-y divide-[#E2E8F0]">
                 {loans.map(l => (
-                  <tr key={l.id} className="hover:bg-[#0D1628]/60 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-[#29C5E8]">{l.application_number}</td>
-                    <td className="py-3.5 px-4 font-semibold text-[#F5F7FC]">{l.applicant_name}</td>
-                    <td className="py-3.5 px-4 font-bold text-[#20C997]">
+                  <tr key={l.id} className="hover:bg-[#F1F5F9]/60 transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-[#0284C7]">{l.application_number}</td>
+                    <td className="py-3.5 px-4 font-semibold text-[#0F172A]">{l.applicant_name}</td>
+                    <td className="py-3.5 px-4 font-bold text-[#059669]">
                       INR {(l.requested_loan_amount / 10000000).toFixed(2)} Cr
                     </td>
-                    <td className="py-3.5 px-4 text-[#F5F7FC]">
+                    <td className="py-3.5 px-4 text-[#0F172A]">
                       INR {l.estimated_monthly_emi?.toLocaleString()}
                     </td>
-                    <td className="py-3.5 px-4 font-semibold text-[#F5F7FC]">{l.debt_to_income_ratio}%</td>
-                    <td className="py-3.5 px-4 font-semibold text-[#F5F7FC]">{l.loan_to_value_ratio}%</td>
+                    <td className="py-3.5 px-4 font-semibold text-[#0F172A]">{l.debt_to_income_ratio}%</td>
+                    <td className="py-3.5 px-4 font-semibold text-[#0F172A]">{l.loan_to_value_ratio}%</td>
                     <td className="py-3.5 px-4">
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                        l.status === 'Approved' ? 'bg-[#20C997]/15 text-[#20C997] border border-[#20C997]/30' :
-                        l.status === 'Rejected' ? 'bg-[#EF5B67]/15 text-[#EF5B67] border border-[#EF5B67]/30' :
-                        'bg-[#F5B942]/15 text-[#F5B942] border border-[#F5B942]/30'
+                        l.status === 'Approved' ? 'bg-[#059669]/15 text-[#059669] border border-[#059669]/30' :
+                        l.status === 'Rejected' ? 'bg-[#DC2626]/15 text-[#DC2626] border border-[#DC2626]/30' :
+                        'bg-[#D97706]/15 text-[#D97706] border border-[#D97706]/30'
                       }`}>
                         {l.status}
                       </span>
@@ -197,12 +197,12 @@ const MortgageWorkspace = () => {
                             setSelectedLoan(l);
                             setReviewModalOpen(true);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-[#3978F6]/20 hover:bg-[#3978F6] border border-[#3978F6]/40 text-[#29C5E8] hover:text-white font-semibold transition-colors"
+                          className="px-3 py-1.5 rounded-lg bg-[#3978F6]/20 hover:bg-[#3978F6] border border-[#3978F6]/40 text-[#0284C7] hover:text-white font-semibold transition-colors"
                         >
                           Adjudicate
                         </button>
                       ) : (
-                        <span className="text-[10px] text-[#98A7BD]">In Officer Queue</span>
+                        <span className="text-[10px] text-[#475569]">In Officer Queue</span>
                       )}
                     </td>
                   </tr>
@@ -216,19 +216,19 @@ const MortgageWorkspace = () => {
       {/* New Loan Application Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-[#0D1628] border border-[#23324A] rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
-            <div className="flex items-center justify-between pb-4 border-b border-[#23324A]">
+          <div className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E2E8F0]">
               <div>
-                <h3 className="text-base font-bold text-[#F5F7FC]">Submit Mortgage Underwriting File</h3>
-                <p className="text-xs text-[#98A7BD]">Financial obligations and collateral information for algorithmic scoring.</p>
+                <h3 className="text-base font-bold text-[#0F172A]">Submit Mortgage Underwriting File</h3>
+                <p className="text-xs text-[#475569]">Financial obligations and collateral information for algorithmic scoring.</p>
               </div>
-              <button onClick={() => setModalOpen(false)} className="text-[#98A7BD] hover:text-white">
+              <button onClick={() => setModalOpen(false)} className="text-[#475569] hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {errorMsg && (
-              <div className="mt-4 p-3 rounded-xl bg-[#EF5B67]/10 border border-[#EF5B67]/30 text-xs text-[#EF5B67]">
+              <div className="mt-4 p-3 rounded-xl bg-[#DC2626]/10 border border-[#DC2626]/30 text-xs text-[#DC2626]">
                 {errorMsg}
               </div>
             )}
@@ -236,61 +236,61 @@ const MortgageWorkspace = () => {
             <form onSubmit={handleApply} className="mt-5 space-y-4 text-xs">
               
               {/* Live Calculations Preview Bar */}
-              <div className="p-3.5 rounded-xl bg-[#111D32] border border-[#3978F6]/40 grid grid-cols-3 gap-3 text-center">
+              <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#3978F6]/40 grid grid-cols-3 gap-3 text-center">
                 <div>
-                  <span className="text-[10px] text-[#98A7BD] block">Estimated Monthly EMI</span>
-                  <span className="text-sm font-bold text-[#20C997]">INR {previewEMI.toLocaleString()}</span>
+                  <span className="text-[10px] text-[#475569] block">Estimated Monthly EMI</span>
+                  <span className="text-sm font-bold text-[#059669]">INR {previewEMI.toLocaleString()}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#98A7BD] block">Debt-to-Income (DTI)</span>
-                  <span className="text-sm font-bold text-[#29C5E8]">{previewDTI}%</span>
+                  <span className="text-[10px] text-[#475569] block">Debt-to-Income (DTI)</span>
+                  <span className="text-sm font-bold text-[#0284C7]">{previewDTI}%</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#98A7BD] block">Loan-to-Value (LTV)</span>
-                  <span className="text-sm font-bold text-[#F5B942]">{previewLTV}%</span>
+                  <span className="text-[10px] text-[#475569] block">Loan-to-Value (LTV)</span>
+                  <span className="text-sm font-bold text-[#D97706]">{previewLTV}%</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Applicant Name</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Applicant Name</label>
                   <input
                     type="text"
                     required
                     value={formData.applicant_name}
                     onChange={(e) => setFormData({ ...formData, applicant_name: e.target.value })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Corporate Email</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Corporate Email</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Phone Number</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Phone Number</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Employment Type</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Employment Type</label>
                   <select
                     value={formData.employment_type}
                     onChange={(e) => setFormData({ ...formData, employment_type: e.target.value })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   >
                     <option value="Salaried">Salaried</option>
                     <option value="Self-Employed Professional">Self-Employed Professional</option>
@@ -298,112 +298,112 @@ const MortgageWorkspace = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Employer / Enterprise</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Employer / Enterprise</label>
                   <input
                     type="text"
                     value={formData.employer}
                     onChange={(e) => setFormData({ ...formData, employer: e.target.value })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Tenure (Years)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Tenure (Years)</label>
                   <input
                     type="number"
                     step="0.5"
                     value={formData.employment_duration_years}
                     onChange={(e) => setFormData({ ...formData, employment_duration_years: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Monthly Gross (INR)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Monthly Gross (INR)</label>
                   <input
                     type="number"
                     required
                     value={formData.monthly_income}
                     onChange={(e) => setFormData({ ...formData, monthly_income: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Other Income (INR)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Other Income (INR)</label>
                   <input
                     type="number"
                     value={formData.other_income}
                     onChange={(e) => setFormData({ ...formData, other_income: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Existing EMI (INR)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Existing EMI (INR)</label>
                   <input
                     type="number"
                     value={formData.existing_monthly_emi}
                     onChange={(e) => setFormData({ ...formData, existing_monthly_emi: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Credit Score</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Credit Score</label>
                   <input
                     type="number"
                     value={formData.credit_score}
                     onChange={(e) => setFormData({ ...formData, credit_score: parseInt(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Requested Loan (INR)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Requested Loan (INR)</label>
                   <input
                     type="number"
                     required
                     value={formData.requested_loan_amount}
                     onChange={(e) => setFormData({ ...formData, requested_loan_amount: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Tenure (Years)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Tenure (Years)</label>
                   <input
                     type="number"
                     value={formData.loan_tenure_years}
                     onChange={(e) => setFormData({ ...formData, loan_tenure_years: parseInt(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Interest Rate (%)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Interest Rate (%)</label>
                   <input
                     type="number"
                     step="0.1"
                     value={formData.interest_rate_percent}
                     onChange={(e) => setFormData({ ...formData, interest_rate_percent: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#F5F7FC] font-semibold mb-1">Property Value (INR)</label>
+                  <label className="block text-[#0F172A] font-semibold mb-1">Property Value (INR)</label>
                   <input
                     type="number"
                     value={formData.property_market_value}
                     onChange={(e) => setFormData({ ...formData, property_market_value: parseFloat(e.target.value) || 0 })}
-                    className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                    className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                   />
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-[#23324A] flex justify-end space-x-3">
+              <div className="pt-4 border-t border-[#E2E8F0] flex justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-[#111D32] text-[#98A7BD] hover:text-white"
+                  className="px-4 py-2 rounded-xl bg-[#FFFFFF] text-[#475569] hover:text-white"
                 >
                   Cancel
                 </button>
@@ -424,24 +424,24 @@ const MortgageWorkspace = () => {
       {/* Human Review Modal (Bank Officer) */}
       {reviewModalOpen && selectedLoan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="bg-[#0D1628] border border-[#23324A] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+          <div className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
               <div>
-                <h3 className="text-sm font-bold text-[#F5F7FC]">Underwriting Adjudication: {selectedLoan.application_number}</h3>
-                <p className="text-[11px] text-[#98A7BD]">{selectedLoan.applicant_name} • INR {(selectedLoan.requested_loan_amount / 10000000).toFixed(2)} Cr</p>
+                <h3 className="text-sm font-bold text-[#0F172A]">Underwriting Adjudication: {selectedLoan.application_number}</h3>
+                <p className="text-[11px] text-[#475569]">{selectedLoan.applicant_name} • INR {(selectedLoan.requested_loan_amount / 10000000).toFixed(2)} Cr</p>
               </div>
-              <button onClick={() => setReviewModalOpen(false)} className="text-[#98A7BD] hover:text-white">
+              <button onClick={() => setReviewModalOpen(false)} className="text-[#475569] hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <form onSubmit={handleReviewSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Human Officer Determination</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Human Officer Determination</label>
                 <select
                   value={reviewForm.status}
                   onChange={(e) => setReviewForm({ ...reviewForm, status: e.target.value })}
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 >
                   <option value="Approved">Approved (Sanctioned)</option>
                   <option value="Rejected">Rejected</option>
@@ -452,39 +452,39 @@ const MortgageWorkspace = () => {
               </div>
 
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Decision Summary</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Decision Summary</label>
                 <input
                   type="text"
                   required
                   value={reviewForm.reviewer_decision}
                   onChange={(e) => setReviewForm({ ...reviewForm, reviewer_decision: e.target.value })}
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
 
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Officer Due Diligence Notes</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Officer Due Diligence Notes</label>
                 <textarea
                   rows={3}
                   required
                   value={reviewForm.officer_notes}
                   onChange={(e) => setReviewForm({ ...reviewForm, officer_notes: e.target.value })}
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC] focus:outline-none focus:border-[#3978F6]"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
                 />
               </div>
 
-              <div className="pt-3 border-t border-[#23324A] flex justify-end space-x-3">
+              <div className="pt-3 border-t border-[#E2E8F0] flex justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setReviewModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-[#111D32] text-[#98A7BD]"
+                  className="px-4 py-2 rounded-xl bg-[#FFFFFF] text-[#475569]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-6 py-2 rounded-xl bg-[#20C997] hover:bg-[#20C997]/80 text-[#080E1B] font-bold"
+                  className="px-6 py-2 rounded-xl bg-[#059669] hover:bg-[#059669]/80 text-[#F8FAFC] font-bold"
                 >
                   {submitting ? 'Recording...' : 'Authorize Human Decision'}
                 </button>

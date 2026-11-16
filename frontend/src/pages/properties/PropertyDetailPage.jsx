@@ -134,11 +134,11 @@ export default function PropertyDetailPage() {
 
   if (loading || !property) {
     return (
-      <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-body-md antialiased">
+      <div className="bg-[#F8FAFC] text-[#0F172A] min-h-screen flex flex-col font-body-md antialiased">
         <HavenNavbar />
         <div className="flex-1 flex flex-col items-center justify-center py-24">
           <div className="w-10 h-10 border-3 border-[#3978F6] border-t-transparent rounded-full animate-spin mb-4" />
-          <p className="text-sm font-semibold text-[#F5F7FC]">Loading architectural property dossier...</p>
+          <p className="text-sm font-semibold text-[#0F172A]">Loading architectural property dossier...</p>
         </div>
         <HavenFooter />
       </div>
@@ -178,29 +178,29 @@ export default function PropertyDetailPage() {
       ];
 
   return (
-    <div className="bg-[#080E1B] text-[#F5F7FC] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
+    <div className="bg-[#F8FAFC] text-[#0F172A] min-h-screen flex flex-col font-body-md antialiased selection:bg-[#3978F6] selection:text-white">
       <HavenNavbar />
 
       <main className="flex-1 w-full">
         {/* Breadcrumb & Navigation Action Bar */}
-        <div className="border-b border-[#23324A] bg-[#0D1628]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between text-xs text-[#98A7BD]">
+        <div className="border-b border-[#E2E8F0] bg-[#F1F5F9]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between text-xs text-[#475569]">
             <div className="flex items-center gap-2">
-              <Link to="/" className="hover:text-[#F5F7FC]">PropWise</Link>
+              <Link to="/" className="hover:text-[#0F172A]">PropWise</Link>
               <span>/</span>
-              <Link to="/catalog" className="hover:text-[#F5F7FC]">Properties Catalog</Link>
+              <Link to="/catalog" className="hover:text-[#0F172A]">Properties Catalog</Link>
               <span>/</span>
-              <span className="text-[#29C5E8] font-semibold">{property.locality || property.city}</span>
+              <span className="text-[#0284C7] font-semibold">{property.locality || property.city}</span>
               <span>/</span>
-              <span className="text-[#F5F7FC] font-semibold truncate max-w-xs">{property.name}</span>
+              <span className="text-[#0F172A] font-semibold truncate max-w-xs">{property.name}</span>
             </div>
 
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsSaved(!isSaved)}
-                className="flex items-center gap-1.5 hover:text-[#EF5B67] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 hover:text-[#DC2626] transition-colors cursor-pointer"
               >
-                <span className={`material-symbols-outlined text-[16px] ${isSaved ? 'text-[#EF5B67]' : ''}`}>
+                <span className={`material-symbols-outlined text-[16px] ${isSaved ? 'text-[#DC2626]' : ''}`}>
                   {isSaved ? 'favorite' : 'favorite_border'}
                 </span>
                 <span>{isSaved ? 'Saved to Portfolio' : 'Save'}</span>
@@ -208,7 +208,7 @@ export default function PropertyDetailPage() {
               <span>·</span>
               <button
                 onClick={handleDownloadDossier}
-                className="flex items-center gap-1.5 text-[#29C5E8] hover:text-[#3978F6] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-[#0284C7] hover:text-[#3978F6] transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]">picture_as_pdf</span>
                 <span>Download Dossier</span>
@@ -221,7 +221,7 @@ export default function PropertyDetailPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Primary Big Photo */}
-            <div className="lg:col-span-8 relative aspect-[16/10] bg-[#111D32] rounded-2xl overflow-hidden shadow-2xl border border-[#23324A]">
+            <div className="lg:col-span-8 relative aspect-[16/10] bg-[#FFFFFF] rounded-2xl overflow-hidden shadow-2xl border border-[#E2E8F0]">
               <img
                 src={galleryImages[activePhoto] || galleryImages[0]}
                 alt={property.name}
@@ -232,10 +232,10 @@ export default function PropertyDetailPage() {
                 className="w-full h-full object-cover transition-all duration-500"
               />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#080E1B]/85 backdrop-blur-md text-[#29C5E8] text-[10px] font-bold uppercase tracking-wider border border-[#23324A]">
+                <span className="px-3 py-1 rounded-full bg-[#F8FAFC]/85 backdrop-blur-md text-[#0284C7] text-[10px] font-bold uppercase tracking-wider border border-[#E2E8F0]">
                   {property.status || 'Verified Collateral'}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-[#20C997]/20 backdrop-blur-md text-[#20C997] text-[10px] font-bold uppercase tracking-wider border border-[#20C997]/40">
+                <span className="px-3 py-1 rounded-full bg-[#059669]/20 backdrop-blur-md text-[#059669] text-[10px] font-bold uppercase tracking-wider border border-[#059669]/40">
                   MLS Verified Asset #{property.id * 1042 + 8100}
                 </span>
               </div>
@@ -247,8 +247,8 @@ export default function PropertyDetailPage() {
                 <button
                   key={idx}
                   onClick={() => setActivePhoto(idx)}
-                  className={`relative flex-1 aspect-[16/9] lg:aspect-auto rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-[#111D32] ${
-                    activePhoto === idx ? 'border-[#3978F6] shadow-lg shadow-[#3978F6]/20' : 'border-[#23324A] opacity-70 hover:opacity-100'
+                  className={`relative flex-1 aspect-[16/9] lg:aspect-auto rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-[#FFFFFF] ${
+                    activePhoto === idx ? 'border-[#3978F6] shadow-lg shadow-[#3978F6]/20' : 'border-[#E2E8F0] opacity-70 hover:opacity-100'
                   }`}
                 >
                   <img
@@ -273,52 +273,52 @@ export default function PropertyDetailPage() {
             <div className="lg:col-span-8 flex flex-col gap-8">
               {/* Header Title Block */}
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-[#29C5E8] mb-1">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7] mb-1">
                   {property.property_type} · {property.locality}, {property.city}
                 </p>
-                <h1 className="font-headline-lg text-3xl sm:text-4xl text-[#F5F7FC] font-semibold leading-tight mb-2">
+                <h1 className="font-headline-lg text-3xl sm:text-4xl text-[#0F172A] font-semibold leading-tight mb-2">
                   {property.name}
                 </h1>
-                <p className="text-sm text-[#98A7BD] flex items-center gap-1.5">
+                <p className="text-sm text-[#475569] flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[18px] text-[#3978F6]">pin_drop</span>
                   {property.full_address}
                 </p>
               </div>
 
               {/* Key Architectural Metric Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-[#111D32] border border-[#23324A] shadow-xl">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-[#FFFFFF] border border-[#E2E8F0] shadow-xl">
                 <div>
-                  <p className="text-[10px] text-[#98A7BD] uppercase font-bold tracking-wider">Gross Area</p>
-                  <p className="text-lg font-bold text-[#F5F7FC]">{(property.built_up_area_sqft || 0).toLocaleString()} <span className="text-xs font-normal text-[#98A7BD]">sq ft</span></p>
+                  <p className="text-[10px] text-[#475569] uppercase font-bold tracking-wider">Gross Area</p>
+                  <p className="text-lg font-bold text-[#0F172A]">{(property.built_up_area_sqft || 0).toLocaleString()} <span className="text-xs font-normal text-[#475569]">sq ft</span></p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-[#98A7BD] uppercase font-bold tracking-wider">Accommodations</p>
-                  <p className="text-lg font-bold text-[#F5F7FC]">{property.bedrooms} BHK <span className="text-xs font-normal text-[#98A7BD]">/ {property.bathrooms} Baths</span></p>
+                  <p className="text-[10px] text-[#475569] uppercase font-bold tracking-wider">Accommodations</p>
+                  <p className="text-lg font-bold text-[#0F172A]">{property.bedrooms} BHK <span className="text-xs font-normal text-[#475569]">/ {property.bathrooms} Baths</span></p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-[#98A7BD] uppercase font-bold tracking-wider">Parcel Land</p>
-                  <p className="text-lg font-bold text-[#F5F7FC]">{(property.land_area_sqft || 3200).toLocaleString()} <span className="text-xs font-normal text-[#98A7BD]">sq ft</span></p>
+                  <p className="text-[10px] text-[#475569] uppercase font-bold tracking-wider">Parcel Land</p>
+                  <p className="text-lg font-bold text-[#0F172A]">{(property.land_area_sqft || 3200).toLocaleString()} <span className="text-xs font-normal text-[#475569]">sq ft</span></p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-[#98A7BD] uppercase font-bold tracking-wider">Rate / Sq Ft</p>
-                  <p className="text-lg font-bold text-[#20C997]">INR {pricePerSqFt.toLocaleString()}</p>
+                  <p className="text-[10px] text-[#475569] uppercase font-bold tracking-wider">Rate / Sq Ft</p>
+                  <p className="text-lg font-bold text-[#059669]">INR {pricePerSqFt.toLocaleString()}</p>
                 </div>
               </div>
 
               {/* Architectural Narrative */}
-              <div className="flex flex-col gap-4 bg-[#111D32] p-6 rounded-2xl border border-[#23324A] shadow-xl">
-                <h2 className="font-headline-md text-xl text-[#F5F7FC] font-semibold">
+              <div className="flex flex-col gap-4 bg-[#FFFFFF] p-6 rounded-2xl border border-[#E2E8F0] shadow-xl">
+                <h2 className="font-headline-md text-xl text-[#0F172A] font-semibold">
                   A Monument of Pure Linearity, Light, and Engineering Mastery
                 </h2>
-                <p className="text-sm leading-relaxed text-[#98A7BD]">
+                <p className="text-sm leading-relaxed text-[#475569]">
                   Conceived as an uncompromising architectural dialogue between structural glass, bush-hammered limestone,
                   and sweeping panoramic horizons. Every volume is disciplined by rigorous proportions and curated materials,
                   providing an effortless sanctuary for private life and grand-scale institutional entertaining.
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4 border-t border-[#23324A]">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4 border-t border-[#E2E8F0]">
                   {amenitiesList.map((amenity, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-[#F5F7FC]">
-                      <span className="material-symbols-outlined text-[16px] text-[#29C5E8]">check_circle</span>
+                    <div key={i} className="flex items-center gap-2 text-xs text-[#0F172A]">
+                      <span className="material-symbols-outlined text-[16px] text-[#0284C7]">check_circle</span>
                       <span>{amenity}</span>
                     </div>
                   ))}
@@ -326,9 +326,9 @@ export default function PropertyDetailPage() {
               </div>
 
               {/* Floorplan Blueprint Explorer */}
-              <div className="bg-[#111D32] p-6 rounded-2xl border border-[#23324A] shadow-xl flex flex-col gap-4">
+              <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#E2E8F0] shadow-xl flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-headline-sm text-lg text-[#F5F7FC] font-semibold">
+                  <h3 className="font-headline-sm text-lg text-[#0F172A] font-semibold">
                     Architectural Floorplan Blueprint
                   </h3>
                   <div className="flex gap-2">
@@ -337,7 +337,7 @@ export default function PropertyDetailPage() {
                         key={rm}
                         onClick={() => setActiveRoom(rm)}
                         className={`px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-colors cursor-pointer ${
-                          activeRoom === rm ? 'bg-[#3978F6] text-white shadow-md' : 'bg-[#0D1628] text-[#98A7BD] hover:text-[#F5F7FC]'
+                          activeRoom === rm ? 'bg-[#3978F6] text-white shadow-md' : 'bg-[#F1F5F9] text-[#475569] hover:text-[#0F172A]'
                         }`}
                       >
                         {rm} Suite
@@ -346,13 +346,13 @@ export default function PropertyDetailPage() {
                   </div>
                 </div>
 
-                <div className="h-64 bg-[#0A1222] rounded-xl border border-[#23324A] flex items-center justify-center p-4 relative overflow-hidden">
+                <div className="h-64 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0] flex items-center justify-center p-4 relative overflow-hidden">
                   <div className="text-center">
-                    <span className="material-symbols-outlined text-[48px] text-[#29C5E8]">architecture</span>
-                    <p className="text-xs font-bold text-[#F5F7FC] mt-2 uppercase tracking-wider">
+                    <span className="material-symbols-outlined text-[48px] text-[#0284C7]">architecture</span>
+                    <p className="text-xs font-bold text-[#0F172A] mt-2 uppercase tracking-wider">
                       Level 3 · {activeRoom.toUpperCase()} SUITE BLUEPRINT
                     </p>
-                    <p className="text-[11px] text-[#98A7BD] mt-1">
+                    <p className="text-[11px] text-[#475569] mt-1">
                       Scaled high-resolution architectural schematics available via authenticated valuation dossier.
                     </p>
                   </div>
@@ -360,30 +360,30 @@ export default function PropertyDetailPage() {
               </div>
 
               {/* Neighborhood Intelligence Scores */}
-              <div className="bg-[#111D32] p-6 rounded-2xl border border-[#23324A] shadow-xl flex flex-col gap-4">
-                <h3 className="font-headline-sm text-lg text-[#F5F7FC] font-semibold">
+              <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#E2E8F0] shadow-xl flex flex-col gap-4">
+                <h3 className="font-headline-sm text-lg text-[#0F172A] font-semibold">
                   Neighborhood Telemetry &amp; Location Intelligence
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div className="p-4 bg-[#0D1628] rounded-xl border border-[#23324A] text-center">
-                    <span className="material-symbols-outlined text-[24px] text-[#29C5E8]">directions_walk</span>
-                    <p className="text-lg font-bold text-[#F5F7FC] mt-1">94 / 100</p>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Walker's Paradise</p>
+                  <div className="p-4 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] text-center">
+                    <span className="material-symbols-outlined text-[24px] text-[#0284C7]">directions_walk</span>
+                    <p className="text-lg font-bold text-[#0F172A] mt-1">94 / 100</p>
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Walker's Paradise</p>
                   </div>
-                  <div className="p-4 bg-[#0D1628] rounded-xl border border-[#23324A] text-center">
-                    <span className="material-symbols-outlined text-[24px] text-[#20C997]">school</span>
-                    <p className="text-lg font-bold text-[#F5F7FC] mt-1">98 / 100</p>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Premier Schools</p>
+                  <div className="p-4 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] text-center">
+                    <span className="material-symbols-outlined text-[24px] text-[#059669]">school</span>
+                    <p className="text-lg font-bold text-[#0F172A] mt-1">98 / 100</p>
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Premier Schools</p>
                   </div>
-                  <div className="p-4 bg-[#0D1628] rounded-xl border border-[#23324A] text-center">
+                  <div className="p-4 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] text-center">
                     <span className="material-symbols-outlined text-[24px] text-[#3978F6]">volume_mute</span>
-                    <p className="text-lg font-bold text-[#F5F7FC] mt-1">92 / 100</p>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Sanctuary Index</p>
+                    <p className="text-lg font-bold text-[#0F172A] mt-1">92 / 100</p>
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Sanctuary Index</p>
                   </div>
-                  <div className="p-4 bg-[#0D1628] rounded-xl border border-[#23324A] text-center">
-                    <span className="material-symbols-outlined text-[24px] text-[#F5B942]">landscape</span>
-                    <p className="text-lg font-bold text-[#F5F7FC] mt-1">99 / 100</p>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Horizon View Value</p>
+                  <div className="p-4 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] text-center">
+                    <span className="material-symbols-outlined text-[24px] text-[#D97706]">landscape</span>
+                    <p className="text-lg font-bold text-[#0F172A] mt-1">99 / 100</p>
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Horizon View Value</p>
                   </div>
                 </div>
               </div>
@@ -392,13 +392,13 @@ export default function PropertyDetailPage() {
             {/* Right 4 Columns: Sticky Pricing Card & Mortgage Tool */}
             <div className="lg:col-span-4 sticky top-24 flex flex-col gap-6">
               {/* Acquisition Card */}
-              <div className="bg-[#111D32] p-6 rounded-2xl border border-[#23324A] shadow-2xl flex flex-col gap-5">
+              <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#E2E8F0] shadow-2xl flex flex-col gap-5">
                 <div>
-                  <p className="text-[10px] text-[#98A7BD] uppercase font-bold tracking-widest">Assessed Valuation</p>
-                  <p className="font-headline-lg text-3xl font-extrabold text-[#20C997]">
+                  <p className="text-[10px] text-[#475569] uppercase font-bold tracking-widest">Assessed Valuation</p>
+                  <p className="font-headline-lg text-3xl font-extrabold text-[#059669]">
                     {priceDisplay}
                   </p>
-                  <p className="text-xs text-[#29C5E8] font-semibold mt-1">
+                  <p className="text-xs text-[#0284C7] font-semibold mt-1">
                     AI Fair Market Value · 94% Confidence Interval
                   </p>
                 </div>
@@ -414,41 +414,41 @@ export default function PropertyDetailPage() {
 
                   <button
                     onClick={handleDownloadDossier}
-                    className="w-full py-3 bg-[#0D1628] hover:bg-[#111D32] border border-[#23324A] text-[#F5F7FC] rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full py-3 bg-[#F1F5F9] hover:bg-[#FFFFFF] border border-[#E2E8F0] text-[#0F172A] rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    <span className="material-symbols-outlined text-[18px] text-[#29C5E8]">download</span>
+                    <span className="material-symbols-outlined text-[18px] text-[#0284C7]">download</span>
                     Download Certified Dossier (PDF)
                   </button>
                 </div>
 
                 {/* Advisor Contact Card */}
-                <div className="p-4 rounded-xl bg-[#0D1628] border border-[#23324A] flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-[#111D32] border border-[#3978F6] flex items-center justify-center text-sm font-bold text-[#29C5E8]">
+                <div className="p-4 rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#3978F6] flex items-center justify-center text-sm font-bold text-[#0284C7]">
                     EV
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#F5F7FC]">Eleanor Vance</p>
-                    <p className="text-[10px] text-[#98A7BD]">Chief Valuation Officer · Private Wealth</p>
-                    <p className="text-[11px] font-semibold text-[#29C5E8] mt-0.5">+1 (415) 890-4200</p>
+                    <p className="text-xs font-bold text-[#0F172A]">Eleanor Vance</p>
+                    <p className="text-[10px] text-[#475569]">Chief Valuation Officer · Private Wealth</p>
+                    <p className="text-[11px] font-semibold text-[#0284C7] mt-0.5">+1 (415) 890-4200</p>
                   </div>
                 </div>
               </div>
 
               {/* Interactive Mortgage Debt Service Calculator */}
-              <div className="bg-[#111D32] p-6 rounded-2xl border border-[#23324A] shadow-xl flex flex-col gap-4">
+              <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#E2E8F0] shadow-xl flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-headline-sm text-base text-[#F5F7FC] font-semibold">
+                  <h4 className="font-headline-sm text-base text-[#0F172A] font-semibold">
                     Financing &amp; Debt Service
                   </h4>
-                  <span className="text-[10px] font-bold uppercase text-[#29C5E8] bg-[#0D1628] border border-[#23324A] px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold uppercase text-[#0284C7] bg-[#F1F5F9] border border-[#E2E8F0] px-2 py-0.5 rounded-full">
                     Underwriting
                   </span>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-xs mb-1.5">
-                    <span className="text-[#98A7BD]">Loan Principal</span>
-                    <span className="font-bold text-[#20C997]">
+                    <span className="text-[#475569]">Loan Principal</span>
+                    <span className="font-bold text-[#059669]">
                       {loanAmount > 10000000
                         ? `INR ${(loanAmount / 10000000).toFixed(2)} Cr`
                         : `$${loanAmount.toLocaleString()}`}
@@ -467,37 +467,37 @@ export default function PropertyDetailPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-[10px] text-[#98A7BD] uppercase font-bold block mb-1">Interest Rate (%)</label>
+                    <label className="text-[10px] text-[#475569] uppercase font-bold block mb-1">Interest Rate (%)</label>
                     <input
                       type="number"
                       step="0.1"
                       value={interestRate}
                       onChange={(e) => setInterestRate(Number(e.target.value))}
-                      className="w-full p-2 bg-[#0D1628] border border-[#23324A] rounded-lg text-xs text-[#F5F7FC] font-bold outline-none"
+                      className="w-full p-2 bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg text-xs text-[#0F172A] font-bold outline-none"
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] text-[#98A7BD] uppercase font-bold block mb-1">Tenure</label>
+                    <label className="text-[10px] text-[#475569] uppercase font-bold block mb-1">Tenure</label>
                     <select
                       value={tenureYears}
                       onChange={(e) => setTenureYears(Number(e.target.value))}
-                      className="w-full p-2 bg-[#0D1628] border border-[#23324A] rounded-lg text-xs text-[#F5F7FC] font-bold outline-none cursor-pointer"
+                      className="w-full p-2 bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg text-xs text-[#0F172A] font-bold outline-none cursor-pointer"
                     >
-                      <option value="15" className="bg-[#111D32]">15 Years</option>
-                      <option value="20" className="bg-[#111D32]">20 Years</option>
-                      <option value="30" className="bg-[#111D32]">30 Years</option>
+                      <option value="15" className="bg-[#FFFFFF]">15 Years</option>
+                      <option value="20" className="bg-[#FFFFFF]">20 Years</option>
+                      <option value="30" className="bg-[#FFFFFF]">30 Years</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="p-4 bg-[#0D1628] rounded-xl border border-[#23324A] flex items-center justify-between">
+                <div className="p-4 bg-[#F1F5F9] rounded-xl border border-[#E2E8F0] flex items-center justify-between">
                   <div>
-                    <p className="text-[10px] text-[#98A7BD] uppercase font-bold">Estimated Monthly Debt Service</p>
-                    <p className="text-xl font-bold text-[#20C997]">
+                    <p className="text-[10px] text-[#475569] uppercase font-bold">Estimated Monthly Debt Service</p>
+                    <p className="text-xl font-bold text-[#059669]">
                       {monthlyPayment > 100000
                         ? `INR ${(monthlyPayment / 100000).toFixed(2)} Lakh`
                         : `$${monthlyPayment.toLocaleString()}`}{' '}
-                      <span className="text-xs text-[#98A7BD] font-normal">/ mo</span>
+                      <span className="text-xs text-[#475569] font-normal">/ mo</span>
                     </p>
                   </div>
                   <Link
@@ -515,84 +515,84 @@ export default function PropertyDetailPage() {
         {/* Private Viewing Booking Modal */}
         {showTourModal && (
           <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
-            <div className="bg-[#0D1628] rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#23324A] relative">
+            <div className="bg-[#F1F5F9] rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E2E8F0] relative">
               <button
                 onClick={() => setShowTourModal(false)}
-                className="absolute top-4 right-4 text-[#98A7BD] hover:text-[#F5F7FC] p-1 cursor-pointer"
+                className="absolute top-4 right-4 text-[#475569] hover:text-[#0F172A] p-1 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
 
-              <h3 className="font-headline-sm text-xl text-[#F5F7FC] font-semibold mb-1">
+              <h3 className="font-headline-sm text-xl text-[#0F172A] font-semibold mb-1">
                 Schedule a Private Residence Viewing
               </h3>
-              <p className="text-xs text-[#98A7BD] mb-4">
+              <p className="text-xs text-[#475569] mb-4">
                 Private escorted tour of {property.name}. An advisor will review discretion protocols prior to access.
               </p>
 
               {tourStatus === 'success' ? (
-                <div className="p-4 rounded-xl bg-[#20C997]/15 border border-[#20C997] text-center">
-                  <span className="material-symbols-outlined text-[36px] text-[#20C997]">check_circle</span>
-                  <p className="text-sm font-bold text-[#F5F7FC] mt-2">Private Tour Requested</p>
-                  <p className="text-xs text-[#98A7BD] mt-1">Our private client desk has logged your mandate and will contact you directly.</p>
+                <div className="p-4 rounded-xl bg-[#059669]/15 border border-[#059669] text-center">
+                  <span className="material-symbols-outlined text-[36px] text-[#059669]">check_circle</span>
+                  <p className="text-sm font-bold text-[#0F172A] mt-2">Private Tour Requested</p>
+                  <p className="text-xs text-[#475569] mt-1">Our private client desk has logged your mandate and will contact you directly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleBookTour} className="flex flex-col gap-3">
                   <div>
-                    <label className="block text-[11px] font-bold uppercase text-[#F5F7FC] mb-1">Full Legal Name</label>
+                    <label className="block text-[11px] font-bold uppercase text-[#0F172A] mb-1">Full Legal Name</label>
                     <input
                       type="text"
                       required
                       value={tourForm.name}
                       onChange={(e) => setTourForm({ ...tourForm, name: e.target.value })}
                       placeholder="e.g. Richard Hendricks"
-                      className="w-full bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                      className="w-full bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#F5F7FC] mb-1">Corporate / Private Email</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#0F172A] mb-1">Corporate / Private Email</label>
                       <input
                         type="email"
                         required
                         value={tourForm.email}
                         onChange={(e) => setTourForm({ ...tourForm, email: e.target.value })}
                         placeholder="richard@piedpiper.com"
-                        className="w-full bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold uppercase text-[#F5F7FC] mb-1">Direct Phone</label>
+                      <label className="block text-[11px] font-bold uppercase text-[#0F172A] mb-1">Direct Phone</label>
                       <input
                         type="tel"
                         value={tourForm.phone}
                         onChange={(e) => setTourForm({ ...tourForm, phone: e.target.value })}
                         placeholder="+91 98200 00000"
-                        className="w-full bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                        className="w-full bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold uppercase text-[#F5F7FC] mb-1">Preferred Viewing Date</label>
+                    <label className="block text-[11px] font-bold uppercase text-[#0F172A] mb-1">Preferred Viewing Date</label>
                     <input
                       type="date"
                       required
                       value={tourForm.date}
                       onChange={(e) => setTourForm({ ...tourForm, date: e.target.value })}
-                      className="w-full bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                      className="w-full bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold uppercase text-[#F5F7FC] mb-1">Special Advisory Requirements (Optional)</label>
+                    <label className="block text-[11px] font-bold uppercase text-[#0F172A] mb-1">Special Advisory Requirements (Optional)</label>
                     <textarea
                       rows="2"
                       value={tourForm.notes}
                       onChange={(e) => setTourForm({ ...tourForm, notes: e.target.value })}
                       placeholder="e.g. Escrow verification, title clearance, architect review..."
-                      className="w-full bg-[#111D32] px-3.5 py-2 rounded-lg border border-[#23324A] text-xs text-[#F5F7FC] outline-none focus:border-[#3978F6]"
+                      className="w-full bg-[#FFFFFF] px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#0F172A] outline-none focus:border-[#3978F6]"
                     />
                   </div>
 

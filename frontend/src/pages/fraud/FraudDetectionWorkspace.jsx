@@ -72,13 +72,13 @@ const FraudDetectionWorkspace = () => {
   const getSeverityBadge = (sev) => {
     switch (sev) {
       case 'Critical':
-        return 'bg-[#EF5B67]/15 text-[#EF5B67] border-[#EF5B67]/40';
+        return 'bg-[#DC2626]/15 text-[#DC2626] border-[#DC2626]/40';
       case 'High':
-        return 'bg-[#F5B942]/15 text-[#F5B942] border-[#F5B942]/40';
+        return 'bg-[#D97706]/15 text-[#D97706] border-[#D97706]/40';
       case 'Medium':
         return 'bg-[#3978F6]/15 text-[#3978F6] border-[#3978F6]/40';
       default:
-        return 'bg-[#20C997]/15 text-[#20C997] border-[#20C997]/40';
+        return 'bg-[#059669]/15 text-[#059669] border-[#059669]/40';
     }
   };
 
@@ -87,15 +87,15 @@ const FraudDetectionWorkspace = () => {
       
       {/* Header */}
       <div>
-        <h2 className="text-xl font-extrabold text-[#F5F7FC] tracking-tight">Fraud & Anomaly Intelligence Studio</h2>
-        <p className="text-xs text-[#98A7BD]">
+        <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Fraud & Anomaly Intelligence Studio</h2>
+        <p className="text-xs text-[#475569]">
           Continuous screening for valuation spikes, dimensional inconsistencies, excessive leverage, and duplicate asset filings.
         </p>
       </div>
 
       {/* Institutional Notice */}
-      <div className="p-4 rounded-xl bg-[#111D32] border border-[#23324A] flex items-center space-x-3 text-xs text-[#98A7BD]">
-        <ShieldCheck className="w-5 h-5 text-[#20C997] flex-shrink-0" />
+      <div className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] flex items-center space-x-3 text-xs text-[#475569]">
+        <ShieldCheck className="w-5 h-5 text-[#059669] flex-shrink-0" />
         <span>
           Investigation Guideline: Statistical outliers and automated flags represent risk indicators requiring due diligence.
           An anomaly does not constitute legal proof of fraudulent intent.
@@ -104,30 +104,30 @@ const FraudDetectionWorkspace = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] font-medium block">Total Flags Recorded</span>
-          <div className="text-2xl font-black text-[#F5F7FC] mt-1">{stats?.total_alerts || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] font-medium block">Total Flags Recorded</span>
+          <div className="text-2xl font-black text-[#0F172A] mt-1">{stats?.total_alerts || 0}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] font-medium block">High Priority Outliers</span>
-          <div className="text-2xl font-black text-[#EF5B67] mt-1">{stats?.high_priority_alerts || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] font-medium block">High Priority Outliers</span>
+          <div className="text-2xl font-black text-[#DC2626] mt-1">{stats?.high_priority_alerts || 0}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] font-medium block">Under Investigation</span>
-          <div className="text-2xl font-black text-[#F5B942] mt-1">{stats?.under_investigation || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] font-medium block">Under Investigation</span>
+          <div className="text-2xl font-black text-[#D97706] mt-1">{stats?.under_investigation || 0}</div>
         </div>
-        <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4">
-          <span className="text-xs text-[#98A7BD] font-medium block">Adjudicated & Resolved</span>
-          <div className="text-2xl font-black text-[#20C997] mt-1">{stats?.resolved_alerts || 0}</div>
+        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4">
+          <span className="text-xs text-[#475569] font-medium block">Adjudicated & Resolved</span>
+          <div className="text-2xl font-black text-[#059669] mt-1">{stats?.resolved_alerts || 0}</div>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-xl p-4 flex flex-wrap items-center gap-3">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4 flex flex-wrap items-center gap-3">
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-[#0D1628] border border-[#23324A] rounded-lg px-3 py-1.5 text-xs text-[#F5F7FC]"
+          className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-xs text-[#0F172A]"
         >
           <option value="">All Review Statuses</option>
           <option value="Open">Open</option>
@@ -139,7 +139,7 @@ const FraudDetectionWorkspace = () => {
         <select
           value={severityFilter}
           onChange={(e) => setSeverityFilter(e.target.value)}
-          className="bg-[#0D1628] border border-[#23324A] rounded-lg px-3 py-1.5 text-xs text-[#F5F7FC]"
+          className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-xs text-[#0F172A]"
         >
           <option value="">All Severities</option>
           <option value="Critical">Critical</option>
@@ -150,15 +150,15 @@ const FraudDetectionWorkspace = () => {
       </div>
 
       {/* Alerts Table */}
-      <div className="bg-[#111D32] border border-[#23324A] rounded-2xl overflow-hidden shadow-xl">
+      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-xl">
         {loading ? (
-          <div className="text-center py-12 text-xs text-[#98A7BD]">Scanning anomaly flags...</div>
+          <div className="text-center py-12 text-xs text-[#475569]">Scanning anomaly flags...</div>
         ) : alerts.length === 0 ? (
-          <div className="p-12 text-center text-xs text-[#98A7BD]">No fraud flags or statistical anomalies detected.</div>
+          <div className="p-12 text-center text-xs text-[#475569]">No fraud flags or statistical anomalies detected.</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#0D1628] text-[#98A7BD] border-b border-[#23324A]">
+              <thead className="bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
                 <tr>
                   <th className="py-3 px-4 font-semibold">Alert Reference</th>
                   <th className="py-3 px-4 font-semibold">Anomaly Category</th>
@@ -168,24 +168,24 @@ const FraudDetectionWorkspace = () => {
                   <th className="py-3 px-4 font-semibold text-right">Investigation</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#23324A]">
+              <tbody className="divide-y divide-[#E2E8F0]">
                 {alerts.map(a => (
-                  <tr key={a.id} className="hover:bg-[#0D1628]/60 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-[#29C5E8]">{a.alert_code}</td>
-                    <td className="py-3.5 px-4 font-semibold text-[#F5F7FC]">{a.alert_type}</td>
+                  <tr key={a.id} className="hover:bg-[#F1F5F9]/60 transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-[#0284C7]">{a.alert_code}</td>
+                    <td className="py-3.5 px-4 font-semibold text-[#0F172A]">{a.alert_type}</td>
                     <td className="py-3.5 px-4">
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getSeverityBadge(a.severity)}`}>
                         {a.severity}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-[#98A7BD] max-w-xs truncate">{a.detection_method}</td>
+                    <td className="py-3.5 px-4 text-[#475569] max-w-xs truncate">{a.detection_method}</td>
                     <td className="py-3.5 px-4">
-                      <span className="text-xs text-[#F5F7FC]">{a.status}</span>
+                      <span className="text-xs text-[#0F172A]">{a.status}</span>
                     </td>
                     <td className="py-3.5 px-4 text-right">
                       <button
                         onClick={() => handleOpenInvestigation(a)}
-                        className="px-3 py-1.5 rounded-lg bg-[#3978F6]/20 hover:bg-[#3978F6] border border-[#3978F6]/40 text-[#29C5E8] hover:text-white font-semibold transition-colors"
+                        className="px-3 py-1.5 rounded-lg bg-[#3978F6]/20 hover:bg-[#3978F6] border border-[#3978F6]/40 text-[#0284C7] hover:text-white font-semibold transition-colors"
                       >
                         Investigate
                       </button>
@@ -201,29 +201,29 @@ const FraudDetectionWorkspace = () => {
       {/* Investigation Modal */}
       {modalOpen && selectedAlert && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="bg-[#0D1628] border border-[#23324A] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#23324A]">
+          <div className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
               <div>
-                <h3 className="text-sm font-bold text-[#F5F7FC]">Investigation: {selectedAlert.alert_code}</h3>
-                <p className="text-[11px] text-[#98A7BD]">{selectedAlert.alert_type}</p>
+                <h3 className="text-sm font-bold text-[#0F172A]">Investigation: {selectedAlert.alert_code}</h3>
+                <p className="text-[11px] text-[#475569]">{selectedAlert.alert_type}</p>
               </div>
-              <button onClick={() => setModalOpen(false)} className="text-[#98A7BD] hover:text-white">
+              <button onClick={() => setModalOpen(false)} className="text-[#475569] hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-[#111D32] border border-[#23324A] space-y-1.5">
-              <span className="text-[#F5F7FC] font-bold block">Flag Reason & Statistical Detail:</span>
-              <p className="text-[#98A7BD] leading-relaxed">{selectedAlert.reason}</p>
+            <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] space-y-1.5">
+              <span className="text-[#0F172A] font-bold block">Flag Reason & Statistical Detail:</span>
+              <p className="text-[#475569] leading-relaxed">{selectedAlert.reason}</p>
             </div>
 
             <form onSubmit={handleUpdateAlert} className="space-y-3.5">
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Investigation Review Status</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Investigation Review Status</label>
                 <select
                   value={investigationStatus}
                   onChange={(e) => setInvestigationStatus(e.target.value)}
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
                 >
                   <option value="Under Investigation">Under Active Investigation</option>
                   <option value="Escalated">Escalated to Forensic Due Diligence</option>
@@ -233,22 +233,22 @@ const FraudDetectionWorkspace = () => {
               </div>
 
               <div>
-                <label className="block text-[#F5F7FC] font-semibold mb-1">Investigator Analysis Notes</label>
+                <label className="block text-[#0F172A] font-semibold mb-1">Investigator Analysis Notes</label>
                 <textarea
                   rows={3}
                   required
                   value={investigationNotes}
                   onChange={(e) => setInvestigationNotes(e.target.value)}
                   placeholder="Record verification deeds, registry verification, or explanation"
-                  className="w-full bg-[#111D32] border border-[#23324A] rounded-xl px-3 py-2 text-[#F5F7FC]"
+                  className="w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-3 py-2 text-[#0F172A]"
                 />
               </div>
 
-              <div className="pt-3 border-t border-[#23324A] flex justify-end space-x-3">
+              <div className="pt-3 border-t border-[#E2E8F0] flex justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-[#111D32] text-[#98A7BD]"
+                  className="px-4 py-2 rounded-xl bg-[#FFFFFF] text-[#475569]"
                 >
                   Cancel
                 </button>
