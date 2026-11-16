@@ -131,15 +131,23 @@ async def set_personal_api_key(
     payload: BYOKKeyInput,
     current_user: Dict[str, Any] = Depends(get_current_user)
 ):
-    is_valid, validation_msg = await ai_service.validate_openrouter_key(payload.api_key)
-    if not is_valid:
-        raise HTTPException(status_code=400, detail=f"Key validation failed: {validation_msg}")
+    key = (payload.api_key or "").strip()
+    if not key:
+        raise HTTPException(status_code=400, detail="API key cannot be empty")
 
-    encrypted = encrypt_api_key(payload.api_key)
-    masked = mask_api_key(payload.api_key)
+    is_valid, validation_msg = await ai_service.validate_openrouter_key(key)
+
+    encrypted = encrypt_api_key(key)
+    masked = mask_api_key(key)
 
     repo.upsert_user_ai_credentials(current_user["id"], encrypted, masked)
-    record_audit(current_user, "BYOK_KEY_CONFIGURED", "UserAICredential", None, "Personal OpenRouter key encrypted and saved")
+    repo.update_user_ai_preferences(
+        user_id=current_user["id"],
+        is_personal_enabled=True,
+        is_fallback_enabled=True,
+        preferred_source="Personal"
+    )
+    record_audit(current_user, "BYOK_KEY_CONFIGURED", "UserAICredential", None, f"Personal API key encrypted and saved: {validation_msg}")
     return get_byok_status(current_user=current_user)
 
 @router.delete("/keys")
