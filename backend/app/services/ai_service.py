@@ -1,23 +1,23 @@
 import httpx
 import logging
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, List
 from backend.app.core.config import settings
 from backend.app.security.crypto import decrypt_api_key
 from backend.app.database.repo import repo
 
 logger = logging.getLogger("propwise.ai")
 
-SYSTEM_PROMPT = """You are PropWise Intelligence, an enterprise AI assistant embedded within PROPWISE AI — an AI-powered Property Valuation, Mortgage Underwriting, and FinTech Intelligence Platform.
+SYSTEM_PROMPT = """You are PropWise Intelligence, an expert AI assistant embedded within PROPWISE AI — an institutional Property Valuation, Mortgage Underwriting, and FinTech Intelligence Platform.
 Tagline: "Smarter Property Valuation. Safer Lending Decisions."
 
-Key operating principles:
-1. Always maintain a professional, trustworthy, enterprise FinTech tone.
-2. Strictly never use emojis anywhere in your responses.
-3. Strictly never use informal hyphens or colloquialisms. Use clean bullet points or numbered lists.
-4. Never invent or hallucinate credit scores, financial values, property valuations, or risk scores.
-5. All financial and valuation calculations provided in the system context are authoritative. Refer to them directly.
-6. Clearly clarify that all automated assessments are decision support instruments; final mortgage approvals require human credit officer sign-off.
-7. Explain complex financial ratios (EMI, DTI, LTV) in clear, authoritative terms.
+Key operating guidelines:
+1. Always maintain a sophisticated, authoritative, and helpful FinTech advisor tone.
+2. If the user greets or engages in conversation (e.g. "hi", "hello", "how was your day"), respond warmly, naturally, and professionally while offering assistance with property valuations, underwriting criteria, or risk assessments.
+3. Strictly never use emojis anywhere in your responses.
+4. When discussing property valuations, mortgage parameters, or financial metrics, explain underlying factors clearly using structured formatting (Markdown headers, bold metrics, and clean bullet points).
+5. All financial data, valuations, or loan metrics provided in the system context are authoritative facts for that asset or application. Refer to them accurately.
+6. Clearly note that automated valuation models and algorithmic underwriting serve as decision support instruments; final loan disbursements require human credit officer sign-off.
+7. Explain complex financial ratios (EMI amortization, Debt-to-Income / DTI, Loan-to-Value / LTV) with precision.
 """
 
 class AIService:
@@ -28,10 +28,10 @@ class AIService:
         if not key:
             return False, "API key cannot be empty"
 
-        # 1. Google Gemini API Key (starts with AQ. or AIza or has gemini)
+        # 1. Google Gemini API Key
         if key.startswith("AQ.") or key.startswith("AIza") or "gemini" in key.lower():
             try:
-                async with httpx.AsyncClient(timeout=5.0) as client:
+                async with httpx.AsyncClient(timeout=8.0) as client:
                     test_url = f"https://generativelanguage.googleapis.com/v1beta/models?key={key}"
                     res = await client.get(test_url)
                     if res.status_code == 200:
@@ -43,7 +43,7 @@ class AIService:
         # 2. OpenAI Key
         if key.startswith("sk-proj-") or (key.startswith("sk-") and not key.startswith("sk-or-")):
             try:
-                async with httpx.AsyncClient(timeout=5.0) as client:
+                async with httpx.AsyncClient(timeout=8.0) as client:
                     res = await client.get("https://api.openai.com/v1/models", headers={"Authorization": f"Bearer {key}"})
                     if res.status_code == 200:
                         return True, "OpenAI API key verified and active"
@@ -59,7 +59,7 @@ class AIService:
                 "X-Title": "PROPWISE AI",
             }
             try:
-                async with httpx.AsyncClient(timeout=5.0) as client:
+                async with httpx.AsyncClient(timeout=8.0) as client:
                     res = await client.get("https://openrouter.ai/api/v1/auth/key", headers=headers)
                     if res.status_code == 200:
                         return True, "OpenRouter API key successfully verified"
@@ -71,6 +71,92 @@ class AIService:
         return True, "Personal API key securely encrypted and active for platform inference"
 
     @classmethod
+    def _build_gemini_payload(
+        cls,
+        prompt: str,
+        context_data: Optional[Dict[str, Any]] = None,
+        conversation_history: Optional[List[Dict[str, Any]]] = None
+    ) -> Dict[str, Any]:
+        """Builds an official multi-turn Google Gemini generateContent payload."""
+        system_text = SYSTEM_PROMPT
+        if context_data:
+            system_text += "\n\nCURRENT PLATFORM CONTEXT FOR THIS REQUEST:\n"
+            for k, v in context_data.items():
+                system_text += f"- {k}: {v}\n"
+
+        gemini_contents = []
+        if conversation_history:
+            for msg in conversation_history[-8:]:
+                sender = msg.get("sender") or msg.get("role", "user")
+                role = "user" if sender == "user" else "model"
+                text = (msg.get("content") or "").strip()
+                if text:
+                    gemini_contents.append({"role": role, "parts": [{"text": text}]})
+
+        # Google Gemini requires contents to start with role 'user'
+        while gemini_contents and gemini_contents[0]["role"] != "user":
+            gemini_contents.pop(0)
+
+        # Merge consecutive messages with the same role (Gemini strictly requires alternating turns)
+        merged_contents = []
+        for item in gemini_contents:
+            if merged_contents and merged_contents[-1]["role"] == item["role"]:
+                merged_contents[-1]["parts"][0]["text"] += "\n\n" + item["parts"][0]["text"]
+            else:
+                merged_contents.append(item)
+
+        # Append the new user prompt
+        if merged_contents and merged_contents[-1]["role"] == "user":
+            merged_contents[-1]["parts"][0]["text"] += "\n\n" + prompt.strip()
+        else:
+            merged_contents.append({"role": "user", "parts": [{"text": prompt.strip()}]})
+
+        return {
+            "system_instruction": {
+                "parts": [{"text": system_text}]
+            },
+            "contents": merged_contents,
+            "generationConfig": {
+                "temperature": 0.6,
+                "maxOutputTokens": 2048,
+                "topP": 0.95
+            }
+        }
+
+    @classmethod
+    async def _execute_gemini(cls, api_key: str, payload: Dict[str, Any]) -> Tuple[bool, str, str]:
+        """Executes the request directly against Google Generative Language endpoints."""
+        models_to_try = [
+            "gemini-flash-lite-latest",
+            "gemini-3.8-flash",
+            "gemini-3.5-flash",
+            "gemini-flash-latest",
+            "gemini-pro-latest"
+        ]
+
+        last_error = ""
+        for g_model in models_to_try:
+            gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/{g_model}:generateContent?key={api_key}"
+            try:
+                async with httpx.AsyncClient(timeout=20.0) as client:
+                    res = await client.post(gemini_url, json=payload)
+                    if res.status_code == 200:
+                        data = res.json()
+                        candidates = data.get("candidates", [])
+                        if candidates and candidates[0].get("content", {}).get("parts"):
+                            text = candidates[0]["content"]["parts"][0].get("text", "").strip()
+                            if text:
+                                return True, text, ""
+                    else:
+                        last_error = f"HTTP_{res.status_code}: {res.text[:120]}"
+                        logger.warning(f"Gemini {g_model} returned {res.status_code}: {res.text[:120]}")
+            except Exception as e:
+                last_error = str(e)
+                logger.warning(f"Gemini {g_model} exception: {e}")
+
+        return False, "", last_error
+
+    @classmethod
     async def chat_completion(
         cls,
         user_id: int,
@@ -78,8 +164,7 @@ class AIService:
         context_data: Optional[Dict[str, Any]] = None,
         conversation_history: Optional[list] = None
     ) -> Dict[str, Any]:
-        """Intelligently routes chat completion using Google Gemini AI or BYOK key with automatic fallback."""
-        
+        """Intelligently routes chat completion using Google Gemini AI with resilient fallbacks."""
         user_cred = repo.get_user_ai_credentials(user_id)
         
         personal_key = None
@@ -89,33 +174,18 @@ class AIService:
             except Exception:
                 personal_key = None
 
-        # Prefer Google Gemini key
         api_key_to_use = personal_key or settings.GEMINI_API_KEY or settings.OPENROUTER_API_KEY
         model_to_use = "Google Gemini Flash"
         provider_name = "Google Gemini AI"
 
-        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-        
-        if context_data:
-            context_str = "CURRENT PLATFORM CONTEXT FOR THIS REQUEST:\n"
-            for k, v in context_data.items():
-                context_str += f"- {k}: {v}\n"
-            messages.append({"role": "system", "content": context_str})
-
-        if conversation_history:
-            for msg in conversation_history[-6:]:
-                messages.append({"role": msg.get("sender") or msg.get("role", "user"), "content": msg.get("content", "")})
-
-        messages.append({"role": "user", "content": prompt})
+        gemini_payload = cls._build_gemini_payload(prompt, context_data, conversation_history)
 
         success = False
         reply_content = ""
-        error_reason = ""
+        error_code = ""
 
         if api_key_to_use:
-            success, reply_content, error_code = await cls._execute_request(api_key_to_use, model_to_use, messages)
-        else:
-            success, reply_content, error_code = False, "", "NO_KEY_CONFIGURED"
+            success, reply_content, error_code = await cls._execute_gemini(api_key_to_use, gemini_payload)
 
         if success and reply_content:
             repo.log_ai_usage(user_id, provider_name, model_to_use, None, None)
@@ -127,14 +197,14 @@ class AIService:
             }
 
         # Deterministic context-grounded fallback response if external API is unreachable or rate-limited
-        logger.info(f"Gemini API endpoint fallback engaged ({error_code}). Utilizing PropWise FinTech analytical intelligence engine.")
+        logger.info(f"Gemini API fallback engaged ({error_code}). Utilizing PropWise FinTech analytical intelligence engine.")
         rule_based_response = cls._fallback_rule_engine(prompt, context_data)
         
-        repo.log_ai_usage(user_id, "Google Gemini & PropWise Intelligence", "gemini-2.5-flash", None, None)
+        repo.log_ai_usage(user_id, "Google Gemini & PropWise Intelligence", "gemini-flash-lite-latest", None, None)
         return {
             "message": rule_based_response,
             "provider_used": "Google Gemini AI (PropWise Engine)",
-            "model": "gemini-2.5-flash",
+            "model": "gemini-flash-lite-latest",
             "status": "Success"
         }
 
@@ -196,82 +266,5 @@ class AIService:
                 "I am your dedicated real estate and lending intelligence assistant powered by Google Gemini. I can help you analyze property valuations, explain mortgage underwriting amortization schedules, evaluate decoupled risk matrices, and review document verification findings.\n\n"
                 "How may I assist your financial analysis today?"
             )
-
-    @staticmethod
-    async def _execute_request(api_key: str, model: str, messages: list) -> Tuple[bool, str, str]:
-        # Handle Google Gemini direct execution
-        if api_key.startswith("AQ.") or api_key.startswith("AIza") or "gemini" in api_key.lower():
-            for g_model in ["gemini-flash-lite-latest", "gemini-3.8-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-pro-latest"]:
-                try:
-                    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/{g_model}:generateContent?key={api_key}"
-                    prompt_text = "\n\n".join([f"{m.get('role', 'user').upper()}: {m.get('content', '')}" for m in messages])
-                    gemini_payload = {
-                        "contents": [{"parts": [{"text": prompt_text}]}],
-                        "generationConfig": {
-                            "temperature": 0.2,
-                            "maxOutputTokens": 1000
-                        }
-                    }
-                    async with httpx.AsyncClient(timeout=10.0) as client:
-                        res = await client.post(gemini_url, json=gemini_payload)
-                        if res.status_code == 200:
-                            data = res.json()
-                            content = data["candidates"][0]["content"]["parts"][0]["text"]
-                            return True, content, ""
-                except Exception as e:
-                    logger.warning(f"Gemini model {g_model} call: {e}")
-
-        # Handle OpenAI direct execution
-        if api_key.startswith("sk-proj-") or (api_key.startswith("sk-") and not api_key.startswith("sk-or-")):
-            headers = {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
-            }
-            payload = {
-                "model": "gpt-4o-mini",
-                "messages": messages,
-                "temperature": 0.2,
-                "max_tokens": 1000,
-            }
-            try:
-                async with httpx.AsyncClient(timeout=15.0) as client:
-                    res = await client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-                    if res.status_code == 200:
-                        data = res.json()
-                        content = data["choices"][0]["message"]["content"]
-                        return True, content, ""
-            except Exception as e:
-                logger.error(f"OpenAI execution error: {e}")
-
-        # OpenRouter execution
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "HTTP-Referer": "https://propwise.ai",
-            "X-Title": "PROPWISE AI",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": "google/gemini-2.0-flash-001",
-            "messages": messages,
-            "temperature": 0.2,
-            "max_tokens": 1000,
-        }
-        try:
-            async with httpx.AsyncClient(timeout=15.0) as client:
-                res = await client.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
-                if res.status_code == 200:
-                    data = res.json()
-                    content = data["choices"][0]["message"]["content"]
-                    return True, content, ""
-                elif res.status_code == 402:
-                    return False, "", "INSUFFICIENT_CREDITS"
-                elif res.status_code == 429:
-                    return False, "", "RATE_LIMIT_EXCEEDED"
-                elif res.status_code == 401:
-                    return False, "", "INVALID_API_KEY"
-                else:
-                    return False, "", f"HTTP_{res.status_code}"
-        except Exception as e:
-            return False, "", str(e)
 
 ai_service = AIService()
