@@ -99,12 +99,12 @@ const PropertyList = () => {
       {/* Header Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">Property Asset Portfolio</h2>
-          <p className="text-xs text-[#475569]">Manage institutional real estate collateral and automated valuation records.</p>
+          <h2 className="text-xl font-extrabold text-[#3D4127] tracking-tight">Property Asset Portfolio</h2>
+          <p className="text-xs text-[#636B2F]">Manage institutional real estate collateral and automated valuation records.</p>
         </div>
         <button
           onClick={() => setModalOpen(true)}
-          className="px-4 py-2.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold flex items-center space-x-1.5 transition-colors shadow-lg shadow-[#3978F6]/20"
+          className="px-4 py-2.5 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-xs font-semibold flex items-center space-x-1.5 transition-colors shadow-lg shadow-[#636B2F]/20"
         >
           <Plus className="w-4 h-4" />
           <span>Register New Property</span>
@@ -112,22 +112,22 @@ const PropertyList = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="bg-[#FFFFFF] border border-[#E2E6D5] rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         <div className="relative">
-          <Search className="w-3.5 h-3.5 text-[#475569] absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-3.5 h-3.5 text-[#636B2F] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search address or title..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#0F172A] placeholder-[#475569] focus:outline-none focus:border-[#3978F6]"
+            className="w-full bg-[#FAFBF7] border border-[#E2E6D5] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#3D4127] placeholder-[#636B2F]/60 focus:outline-none focus:border-[#636B2F]"
           />
         </div>
 
         <select
           value={cityFilter}
           onChange={(e) => setCityFilter(e.target.value)}
-          className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
+          className="bg-[#FAFBF7] border border-[#E2E6D5] rounded-lg px-3 py-1.5 text-xs text-[#3D4127] focus:outline-none focus:border-[#636B2F]"
         >
           <option value="">All Cities</option>
           <option value="Mumbai">Mumbai</option>
@@ -139,7 +139,7 @@ const PropertyList = () => {
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
+          className="bg-[#FAFBF7] border border-[#E2E6D5] rounded-lg px-3 py-1.5 text-xs text-[#3D4127] focus:outline-none focus:border-[#636B2F]"
         >
           <option value="">All Property Types</option>
           <option value="Apartment">Apartment</option>
@@ -151,7 +151,7 @@ const PropertyList = () => {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#3978F6]"
+          className="bg-[#FAFBF7] border border-[#E2E6D5] rounded-lg px-3 py-1.5 text-xs text-[#3D4127] focus:outline-none focus:border-[#636B2F]"
         >
           <option value="">All Statuses</option>
           <option value="Active">Active Collateral</option>
@@ -162,12 +162,12 @@ const PropertyList = () => {
 
       {/* Property Cards Grid */}
       {loading ? (
-        <div className="text-center py-12 text-xs text-[#475569]">Loading registered properties...</div>
+        <div className="text-center py-12 text-xs text-[#636B2F]">Loading registered properties...</div>
       ) : properties.length === 0 ? (
-        <div className="bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-12 text-center">
-          <Building2 className="w-10 h-10 text-[#475569] mx-auto mb-3 opacity-60" />
-          <h3 className="text-sm font-bold text-[#0F172A]">No Properties Match Criteria</h3>
-          <p className="text-xs text-[#475569] mt-1">Try adjusting your filters or register a new property asset.</p>
+        <div className="bg-[#FFFFFF] border border-[#E2E6D5] rounded-2xl p-12 text-center">
+          <Building2 className="w-10 h-10 text-[#BAC095] mx-auto mb-3 opacity-60" />
+          <h3 className="text-sm font-bold text-[#3D4127]">No Properties Match Criteria</h3>
+          <p className="text-xs text-[#636B2F] mt-1">Try adjusting your filters or register a new property asset.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -178,21 +178,21 @@ const PropertyList = () => {
                 setSelectedProperty(p);
                 setDetailModalOpen(true);
               }}
-              className="bg-[#FFFFFF] border border-[#E2E8F0] hover:border-[#3978F6]/50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 shadow-lg flex flex-col justify-between"
+              className="bg-[#FFFFFF] border border-[#E2E6D5] hover:border-[#636B2F]/60 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 shadow-md flex flex-col justify-between"
             >
               <div>
                 {/* Image Banner */}
-                <div className="h-44 bg-[#F8FAFC] relative overflow-hidden">
+                <div className="h-44 bg-[#FAFBF7] relative overflow-hidden">
                   <PropertyImage
                     src={p.image_url}
                     alt={p.name}
                     propertyType={p.property_type}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#FFFFFF]/90 backdrop-blur-sm border border-[#E2E8F0] text-[10px] font-semibold text-[#0284C7] shadow-sm">
+                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#FFFFFF]/90 backdrop-blur-sm border border-[#BAC095] text-[10px] font-semibold text-[#3D4127] shadow-sm">
                     {p.property_type}
                   </div>
-                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#059669]/15 border border-[#059669]/40 text-[10px] font-bold text-[#059669] shadow-sm">
+                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#D4DE95]/60 border border-[#BAC095] text-[10px] font-bold text-[#3D4127] shadow-sm">
                     {p.status}
                   </div>
                 </div>
@@ -200,51 +200,51 @@ const PropertyList = () => {
                 {/* Content */}
                 <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="text-sm font-bold text-[#0F172A] truncate">{p.name}</h3>
-                    <div className="flex items-center space-x-1 text-xs text-[#475569] mt-1">
-                      <MapPin className="w-3.5 h-3.5 text-[#3978F6] flex-shrink-0" />
+                    <h3 className="text-sm font-bold text-[#3D4127] truncate">{p.name}</h3>
+                    <div className="flex items-center space-x-1 text-xs text-[#636B2F] mt-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#636B2F] flex-shrink-0" />
                       <span className="truncate">{p.locality}, {p.city}</span>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2 py-2 border-y border-[#E2E8F0] text-center text-xs text-[#475569]">
+                  <div className="grid grid-cols-3 gap-2 py-2 border-y border-[#E2E6D5] text-center text-xs text-[#636B2F]">
                     <div className="flex items-center justify-center space-x-1">
-                      <Bed className="w-3.5 h-3.5 text-[#0284C7]" />
+                      <Bed className="w-3.5 h-3.5 text-[#636B2F]" />
                       <span>{p.bedrooms} BHK</span>
                     </div>
                     <div className="flex items-center justify-center space-x-1">
-                      <Bath className="w-3.5 h-3.5 text-[#0284C7]" />
+                      <Bath className="w-3.5 h-3.5 text-[#636B2F]" />
                       <span>{p.bathrooms} Baths</span>
                     </div>
                     <div className="flex items-center justify-center space-x-1">
-                      <Car className="w-3.5 h-3.5 text-[#0284C7]" />
+                      <Car className="w-3.5 h-3.5 text-[#636B2F]" />
                       <span>{p.parking_spaces} Park</span>
                     </div>
                   </div>
 
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-[#475569]">Built-up Area:</span>
-                    <span className="font-semibold text-[#0F172A]">{p.built_up_area_sqft} sqft</span>
+                    <span className="text-[#636B2F]">Built-up Area:</span>
+                    <span className="font-semibold text-[#3D4127]">{p.built_up_area_sqft} sqft</span>
                   </div>
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-[#475569]">Quality Grade:</span>
-                    <span className="font-semibold text-[#059669]">{p.construction_quality}</span>
+                    <span className="text-[#636B2F]">Quality Grade:</span>
+                    <span className="font-semibold text-[#636B2F]">{p.construction_quality}</span>
                   </div>
                 </div>
               </div>
 
               {/* Card Footer with Valuation */}
-              <div className="px-5 py-3.5 bg-[#F1F5F9] border-t border-[#E2E8F0] flex items-center justify-between">
+              <div className="px-5 py-3.5 bg-[#FAFBF7] border-t border-[#E2E6D5] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] text-[#475569] uppercase block">Assessed ML Value</span>
-                  <span className="text-base font-extrabold text-[#059669]">
+                  <span className="text-[10px] text-[#636B2F] uppercase block font-medium">Assessed ML Value</span>
+                  <span className="text-base font-extrabold text-[#3D4127]">
                     INR {p.estimated_value ? (p.estimated_value / 10000000).toFixed(2) + ' Cr' : 'Unvalued'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={(e) => handleDelete(p.id, e)}
-                    className="p-1.5 text-[#475569] hover:text-[#DC2626] hover:bg-[#FFFFFF] rounded-lg transition-colors"
+                    className="p-1.5 text-[#636B2F] hover:text-[#DC2626] hover:bg-[#FFFFFF] rounded-lg transition-colors"
                     title="Delete property"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -451,18 +451,18 @@ const PropertyList = () => {
                 />
               </div>
 
-              <div className="pt-4 border-t border-[#E2E8F0] flex justify-end space-x-3">
+              <div className="pt-4 border-t border-[#E2E6D5] flex justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-[#FFFFFF] text-[#475569] hover:text-white"
+                  className="px-4 py-2 rounded-xl bg-[#FAFBF7] border border-[#E2E6D5] text-[#636B2F] hover:text-[#3D4127]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-6 py-2 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white font-semibold disabled:opacity-50"
+                  className="px-6 py-2 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white font-semibold disabled:opacity-50 shadow-md"
                 >
                   {submitting ? 'Valuating & Ingesting...' : 'Submit & Compute Valuation'}
                 </button>
@@ -476,19 +476,19 @@ const PropertyList = () => {
 
       {/* Property Detail Modal */}
       {detailModalOpen && selectedProperty && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="bg-white border border-[#E2E8F0] rounded-2xl w-full max-w-xl p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#FFFFFF] border border-[#E2E6D5] rounded-2xl w-full max-w-xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E2E6D5]">
               <div>
-                <h3 className="text-base font-bold text-[#0F172A]">{selectedProperty.name}</h3>
-                <p className="text-xs text-[#475569]">{selectedProperty.full_address}</p>
+                <h3 className="text-base font-bold text-[#3D4127]">{selectedProperty.name}</h3>
+                <p className="text-xs text-[#636B2F]">{selectedProperty.full_address}</p>
               </div>
-              <button onClick={() => setDetailModalOpen(false)} className="text-[#475569] hover:text-white">
+              <button onClick={() => setDetailModalOpen(false)} className="text-[#636B2F] hover:text-[#3D4127]">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="h-44 rounded-xl overflow-hidden border border-[#E2E8F0]">
+            <div className="h-44 rounded-xl overflow-hidden border border-[#E2E6D5]">
               <PropertyImage
                 src={selectedProperty.image_url}
                 alt={selectedProperty.name}
@@ -498,28 +498,28 @@ const PropertyList = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
-                <span className="text-[#475569] block">Estimated Value:</span>
-                <span className="text-lg font-bold text-[#059669]">
+              <div className="p-3 bg-[#FAFBF7] rounded-xl border border-[#E2E6D5]">
+                <span className="text-[#636B2F] block font-medium">Estimated Value:</span>
+                <span className="text-lg font-bold text-[#3D4127]">
                   INR {selectedProperty.estimated_value ? (selectedProperty.estimated_value / 10000000).toFixed(2) + ' Cr' : 'Unvalued'}
                 </span>
               </div>
-              <div className="p-3 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0]">
-                <span className="text-[#475569] block">Built-up Dimension:</span>
-                <span className="text-base font-bold text-[#0F172A]">{selectedProperty.built_up_area_sqft} sqft</span>
+              <div className="p-3 bg-[#FAFBF7] rounded-xl border border-[#E2E6D5]">
+                <span className="text-[#636B2F] block font-medium">Built-up Dimension:</span>
+                <span className="text-base font-bold text-[#3D4127]">{selectedProperty.built_up_area_sqft} sqft</span>
               </div>
             </div>
 
-            <div className="space-y-1 text-xs text-[#475569]">
-              <p>Specification: <strong className="text-[#0F172A]">{selectedProperty.bedrooms} BHK, {selectedProperty.bathrooms} Bathrooms, {selectedProperty.parking_spaces} Parking</strong></p>
-              <p>Construction: <strong className="text-[#0F172A]">{selectedProperty.construction_quality} ({selectedProperty.property_condition})</strong></p>
-              <p>Asset Age: <strong className="text-[#0F172A]">{selectedProperty.property_age_years} Years</strong></p>
+            <div className="space-y-1 text-xs text-[#636B2F]">
+              <p>Specification: <strong className="text-[#3D4127]">{selectedProperty.bedrooms} BHK, {selectedProperty.bathrooms} Bathrooms, {selectedProperty.parking_spaces} Parking</strong></p>
+              <p>Construction: <strong className="text-[#3D4127]">{selectedProperty.construction_quality} ({selectedProperty.property_condition})</strong></p>
+              <p>Asset Age: <strong className="text-[#3D4127]">{selectedProperty.property_age_years} Years</strong></p>
             </div>
 
-            <div className="pt-3 border-t border-[#E2E8F0] flex justify-end">
+            <div className="pt-3 border-t border-[#E2E6D5] flex justify-end">
               <button
                 onClick={() => setDetailModalOpen(false)}
-                className="px-5 py-2 rounded-xl bg-[#3978F6] text-white text-xs font-semibold"
+                className="px-5 py-2 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-xs font-semibold shadow-md"
               >
                 Close Dossier
               </button>

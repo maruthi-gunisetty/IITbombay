@@ -230,40 +230,40 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="bg-white text-[#0F172A] min-h-screen flex flex-col font-sans antialiased selection:bg-[#3978F6] selection:text-white">
+    <div className="bg-[#FAFBF7] text-[#3D4127] min-h-screen flex flex-col font-sans antialiased selection:bg-[#636B2F] selection:text-white">
       {/* Sticky Dark Navigation Bar */}
       <Navbar />
 
       <main className="flex-1 w-full">
         {/* HERO SECTION */}
-        <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-white overflow-hidden">
+        <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-[#FAFBF7] overflow-hidden">
           {/* Subtle Ambient Radial Glows */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#3978F6]/15 via-[#0284C7]/5 to-transparent blur-3xl pointer-events-none" />
-          <div className="absolute top-1/3 left-10 w-72 h-72 bg-[#3978F6]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/4 right-10 w-80 h-80 bg-[#0284C7]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#636B2F]/15 via-[#BAC095]/10 to-transparent blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 left-10 w-72 h-72 bg-[#D4DE95]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/4 right-10 w-80 h-80 bg-[#BAC095]/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Header Text & Badges */}
             <div className="text-center max-w-4xl mx-auto space-y-6">
               
               {/* Institutional Pill Badge */}
-              <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E2E8F0] text-[11px] font-semibold text-[#0284C7] shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
-                <span className="tracking-wide uppercase font-bold text-[#0F172A]">
+              <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E2E6D5] text-[11px] font-semibold text-[#636B2F] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#636B2F] animate-pulse" />
+                <span className="tracking-wide uppercase font-bold text-[#3D4127]">
                   Enterprise Property Valuation &amp; Mortgage Underwriting Intelligence
                 </span>
               </div>
 
               {/* Master Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#3D4127] tracking-tight leading-[1.15]">
                 Transform Property Data Into <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-[#3978F6] via-[#0284C7] to-[#059669] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#636B2F] via-[#3D4127] to-[#636B2F] bg-clip-text text-transparent">
                   Smarter Lending Decisions.
                 </span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-[#475569] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[#5A613A] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
                 An intelligent real estate and fintech platform combining AI-powered property valuation, 
                 mortgage underwriting, risk intelligence, and document verification.
               </p>
@@ -272,7 +272,7 @@ export default function LandingPage() {
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
                 <Link
                   to="/register"
-                  className="px-7 py-3.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-[#3978F6]/30 flex items-center space-x-2 cursor-pointer"
+                  className="px-7 py-3.5 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-[#636B2F]/30 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-4 h-4" />
@@ -280,25 +280,25 @@ export default function LandingPage() {
 
                 <a
                   href="#platform"
-                  className="px-6 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#FAFBF7] text-[#3D4127] border border-[#E2E6D5] text-sm font-semibold transition-all duration-200 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Explore Platform</span>
-                  <ChevronRight className="w-4 h-4 text-[#475569]" />
+                  <ChevronRight className="w-4 h-4 text-[#5A613A]" />
                 </a>
 
                 <Link
                   to="/catalog"
-                  className="px-6 py-3.5 rounded-xl bg-[#F1F5F9] hover:bg-[#FFFFFF] text-[#0284C7] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#FAFBF7] text-[#3D4127] border border-[#E2E6D5] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
                 >
-                  <Building className="w-4 h-4 text-[#0284C7]" />
+                  <Building className="w-4 h-4 text-[#636B2F]" />
                   <span>Browse Properties</span>
                 </Link>
 
                 <Link
                   to="/valuation"
-                  className="px-6 py-3.5 rounded-xl bg-[#F1F5F9] hover:bg-[#FFFFFF] text-[#059669] border border-[#E2E8F0] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#FAFBF7] text-[#636B2F] border border-[#E2E6D5] text-sm font-semibold transition-all duration-200 flex items-center space-x-2"
                 >
-                  <Sparkles className="w-4 h-4 text-[#059669]" />
+                  <Sparkles className="w-4 h-4 text-[#636B2F]" />
                   <span>AI Valuation Studio</span>
                 </Link>
               </div>

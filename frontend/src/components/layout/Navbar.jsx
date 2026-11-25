@@ -9,41 +9,41 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E2E8F0]">
+    <nav className="sticky top-0 z-50 bg-[#FAFBF7]/95 backdrop-blur-md border-b border-[#E2E6D5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-lg shadow-[#3978F6]/20">
-              <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-[#0284C7]" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-lg shadow-[#636B2F]/20">
+              <div className="w-full h-full bg-[#FFFFFF] rounded-[10px] flex items-center justify-center">
+                <BarChart3 className="w-5 h-5 text-[#636B2F]" />
               </div>
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight text-[#0F172A] block leading-none">
-                PROPWISE <span className="text-[#3978F6]">AI</span>
+              <span className="text-xl font-bold tracking-tight text-[#3D4127] block leading-none">
+                PROPWISE <span className="text-[#636B2F]">AI</span>
               </span>
-              <span className="text-[10px] tracking-wider text-[#475569] uppercase block font-semibold mt-1">
+              <span className="text-[10px] tracking-wider text-[#636B2F] uppercase block font-semibold mt-1">
                 FinTech Valuation Intelligence
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-7 text-sm font-medium text-[#475569]">
-            <a href="#platform" className="hover:text-[#0F172A] transition-colors">Platform</a>
-            <a href="#features" className="hover:text-[#0F172A] transition-colors">Features</a>
-            <a href="#workflow" className="hover:text-[#0F172A] transition-colors">How It Works</a>
-            <Link to="/catalog" className="text-[#0F172A] hover:text-[#0284C7] flex items-center space-x-1 transition-colors">
-              <Building className="w-4 h-4 text-[#3978F6]" />
+          <div className="hidden lg:flex items-center space-x-7 text-sm font-medium text-[#636B2F]">
+            <a href="#platform" className="hover:text-[#3D4127] transition-colors">Platform</a>
+            <a href="#features" className="hover:text-[#3D4127] transition-colors">Features</a>
+            <a href="#workflow" className="hover:text-[#3D4127] transition-colors">How It Works</a>
+            <Link to="/catalog" className="text-[#3D4127] hover:text-[#636B2F] flex items-center space-x-1 transition-colors">
+              <Building className="w-4 h-4 text-[#636B2F]" />
               <span>Properties</span>
             </Link>
-            <Link to="/valuation" className="text-[#0F172A] hover:text-[#059669] flex items-center space-x-1 transition-colors">
-              <Sparkles className="w-4 h-4 text-[#059669]" />
+            <Link to="/valuation" className="text-[#3D4127] hover:text-[#636B2F] flex items-center space-x-1 transition-colors">
+              <Sparkles className="w-4 h-4 text-[#636B2F]" />
               <span>AI Valuation</span>
             </Link>
-            <a href="#security" className="hover:text-[#0F172A] transition-colors">Security</a>
+            <a href="#security" className="hover:text-[#3D4127] transition-colors">Security</a>
           </div>
 
           {/* Auth Action Buttons */}
@@ -51,7 +51,7 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={() => navigate('/dashboard')}
-                className="px-5 py-2.5 rounded-lg bg-[#3978F6] hover:bg-[#2457C5] text-white text-sm font-semibold transition-all duration-200 shadow-md shadow-[#3978F6]/25 flex items-center space-x-2 cursor-pointer"
+                className="px-5 py-2.5 rounded-lg bg-[#636B2F] hover:bg-[#3D4127] text-white text-sm font-semibold transition-all duration-200 shadow-md shadow-[#636B2F]/20 flex items-center space-x-2 cursor-pointer"
               >
                 <span>Open Dashboard</span>
                 <ChevronRight className="w-4 h-4" />
@@ -60,13 +60,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-semibold text-[#0F172A] hover:text-[#3978F6] transition-colors"
+                  className="px-4 py-2 text-sm font-semibold text-[#3D4127] hover:text-[#636B2F] transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="px-5 py-2.5 rounded-lg bg-[#3978F6] hover:bg-[#2457C5] text-white text-sm font-semibold transition-all duration-200 shadow-md shadow-[#3978F6]/25 flex items-center space-x-2 cursor-pointer"
+                  className="px-5 py-2.5 rounded-lg bg-[#636B2F] hover:bg-[#3D4127] text-white text-sm font-semibold transition-all duration-200 shadow-md shadow-[#636B2F]/20 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Get Started</span>
                   <ChevronRight className="w-4 h-4" />

@@ -18,34 +18,34 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  const navSectionClass = "text-[11px] font-semibold text-[#475569]/70 uppercase tracking-wider px-3 mb-2 mt-6";
+  const navSectionClass = "text-[11px] font-semibold text-[#636B2F]/90 uppercase tracking-wider px-3 mb-2 mt-6";
 
   const linkClass = ({ isActive }) =>
     `flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group relative ${
       isActive
-        ? 'bg-blue-50 text-blue-700 font-semibold border border-blue-200 shadow-sm'
-        : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-100'
+        ? 'bg-[#D4DE95]/40 text-[#3D4127] font-bold border border-[#BAC095] shadow-sm'
+        : 'text-[#636B2F] hover:text-[#3D4127] hover:bg-[#BAC095]/15'
     } ${collapsed ? 'justify-center px-0' : ''}`;
 
   return (
     <aside
-      className={`h-screen sticky top-0 bg-[#FFFFFF] border-r border-[#E2E8F0] flex flex-col transition-all duration-300 z-40 select-none ${
+      className={`h-screen sticky top-0 bg-[#FFFFFF] border-r border-[#E2E6D5] flex flex-col transition-all duration-300 z-40 select-none ${
         collapsed ? 'w-20' : 'w-64'
       }`}
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-[#E2E8F0]">
+      <div className="h-16 flex items-center justify-between px-4 border-b border-[#E2E6D5]">
         <div className={`flex items-center space-x-3 ${collapsed ? 'hidden' : 'flex'}`}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-md">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-md">
             <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-[#0284C7]" />
+              <BarChart3 className="w-4 h-4 text-[#636B2F]" />
             </div>
           </div>
           <div>
-            <span className="text-base font-bold text-[#0F172A] tracking-tight block leading-none">
-              PROPWISE <span className="text-[#3978F6]">AI</span>
+            <span className="text-base font-bold text-[#3D4127] tracking-tight block leading-none">
+              PROPWISE <span className="text-[#636B2F]">AI</span>
             </span>
-            <span className="text-[9px] text-[#475569] uppercase tracking-wider block font-medium mt-0.5">
+            <span className="text-[9px] text-[#636B2F] uppercase tracking-wider block font-medium mt-0.5">
               Enterprise Suite
             </span>
           </div>
@@ -53,7 +53,7 @@ const Sidebar = () => {
 
         {collapsed && (
           <div className="w-full flex justify-center">
-            <div className="w-8 h-8 rounded-lg bg-[#3978F6] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#636B2F] flex items-center justify-center">
               <BarChart3 className="w-4 h-4 text-white" />
             </div>
           </div>
@@ -61,7 +61,7 @@ const Sidebar = () => {
 
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className={`p-1.5 rounded-lg text-[#475569] hover:text-white hover:bg-[#FFFFFF] transition-colors ${
+          className={`p-1.5 rounded-lg text-[#636B2F] hover:text-[#3D4127] hover:bg-[#BAC095]/20 transition-colors ${
             collapsed ? 'hidden' : 'block'
           }`}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -95,38 +95,38 @@ const Sidebar = () => {
         {/* INTELLIGENCE */}
         <div className={collapsed ? 'hidden' : navSectionClass}>Intelligence</div>
         <NavLink to="/dashboard/risk" className={linkClass} title="Risk Intelligence">
-          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
+          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Risk Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/documents" className={linkClass} title="Document Intelligence">
-          <FileText className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
+          <FileText className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Document Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/fraud" className={linkClass} title="Fraud Detection">
-          <AlertTriangle className="w-4 h-4 flex-shrink-0 text-[#D97706]" />
+          <AlertTriangle className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Fraud & Anomalies</span>}
         </NavLink>
         <NavLink to="/dashboard/location" className={linkClass} title="Location Intelligence">
-          <MapPin className="w-4 h-4 flex-shrink-0 text-[#059669]" />
+          <MapPin className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Location Intelligence</span>}
         </NavLink>
         <NavLink to="/dashboard/market" className={linkClass} title="Market Analytics">
-          <TrendingUp className="w-4 h-4 flex-shrink-0 text-[#3978F6]" />
+          <TrendingUp className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Market Analytics</span>}
         </NavLink>
 
         {/* MANAGEMENT */}
         <div className={collapsed ? 'hidden' : navSectionClass}>Management</div>
         <NavLink to="/dashboard/reports" className={linkClass} title="Reports & Insights">
-          <FileCheck2 className="w-4 h-4 flex-shrink-0" />
+          <FileCheck2 className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Reports & Dossiers</span>}
         </NavLink>
         <NavLink to="/dashboard/notifications" className={linkClass} title="Notifications">
-          <Bell className="w-4 h-4 flex-shrink-0" />
+          <Bell className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Notifications</span>}
         </NavLink>
         <NavLink to="/dashboard/ai-chat" className={linkClass} title="PropWise Assistant">
-          <Bot className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
+          <Bot className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>PropWise Assistant</span>}
         </NavLink>
 
@@ -135,15 +135,15 @@ const Sidebar = () => {
           <>
             <div className={collapsed ? 'hidden' : navSectionClass}>Administration</div>
             <NavLink to="/dashboard/admin/users" className={linkClass} title="User Management">
-              <Users className="w-4 h-4 flex-shrink-0" />
+              <Users className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
               {!collapsed && <span>User Directory</span>}
             </NavLink>
             <NavLink to="/dashboard/admin/audit-logs" className={linkClass} title="Audit Logs">
-              <History className="w-4 h-4 flex-shrink-0" />
+              <History className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
               {!collapsed && <span>Audit Traceability</span>}
             </NavLink>
             <NavLink to="/dashboard/compliance" className={linkClass} title="Compliance & Governance">
-              <Scale className="w-4 h-4 flex-shrink-0" />
+              <Scale className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
               {!collapsed && <span>Responsible AI Charter</span>}
             </NavLink>
           </>
@@ -152,37 +152,37 @@ const Sidebar = () => {
         {/* ACCOUNT */}
         <div className={collapsed ? 'hidden' : navSectionClass}>Portal &amp; Account</div>
         <NavLink to="/" className={linkClass} title="Haven & Key Public Portal">
-          <Building2 className="w-4 h-4 flex-shrink-0 text-[#0284C7]" />
-          {!collapsed && <span className="text-[#0284C7]">Public Estate Portal</span>}
+          <Building2 className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
+          {!collapsed && <span className="text-[#636B2F]">Public Estate Portal</span>}
         </NavLink>
         <NavLink to="/dashboard/settings" className={linkClass} title="Settings & BYOK">
-          <Settings className="w-4 h-4 flex-shrink-0" />
+          <Settings className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Settings & BYOK</span>}
         </NavLink>
         <NavLink to="/dashboard/help" className={linkClass} title="Help Center">
-          <HelpCircle className="w-4 h-4 flex-shrink-0" />
+          <HelpCircle className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Help Center</span>}
         </NavLink>
       </div>
 
       {/* Sidebar Footer with User Card & Logout */}
-      <div className="p-3 border-t border-[#E2E8F0] bg-[#F8FAFC]/50">
+      <div className="p-3 border-t border-[#E2E6D5] bg-[#FAFBF7]">
         {!collapsed ? (
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-[#FFFFFF] border border-[#3978F6]/40 flex items-center justify-center text-xs font-bold text-[#0284C7]">
+              <div className="w-8 h-8 rounded-full bg-[#D4DE95]/40 border border-[#BAC095] flex items-center justify-center text-xs font-bold text-[#3D4127]">
                 {user?.full_name?.charAt(0) || 'U'}
               </div>
               <div className="overflow-hidden">
-                <p className="text-xs font-semibold text-[#0F172A] truncate">{user?.full_name || 'User'}</p>
-                <span className="text-[10px] text-[#059669] font-medium block truncate">
+                <p className="text-xs font-semibold text-[#3D4127] truncate">{user?.full_name || 'User'}</p>
+                <span className="text-[10px] text-[#636B2F] font-medium block truncate">
                   {user?.account_type || 'Customer'}
                 </span>
               </div>
             </div>
             <button
               onClick={handleLogout}
-              className="p-1.5 text-[#475569] hover:text-[#DC2626] hover:bg-rose-50 rounded-lg transition-colors"
+              className="p-1.5 text-[#636B2F] hover:text-[#DC2626] hover:bg-rose-50 rounded-lg transition-colors"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />
@@ -191,7 +191,7 @@ const Sidebar = () => {
         ) : (
           <button
             onClick={() => setCollapsed(false)}
-            className="w-full flex justify-center p-2 text-[#475569] hover:text-[#0F172A]"
+            className="w-full flex justify-center p-2 text-[#636B2F] hover:text-[#3D4127]"
             title="Expand Sidebar"
           >
             <ChevronRight className="w-4 h-4" />

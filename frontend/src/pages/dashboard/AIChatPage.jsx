@@ -126,32 +126,32 @@ const AIChatPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#0F172A] tracking-tight">PropWise Intelligence Assistant</h2>
-          <p className="text-xs text-[#475569]">
+          <h2 className="text-xl font-extrabold text-[#3D4127] tracking-tight">PropWise Intelligence Assistant</h2>
+          <p className="text-xs text-[#5A613A]">
             Context-grounded FinTech assistant providing explainable financial and property valuation intelligence.
           </p>
         </div>
         <div className="flex items-center space-x-2 text-xs">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#059669] animate-pulse"></span>
-          <span className="text-[#475569]">Active Gateway: <strong className="text-[#0F172A]">{byokStatus?.active_provider || 'Platform'}</strong></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#636B2F] animate-pulse"></span>
+          <span className="text-[#5A613A]">Active Gateway: <strong className="text-[#3D4127]">{byokStatus?.active_provider || 'Platform'}</strong></span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[640px]">
         
         {/* Sessions Sidebar (3 cols) */}
-        <div className="lg:col-span-3 bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
+        <div className="lg:col-span-3 bg-[#FFFFFF] border border-[#E2E6D5] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
           <div className="space-y-3">
             <button
               onClick={startNewConversation}
-              className="w-full py-2.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white text-xs font-semibold flex items-center justify-center space-x-1.5 shadow-md transition-colors"
+              className="w-full py-2.5 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-xs font-semibold flex items-center justify-center space-x-1.5 shadow-md transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>New Intelligence Session</span>
             </button>
 
             <div className="pt-2">
-              <span className="text-[10px] text-[#475569] uppercase tracking-wider font-semibold block px-1 mb-2">
+              <span className="text-[10px] text-[#5A613A] uppercase tracking-wider font-semibold block px-1 mb-2">
                 Previous Sessions
               </span>
               <div className="space-y-1 max-h-[460px] overflow-y-auto">
@@ -161,11 +161,11 @@ const AIChatPage = () => {
                     onClick={() => setActiveConvId(c.id)}
                     className={`w-full text-left p-2.5 rounded-xl text-xs transition-colors flex items-center space-x-2 ${
                       activeConvId === c.id
-                        ? 'bg-[#F1F5F9] text-[#0284C7] border border-[#3978F6]/40 font-semibold'
-                        : 'text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC]'
+                        ? 'bg-[#D4DE95]/30 text-[#3D4127] border border-[#BAC095]/60 font-semibold'
+                        : 'text-[#5A613A] hover:text-[#3D4127] hover:bg-[#FAFBF7]'
                     }`}
                   >
-                    <MessageSquare className="w-3.5 h-3.5 flex-shrink-0" />
+                    <MessageSquare className="w-3.5 h-3.5 flex-shrink-0 text-[#636B2F]" />
                     <span className="truncate">{c.title}</span>
                   </button>
                 ))}
@@ -173,13 +173,13 @@ const AIChatPage = () => {
             </div>
           </div>
 
-          <div className="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] text-[10px] text-[#475569]">
+          <div className="p-3 bg-[#FAFBF7] rounded-xl border border-[#E2E6D5] text-[10px] text-[#5A613A]">
             Deterministic Verification Active
           </div>
         </div>
 
         {/* Chat Conversation Canvas (9 cols) */}
-        <div className="lg:col-span-9 bg-[#FFFFFF] border border-[#E2E8F0] rounded-2xl shadow-xl flex flex-col overflow-hidden">
+        <div className="lg:col-span-9 bg-[#FFFFFF] border border-[#E2E6D5] rounded-2xl shadow-xl flex flex-col overflow-hidden">
           
           {/* Messages Container */}
           <div className="flex-1 overflow-y-auto p-5 space-y-4 text-xs">
@@ -191,13 +191,13 @@ const AIChatPage = () => {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 leading-relaxed whitespace-pre-wrap ${
                     m.sender === 'user'
-                      ? 'bg-[#3978F6] text-white rounded-br-none shadow-md'
-                      : 'bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] rounded-bl-none shadow-sm'
+                      ? 'bg-[#636B2F] text-white rounded-br-none shadow-md'
+                      : 'bg-[#FAFBF7] text-[#3D4127] border border-[#E2E6D5] rounded-bl-none shadow-sm'
                   }`}
                 >
                   <p>{m.content}</p>
                   {m.provider_used && (
-                    <div className="mt-2 pt-1 border-t border-[#E2E8F0]/40 text-[9px] text-[#475569]">
+                    <div className="mt-2 pt-1 border-t border-[#BAC095]/40 text-[9px] text-[#5A613A]">
                       Source Engine: {m.provider_used}
                     </div>
                   )}
@@ -206,8 +206,8 @@ const AIChatPage = () => {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-4 py-2.5 text-xs text-[#475569] flex items-center space-x-2">
-                  <RefreshCw className="w-4 h-4 text-[#0284C7] animate-spin" />
+                <div className="bg-[#FAFBF7] border border-[#E2E6D5] rounded-xl px-4 py-2.5 text-xs text-[#5A613A] flex items-center space-x-2">
+                  <RefreshCw className="w-4 h-4 text-[#636B2F] animate-spin" />
                   <span>Synthesizing institutional context...</span>
                 </div>
               </div>
@@ -216,12 +216,12 @@ const AIChatPage = () => {
           </div>
 
           {/* Quick Prompts Row */}
-          <div className="px-5 py-2.5 bg-[#F1F5F9] border-t border-[#E2E8F0] flex items-center space-x-2 overflow-x-auto no-scrollbar">
+          <div className="px-5 py-2.5 bg-[#FAFBF7] border-t border-[#E2E6D5] flex items-center space-x-2 overflow-x-auto no-scrollbar">
             {samplePrompts.map((p, i) => (
               <button
                 key={i}
                 onClick={() => handleSend(p)}
-                className="whitespace-nowrap px-3 py-1.5 rounded-lg bg-[#FFFFFF] hover:bg-[#3978F6]/20 border border-[#E2E8F0] text-[11px] text-[#475569] hover:text-[#0F172A] transition-colors"
+                className="whitespace-nowrap px-3 py-1.5 rounded-lg bg-[#FFFFFF] hover:bg-[#D4DE95]/30 border border-[#E2E6D5] text-[11px] text-[#5A613A] hover:text-[#3D4127] transition-colors"
               >
                 {p}
               </button>
@@ -229,7 +229,7 @@ const AIChatPage = () => {
           </div>
 
           {/* Input Footer */}
-          <div className="p-4 bg-[#FFFFFF] border-t border-[#E2E8F0]">
+          <div className="p-4 bg-[#FFFFFF] border-t border-[#E2E6D5]">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -243,12 +243,12 @@ const AIChatPage = () => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 disabled={loading}
-                className="flex-1 bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl px-4 py-2.5 text-xs text-[#0F172A] placeholder-[#475569] focus:outline-none focus:border-[#3978F6] transition-colors disabled:opacity-50"
+                className="flex-1 bg-[#FAFBF7] border border-[#E2E6D5] rounded-xl px-4 py-2.5 text-xs text-[#3D4127] placeholder-[#5A613A]/70 focus:outline-none focus:border-[#636B2F] transition-colors disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={loading || !inputMessage.trim()}
-                className="p-2.5 rounded-xl bg-[#3978F6] hover:bg-[#2457C5] text-white disabled:opacity-40 transition-colors shadow-md"
+                className="p-2.5 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white disabled:opacity-40 transition-colors shadow-md"
               >
                 <Send className="w-4 h-4" />
               </button>
