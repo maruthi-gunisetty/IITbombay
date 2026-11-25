@@ -127,9 +127,11 @@ class AIService:
     async def _execute_gemini(cls, api_key: str, payload: Dict[str, Any]) -> Tuple[bool, str, str]:
         """Executes the request directly against Google Generative Language endpoints."""
         models_to_try = [
-            "gemini-flash-lite-latest",
-            "gemini-3.8-flash",
             "gemini-3.5-flash",
+            "gemini-3.6-flash",
+            "gemini-flash-lite-latest",
+            "gemini-3-flash-preview",
+            "gemini-3.8-flash",
             "gemini-flash-latest",
             "gemini-pro-latest"
         ]
