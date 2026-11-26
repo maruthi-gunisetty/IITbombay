@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Building2, Calculator, Landmark, ShieldAlert,
   FileText, AlertTriangle, MapPin, TrendingUp, FileCheck2,
   Bell, Bot, Users, History, Scale, Settings, HelpCircle,
-  LogOut, ChevronLeft, ChevronRight, BarChart3
+  LogOut, ChevronLeft, ChevronRight, Home
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -38,12 +38,12 @@ const Sidebar = () => {
         <div className={`flex items-center space-x-3 ${collapsed ? 'hidden' : 'flex'}`}>
           <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-md">
             <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-[#636B2F]" />
+              <Home className="w-4 h-4 text-[#636B2F]" />
             </div>
           </div>
           <div>
             <span className="text-base font-bold text-[#3D4127] tracking-tight block leading-none">
-              PROPWISE <span className="text-[#636B2F]">AI</span>
+              Gruha <span className="text-[#636B2F]">Anwesh</span>
             </span>
             <span className="text-[9px] text-[#636B2F] uppercase tracking-wider block font-medium mt-0.5">
               Enterprise Suite
@@ -54,7 +54,7 @@ const Sidebar = () => {
         {collapsed && (
           <div className="w-full flex justify-center">
             <div className="w-8 h-8 rounded-lg bg-[#636B2F] flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-white" />
+              <Home className="w-4 h-4 text-white" />
             </div>
           </div>
         )}
@@ -125,9 +125,9 @@ const Sidebar = () => {
           <Bell className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
           {!collapsed && <span>Notifications</span>}
         </NavLink>
-        <NavLink to="/dashboard/ai-chat" className={linkClass} title="PropWise Assistant">
+        <NavLink to="/dashboard/ai-chat" className={linkClass} title="Gruha Anwesh Assistant">
           <Bot className="w-4 h-4 flex-shrink-0 text-[#636B2F]" />
-          {!collapsed && <span>PropWise Assistant</span>}
+          {!collapsed && <span>Gruha Anwesh Assistant</span>}
         </NavLink>
 
         {/* ADMINISTRATION (Admin & Bank Officers) */}

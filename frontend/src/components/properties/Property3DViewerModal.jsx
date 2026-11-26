@@ -3,27 +3,35 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {
   X, Compass, Home, Eye, Sun, Moon, Sunrise, Maximize2, Minimize2,
-  RotateCw, ZoomIn, ZoomOut, Layers, Sparkles, MapPin, Building
+  RotateCw, ZoomIn, ZoomOut, Layers, MapPin, Building,
+  ArrowUp, ArrowDown, ArrowLeft, ArrowRight, RotateCcw
 } from 'lucide-react';
 
 /**
- * Procedural 3D Architectural Digital Twin & Virtual Tour Viewer
+ * Procedural 3D Architectural Digital Twin & Immersive Walkthrough Viewer
  * Features:
  * 1. Full Exterior & Surroundings (Lawn, Driveway, Pool, Trees, Fencing, Lighting)
  * 2. Dollhouse Mode (Roof removed, 3D Floorplan visible)
- * 3. Interior Walkthrough Mode (Living Room, Kitchen & Dining, Master Bedroom, Sky Terrace)
+ * 3. Immersive First-Person Walk Inside House:
+ *    - Real-time Cursor Look & Movement: View smoothly turns and tracks as mouse moves
+ *    - Click & Drag 360° Free Look
+ *    - Click Floor to Walk / Teleport with animated ripple beacon
+ *    - WASD & Arrow Keys walking navigation
+ *    - On-screen Virtual Walking D-Pad for one-click navigation
+ *    - 3D Interactive Room Waypoint Markers on floor
  * 4. Day / Sunset / Night Lighting with Real-Time Glowing Interior Lights
- * 5. OrbitControls with smooth cinematic camera transitions
+ * 5. Smooth Cinematic Transitions between Exterior, Dollhouse, and Rooms
  */
 export default function Property3DViewerModal({ property, isOpen, onClose }) {
   const mountRef = useRef(null);
 
   // Viewer State
   const [viewMode, setViewMode] = useState('exterior'); // 'exterior' | 'dollhouse' | 'interior'
-  const [activeRoom, setActiveRoom] = useState('living'); // 'living' | 'kitchen' | 'bedroom' | 'terrace'
+  const [activeRoom, setActiveRoom] = useState('living'); // 'living' | 'kitchen' | 'bedroom' | 'terrace' | 'pool'
   const [timeOfDay, setTimeOfDay] = useState('day'); // 'day' | 'sunset' | 'night'
   const [autoRotate, setAutoRotate] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [walkNotice, setWalkNotice] = useState('Move cursor to look around · Click floor or use arrows to walk');
 
   // References for Three.js engine
   const sceneRef = useRef(null);
@@ -32,25 +40,42 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
   const controlsRef = useRef(null);
   const animFrameIdRef = useRef(null);
 
-  // References to dynamic 3D scene elements
+  // Dynamic Scene Elements
   const roofGroupRef = useRef(null);
   const interiorLightsRef = useRef([]);
   const sunLightRef = useRef(null);
   const ambientLightRef = useRef(null);
   const poolLightRef = useRef(null);
+  const floorMeshListRef = useRef([]);
+  const waypointMeshListRef = useRef([]);
+  const clickRippleRef = useRef(null);
 
-  // Target camera coordinates for smooth interpolation
-  const targetCamPos = useRef(new THREE.Vector3(26, 18, 30));
+  // Walk Engine & First-Person Camera State
+  const viewModeRef = useRef('exterior');
+  viewModeRef.current = viewMode;
+
+  const playerPos = useRef(new THREE.Vector3(26, 18, 30));
+  const targetPlayerPos = useRef(new THREE.Vector3(26, 18, 30));
   const targetLookAt = useRef(new THREE.Vector3(0, 3, 0));
+  const isTransitioning = useRef(true);
 
-  // Camera presets
-  const CAMERA_PRESETS = {
-    exterior: { pos: new THREE.Vector3(26, 18, 30), lookAt: new THREE.Vector3(0, 3, 0) },
-    dollhouse: { pos: new THREE.Vector3(0, 28, 22), lookAt: new THREE.Vector3(0, 2, 0) },
-    interior_living: { pos: new THREE.Vector3(-4.5, 3.2, 3.5), lookAt: new THREE.Vector3(-2, 2.8, -0.5) },
-    interior_kitchen: { pos: new THREE.Vector3(4.5, 3.2, 3.5), lookAt: new THREE.Vector3(3.5, 2.8, -1.5) },
-    interior_bedroom: { pos: new THREE.Vector3(-4.5, 3.2, -4.5), lookAt: new THREE.Vector3(-4.5, 2.8, -7.5) },
-    interior_terrace: { pos: new THREE.Vector3(0, 8.2, 5.5), lookAt: new THREE.Vector3(0, 6.5, 12) }
+  // First-Person Rotation (Yaw & Pitch)
+  const yaw = useRef(-Math.PI * 0.7);
+  const pitch = useRef(0);
+  const cursorOffset = useRef({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+  const lastMousePos = useRef({ x: 0, y: 0 });
+  const keysDown = useRef({});
+
+  // Room Coordinates Presets
+  const ROOM_COORDINATES = {
+    exterior: { pos: new THREE.Vector3(26, 18, 30), lookAt: new THREE.Vector3(0, 3, 0), yaw: -Math.PI * 0.7, pitch: 0 },
+    dollhouse: { pos: new THREE.Vector3(0, 28, 22), lookAt: new THREE.Vector3(0, 2, 0), yaw: 0, pitch: -0.6 },
+    living: { pos: new THREE.Vector3(-4.5, 2.9, 3.2), lookAt: new THREE.Vector3(-2.0, 2.7, -0.5), yaw: -Math.PI * 0.75, pitch: 0 },
+    kitchen: { pos: new THREE.Vector3(4.5, 2.9, 3.2), lookAt: new THREE.Vector3(3.5, 2.7, -1.5), yaw: -Math.PI * 0.85, pitch: 0 },
+    bedroom: { pos: new THREE.Vector3(-4.8, 2.9, -4.5), lookAt: new THREE.Vector3(-4.8, 2.7, -7.0), yaw: -Math.PI * 0.95, pitch: 0 },
+    terrace: { pos: new THREE.Vector3(0, 7.5, 8.5), lookAt: new THREE.Vector3(0, 6.8, 14.0), yaw: 0, pitch: -0.05 },
+    pool: { pos: new THREE.Vector3(-14.0, 2.2, 5.0), lookAt: new THREE.Vector3(-14.0, 1.8, 0), yaw: -Math.PI * 0.5, pitch: 0 }
   };
 
   useEffect(() => {
@@ -59,8 +84,8 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     const container = mountRef.current;
     if (!container) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
 
     // 1. Scene
     const scene = new THREE.Scene();
@@ -69,9 +94,11 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     scene.fog = new THREE.FogExp2(0xdce9f2, 0.012);
 
     // 2. Camera
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 250);
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.2, 300);
     camera.position.set(26, 18, 30);
     cameraRef.current = camera;
+    playerPos.current.copy(camera.position);
+    targetPlayerPos.current.copy(camera.position);
 
     // 3. Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
@@ -80,68 +107,285 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.15;
     rendererRef.current = renderer;
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // 4. Orbit Controls
+    // 4. Orbit Controls (Used for Exterior & Dollhouse view)
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.maxPolarAngle = Math.PI / 2 - 0.02; // Prevent going underground
+    controls.dampingFactor = 0.08;
+    controls.maxPolarAngle = Math.PI / 2 - 0.02;
     controls.minDistance = 3;
-    controls.maxDistance = 80;
+    controls.maxDistance = 85;
     controls.target.set(0, 3, 0);
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 0.8;
     controlsRef.current = controls;
 
-    // 5. Lighting Setup
+    // 5. Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
     scene.add(ambientLight);
     ambientLightRef.current = ambientLight;
 
     const sunLight = new THREE.DirectionalLight(0xfffaed, 1.8);
-    sunLight.position.set(30, 45, 25);
+    sunLight.position.set(32, 48, 28);
     sunLight.castShadow = true;
     sunLight.shadow.mapSize.width = 2048;
     sunLight.shadow.mapSize.height = 2048;
     sunLight.shadow.camera.near = 0.5;
-    sunLight.shadow.camera.far = 120;
-    const d = 28;
+    sunLight.shadow.camera.far = 130;
+    const d = 30;
     sunLight.shadow.camera.left = -d;
     sunLight.shadow.camera.right = d;
     sunLight.shadow.camera.top = d;
     sunLight.shadow.camera.bottom = -d;
-    sunLight.shadow.bias = -0.0005;
+    sunLight.shadow.bias = -0.0004;
     scene.add(sunLight);
     sunLightRef.current = sunLight;
 
-    // 6. BUILD 3D ENVIRONMENT & SURROUNDINGS
-    buildSurroundings(scene);
+    // 6. Build Surroundings & Environment
+    const { floorMeshes } = buildSurroundings(scene);
+    floorMeshListRef.current = floorMeshes;
 
-    // 7. BUILD HOUSE (EXTERIOR & INTERIOR ARCHITECTURE)
-    const { roofGroup, interiorLights, poolLight } = buildHouse(scene);
+    // 7. Build Architectural House & Interior
+    const { roofGroup, interiorLights, poolLight, houseFloorMeshes } = buildHouse(scene);
     roofGroupRef.current = roofGroup;
     interiorLightsRef.current = interiorLights;
     poolLightRef.current = poolLight;
+    floorMeshListRef.current = [...floorMeshes, ...houseFloorMeshes];
 
-    // 8. Animation & Render Loop
-    let lastTime = performance.now();
+    // 8. Build 3D Interactive Floor Waypoints
+    const waypoints = buildWaypoints(scene);
+    waypointMeshListRef.current = waypoints;
+
+    // 9. Click Ripple Effect on Floor
+    const rippleGeo = new THREE.RingGeometry(0.1, 0.8, 32);
+    const rippleMat = new THREE.MeshBasicMaterial({
+      color: 0x636B2F,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0
+    });
+    const ripple = new THREE.Mesh(rippleGeo, rippleMat);
+    ripple.rotation.x = -Math.PI / 2;
+    ripple.position.y = 0.51;
+    scene.add(ripple);
+    clickRippleRef.current = ripple;
+
+    // 10. Animation & Walk Loop
+    let rippleAnim = 0;
     const animate = () => {
       animFrameIdRef.current = requestAnimationFrame(animate);
 
-      // Smooth camera interpolation towards target
-      camera.position.lerp(targetCamPos.current, 0.04);
-      controls.target.lerp(targetLookAt.current, 0.04);
+      const isInterior = viewModeRef.current === 'interior';
 
-      controls.update();
+      if (isInterior) {
+        // --- FIRST PERSON WALK & CURSOR LOOK ENGINE ---
+        controls.enabled = false;
+
+        // Smooth transition to target position
+        if (isTransitioning.current) {
+          playerPos.current.lerp(targetPlayerPos.current, 0.08);
+          if (playerPos.current.distanceTo(targetPlayerPos.current) < 0.05) {
+            isTransitioning.current = false;
+          }
+        }
+
+        // Handle keyboard walk movement
+        const walkSpeed = 0.12;
+        const fwd = new THREE.Vector3(Math.sin(yaw.current), 0, Math.cos(yaw.current));
+        const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), fwd).normalize();
+
+        let moved = false;
+        if (keysDown.current['KeyW'] || keysDown.current['ArrowUp']) {
+          targetPlayerPos.current.addScaledVector(fwd, walkSpeed);
+          moved = true;
+        }
+        if (keysDown.current['KeyS'] || keysDown.current['ArrowDown']) {
+          targetPlayerPos.current.addScaledVector(fwd, -walkSpeed);
+          moved = true;
+        }
+        if (keysDown.current['KeyA'] || keysDown.current['ArrowLeft']) {
+          targetPlayerPos.current.addScaledVector(right, -walkSpeed);
+          moved = true;
+        }
+        if (keysDown.current['KeyD'] || keysDown.current['ArrowRight']) {
+          targetPlayerPos.current.addScaledVector(right, walkSpeed);
+          moved = true;
+        }
+        if (keysDown.current['KeyQ']) {
+          yaw.current += 0.03;
+        }
+        if (keysDown.current['KeyE']) {
+          yaw.current -= 0.03;
+        }
+
+        if (moved) {
+          // Clamp inside house bounds according to elevation
+          if (targetPlayerPos.current.y > 5.0) {
+            // Terrace bounds
+            targetPlayerPos.current.x = THREE.MathUtils.clamp(targetPlayerPos.current.x, -8.5, 8.5);
+            targetPlayerPos.current.z = THREE.MathUtils.clamp(targetPlayerPos.current.z, 7.5, 12.5);
+          } else if (targetPlayerPos.current.x < -10.0) {
+            // Pool deck bounds
+            targetPlayerPos.current.x = THREE.MathUtils.clamp(targetPlayerPos.current.x, -19.0, -10.5);
+            targetPlayerPos.current.z = THREE.MathUtils.clamp(targetPlayerPos.current.z, -6.0, 6.0);
+          } else {
+            // Interior rooms bounds
+            targetPlayerPos.current.x = THREE.MathUtils.clamp(targetPlayerPos.current.x, -8.5, 8.5);
+            targetPlayerPos.current.z = THREE.MathUtils.clamp(targetPlayerPos.current.z, -6.8, 6.8);
+          }
+          playerPos.current.lerp(targetPlayerPos.current, 0.18);
+        }
+
+        // Apply Player Position with dynamic head cursor sway
+        const headSwayX = cursorOffset.current.x * 0.15;
+        const headSwayZ = cursorOffset.current.y * 0.15;
+        camera.position.set(
+          playerPos.current.x + headSwayX,
+          playerPos.current.y,
+          playerPos.current.z + headSwayZ
+        );
+
+        // Effective Look Angle: Base rotation + Natural cursor tracking
+        const effectiveYaw = yaw.current - (cursorOffset.current.x * 0.65);
+        const effectivePitch = THREE.MathUtils.clamp(pitch.current - (cursorOffset.current.y * 0.45), -0.75, 0.75);
+
+        // Calculate gaze direction vector
+        const lookDir = new THREE.Vector3(
+          Math.sin(effectiveYaw) * Math.cos(effectivePitch),
+          Math.sin(effectivePitch),
+          Math.cos(effectiveYaw) * Math.cos(effectivePitch)
+        );
+
+        const lookTarget = camera.position.clone().add(lookDir);
+        camera.lookAt(lookTarget);
+
+      } else {
+        // --- EXTERIOR / DOLLHOUSE ORBIT MODE ---
+        controls.enabled = true;
+
+        if (isTransitioning.current) {
+          camera.position.lerp(targetPlayerPos.current, 0.06);
+          controls.target.lerp(targetLookAt.current, 0.06);
+          if (camera.position.distanceTo(targetPlayerPos.current) < 0.2) {
+            isTransitioning.current = false;
+          }
+        }
+        controls.update();
+      }
+
+      // Animate Click Ripple
+      if (clickRippleRef.current && rippleAnim > 0) {
+        rippleAnim -= 0.035;
+        const s = (1 - rippleAnim) * 2.2 + 0.5;
+        clickRippleRef.current.scale.set(s, s, s);
+        clickRippleRef.current.material.opacity = Math.max(0, rippleAnim);
+      }
+
+      // Animate 3D Floor Waypoint Beacons
+      waypointMeshListRef.current.forEach((wp, idx) => {
+        if (wp.ring) {
+          wp.ring.rotation.z += 0.02 * (idx % 2 === 0 ? 1 : -1);
+        }
+      });
+
       renderer.render(scene, camera);
     };
     animate();
 
-    // 9. Window Resize Listener
+    // 11. Mouse & Pointer Movement (Cursor Look in Walk Mode)
+    const handlePointerMove = (e) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+
+      // Smooth cursor parallax tracking
+      cursorOffset.current.x = THREE.MathUtils.clamp(x, -1, 1);
+      cursorOffset.current.y = THREE.MathUtils.clamp(y, -1, 1);
+
+      // Free 360° Drag Look in walk mode
+      if (isDragging.current && viewModeRef.current === 'interior') {
+        const deltaX = e.clientX - lastMousePos.current.x;
+        const deltaY = e.clientY - lastMousePos.current.y;
+        yaw.current += deltaX * 0.005;
+        pitch.current = THREE.MathUtils.clamp(pitch.current - deltaY * 0.004, -0.75, 0.75);
+      }
+      lastMousePos.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handlePointerDown = (e) => {
+      isDragging.current = true;
+      lastMousePos.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handlePointerUp = () => {
+      isDragging.current = false;
+    };
+
+    // 12. Click on Floor / Waypoint to Walk Directly
+    const handleCanvasClick = (e) => {
+      if (viewModeRef.current !== 'interior') return;
+
+      const rect = renderer.domElement.getBoundingClientRect();
+      const mouse = new THREE.Vector2(
+        ((e.clientX - rect.left) / rect.width) * 2 - 1,
+        -(((e.clientY - rect.top) / rect.height) * 2 - 1)
+      );
+
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse, camera);
+
+      // Check waypoint beacons first
+      const wpIntersects = raycaster.intersectObjects(waypointMeshListRef.current.map(w => w.mesh));
+      if (wpIntersects.length > 0) {
+        const hitWp = waypointMeshListRef.current.find(w => w.mesh === wpIntersects[0].object);
+        if (hitWp) {
+          teleportToLocation(hitWp.pos, hitWp.yaw, hitWp.id);
+          return;
+        }
+      }
+
+      // Check Floor Meshes to walk forward
+      const floorIntersects = raycaster.intersectObjects(floorMeshListRef.current);
+      if (floorIntersects.length > 0) {
+        const pt = floorIntersects[0].point;
+        // Trigger ripple
+        if (clickRippleRef.current) {
+          clickRippleRef.current.position.set(pt.x, pt.y + 0.05, pt.z);
+          clickRippleRef.current.scale.set(0.2, 0.2, 0.2);
+          clickRippleRef.current.material.opacity = 0.9;
+          rippleAnim = 1.0;
+        }
+
+        // Smoothly walk player to clicked location
+        const targetY = pt.y > 4 ? 7.5 : (pt.x < -10 ? 2.2 : 2.9);
+        targetPlayerPos.current.set(pt.x, targetY, pt.z);
+        isTransitioning.current = true;
+        setWalkNotice(`Walking to point (${pt.x.toFixed(1)}, ${pt.z.toFixed(1)})`);
+      }
+    };
+
+    // 13. Keyboard Listeners
+    const handleKeyDown = (e) => {
+      keysDown.current[e.code] = true;
+      if (e.key === 'Escape') onClose();
+    };
+    const handleKeyUp = (e) => {
+      keysDown.current[e.code] = false;
+    };
+
+    const dom = renderer.domElement;
+    dom.addEventListener('pointermove', handlePointerMove);
+    dom.addEventListener('pointerdown', handlePointerDown);
+    window.addEventListener('pointerup', handlePointerUp);
+    dom.addEventListener('click', handleCanvasClick);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    // 14. Window Resize
     const handleResize = () => {
       if (!container || !camera || !renderer) return;
       const w = container.clientWidth;
@@ -152,9 +396,15 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     };
     window.addEventListener('resize', handleResize);
 
-    // Cleanup on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+      dom.removeEventListener('pointermove', handlePointerMove);
+      dom.removeEventListener('pointerdown', handlePointerDown);
+      dom.removeEventListener('click', handleCanvasClick);
+
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
       if (renderer.domElement && renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement.parentNode);
@@ -163,25 +413,37 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  // Handle View Mode & Camera Transitions
+  // Smooth Teleport to Room Preset
+  const teleportToLocation = (targetPos, targetYaw, roomId = null) => {
+    targetPlayerPos.current.copy(targetPos);
+    yaw.current = targetYaw;
+    pitch.current = 0;
+    cursorOffset.current = { x: 0, y: 0 };
+    isTransitioning.current = true;
+    if (roomId) setActiveRoom(roomId);
+  };
+
+  // Handle View Mode & Room Transitions
   useEffect(() => {
     if (!controlsRef.current) return;
 
     if (viewMode === 'exterior') {
-      targetCamPos.current.copy(CAMERA_PRESETS.exterior.pos);
-      targetLookAt.current.copy(CAMERA_PRESETS.exterior.lookAt);
+      targetPlayerPos.current.copy(ROOM_COORDINATES.exterior.pos);
+      targetLookAt.current.copy(ROOM_COORDINATES.exterior.lookAt);
+      isTransitioning.current = true;
       if (roofGroupRef.current) roofGroupRef.current.visible = true;
+      setWalkNotice('Exterior orbit mode: Drag to inspect architecture 360°');
     } else if (viewMode === 'dollhouse') {
-      targetCamPos.current.copy(CAMERA_PRESETS.dollhouse.pos);
-      targetLookAt.current.copy(CAMERA_PRESETS.dollhouse.lookAt);
+      targetPlayerPos.current.copy(ROOM_COORDINATES.dollhouse.pos);
+      targetLookAt.current.copy(ROOM_COORDINATES.dollhouse.lookAt);
+      isTransitioning.current = true;
       if (roofGroupRef.current) roofGroupRef.current.visible = false;
+      setWalkNotice('Dollhouse 3D Floorplan: Roof lifted to inspect layout');
     } else if (viewMode === 'interior') {
       if (roofGroupRef.current) roofGroupRef.current.visible = false;
-      const key = `interior_${activeRoom}`;
-      if (CAMERA_PRESETS[key]) {
-        targetCamPos.current.copy(CAMERA_PRESETS[key].pos);
-        targetLookAt.current.copy(CAMERA_PRESETS[key].lookAt);
-      }
+      const room = ROOM_COORDINATES[activeRoom] || ROOM_COORDINATES.living;
+      teleportToLocation(room.pos, room.yaw, activeRoom);
+      setWalkNotice('Walk Mode Active: Move cursor to look · Click floor or use buttons/WASD to walk');
     }
   }, [viewMode, activeRoom]);
 
@@ -201,7 +463,7 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
       ambient.intensity = 0.85;
       sun.color.setHex(0xfffaed);
       sun.intensity = 1.8;
-      sun.position.set(30, 45, 25);
+      sun.position.set(32, 48, 28);
       interiorLights.forEach(l => l.intensity = 0.4);
       if (poolLight) poolLight.intensity = 0.3;
     } else if (timeOfDay === 'sunset') {
@@ -227,35 +489,55 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
     }
   }, [timeOfDay]);
 
-  // Handle Auto-Rotate toggle
+  // Handle Auto-Rotate
   useEffect(() => {
     if (controlsRef.current) {
       controlsRef.current.autoRotate = autoRotate;
     }
   }, [autoRotate]);
 
+  // Virtual Walking Pad Navigation (One-touch buttons)
+  const handleVirtualWalk = (direction) => {
+    if (viewMode !== 'interior') {
+      setViewMode('interior');
+    }
+    const step = 1.2;
+    const fwd = new THREE.Vector3(Math.sin(yaw.current), 0, Math.cos(yaw.current));
+    const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), fwd).normalize();
+
+    if (direction === 'forward') {
+      targetPlayerPos.current.addScaledVector(fwd, step);
+    } else if (direction === 'backward') {
+      targetPlayerPos.current.addScaledVector(fwd, -step);
+    } else if (direction === 'left') {
+      targetPlayerPos.current.addScaledVector(right, -step);
+    } else if (direction === 'right') {
+      targetPlayerPos.current.addScaledVector(right, step);
+    } else if (direction === 'turnLeft') {
+      yaw.current += 0.35;
+    } else if (direction === 'turnRight') {
+      yaw.current -= 0.35;
+    }
+    isTransitioning.current = true;
+  };
+
   // Zoom handlers
   const handleZoom = (delta) => {
-    if (!cameraRef.current || !controlsRef.current) return;
-    const dir = new THREE.Vector3().subVectors(controlsRef.current.target, cameraRef.current.position).normalize();
-    cameraRef.current.position.addScaledVector(dir, delta * 3);
+    if (viewMode === 'interior') {
+      handleVirtualWalk(delta > 0 ? 'forward' : 'backward');
+    } else if (cameraRef.current && controlsRef.current) {
+      const dir = new THREE.Vector3().subVectors(controlsRef.current.target, cameraRef.current.position).normalize();
+      cameraRef.current.position.addScaledVector(dir, delta * 3);
+    }
   };
 
   // Reset Camera View
   const handleResetCamera = () => {
     setViewMode('exterior');
-    targetCamPos.current.copy(CAMERA_PRESETS.exterior.pos);
-    targetLookAt.current.copy(CAMERA_PRESETS.exterior.lookAt);
+    targetPlayerPos.current.copy(ROOM_COORDINATES.exterior.pos);
+    targetLookAt.current.copy(ROOM_COORDINATES.exterior.lookAt);
+    isTransitioning.current = true;
   };
-
-  // Keyboard escape listener
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (isOpen) window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -266,7 +548,7 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
       }`}>
         
         {/* TOP BAR / HEADER */}
-        <div className="px-6 py-3.5 bg-[#1E293B]/90 border-b border-[#3D4127]/60 flex items-center justify-between z-10">
+        <div className="px-6 py-3.5 bg-[#1E293B]/95 border-b border-[#3D4127]/60 flex items-center justify-between z-10">
           <div className="flex items-center space-x-3">
             <div className="w-9 h-9 rounded-xl bg-[#636B2F] text-white flex items-center justify-center shadow-md">
               <Compass className="w-5 h-5 animate-pulse" />
@@ -277,7 +559,7 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
                   {property?.name || 'Architectural Luxury Villa'}
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-[#D4DE95]/20 text-[#D4DE95] text-[10px] font-bold border border-[#BAC095]/40 uppercase">
-                  3D Digital Twin
+                  Gruha Anwesh 3D
                 </span>
               </div>
               <p className="text-[11px] text-[#BAC095] flex items-center space-x-1.5 mt-0.5">
@@ -313,8 +595,11 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
         </div>
 
         {/* 3D CANVAS VIEWPORT */}
-        <div className="relative flex-1 w-full h-full bg-[#0b101b] overflow-hidden">
-          <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+        <div className="relative flex-1 w-full h-full bg-[#0b101b] overflow-hidden select-none">
+          <div
+            ref={mountRef}
+            className={`w-full h-full ${viewMode === 'interior' ? 'cursor-crosshair' : 'cursor-grab active:cursor-grabbing'}`}
+          />
 
           {/* FLOATING TOP CONTROL STRIP (VIEW MODES) */}
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center bg-[#0F172A]/85 backdrop-blur-md p-1.5 rounded-2xl border border-[#BAC095]/40 shadow-xl">
@@ -363,7 +648,8 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
                 { id: 'living', label: 'Living Room' },
                 { id: 'kitchen', label: 'Kitchen & Dining' },
                 { id: 'bedroom', label: 'Master Suite' },
-                { id: 'terrace', label: 'Sky Balcony' }
+                { id: 'terrace', label: 'Sky Balcony' },
+                { id: 'pool', label: 'Pool & Lounge' }
               ].map((r) => (
                 <button
                   key={r.id}
@@ -414,23 +700,80 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
             </button>
           </div>
 
+          {/* FIRST-PERSON VIRTUAL WALKING D-PAD (INTERIOR WALK MODE) */}
+          {viewMode === 'interior' && (
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 bg-[#0F172A]/90 backdrop-blur-md p-2.5 rounded-2xl border border-[#BAC095]/40 shadow-2xl">
+              <div className="text-[10px] font-bold text-[#D4DE95] uppercase tracking-wider mb-0.5 flex items-center space-x-1">
+                <span>Walk Controls</span>
+                <span className="text-[#BAC095] font-normal lowercase">(cursor moves gaze)</span>
+              </div>
+              <div className="grid grid-cols-3 gap-1.5">
+                <button
+                  onClick={() => handleVirtualWalk('turnLeft')}
+                  className="w-9 h-8 rounded-lg bg-[#334155]/70 hover:bg-[#636B2F] text-white flex items-center justify-center transition-colors active:scale-95"
+                  title="Turn Left (Q)"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  onClick={() => handleVirtualWalk('forward')}
+                  className="w-9 h-8 rounded-lg bg-[#636B2F] hover:bg-[#3D4127] text-white flex items-center justify-center shadow-md transition-colors active:scale-95"
+                  title="Step Forward (W / Up Arrow)"
+                >
+                  <ArrowUp className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleVirtualWalk('turnRight')}
+                  className="w-9 h-8 rounded-lg bg-[#334155]/70 hover:bg-[#636B2F] text-white flex items-center justify-center transition-colors active:scale-95"
+                  title="Turn Right (E)"
+                >
+                  <RotateCw className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  onClick={() => handleVirtualWalk('left')}
+                  className="w-9 h-8 rounded-lg bg-[#334155]/70 hover:bg-[#636B2F] text-white flex items-center justify-center transition-colors active:scale-95"
+                  title="Step Left (A / Left Arrow)"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleVirtualWalk('backward')}
+                  className="w-9 h-8 rounded-lg bg-[#636B2F] hover:bg-[#3D4127] text-white flex items-center justify-center shadow-md transition-colors active:scale-95"
+                  title="Step Backward (S / Down Arrow)"
+                >
+                  <ArrowDown className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleVirtualWalk('right')}
+                  className="w-9 h-8 rounded-lg bg-[#334155]/70 hover:bg-[#636B2F] text-white flex items-center justify-center transition-colors active:scale-95"
+                  title="Step Right (D / Right Arrow)"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* BOTTOM-RIGHT: CAMERA & INTERACTION TOOLBAR */}
           <div className="absolute bottom-4 right-4 z-20 flex items-center space-x-2 bg-[#0F172A]/85 backdrop-blur-md p-1.5 rounded-xl border border-[#BAC095]/40 shadow-lg">
-            <button
-              onClick={() => setAutoRotate(!autoRotate)}
-              className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-colors ${
-                autoRotate ? 'bg-[#636B2F] text-white' : 'text-[#BAC095] hover:text-white'
-              }`}
-              title="Toggle 360 Auto-Rotation"
-            >
-              <RotateCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
-              <span className="text-[11px] hidden sm:inline">Orbit</span>
-            </button>
+            {viewMode !== 'interior' && (
+              <button
+                onClick={() => setAutoRotate(!autoRotate)}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-colors ${
+                  autoRotate ? 'bg-[#636B2F] text-white' : 'text-[#BAC095] hover:text-white'
+                }`}
+                title="Toggle 360 Auto-Rotation"
+              >
+                <RotateCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
+                <span className="text-[11px] hidden sm:inline">Orbit</span>
+              </button>
+            )}
 
             <button
               onClick={() => handleZoom(1)}
               className="p-1.5 rounded-lg text-[#BAC095] hover:text-white hover:bg-[#334155] transition-colors"
-              title="Zoom In"
+              title={viewMode === 'interior' ? 'Step Forward' : 'Zoom In'}
             >
               <ZoomIn className="w-4 h-4" />
             </button>
@@ -438,7 +781,7 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
             <button
               onClick={() => handleZoom(-1)}
               className="p-1.5 rounded-lg text-[#BAC095] hover:text-white hover:bg-[#334155] transition-colors"
-              title="Zoom Out"
+              title={viewMode === 'interior' ? 'Step Backward' : 'Zoom Out'}
             >
               <ZoomOut className="w-4 h-4" />
             </button>
@@ -453,9 +796,9 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
           </div>
 
           {/* HINT OVERLAY PILL */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none hidden md:block">
-            <span className="px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[#BAC095] text-[11px] border border-white/10 shadow-sm">
-              Click &amp; Drag to rotate 360° · Scroll to zoom · Select modes or rooms to walk inside
+          <div className="absolute bottom-20 sm:bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+            <span className="px-3.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[#D4DE95] text-[11px] border border-[#BAC095]/30 shadow-sm text-center">
+              {walkNotice}
             </span>
           </div>
         </div>
@@ -466,9 +809,51 @@ export default function Property3DViewerModal({ property, isOpen, onClose }) {
 }
 
 /**
+ * 3D Interactive Floor Waypoints for Instant Room Navigation
+ */
+function buildWaypoints(scene) {
+  const waypoints = [
+    { id: 'living', name: 'Living Room', pos: new THREE.Vector3(-4.5, 2.9, 3.2), floorY: 0.52, floorX: -4.5, floorZ: 3.5, yaw: -Math.PI * 0.75 },
+    { id: 'kitchen', name: 'Kitchen & Dining', pos: new THREE.Vector3(4.5, 2.9, 3.2), floorY: 0.52, floorX: 4.5, floorZ: 3.5, yaw: -Math.PI * 0.85 },
+    { id: 'bedroom', name: 'Master Suite', pos: new THREE.Vector3(-4.8, 2.9, -4.5), floorY: 0.52, floorX: -4.8, floorZ: -4.5, yaw: -Math.PI * 0.95 },
+    { id: 'terrace', name: 'Sky Balcony', pos: new THREE.Vector3(0, 7.5, 8.5), floorY: 6.52, floorX: 0, floorZ: 9.5, yaw: 0 },
+    { id: 'pool', name: 'Pool & Lounge', pos: new THREE.Vector3(-14.0, 2.2, 5.0), floorY: 0.38, floorX: -14.0, floorZ: 0, yaw: -Math.PI * 0.5 }
+  ];
+
+  return waypoints.map(wp => {
+    const group = new THREE.Group();
+    group.position.set(wp.floorX, wp.floorY, wp.floorZ);
+
+    // Glowing Inner Ring
+    const ringGeo = new THREE.RingGeometry(0.3, 0.45, 24);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0xD4DE95,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.85
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = -Math.PI / 2;
+    group.add(ring);
+
+    // Center Core Disc
+    const discGeo = new THREE.CircleGeometry(0.2, 16);
+    const discMat = new THREE.MeshBasicMaterial({ color: 0x636B2F });
+    const disc = new THREE.Mesh(discGeo, discMat);
+    disc.rotation.x = -Math.PI / 2;
+    group.add(disc);
+
+    scene.add(group);
+    return { mesh: disc, ring, pos: wp.pos, yaw: wp.yaw, id: wp.id };
+  });
+}
+
+/**
  * Procedural 3D Environment: Grounds, Lawn, Trees, Swimming Pool, Pavements, Driveway
  */
 function buildSurroundings(scene) {
+  const floorMeshes = [];
+
   // 1. Manicured Estate Lawn
   const lawnGeo = new THREE.PlaneGeometry(80, 80);
   const lawnMat = new THREE.MeshStandardMaterial({
@@ -480,6 +865,7 @@ function buildSurroundings(scene) {
   lawn.rotation.x = -Math.PI / 2;
   lawn.receiveShadow = true;
   scene.add(lawn);
+  floorMeshes.push(lawn);
 
   // 2. Concrete Base / Foundation Pad
   const padGeo = new THREE.BoxGeometry(22, 0.4, 18);
@@ -488,6 +874,7 @@ function buildSurroundings(scene) {
   pad.position.set(0, 0.2, 0);
   pad.receiveShadow = true;
   scene.add(pad);
+  floorMeshes.push(pad);
 
   // 3. Paved Driveway
   const driveGeo = new THREE.PlaneGeometry(7, 30);
@@ -497,6 +884,7 @@ function buildSurroundings(scene) {
   drive.position.set(6, 0.05, 17);
   drive.receiveShadow = true;
   scene.add(drive);
+  floorMeshes.push(drive);
 
   // 4. Stone Walkway to Porch
   const pathGeo = new THREE.PlaneGeometry(3.5, 14);
@@ -506,6 +894,7 @@ function buildSurroundings(scene) {
   path.position.set(-1.5, 0.06, 12);
   path.receiveShadow = true;
   scene.add(path);
+  floorMeshes.push(path);
 
   // 5. Luxury Swimming Pool & Timber Deck
   const deckGeo = new THREE.BoxGeometry(10, 0.3, 14);
@@ -514,8 +903,9 @@ function buildSurroundings(scene) {
   deck.position.set(-16, 0.15, 0);
   deck.receiveShadow = true;
   scene.add(deck);
+  floorMeshes.push(deck);
 
-  // Pool Water (recessed inside deck)
+  // Pool Water
   const poolWaterGeo = new THREE.PlaneGeometry(6.5, 10.5);
   const poolWaterMat = new THREE.MeshStandardMaterial({
     color: 0x1aa0c4,
@@ -580,7 +970,7 @@ function buildSurroundings(scene) {
     trunk.castShadow = true;
     treeGroup.add(trunk);
 
-    // Canopy (multi-cluster foliage)
+    // Canopy
     const fMat = i % 2 === 0 ? foliageMat1 : foliageMat2;
     const canopy1 = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2, 1), fMat);
     canopy1.position.y = 4.2;
@@ -597,7 +987,7 @@ function buildSurroundings(scene) {
 
   // 8. Landscape Shrub Hedges
   for (let x = -8; x <= 8; x += 2) {
-    if (x === -2 || x === 0) continue; // Porch entry gap
+    if (x === -2 || x === 0) continue;
     const bush = new THREE.Mesh(
       new THREE.SphereGeometry(0.7, 8, 8),
       new THREE.MeshStandardMaterial({ color: 0x3d4127, roughness: 0.8 })
@@ -606,6 +996,8 @@ function buildSurroundings(scene) {
     bush.castShadow = true;
     scene.add(bush);
   }
+
+  return { floorMeshes };
 }
 
 /**
@@ -615,6 +1007,7 @@ function buildSurroundings(scene) {
 function buildHouse(scene) {
   const houseGroup = new THREE.Group();
   scene.add(houseGroup);
+  const houseFloorMeshes = [];
 
   // Materials
   const extWallMat = new THREE.MeshStandardMaterial({ color: 0xf3f2ee, roughness: 0.65 });
@@ -633,32 +1026,29 @@ function buildHouse(scene) {
   const furnitureMatLight = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
 
   // 1. GROUND FLOOR SLAB & INTERIOR FLOORING
-  // Living room wood floor (left side)
   const livingFloor = new THREE.Mesh(new THREE.BoxGeometry(9.6, 0.1, 15.6), woodFloorMat);
   livingFloor.position.set(-4.8, 0.45, 0);
   livingFloor.receiveShadow = true;
   houseGroup.add(livingFloor);
+  houseFloorMeshes.push(livingFloor);
 
-  // Kitchen/Dining tile floor (right side)
   const kitchenFloor = new THREE.Mesh(new THREE.BoxGeometry(9.6, 0.1, 15.6), tileFloorMat);
   kitchenFloor.position.set(4.8, 0.45, 0);
   kitchenFloor.receiveShadow = true;
   houseGroup.add(kitchenFloor);
+  houseFloorMeshes.push(kitchenFloor);
 
-  // 2. EXTERIOR WALLS (with window cutouts / glass sections)
-  // Back Wall
+  // 2. EXTERIOR WALLS
   const backWall = new THREE.Mesh(new THREE.BoxGeometry(20, 6, 0.4), extWallMat);
   backWall.position.set(0, 3.4, -8);
   backWall.castShadow = true;
   houseGroup.add(backWall);
 
-  // Left Wall
   const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.4, 6, 16), extWallMat);
   leftWall.position.set(-10, 3.4, 0);
   leftWall.castShadow = true;
   houseGroup.add(leftWall);
 
-  // Right Wall
   const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.4, 6, 16), extWallMat);
   rightWall.position.set(10, 3.4, 0);
   rightWall.castShadow = true;
@@ -686,10 +1076,9 @@ function buildHouse(scene) {
   windowRight.position.set(4.5, 3.4, 8);
   houseGroup.add(windowRight);
 
-  // 3. INTERIOR PARTITION WALLS (Creates Living Room, Kitchen, Bedroom Suite)
+  // 3. INTERIOR PARTITION WALLS
   const intWallMat = new THREE.MeshStandardMaterial({ color: 0xedebe4, roughness: 0.8 });
 
-  // Central dividing spine (divides left wing from right wing, with archway)
   const spineFront = new THREE.Mesh(new THREE.BoxGeometry(0.3, 5.5, 6), intWallMat);
   spineFront.position.set(0, 3.2, 5);
   houseGroup.add(spineFront);
@@ -698,17 +1087,13 @@ function buildHouse(scene) {
   spineBack.position.set(0, 3.2, -5);
   houseGroup.add(spineBack);
 
-  // Bedroom partition wall (divides Living room from Master Bedroom Suite in rear left)
   const bedPartition = new THREE.Mesh(new THREE.BoxGeometry(7, 5.5, 0.3), intWallMat);
   bedPartition.position.set(-6, 3.2, -1);
   houseGroup.add(bedPartition);
 
   // 4. DETAILED INTERIOR FURNITURE
-
-  // --- ZONE 1: LIVING ROOM (Front Left) ---
+  // --- LIVING ROOM ---
   const livingGroup = new THREE.Group();
-
-  // Sectional L-Sofa
   const sofaBase1 = new THREE.Mesh(new THREE.BoxGeometry(5.5, 0.8, 1.8), furnitureMatDark);
   sofaBase1.position.set(-4.5, 0.85, 3);
   sofaBase1.castShadow = true;
@@ -719,22 +1104,18 @@ function buildHouse(scene) {
   sofaBase2.castShadow = true;
   livingGroup.add(sofaBase2);
 
-  // Sofa Backrest
   const sofaBack = new THREE.Mesh(new THREE.BoxGeometry(5.5, 1.2, 0.4), furnitureMatDark);
   sofaBack.position.set(-4.5, 1.45, 2.2);
   livingGroup.add(sofaBack);
 
-  // Olive Cushion Accents
   const cushion1 = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.6, 0.3), furnitureMatOlive);
   cushion1.position.set(-3.5, 1.35, 2.5);
   livingGroup.add(cushion1);
 
-  // Designer Coffee Table
   const coffeeTable = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.4, 1.5), glassMat);
   coffeeTable.position.set(-4.5, 0.65, 4.8);
   livingGroup.add(coffeeTable);
 
-  // Living Room Area Rug
   const rug = new THREE.Mesh(
     new THREE.PlaneGeometry(5, 4),
     new THREE.MeshStandardMaterial({ color: 0xd4de95, roughness: 0.9 })
@@ -743,7 +1124,6 @@ function buildHouse(scene) {
   rug.position.set(-4.8, 0.51, 4.8);
   livingGroup.add(rug);
 
-  // Wall-mounted Entertainment Console & TV
   const tvConsole = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.6, 0.8), trimMat);
   tvConsole.position.set(-4.5, 0.75, 7.4);
   livingGroup.add(tvConsole);
@@ -751,36 +1131,29 @@ function buildHouse(scene) {
   const tvScreen = new THREE.Mesh(new THREE.BoxGeometry(3.6, 2.0, 0.1), furnitureMatDark);
   tvScreen.position.set(-4.5, 2.4, 7.7);
   livingGroup.add(tvScreen);
-
   houseGroup.add(livingGroup);
 
-  // --- ZONE 2: GOURMET KITCHEN & DINING (Front Right) ---
+  // --- KITCHEN & DINING ---
   const kitchenGroup = new THREE.Group();
-
-  // Kitchen Island Counter
   const island = new THREE.Mesh(new THREE.BoxGeometry(4.5, 1.3, 1.8), furnitureMatLight);
   island.position.set(4.5, 1.1, 4);
   island.castShadow = true;
   kitchenGroup.add(island);
 
-  // Quartz Countertop
   const counterTop = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.15, 2.1), trimMat);
   counterTop.position.set(4.5, 1.8, 4);
   kitchenGroup.add(counterTop);
 
-  // Bar Stools
   for (let x = 3; x <= 6; x += 1.5) {
     const stool = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 1.1, 12), furnitureMatOlive);
     stool.position.set(x, 1.0, 5.4);
     kitchenGroup.add(stool);
   }
 
-  // Dining Table (Mid-Right)
   const diningTable = new THREE.Mesh(new THREE.BoxGeometry(4, 1.2, 2.4), trimMat);
   diningTable.position.set(5, 1.05, -1);
   kitchenGroup.add(diningTable);
 
-  // Dining Chairs
   for (let z of [-2.4, 0.4]) {
     for (let x of [3.5, 6.5]) {
       const chair = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.4, 0.7), furnitureMatDark);
@@ -789,38 +1162,30 @@ function buildHouse(scene) {
     }
   }
 
-  // Rear Kitchen Cabinets & Refrigerator Unit
   const cabinets = new THREE.Mesh(new THREE.BoxGeometry(8, 3.5, 1.2), furnitureMatDark);
   cabinets.position.set(5, 2.2, 7.2);
   kitchenGroup.add(cabinets);
-
   houseGroup.add(kitchenGroup);
 
-  // --- ZONE 3: MASTER BEDROOM SUITE (Rear Left) ---
+  // --- MASTER BEDROOM ---
   const bedGroup = new THREE.Group();
-
-  // King Size Platform Bed
   const bedFrame = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.7, 4.2), trimMat);
   bedFrame.position.set(-5, 0.8, -5.5);
   bedFrame.castShadow = true;
   bedGroup.add(bedFrame);
 
-  // Mattress & Linens
   const mattress = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.5, 3.8), furnitureMatLight);
   mattress.position.set(-5, 1.2, -5.4);
   bedGroup.add(mattress);
 
-  // Olive Duvet Runner
   const duvet = new THREE.Mesh(new THREE.BoxGeometry(3.22, 0.1, 2.0), furnitureMatOlive);
   duvet.position.set(-5, 1.46, -4.6);
   bedGroup.add(duvet);
 
-  // Upholstered Headboard
   const headboard = new THREE.Mesh(new THREE.BoxGeometry(4.0, 2.2, 0.3), furnitureMatDark);
   headboard.position.set(-5, 1.8, -7.6);
   bedGroup.add(headboard);
 
-  // Bedside Nightstands
   const nightstandL = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.9, 0.9), trimMat);
   nightstandL.position.set(-7.4, 0.9, -7.2);
   bedGroup.add(nightstandL);
@@ -828,7 +1193,6 @@ function buildHouse(scene) {
   const nightstandR = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.9, 0.9), trimMat);
   nightstandR.position.set(-2.6, 0.9, -7.2);
   bedGroup.add(nightstandR);
-
   houseGroup.add(bedGroup);
 
   // 5. FIRST FLOOR BALCONY & SKY TERRACE
@@ -837,22 +1201,19 @@ function buildHouse(scene) {
   const terrace = new THREE.Mesh(terraceGeo, terraceMat);
   terrace.position.set(0, 6.4, 10);
   houseGroup.add(terrace);
+  houseFloorMeshes.push(terrace);
 
-  // Glass Railings for Sky Terrace
   const railingGeo = new THREE.BoxGeometry(20.4, 1.2, 0.08);
   const railing = new THREE.Mesh(railingGeo, glassMat);
   railing.position.set(0, 7.15, 12.9);
   houseGroup.add(railing);
 
-  // Terrace Outdoor Furniture
   const patioSofa = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.7, 1.6), furnitureMatOlive);
   patioSofa.position.set(0, 6.9, 10.5);
   houseGroup.add(patioSofa);
 
-  // 6. ROOF GROUP (Separated so it can be toggled / lifted in Dollhouse mode)
+  // 6. ROOF GROUP
   const roofGroup = new THREE.Group();
-
-  // Modern Cantilevered Overhanging Flat Roof
   const roofSlab = new THREE.Mesh(
     new THREE.BoxGeometry(22, 0.5, 18),
     new THREE.MeshStandardMaterial({ color: 0x2d3224, roughness: 0.65 })
@@ -861,7 +1222,6 @@ function buildHouse(scene) {
   roofSlab.castShadow = true;
   roofGroup.add(roofSlab);
 
-  // Upper Architectural Penthouse / Parapet Box
   const parapet = new THREE.Mesh(
     new THREE.BoxGeometry(12, 2.5, 10),
     new THREE.MeshStandardMaterial({ color: 0xf3f2ee, roughness: 0.7 })
@@ -870,47 +1230,39 @@ function buildHouse(scene) {
   parapet.castShadow = true;
   roofGroup.add(parapet);
 
-  // Top Solar Panel Arrays & Skylight
   const solarPanel = new THREE.Mesh(
     new THREE.BoxGeometry(7, 0.1, 4),
     new THREE.MeshStandardMaterial({ color: 0x1a2e40, metalness: 0.9, roughness: 0.2 })
   );
   solarPanel.position.set(-2, 9.3, -2);
   roofGroup.add(solarPanel);
-
   houseGroup.add(roofGroup);
 
   // 7. INTERIOR WARM ILLUMINATION LIGHTS
   const interiorLights = [];
-
-  // Living Room Chandelier Light
   const livingLight = new THREE.PointLight(0xffeedd, 1.5, 15);
   livingLight.position.set(-4.5, 4.5, 3.5);
   scene.add(livingLight);
   interiorLights.push(livingLight);
 
-  // Kitchen Island Pendant Light
   const kitchenLight = new THREE.PointLight(0xffeedd, 1.5, 15);
   kitchenLight.position.set(4.5, 4.5, 3.5);
   scene.add(kitchenLight);
   interiorLights.push(kitchenLight);
 
-  // Master Bedroom Sconce Light
   const bedLight = new THREE.PointLight(0xffeedd, 1.2, 12);
   bedLight.position.set(-5, 4.5, -5.5);
   scene.add(bedLight);
   interiorLights.push(bedLight);
 
-  // Terrace Sconce Light
   const terraceLight = new THREE.PointLight(0xffddaa, 1.2, 12);
   terraceLight.position.set(0, 7.8, 8);
   scene.add(terraceLight);
   interiorLights.push(terraceLight);
 
-  // Swimming Pool Underwater Light
   const poolLight = new THREE.PointLight(0x00e1ff, 1.0, 10);
   poolLight.position.set(-16, 0.1, 0);
   scene.add(poolLight);
 
-  return { roofGroup, interiorLights, poolLight };
+  return { roofGroup, interiorLights, poolLight, houseFloorMeshes };
 }

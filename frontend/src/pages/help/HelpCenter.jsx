@@ -21,7 +21,7 @@ const HelpCenter = () => {
     },
     {
       q: "What is Dual API Key Management (BYOK) and how does automatic fallback work?",
-      a: "BYOK allows users to provide their personal OpenRouter API key. By default, PROPWISE AI utilizes its platform-managed key pool. If the platform pool reaches quota exhaustion or rate limits, the system seamlessly routes requests to your validated personal key (if configured and enabled), ensuring uninterrupted workflow."
+      a: "BYOK allows users to provide their personal OpenRouter API key. By default, Gruha Anwesh utilizes its platform-managed key pool. If the platform pool reaches quota exhaustion or rate limits, the system seamlessly routes requests to your validated personal key (if configured and enabled), ensuring uninterrupted workflow."
     },
     {
       q: "Can the AI Assistant make binding mortgage credit decisions?",

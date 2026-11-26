@@ -36,8 +36,8 @@ const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center text-xs text-[#475569]">
-        Initializing PropWise secure session...
+      <div className="min-h-screen bg-[#FAFBF7] flex items-center justify-center text-xs text-[#636B2F]">
+        Initializing Gruha Anwesh secure session...
       </div>
     );
   }

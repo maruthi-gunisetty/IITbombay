@@ -5,7 +5,7 @@ import {
   MapPin, TrendingUp, FileCheck2, Bot, ArrowRight, ShieldCheck,
   CheckCircle2, Lock, Cpu, Eye, Users, FileSignature, Sparkles,
   Building, ChevronRight, Activity, ArrowUpRight, Check, Play,
-  BarChart3, RefreshCw
+  BarChart3, RefreshCw, Home
 } from 'lucide-react';
 import Navbar from '../../components/layout/Navbar';
 import { propertiesAPI } from '../../services/api';
@@ -203,7 +203,7 @@ export default function LandingPage() {
     },
     {
       icon: Bot,
-      title: "PropWise AI Assistant",
+      title: "Gruha Anwesh AI Assistant",
       tag: "Dual BYOK Copilot",
       desc: "Context-grounded assistant powered by dual API key management (BYOK), providing rigorous financial explanations without hallucinations.",
       link: "/register"
@@ -319,7 +319,7 @@ export default function LandingPage() {
                     </div>
                     <div className="px-3 py-1 rounded-md bg-white border border-[#E2E8F0] text-[11px] font-mono text-[#475569] flex items-center space-x-1.5">
                       <Lock className="w-3 h-3 text-[#059669]" />
-                      <span>propwise.ai/dashboard/intelligence</span>
+                      <span>gruhaanwesh.ai/dashboard/intelligence</span>
                     </div>
                   </div>
 
@@ -1017,20 +1017,20 @@ export default function LandingPage() {
           {/* Brand Info */}
           <div className="col-span-2 space-y-3">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-md">
                 <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-[#0284C7]" />
+                  <Home className="w-4 h-4 text-[#636B2F]" />
                 </div>
               </div>
-              <span className="text-lg font-bold text-[#0F172A] tracking-tight block">
-                PROPWISE <span className="text-[#3978F6]">AI</span>
+              <span className="text-lg font-bold text-[#3D4127] tracking-tight block">
+                Gruha <span className="text-[#636B2F]">Anwesh</span>
               </span>
             </div>
-            <p className="text-xs text-[#475569] max-w-sm leading-relaxed">
+            <p className="text-xs text-[#5A613A] max-w-sm leading-relaxed">
               Smarter Property Valuation. Safer Lending Decisions. Enterprise real estate and fintech intelligence ecosystem combining AI valuation, mortgage underwriting, and document verification.
             </p>
-            <p className="text-[11px] text-[#475569]/70 pt-2">
-              &copy; 2026 PROPWISE AI. All rights reserved.
+            <p className="text-[11px] text-[#5A613A]/70 pt-2">
+              &copy; 2026 Gruha Anwesh. All rights reserved.
             </p>
           </div>
 

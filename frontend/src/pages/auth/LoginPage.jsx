@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Lock, Mail, Eye, EyeOff, BarChart3, AlertCircle, ArrowRight, Zap, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Lock, Mail, Eye, EyeOff, Home, AlertCircle, ArrowRight, Zap, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const demoProfiles = [
@@ -86,13 +86,13 @@ export default function LoginPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
         <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-4 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-md">
             <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-              <BarChart3 className="w-5 h-5 text-[#0284C7]" />
+              <Home className="w-5 h-5 text-[#636B2F]" />
             </div>
           </div>
-          <span className="text-2xl font-bold tracking-tight text-[#0F172A] uppercase">
-            PROPWISE <span className="text-[#3978F6]">AI</span>
+          <span className="text-2xl font-bold tracking-tight text-[#3D4127]">
+            Gruha <span className="text-[#636B2F]">Anwesh</span>
           </span>
         </Link>
         <h2 className="text-xl font-bold text-[#0F172A] tracking-tight">

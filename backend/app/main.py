@@ -314,7 +314,7 @@ def seed_initial_data():
         repo.create_notification(
             user_id=customer_user["id"],
             category="System",
-            title="Welcome to PROPWISE AI",
+            title="Welcome to Gruha Anwesh",
             message="Your enterprise intelligence workspace is active. You can register assets, run ML valuations, and track mortgage applications.",
             link="/dashboard"
         )

@@ -67,7 +67,7 @@ const AIChatPage = () => {
     setMessages([
       {
         sender: 'assistant',
-        content: 'PropWise Intelligence session initialized. Ask questions regarding property valuations, debt-to-income limits, loan-to-value ratios, or anomaly checks.'
+        content: 'Gruha Anwesh Intelligence session initialized. Ask questions regarding property valuations, debt-to-income limits, loan-to-value ratios, or anomaly checks.'
       }
     ]);
   };
@@ -126,7 +126,7 @@ const AIChatPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#3D4127] tracking-tight">PropWise Intelligence Assistant</h2>
+          <h2 className="text-xl font-extrabold text-[#3D4127] tracking-tight">Gruha Anwesh Intelligence Assistant</h2>
           <p className="text-xs text-[#5A613A]">
             Context-grounded FinTech assistant providing explainable financial and property valuation intelligence.
           </p>

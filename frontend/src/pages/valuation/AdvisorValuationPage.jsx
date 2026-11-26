@@ -117,7 +117,7 @@ export default function AdvisorValuationPage() {
         lower_bound: Math.round(est * 0.94),
         upper_bound: Math.round(est * 1.06),
         confidence_score: 94.2,
-        model_version: 'PropWise ML Regressor v2026.2',
+        model_version: 'Gruha Anwesh ML Regressor v2026.2',
         model_mode: 'Production ML (Trained Hedonic Matrix)',
         feature_contributions: [
           { feature: 'Built-up Living Area', impact: '+INR 4.80 Cr' },
@@ -302,7 +302,7 @@ export default function AdvisorValuationPage() {
                 What Is Your Property Worth in Today's Real Market?
               </h2>
               <p className="text-xs sm:text-sm text-[#475569] mt-2">
-                Powered by PropWise AI's multi-variable machine learning engine. Synthesizes registered comp deeds,
+                Powered by Gruha Anwesh multi-variable machine learning engine. Synthesizes registered comp deeds,
                 construction grade coefficients, and neighborhood telemetry in real time.
               </p>
             </div>

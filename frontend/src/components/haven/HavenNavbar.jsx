@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Home } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch }) {
@@ -32,17 +33,17 @@ export default function HavenNavbar({ savedCount = 4, onOpenSaved, onOpenSearch 
           {/* Logo & Main Nav */}
           <div className="flex items-center gap-6 lg:gap-8">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#2457C5] to-[#0284C7] flex items-center justify-center p-0.5 shadow-lg shadow-[#3978F6]/20">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-lg shadow-[#636B2F]/20">
                 <div className="w-full h-full bg-[#FFFFFF] rounded-[10px] flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[20px] text-[#0284C7]">domain</span>
+                  <Home className="w-5 h-5 text-[#636B2F]" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-headline-sm text-[20px] tracking-tight text-[#0F172A] uppercase font-bold leading-none">
-                  PROPWISE <span className="text-[#3978F6]">AI</span>
+                <span className="font-headline-sm text-[20px] tracking-tight text-[#3D4127] font-bold leading-none">
+                  Gruha <span className="text-[#636B2F]">Anwesh</span>
                 </span>
-                <span className="text-[10px] uppercase tracking-widest text-[#0284C7] font-semibold mt-0.5">
-                  Haven &amp; Key Estates
+                <span className="text-[10px] uppercase tracking-widest text-[#636B2F] font-semibold mt-0.5">
+                  Property &amp; Valuation
                 </span>
               </div>
             </Link>

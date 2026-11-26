@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Lock, Mail, User, Phone, Eye, EyeOff, BarChart3, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Lock, Mail, User, Phone, Eye, EyeOff, Home, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const RegisterPage = () => {
@@ -72,14 +72,14 @@ const RegisterPage = () => {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#0284C7]/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <Link to="/" className="flex items-center justify-center space-x-3 mb-6">
-          <img
-            alt="Haven & Key Logo"
-            className="h-8 w-auto object-contain"
-            src="https://lh3.googleusercontent.com/aida/ALJJyrAf8wxbxnaQNYaVA6z6lfB5jMc5LTtlN93GkdKrF0zMehykUb3DX877wyL8utZ0zaHuV-JhDYDIF6t5jPDUS-uYUb7RThCFbdjF-R3vz8fbdlbn61XvIBYsXofPeDldo_p1pGdoMUgQYTyHDA9qB9iprl_kVS3Tz9WT_ykZISk8S4FzAg4gZTHgCZTykdTTknvikFX0zVskFYSRYf2SLJV-_SOmzz6zzBUxuCAUZo4"
-          />
-          <span className="font-headline-sm text-2xl tracking-tight text-[#0F172A] uppercase font-medium">
-            Haven &amp; Key <span className="text-xs text-[#0284C7] normal-case tracking-normal ml-1">· PropWise AI</span>
+        <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-6 group w-full">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-md">
+            <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+              <Home className="w-5 h-5 text-[#636B2F]" />
+            </div>
+          </div>
+          <span className="text-2xl font-bold tracking-tight text-[#3D4127]">
+            Gruha <span className="text-[#636B2F]">Anwesh</span>
           </span>
         </Link>
         <h2 className="text-center text-xl font-bold text-[#0F172A] tracking-tight">

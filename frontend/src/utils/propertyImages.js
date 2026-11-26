@@ -54,7 +54,7 @@ export const VILLA_SVG = createSvgDataUri(`
   <circle cx="512" cy="295" r="3" fill="#D4DE95" />
   <!-- Architectural Accent Label -->
   <rect x="260" y="390" width="280" height="28" rx="14" fill="#636B2F" />
-  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">PROPWISE SIGNATURE VILLA</text>
+  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">GRUHA ANWESH SIGNATURE VILLA</text>
 </svg>
 `);
 
@@ -96,7 +96,7 @@ export const PENTHOUSE_SVG = createSvgDataUri(`
   <line x1="80" y1="380" x2="720" y2="380" stroke="#3D4127" stroke-width="3" stroke-linecap="round" />
   <!-- Architectural Accent Label -->
   <rect x="260" y="400" width="280" height="28" rx="14" fill="#3D4127" />
-  <text x="400" y="419" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#D4DE95" text-anchor="middle" letter-spacing="1.5">PROPWISE SKY PENTHOUSE</text>
+  <text x="400" y="419" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#D4DE95" text-anchor="middle" letter-spacing="1.5">GRUHA ANWESH SKY PENTHOUSE</text>
 </svg>
 `);
 
@@ -130,7 +130,7 @@ export const APARTMENT_SVG = createSvgDataUri(`
   </g>
   <!-- Architectural Accent Label -->
   <rect x="260" y="390" width="280" height="28" rx="14" fill="#636B2F" />
-  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">PROPWISE URBAN APARTMENT</text>
+  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">GRUHA ANWESH URBAN APARTMENT</text>
 </svg>
 `);
 
@@ -167,7 +167,7 @@ export const COMMERCIAL_SVG = createSvgDataUri(`
   </g>
   <!-- Architectural Accent Label -->
   <rect x="250" y="390" width="300" height="28" rx="14" fill="#3D4127" />
-  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">PROPWISE COMMERCIAL FLOOR</text>
+  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">GRUHA ANWESH COMMERCIAL FLOOR</text>
 </svg>
 `);
 
@@ -196,7 +196,7 @@ export const HERITAGE_SVG = createSvgDataUri(`
   <path d="M370 360 v-70 a30 30 0 0 1 60 0 v70 z" fill="#3D4127" />
   <!-- Architectural Accent Label -->
   <rect x="250" y="390" width="300" height="28" rx="14" fill="#3D4127" />
-  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#D4DE95" text-anchor="middle" letter-spacing="1.5">PROPWISE HERITAGE ESTATE</text>
+  <text x="400" y="409" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#D4DE95" text-anchor="middle" letter-spacing="1.5">GRUHA ANWESH HERITAGE ESTATE</text>
 </svg>
 `);
 

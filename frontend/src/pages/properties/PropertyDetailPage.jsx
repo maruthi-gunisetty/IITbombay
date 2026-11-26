@@ -190,7 +190,7 @@ export default function PropertyDetailPage() {
         <div className="border-b border-[#E2E8F0] bg-[#F1F5F9]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between text-xs text-[#475569]">
             <div className="flex items-center gap-2">
-              <Link to="/" className="hover:text-[#0F172A]">PropWise</Link>
+              <Link to="/" className="hover:text-[#3D4127]">Gruha Anwesh</Link>
               <span>/</span>
               <Link to="/catalog" className="hover:text-[#0F172A]">Properties Catalog</Link>
               <span>/</span>

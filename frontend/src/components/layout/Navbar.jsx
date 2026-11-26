@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, ChevronRight, Menu, X, BarChart3, Building, Sparkles } from 'lucide-react';
+import { ShieldCheck, ChevronRight, Menu, X, Home, Building, Sparkles } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
@@ -17,15 +17,15 @@ const Navbar = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#636B2F] to-[#3D4127] flex items-center justify-center p-0.5 shadow-lg shadow-[#636B2F]/20">
               <div className="w-full h-full bg-[#FFFFFF] rounded-[10px] flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-[#636B2F]" />
+                <Home className="w-5 h-5 text-[#636B2F]" />
               </div>
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight text-[#3D4127] block leading-none">
-                PROPWISE <span className="text-[#636B2F]">AI</span>
+              <span className="text-xl font-extrabold tracking-tight text-[#3D4127] block leading-none">
+                Gruha <span className="text-[#636B2F]">Anwesh</span>
               </span>
               <span className="text-[10px] tracking-wider text-[#636B2F] uppercase block font-semibold mt-1">
-                FinTech Valuation Intelligence
+                Property &amp; Valuation Intelligence
               </span>
             </div>
           </Link>

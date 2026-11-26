@@ -103,7 +103,7 @@ const UnifiedRiskCenter = () => {
               <div className="flex items-center justify-between pb-4 border-b border-[#E2E8F0]">
                 <div>
                   <span className="text-[10px] text-[#0284C7] uppercase tracking-wider font-semibold">
-                    {currentDisplay.model_version || 'PropWise-RiskPolicy-v3.1'}
+                    {currentDisplay.model_version || 'GruhaAnwesh-RiskPolicy-v3.1'}
                   </span>
                   <h3 className="text-sm font-bold text-[#0F172A]">Decoupled Credit & Collateral Risk Vectors</h3>
                 </div>

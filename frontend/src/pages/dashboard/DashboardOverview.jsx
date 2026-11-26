@@ -90,7 +90,7 @@ const DashboardOverview = () => {
             Welcome, {user?.full_name || 'Officer'}
           </h2>
           <p className="text-xs text-[#5A613A] mt-1">
-            Account Clearance: <span className="text-[#636B2F] font-semibold">{user?.account_type}</span> | Active Engine: <span className="text-[#3D4127] font-semibold">PropWise v3.1 Enterprise</span>
+            Account Clearance: <span className="text-[#636B2F] font-semibold">{user?.account_type}</span> | Active Engine: <span className="text-[#3D4127] font-semibold">Gruha Anwesh v3.1 Enterprise</span>
           </p>
         </div>
 

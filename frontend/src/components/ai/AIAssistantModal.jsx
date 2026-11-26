@@ -7,7 +7,7 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
   const [messages, setMessages] = useState([
     {
       sender: 'assistant',
-      content: 'Welcome to PropWise Intelligence. I provide analytical decision support for property valuations, mortgage underwriting parameters, decoupled risk matrices, and fraud indicators. How can I assist your review?'
+      content: 'Welcome to Gruha Anwesh Intelligence. I provide analytical decision support for property valuations, mortgage underwriting parameters, decoupled risk matrices, and fraud indicators. How can I assist your review?'
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
@@ -90,10 +90,10 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-gradient-to-tr from-[#636B2F] to-[#3D4127] text-white shadow-2xl hover:shadow-[#636B2F]/40 transition-all duration-300 hover:scale-105 flex items-center space-x-2 border border-[#D4DE95]/40"
-        title="Open PropWise Intelligence Assistant"
+        title="Open Gruha Anwesh Intelligence Assistant"
       >
         <Bot className="w-5 h-5 text-white" />
-        <span className="text-xs font-bold tracking-wide pr-1 hidden sm:inline">PropWise Intelligence</span>
+        <span className="text-xs font-bold tracking-wide pr-1 hidden sm:inline">Gruha Anwesh Intelligence</span>
       </button>
 
       {/* Slide-out Chat Panel */}
@@ -107,7 +107,7 @@ const AIAssistantModal = ({ contextType = 'general', referenceId = null }) => {
                 <Bot className="w-5 h-5 text-[#3D4127]" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-[#3D4127] leading-none">PropWise Intelligence</h3>
+                <h3 className="text-sm font-bold text-[#3D4127] leading-none">Gruha Anwesh Intelligence</h3>
                 <div className="flex items-center space-x-2 mt-1">
                   <span className="w-2 h-2 rounded-full bg-[#636B2F] animate-pulse"></span>
                   <span className="text-[10px] text-[#636B2F]">

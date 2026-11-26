@@ -7,7 +7,7 @@ except ImportError:
     pass
 
 class Settings(BaseModel):
-    PROJECT_NAME: str = "PROPWISE AI"
+    PROJECT_NAME: str = "GRUHA ANWESH"
     TAGLINE: str = "Smarter Property Valuation. Safer Lending Decisions."
     API_V1_STR: str = "/api"
     SECRET_KEY: str = os.getenv("SECRET_KEY", "propwise_super_secret_jwt_key_2026_enterprise_production_grade")

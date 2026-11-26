@@ -44,7 +44,7 @@ const ComplianceCenter = () => {
         <div className="flex items-center space-x-2.5 pb-3 border-b border-[#E2E8F0]">
           <Scale className="w-5 h-5 text-[#059669]" />
           <h3 className="text-sm font-bold text-[#0F172A]">
-            {governance?.framework_version || 'PropWise Responsible AI Charter v2.4 (2026)'}
+            {governance?.framework_version || 'Gruha Anwesh Responsible AI Charter v2.4 (2026)'}
           </h3>
         </div>
 
@@ -73,7 +73,7 @@ const ComplianceCenter = () => {
           <div className="p-4 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] space-y-2">
             <span className="font-bold text-[#D97706] block">Institutional Grievance Contact</span>
             <p className="text-[#475569] leading-relaxed">
-              Official Grievance Officer: <strong className="text-[#0F172A]">compliance@propwise.ai</strong>. Inquiries addressed within 48 business hours.
+              Official Grievance Officer: <strong className="text-[#0F172A]">compliance@gruhaanwesh.in</strong>. Inquiries addressed within 48 business hours.
             </p>
           </div>
         </div>

@@ -7,7 +7,7 @@ from backend.app.database.repo import repo
 
 logger = logging.getLogger("propwise.ai")
 
-SYSTEM_PROMPT = """You are PropWise Intelligence, an expert AI assistant embedded within PROPWISE AI — an institutional Property Valuation, Mortgage Underwriting, and FinTech Intelligence Platform.
+SYSTEM_PROMPT = """You are Gruha Anwesh Intelligence, an expert AI assistant embedded within GRUHA ANWESH — an institutional Property Valuation, Mortgage Underwriting, and FinTech Intelligence Platform.
 Tagline: "Smarter Property Valuation. Safer Lending Decisions."
 
 Key operating guidelines:
@@ -199,13 +199,13 @@ class AIService:
             }
 
         # Deterministic context-grounded fallback response if external API is unreachable or rate-limited
-        logger.info(f"Gemini API fallback engaged ({error_code}). Utilizing PropWise FinTech analytical intelligence engine.")
+        logger.info(f"Gemini API fallback engaged ({error_code}). Utilizing Gruha Anwesh FinTech analytical intelligence engine.")
         rule_based_response = cls._fallback_rule_engine(prompt, context_data)
         
-        repo.log_ai_usage(user_id, "Google Gemini & PropWise Intelligence", "gemini-flash-lite-latest", None, None)
+        repo.log_ai_usage(user_id, "Google Gemini & Gruha Anwesh Intelligence", "gemini-flash-lite-latest", None, None)
         return {
             "message": rule_based_response,
-            "provider_used": "Google Gemini AI (PropWise Engine)",
+            "provider_used": "Google Gemini AI (Gruha Anwesh Engine)",
             "model": "gemini-flash-lite-latest",
             "status": "Success"
         }
@@ -221,7 +221,7 @@ class AIService:
                 loc = context_data.get("City & Locality", "N/A")
                 area = context_data.get("Built-up Area", "N/A")
                 return (
-                    f"PropWise & Gemini Valuation Analysis for {prop_name}:\n\n"
+                    f"Gruha Anwesh & Gemini Valuation Analysis for {prop_name}:\n\n"
                     f"1. Machine Learning Valuation Benchmark: {val}\n"
                     f"2. Locality Index: {loc}\n"
                     f"3. Spatial Built-up Area: {area}\n\n"
@@ -231,7 +231,7 @@ class AIService:
                 )
             return (
                 "Automated Property Valuation Engine Overview:\n\n"
-                "PropWise AI utilizes multi-factor regression models incorporating locality transaction records, built-up area, room specifications, construction tier, and physical asset age. "
+                "Gruha Anwesh AI utilizes multi-factor regression models incorporating locality transaction records, built-up area, room specifications, construction tier, and physical asset age. "
                 "Each valuation provides an upper and lower uncertainty band and comparable sales data to ensure complete institutional transparency."
             )
         elif "mortgage" in p_lower or "emi" in p_lower or "loan" in p_lower or "dti" in p_lower or "ltv" in p_lower:
@@ -264,7 +264,7 @@ class AIService:
             )
         else:
             return (
-                "PropWise Intelligence Assistant (Powered by Google Gemini):\n\n"
+                "Gruha Anwesh Intelligence Assistant (Powered by Google Gemini):\n\n"
                 "I am your dedicated real estate and lending intelligence assistant powered by Google Gemini. I can help you analyze property valuations, explain mortgage underwriting amortization schedules, evaluate decoupled risk matrices, and review document verification findings.\n\n"
                 "How may I assist your financial analysis today?"
             )

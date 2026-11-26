@@ -16,7 +16,7 @@ const routeTitleMap = {
   '/dashboard/market': 'Market Analytics & Price Velocity',
   '/dashboard/reports': 'Institutional Reports & Dossiers',
   '/dashboard/notifications': 'Notification Center',
-  '/dashboard/ai-chat': 'PropWise Intelligence Assistant',
+  '/dashboard/ai-chat': 'Gruha Anwesh Intelligence Assistant',
   '/dashboard/admin/users': 'Enterprise User Directory',
   '/dashboard/admin/audit-logs': 'Immutable Audit Traceability',
   '/dashboard/compliance': 'Responsible AI Governance & Compliance',
@@ -79,7 +79,7 @@ const TopBar = () => {
       {/* Title & Breadcrumb */}
       <div>
         <div className="flex items-center space-x-2 text-[11px] text-[#636B2F]">
-          <span>PropWise</span>
+          <span>Gruha Anwesh</span>
           <span>/</span>
           <span className="text-[#3D4127] font-semibold">{pageTitle}</span>
         </div>
