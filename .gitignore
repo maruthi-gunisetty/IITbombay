@@ -44,3 +44,6 @@ yarn-error.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+cloudflared.exe
+tunnel_url.txt

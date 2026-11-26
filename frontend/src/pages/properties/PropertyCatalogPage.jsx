@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Compass } from 'lucide-react';
 import HavenNavbar from '../../components/haven/HavenNavbar';
 import HavenFooter from '../../components/haven/HavenFooter';
 import { propertiesAPI } from '../../services/api';
 import PropertyImage from '../../components/common/PropertyImage';
+import Property3DViewerModal from '../../components/properties/Property3DViewerModal';
 
 export default function PropertyCatalogPage() {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ export default function PropertyCatalogPage() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [viewer3DProperty, setViewer3DProperty] = useState(null);
 
   // Filter States
   const [searchTerm, setSearchTerm] = useState(searchParams.get('location') || '');
@@ -399,6 +402,20 @@ export default function PropertyCatalogPage() {
                             {p.status || 'Available'}
                           </div>
 
+                          {/* 3D View Button */}
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setViewer3DProperty(p);
+                            }}
+                            className="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-black/65 hover:bg-[#636B2F] backdrop-blur-md text-white text-[11px] font-bold flex items-center space-x-1.5 transition-all shadow-md border border-white/20 cursor-pointer"
+                            title="Explore in 3D"
+                          >
+                            <Compass className="w-3.5 h-3.5 text-[#D4DE95]" />
+                            <span>3D View</span>
+                          </button>
+
                           {/* Bookmark Toggle */}
                           <button
                             onClick={(e) => toggleSave(e, p.id)}
@@ -534,6 +551,13 @@ export default function PropertyCatalogPage() {
             </div>
           </section>
         </div>
+
+        {/* 3D Architectural Digital Twin Virtual Tour Modal */}
+        <Property3DViewerModal
+          property={viewer3DProperty}
+          isOpen={!!viewer3DProperty}
+          onClose={() => setViewer3DProperty(null)}
+        />
       </main>
 
       <HavenFooter />

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Compass, Eye } from 'lucide-react';
 import HavenNavbar from '../../components/haven/HavenNavbar';
 import HavenFooter from '../../components/haven/HavenFooter';
 import { propertiesAPI } from '../../services/api';
 import { getPropertyFallbackImage } from '../../utils/propertyImages';
+import Property3DViewerModal from '../../components/properties/Property3DViewerModal';
 
 export default function PropertyDetailPage() {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ export default function PropertyDetailPage() {
   const [loading, setLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
   const [activePhoto, setActivePhoto] = useState(0);
+  const [show3DModal, setShow3DModal] = useState(false);
 
   // Tour Booking Modal State
   const [showTourModal, setShowTourModal] = useState(false);
@@ -234,13 +237,22 @@ export default function PropertyDetailPage() {
                 className="w-full h-full object-cover transition-all duration-500"
               />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#FFFFFF]/90 backdrop-blur-md text-[#0284C7] text-[10px] font-bold uppercase tracking-wider border border-[#E2E8F0] shadow-sm">
+                <span className="px-3 py-1 rounded-full bg-[#FFFFFF]/90 backdrop-blur-md text-[#636B2F] text-[10px] font-bold uppercase tracking-wider border border-[#BAC095]/40 shadow-sm">
                   {property.status || 'Verified Collateral'}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-[#059669]/15 backdrop-blur-md text-[#059669] text-[10px] font-bold uppercase tracking-wider border border-[#059669]/40 shadow-sm">
+                <span className="px-3 py-1 rounded-full bg-[#D4DE95]/30 backdrop-blur-md text-[#3D4127] text-[10px] font-bold uppercase tracking-wider border border-[#BAC095]/50 shadow-sm">
                   MLS Verified Asset #{property.id * 1042 + 8100}
                 </span>
               </div>
+
+              {/* 3D Virtual Tour Button overlaid on picture */}
+              <button
+                onClick={() => setShow3DModal(true)}
+                className="absolute bottom-4 right-4 z-10 px-4 py-2.5 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-xs font-bold flex items-center space-x-2 shadow-2xl transition-all duration-200 hover:scale-105 border border-[#BAC095]/40 cursor-pointer"
+              >
+                <Compass className="w-4 h-4 text-[#D4DE95] animate-pulse" />
+                <span>3D View (Exterior &amp; Inside)</span>
+              </button>
             </div>
 
             {/* Side Thumbnail Strip */}
@@ -611,6 +623,12 @@ export default function PropertyDetailPage() {
             </div>
           </div>
         )}
+        {/* 3D Digital Twin Virtual Tour Modal */}
+        <Property3DViewerModal
+          property={property}
+          isOpen={show3DModal}
+          onClose={() => setShow3DModal(false)}
+        />
       </main>
 
       <HavenFooter />

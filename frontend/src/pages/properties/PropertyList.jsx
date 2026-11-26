@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
   Building2, Plus, Search, Filter, Trash2, ExternalLink,
-  MapPin, CheckCircle2, AlertCircle, X, ChevronRight, Bed, Bath, Car
+  MapPin, CheckCircle2, AlertCircle, X, ChevronRight, Bed, Bath, Car,
+  Compass, Eye
 } from 'lucide-react';
 import { propertiesAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import PropertyImage from '../../components/common/PropertyImage';
+import Property3DViewerModal from '../../components/properties/Property3DViewerModal';
 
 const PropertyList = () => {
   const { user } = useAuth();
@@ -18,6 +20,7 @@ const PropertyList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
+  const [viewer3DProperty, setViewer3DProperty] = useState(null);
 
   // Add Property Form State
   const [formData, setFormData] = useState({
@@ -182,7 +185,7 @@ const PropertyList = () => {
             >
               <div>
                 {/* Image Banner */}
-                <div className="h-44 bg-[#FAFBF7] relative overflow-hidden">
+                <div className="h-44 bg-[#FAFBF7] relative overflow-hidden group">
                   <PropertyImage
                     src={p.image_url}
                     alt={p.name}
@@ -195,6 +198,19 @@ const PropertyList = () => {
                   <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#D4DE95]/60 border border-[#BAC095] text-[10px] font-bold text-[#3D4127] shadow-sm">
                     {p.status}
                   </div>
+
+                  {/* 3D View Button Overlay */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setViewer3DProperty(p);
+                    }}
+                    className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-black/65 hover:bg-[#636B2F] backdrop-blur-md text-white text-[11px] font-bold flex items-center space-x-1.5 transition-all shadow-md border border-white/20 cursor-pointer"
+                    title="Explore in 3D"
+                  >
+                    <Compass className="w-3.5 h-3.5 text-[#D4DE95]" />
+                    <span>3D View</span>
+                  </button>
                 </div>
 
                 {/* Content */}
@@ -488,13 +504,20 @@ const PropertyList = () => {
               </button>
             </div>
 
-            <div className="h-44 rounded-xl overflow-hidden border border-[#E2E6D5]">
+            <div className="h-48 rounded-xl overflow-hidden border border-[#E2E6D5] relative group">
               <PropertyImage
                 src={selectedProperty.image_url}
                 alt={selectedProperty.name}
                 propertyType={selectedProperty.property_type}
                 className="w-full h-full object-cover"
               />
+              <button
+                onClick={() => setViewer3DProperty(selectedProperty)}
+                className="absolute bottom-3 right-3 px-3.5 py-2 rounded-xl bg-[#636B2F] hover:bg-[#3D4127] text-white text-xs font-bold flex items-center space-x-2 shadow-2xl transition-all border border-[#BAC095]/40 cursor-pointer"
+              >
+                <Compass className="w-4 h-4 text-[#D4DE95] animate-pulse" />
+                <span>Explore in 3D (Surroundings &amp; Interior)</span>
+              </button>
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
@@ -527,6 +550,13 @@ const PropertyList = () => {
           </div>
         </div>
       )}
+
+      {/* 3D Architectural Digital Twin & Virtual Tour Viewer */}
+      <Property3DViewerModal
+        property={viewer3DProperty}
+        isOpen={!!viewer3DProperty}
+        onClose={() => setViewer3DProperty(null)}
+      />
 
     </div>
   );
