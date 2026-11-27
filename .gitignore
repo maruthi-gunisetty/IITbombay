@@ -47,4 +47,6 @@ Thumbs.db
 
 cloudflared.exe
 tunnel_url.txt
+platform_status.txt
+supervisor.log
 stitch_smart_cashflow_back_office/
