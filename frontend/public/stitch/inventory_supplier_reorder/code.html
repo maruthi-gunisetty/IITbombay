@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#faf8ff", "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-secondary-container": "#00714e", "inverse-surface": "#283044", "surface-container-highest": "#dae2fd", "inverse-primary": "#b4c5ff", "surface-tint": "#0053db", "secondary-container": "#82f5c1", "surface-container-low": "#f2f3ff", "on-error": "#ffffff", "surface-bright": "#faf8ff", "on-primary-fixed-variant": "#003ea8", "primary-fixed-dim": "#b4c5ff", "primary-container": "#2563eb", "outline-variant": "#c3c6d7", "inverse-on-surface": "#eef0ff", "surface-container-lowest": "#ffffff", "primary": "#004ac6", "background": "#faf8ff", "on-tertiary-container": "#ffede1", "surface-variant": "#dae2fd", "outline": "#737686", "error-container": "#ffdad6", "tertiary-container": "#a65900", "on-tertiary-fixed": "#2f1500", "secondary": "#006c4a", "surface-dim": "#d2d9f4", "on-secondary-fixed-variant": "#005137", "secondary-fixed-dim": "#68dba9", "on-secondary-fixed": "#002114", "on-primary": "#ffffff", "tertiary-fixed-dim": "#ffb77d", "surface-container": "#eaedff", "error": "#ba1a1a", "surface-container-high": "#e2e7ff", "on-primary-container": "#eeefff", "on-primary-fixed": "#00174b", "tertiary": "#824500", "on-tertiary": "#ffffff", "on-surface": "#131b2e", "on-tertiary-fixed-variant": "#6e3900", "primary-fixed": "#dbe1ff", "tertiary-fixed": "#ffdcc3", "on-background": "#131b2e", "on-surface-variant": "#434655", "secondary-fixed": "#85f8c4" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "margin": "2rem", "space-xl": "2.5rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"] }, fontSize: { "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.015em", fontWeight: "500" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "700" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.005em", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm min-w-0"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[20px]">account_balance_wallet</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface leading-none">CASHFLOW</span><span class="font-headline-sm text-headline-sm font-bold text-primary leading-none">AI</span></div><button class="flex items-center gap-1 text-left min-w-0 mt-0.5 group"><span class="material-symbols-outlined text-[14px] text-primary shrink-0">storefront</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate max-w-[130px]">Sharma General Kirana</span><span class="material-symbols-outlined text-[14px] text-on-surface-variant shrink-0 group-hover:text-primary transition-colors">arrow_drop_down</span></button></div></div><div class="flex items-center gap-1 shrink-0"><button aria-label="New Sale POS" class="w-11 h-11 rounded-full flex items-center justify-center text-primary-container bg-surface-container-low hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">point_of_sale</span></button><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface relative"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 min-w-[16px] h-4 px-1 rounded-full bg-error text-on-error font-label-sm text-[10px] flex items-center justify-center leading-none font-bold">2</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-gutter-mobile pt-space-md pb-space-lg flex flex-col gap-space-lg">
+<!-- Top Screen Header & Primary Actions -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Live Kirana Inventory</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight">Inventory &amp; Supplier POs</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">482 SKUs tracked • ₹4,85,200 Stock Cost • Live Valuation</p>
+</div>
+</div>
+<!-- Action Button Group -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="flex items-center justify-center gap-space-xs py-2.5 px-space-md rounded-lg bg-surface-container-lowest text-on-surface shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px] text-primary">add_circle</span>
+<span class="font-label-lg text-label-lg font-semibold">+ Inward Stock</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs py-2.5 px-space-md rounded-lg bg-primary-container text-on-primary shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+<span class="font-label-lg text-label-lg font-semibold">Draft PO (₹14.2k)</span>
+</button>
+</div>
+</div>
+<!-- Executive Inventory & Capital Health Metrics (2x2 Grid) -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Metric 1: Stock Valuation -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Stock Value</span>
+<span class="w-6 h-6 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">store</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₹4,85,200</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-bold">₹5.92L</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">MRP (18.1% gm)</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Stockout Risk -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-2 -bottom-2 w-12 h-12 rounded-full bg-error/10 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error font-semibold">Stockout Risk</span>
+<span class="w-6 h-6 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-sm text-headline-sm text-error font-bold">7 SKUs Low</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">3 critical (Oil, Atta, Salt)</p>
+</div>
+</div>
+<!-- Metric 3: Supplier Payables -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Payables (7-14d)</span>
+<span class="w-6 h-6 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[14px]">pending_actions</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₹28,500</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">ITC Nov 5 • Brit Nov 8</p>
+</div>
+</div>
+<!-- Metric 4: Deadstock Capital -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Slow Capital</span>
+<span class="w-6 h-6 rounded-full bg-surface-container-low flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[14px]">hourglass_disabled</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₹42,600</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">12 items &gt; 45d idle</p>
+</div>
+</div>
+</div>
+<!-- AI "Smart Restock Recommendation" Banner (Kirby AI Engine) -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm relative overflow-hidden flex flex-col gap-space-sm">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-container to-secondary"></div>
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm font-bold tracking-wide">KIRBY SMART RESTOCK • 94% ACCURACY</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Weekend Rush Prep</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-snug">
+          Replenish 4 Fast-Depleting FMCG Staples Now
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+          Predicted 3-day stockout on Atta &amp; Mustard Oil. Placing this batch today ensures Friday morning dispatch, protecting an estimated <span class="font-semibold text-secondary">₹12,400 weekend sales</span>.
+        </p>
+</div>
+<!-- Cash Flow Impact Preview Metric Box -->
+<div class="rounded-xl bg-surface-container-low p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">account_balance</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Cash Impact: -₹18,400</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Liquid cash remains ₹3,24,450 (Safe 51-day runway)</div>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+          Safe
+        </span>
+</div>
+<!-- Action Button -->
+<div class="flex items-center gap-space-sm pt-1">
+<button class="flex-1 py-3 px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-transform">
+<span>1-Tap Generate Supplier Batch (4 SKUs)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Stock Filter Tabs & Search -->
+<div class="flex flex-col gap-space-sm">
+<!-- Search Input with Barcode Scan Button -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-12 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container" placeholder="Search SKU, brand (e.g. Aashirvaad, Tata, Fortune)..." type="text"/>
+<button aria-label="Scan SKU Barcode" class="absolute right-2 w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</button>
+</div>
+<!-- Filter Pills (Scrollable horizontally) -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shrink-0 whitespace-nowrap shadow-sm">
+          All SKUs (482)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-semibold shrink-0 whitespace-nowrap shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error-container"></span>
+          Critical Low (7)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shrink-0 whitespace-nowrap shadow-sm">
+          Deadstock / Slow (12)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shrink-0 whitespace-nowrap shadow-sm">
+          Pending Delivery (2)
+        </button>
+</div>
+<!-- Fast Category Selector Chips -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium shrink-0">
+          🌾 Staples
+        </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium shrink-0">
+          🥛 Dairy
+        </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium shrink-0">
+          🧴 Personal Care
+        </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-medium shrink-0">
+          🍪 Biscuits &amp; Snacks
+        </button>
+</div>
+</div>
+<!-- Critical Low Stock & Supplier Reorder Cards -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Critical Low Stock Items</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sorted by Runout Speed</span>
+</div>
+<!-- Item 1: Fortune Mustard Oil -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low shrink-0 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A 1-liter bottle of Fortune Sunlite refined mustard oil packaged for Indian grocery store shelf with warm natural kitchen morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBimsyDdE4MVLmlHf4_7V_iin--cB6AcnzxCBWxPFZEo0z8_iNCh7UO980aPJJd4sw21OFF2VkYEpcu7uKOMUqawxQYxx2Yfam0oVjR3lxQ5QtGHJn27ZmseKvm-m0-rqMpeVHaYLc-MMzm6dKzERPTA3xf1AeZKuzzeFScBRDnyxkw6BV-5V4BeDsq0KLVj2dQ4kCcKeMq6c9Cm-3-jvmK6wx51TnlpfmwkQt359I"/>
+<div class="absolute bottom-0 inset-x-0 bg-error/90 text-on-error font-label-sm text-[9px] font-bold text-center py-0.5 leading-none">
+              3 Left
+            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">#SKU-8821 • Edible Oils</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold shrink-0">
+                Out in 1.5 Days
+              </span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface mt-0.5 leading-snug truncate">
+              Fortune Sunlite Refined Mustard Oil 1L
+            </h3>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min stock: 15</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-error font-semibold">Daily Run-rate: 2.2 units</span>
+</div>
+</div>
+</div>
+<!-- Supplier & Suggested Batch Reorder Box -->
+<div class="rounded-xl bg-surface-container-low p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">local_shipping</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Fortune / Adani Wilmar Distributor</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Tomorrow 10 AM</span>
+</div>
+<div class="flex items-center justify-between border-t-0 pt-1 text-on-surface">
+<span class="font-body-sm text-body-sm">Suggested: <strong>24 units (1 Carton)</strong></span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">₹2,688 (@ ₹112/u)</span>
+</div>
+</div>
+<!-- Card Reorder CTA Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<button class="py-2.5 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span>Add to PO Cart</span>
+</button>
+<button class="py-2.5 px-space-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Vendor</span>
+</button>
+</div>
+</div>
+<!-- Item 2: Aashirvaad Atta -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low shrink-0 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Aashirvaad Superior MP Atta 10 kilogram grain sack on clean store shelf against bright commercial retail backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCODiJQJBTJaHWwXSwM_TljpmIGogKFsn-k0ytOFWmTK6wweVe4HJNrVPN-3rwJRnBy4b5CKUKjjCYXNDroLMfO7-R3c4Wt3QuY6-IQqWgAXQK3tfqogzw4GnKAH8KMuRDDUaYzx5ZxIb15XSSgG6lpbxjBMPJFohxCLFjAffF2QBSWt8PHvRkBgD1y386iZbHEqDwqA75AKRAn8mXunstIOXM2y5_StLRZ-cToAQM"/>
+<div class="absolute bottom-0 inset-x-0 bg-error/90 text-on-error font-label-sm text-[9px] font-bold text-center py-0.5 leading-none">
+              2 Bags
+            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">#SKU-1049 • Flours &amp; Grains</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold shrink-0 animate-pulse">
+                Out by Tonight
+              </span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface mt-0.5 leading-snug truncate">
+              Aashirvaad Superior MP Atta 10kg
+            </h3>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min stock: 8 bags</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-error font-semibold">High Weekend Demand</span>
+</div>
+</div>
+</div>
+<!-- Supplier Details & Reorder Breakdown -->
+<div class="rounded-xl bg-surface-container-low p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">domain</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">ITC Wholesale Hub</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">14D Credit Terms</span>
+</div>
+<div class="flex items-center justify-between pt-1 text-on-surface">
+<span class="font-body-sm text-body-sm">Suggested: <strong>15 bags (1 Lot)</strong></span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">₹5,700 (@ ₹380/u)</span>
+</div>
+</div>
+<!-- Reorder Actions -->
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<button class="py-2.5 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span>Add to PO Cart</span>
+</button>
+<button class="py-2.5 px-space-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Vendor</span>
+</button>
+</div>
+</div>
+<!-- Item 3: Tata Salt -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-start gap-space-sm">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low shrink-0 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Tata Salt 1 kilogram sealed packet stacked neatly on retail shelf with blue branding highlights and soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlRfw4B0qLWtL6rRO4yGqltOEjAoO5EA38ELZVIQzTgQguKRNBMxqcj9QA5dFo7DLaDm6zo16EUg7GGo3Ni4jmusgYEHMK_Xaot9NpEyHVQYg-9TjJ8QkZnZV2F2exC5VNNzJMMF2vx0obD4EOFCtrcqW6NFJK1JC2yRN08CmJRi_RJv6l_IAeycXCN4vfKyQKvNDWtY9mwOsVcVc9yzDzrXspLO5pPONPXQnrz8w"/>
+<div class="absolute bottom-0 inset-x-0 bg-tertiary-container text-on-tertiary-container font-label-sm text-[9px] font-bold text-center py-0.5 leading-none">
+              6 Pkts
+            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">#SKU-2311 • Spices &amp; Salt</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-label-sm font-bold shrink-0">
+                Low (2d supply)
+              </span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface mt-0.5 leading-snug truncate">
+              Tata Salt Vacuum Evaporated 1kg
+            </h3>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min stock: 20 pkts</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Velocity: 4 pkts/day</span>
+</div>
+</div>
+</div>
+<!-- Supplier & Suggested Quantity -->
+<div class="rounded-xl bg-surface-container-low p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">storefront</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Tata Consumer Products Agency</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Standard COD</span>
+</div>
+<div class="flex items-center justify-between pt-1 text-on-surface">
+<span class="font-body-sm text-body-sm">Suggested: <strong>40 pkts (1 Box)</strong></span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">₹840 (@ ₹21/u)</span>
+</div>
+</div>
+<!-- Card Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<button class="py-2.5 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span>Add to PO Cart</span>
+</button>
+<button class="py-2.5 px-space-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Vendor</span>
+</button>
+</div>
+</div>
+<!-- Item 4: Deadstock / Slow Mover Liquidator Alert -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm relative border-l-4 border-l-tertiary">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 text-tertiary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+            Deadstock Capital Alert
+          </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">#SKU-4402</span>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-14 h-14 rounded-xl bg-surface-container-low shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Sunlight Ultra detergent powder 2kg bag package in grocery store corner with studio-grade warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAv5lIbfZSnHcJh7MIL_zlCXECMXF3enjm6GzY-STUExZR8IhE_oCxMfgwjZM6n7ZVl79k0LUK0fnrVm9ftLBOlPc_PogHJSxgmDfuSSUmLN1WsDFXMylUJft1v_Q20VLxUqCf6MYl-NFhkgxj_AMHPC8dQBwX7ayuCVFvJfU-n4nNr8JSrqPjHegm9FIGUmOQJBzDg6pgZptk9Z3mpgRbOsHTUJ1E9yIlEIw9VKQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-snug truncate">
+              Sunlight Ultra Detergent Powder 2kg
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              18 units in stock • Last sold: <strong>38 days ago</strong>
+</p>
+<div class="mt-1 font-label-sm text-label-sm text-tertiary font-bold">
+              ₹3,240 tied up in working capital
+            </div>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container-low p-space-sm flex flex-col gap-1">
+<div class="flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary shrink-0 mt-0.5">tips_and_updates</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+<strong>Kirby Suggestion:</strong> Bundle with Fast-Moving Fortune Mustard Oil at 10% combo discount to recover ₹3,240 liquid cash within 48h.
+            </p>
+</div>
+</div>
+<button class="w-full py-2.5 px-space-md rounded-lg bg-surface-container text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span>Apply Bundle Promotion in POS</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</button>
+</div>
+</div>
+<!-- Active Draft Supplier Purchase Order (PO #PO-2026-089) -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Active Draft PO #PO-2026-089</h2>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Supplier: ITC Wholesale Distributor (Branch 4)</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+          3 Items Ready
+        </span>
+</div>
+<!-- Line Items mini list -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-on-surface py-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold">15x</span>
+<span class="font-body-sm text-body-sm">Aashirvaad Atta 10kg</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₹5,700</span>
+</div>
+<div class="flex items-center justify-between text-on-surface py-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold">20x</span>
+<span class="font-body-sm text-body-sm">Sunfeast Dark Fantasy (Box)</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₹4,200</span>
+</div>
+<div class="flex items-center justify-between text-on-surface py-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold">30x</span>
+<span class="font-body-sm text-body-sm">Yippee Noodles 4-in-1 Pack</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₹4,300</span>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-container font-headline-sm text-headline-sm font-bold text-on-surface">
+<span>Total PO Amount:</span>
+<span class="text-primary font-bold">₹14,200</span>
+</div>
+</div>
+<!-- Credit Terms Toggle / Selection -->
+<div class="flex flex-col gap-space-xs rounded-xl bg-surface-container-low p-space-sm">
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant uppercase tracking-wider">Payment Terms</span>
+<div class="grid grid-cols-2 gap-space-xs">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest shadow-sm cursor-pointer">
+<input checked="" class="text-primary focus:ring-0" name="terms" type="radio"/>
+<div class="text-left">
+<div class="font-label-sm text-label-sm font-bold text-on-surface">14D Net Credit</div>
+<div class="font-body-sm text-[10px] text-on-surface-variant">Due Nov 08 (Zero cash out today)</div>
+</div>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest shadow-sm cursor-pointer opacity-80">
+<input class="text-primary focus:ring-0" name="terms" type="radio"/>
+<div class="text-left">
+<div class="font-label-sm text-label-sm font-bold text-on-surface">Instant COD</div>
+<div class="font-body-sm text-[10px] text-secondary font-semibold">Save ₹284 (2% off)</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Impact on Runway Badge -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Runway impact: Cash remains healthy at ₹3.28L post-settlement.</span>
+</div>
+<!-- High-Conversion WhatsApp PO Action -->
+<div class="flex flex-col gap-space-xs pt-1">
+<button class="w-full py-3.5 px-space-md rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Send PO via WhatsApp to Distributor ↗</span>
+</button>
+<button class="w-full py-2.5 px-space-md rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Download PDF Purchase Order</span>
+</button>
+</div>
+</div>
+<!-- Supplier Payables (Khata / AP) Quick Sheet -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Upcoming Supplier Payments</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accounts Payable (Next 10 Days)</p>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-error">₹28,500</span>
+</div>
+<!-- Payables List -->
+<div class="flex flex-col gap-space-sm">
+<!-- ITC Payable -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center font-bold text-primary font-headline-sm">
+              ITC
+            </div>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">ITC Limited Wholesale</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">PO #842 • Due in 2 days (Nov 05)</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">₹16,200</div>
+<div class="flex items-center justify-end gap-1 mt-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-sm text-[11px] font-bold">
+                Pay UPI
+              </button>
+<button class="px-2 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-[11px] font-semibold">
+                +7d Extend
+              </button>
+</div>
+</div>
+</div>
+<!-- Britannia Payable -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center font-bold text-error font-headline-sm">
+              BIL
+            </div>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Britannia Industries Agency</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">PO #855 • Due in 5 days (Nov 08)</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">₹12,300</div>
+<div class="flex items-center justify-end gap-1 mt-1">
+<button class="px-2 py-1 rounded bg-surface-container-high text-primary font-label-sm text-[11px] font-bold">
+                Auto-Pay On
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm mt-0.5">Dashboard</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="pos-sales" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-sm text-label-sm mt-0.5">POS / Sales</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-12 relative transition-colors text-primary-container font-semibold" data-path="inventory" href="#"><span class="material-symbols-outlined text-[22px] text-primary-container font-variation-settings-'FILL'-1">inventory_2</span><span class="font-label-sm text-label-sm mt-0.5 text-primary-container">Inventory</span><span class="absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary-container"></span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="credit-udhar" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-sm text-label-sm mt-0.5">Credit (Udhar)</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="forecast" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="font-label-sm text-label-sm mt-0.5">Forecast</span></a></div></nav>
+<script>
+(function() {
+  function goTo(screenName) {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'NAVIGATE', screen: screenName }, '*');
+    } else {
+      window.location.href = '../' + screenName + '/code.html';
+    }
+  }
+  window.navigateToScreen = goTo;
+
+  function bindEvents() {
+    // Intercept Bottom Navigation
+    document.querySelectorAll('nav a, a[data-path]').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        var p = el.getAttribute('data-path') || el.innerText.trim().toLowerCase();
+        if (p.includes('pos') || p === 'pos-sales') { e.preventDefault(); goTo('pos_sale_quick_invoice'); }
+        else if (p.includes('udhar') || p.includes('credit') || p === 'credit-udhar') { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); }
+        else if (p.includes('inventory') || p.includes('stock')) { e.preventDefault(); goTo('inventory_supplier_reorder'); }
+        else if (p.includes('dash') || p === 'dashboard') { e.preventDefault(); goTo('retail_kirana_dashboard'); }
+        else if (p.includes('more') || p.includes('report') || p.includes('gst')) { e.preventDefault(); goTo('ca_audit_gst_monthly_report'); }
+      });
+    });
+
+    // Intercept action buttons
+    document.querySelectorAll('button, a').forEach(function(btn) {
+      var txt = (btn.innerText || '').trim();
+      var id = btn.id || '';
+      if (txt.includes('New POS Sale') || txt.includes('+ New POS')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('pos_sale_quick_invoice'); });
+      } else if (txt.includes('Record Udhar') || id === 'newUdharBtn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); });
+      } else if (txt.includes('Stock In') || txt.includes('+ Inward Stock') || txt.includes('Inward Stock')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('inward_stock_grn_verification'); });
+      } else if (txt.includes('Cash Flow') || txt.includes('Runway') || id === 'refresh-btn' || txt.includes('Safe Runway')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_simulator'); });
+      } else if (id === 'continue-btn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (window.location.href.includes('business_selection')) goTo('onboarding_wizard');
+          else goTo('retail_kirana_dashboard');
+        });
+      } else if (txt.includes('Draft PO') || txt.includes('Verify GRN')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_post_grn'); });
+      } else if (txt.includes('Sharma General Kirana')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('business_selection_light'); });
+      }
+    });
+
+    // Back buttons
+    document.querySelectorAll('button[aria-label="Go back"], button[onclick*="history.back"], a[href="#"]:has(span:contains("arrow_back"))').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        goTo('retail_kirana_dashboard');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindEvents);
+  } else {
+    bindEvents();
+  }
+})();
+</script>
+
+</body></html>

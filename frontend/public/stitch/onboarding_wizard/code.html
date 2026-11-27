@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><title>CASHFLOW AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={theme:{extend:{"colors":{"background":"#f8fafc","surface-tint":"#0053db","tertiary-container":"#fef3c7","primary-container":"#dbeafe","error":"#ef4444","secondary-fixed":"#bbf7d0","surface-container-high":"#e2e8f0","primary-fixed-dim":"#bfdbfe","tertiary-fixed-dim":"#fde68a","on-secondary-container":"#065f46","on-secondary-fixed-variant":"#15803d","outline":"#94a3b8","surface":"#f8fafc","surface-container":"#ffffff","on-primary-fixed-variant":"#1d4ed8","inverse-primary":"#bfdbfe","on-surface-variant":"#475569","tertiary-fixed":"#fef3c7","primary-fixed":"#dbeafe","on-primary-fixed":"#1e3a8a","on-primary-container":"#1e40af","surface-bright":"#ffffff","surface-dim":"#f1f5f9","primary":"#2563eb","on-tertiary-fixed-variant":"#b45309","on-primary":"#ffffff","outline-variant":"#cbd5e1","on-error":"#ffffff","secondary-container":"#dcfce7","surface-container-highest":"#e2e8f0","surface-variant":"#f1f5f9","on-error-container":"#7f1d1d","on-secondary":"#ffffff","tertiary":"#d97706","on-tertiary":"#ffffff","surface-container-low":"#f8fafc","inverse-on-surface":"#f8fafc","inverse-surface":"#0f172a","surface-container-lowest":"#ffffff","on-secondary-fixed":"#14532d","error-container":"#fee2e2","on-tertiary-container":"#78350f","secondary":"#16a34a","secondary-fixed-dim":"#86efac","on-background":"#0f172a","on-tertiary-fixed":"#78350f","on-surface":"#0f172a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-md":"1rem","space-lg":"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","margin":"1rem","gutter":"1rem","space-xl":"2rem"},"fontFamily":{"headline-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"mono-lg":["JetBrains Mono"],"headline-lg":["Plus Jakarta Sans"],"mono-md":["JetBrains Mono"],"body-md":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"mono-sm":["JetBrains Mono"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"mono-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"mono-md":["16px",{"lineHeight":"24px","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"display-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"mono-sm":["13px",{"lineHeight":"18px","fontWeight":"500"}]}}}};</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background text-on-surface font-body-md text-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-xl pt-safe border-b border-slate-200/80 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-10 h-10 -ml-1.5 flex items-center justify-center rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span></button><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">CASHFLOW AI</span></div><h1 class="font-headline-sm text-headline-sm text-slate-900 truncate">Account Setup</h1></div></div><div class="flex items-center gap-space-md"><div aria-label="Onboarding progress" class="flex items-center gap-space-xs"><span class="w-4 h-1 rounded-full bg-primary"></span><span class="w-2 h-1 rounded-full bg-slate-200"></span><span class="w-2 h-1 rounded-full bg-slate-200"></span></div><div class="w-8 h-8 rounded-full bg-primary/10 text-primary border border-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-margin pt-16 pb-safe bg-background flex-1"><div class="flex flex-col w-full gap-space-lg pb-space-lg">
+<!-- Multi-Step Progress & Step Switcher Card -->
+<section class="bg-white rounded-xl p-space-md border border-slate-200 shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold" id="step-badge">Step 2 of 3</span>
+<h2 class="font-headline-sm text-headline-sm text-slate-900 truncate" id="step-title">Business &amp; Financial Setup</h2>
+</div>
+<div class="flex items-center gap-1.5 shrink-0 bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm font-semibold">Encrypted</span>
+</div>
+</div>
+<!-- 3-Step Visual Progress Bar -->
+<div class="grid grid-cols-3 gap-space-sm items-center">
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full rounded-full bg-emerald-500"></div>
+<span class="font-label-sm text-label-sm text-emerald-700 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-emerald-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          Account
+        </span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full rounded-full bg-primary transition-all duration-300" id="bar-step-2"></div>
+<span class="font-label-sm text-label-sm text-primary font-semibold" id="label-step-2">2. Business</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-1.5 w-full rounded-full bg-slate-200 transition-all duration-300" id="bar-step-3"></div>
+<span class="font-label-sm text-label-sm text-slate-500" id="label-step-3">3. Specifics</span>
+</div>
+</div>
+<!-- Interactive Step Toggle -->
+<div class="bg-slate-100 p-1 rounded-lg grid grid-cols-2 gap-1 border border-slate-200/60">
+<button class="py-2 px-3 rounded-md font-label-md text-label-md bg-white text-slate-900 shadow-sm transition-all flex items-center justify-center gap-1.5 font-medium border border-slate-200/80" id="tab-step-2" onclick="switchStep(2)" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">business_center</span>
+<span>Common Info</span>
+</button>
+<button class="py-2 px-3 rounded-md font-label-md text-label-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 font-medium" id="tab-step-3" onclick="switchStep(3)" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Preview Step 3</span>
+</button>
+</div>
+</section>
+<!-- STEP 2: Common Information & Financial Baseline -->
+<div class="flex flex-col gap-space-md" id="panel-step-2">
+<!-- Business Identity Card -->
+<section class="bg-white rounded-xl p-space-md border border-slate-200 shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-blue-50 text-primary border border-blue-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">store</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-slate-900">Business Profile</h3>
+</div>
+<span class="font-label-sm text-label-sm text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full font-medium">Required *</span>
+</div>
+<!-- Business Name -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="biz-name">Business Name *</label>
+<span class="material-symbols-outlined text-emerald-600 text-[16px] hidden" id="check-biz-name" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-[18px] absolute left-3">apartment</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-body-md text-body-md rounded-lg pl-10 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="biz-name" oninput="validateField(this, 'check-biz-name')" placeholder="e.g., Horizon Academy" type="text" value="Aarav Ventures Pvt Ltd"/>
+</div>
+</div>
+<!-- Owner Name -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="owner-name">Owner Name *</label>
+<span class="material-symbols-outlined text-emerald-600 text-[16px]" id="check-owner-name" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-[18px] absolute left-3">person</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-body-md text-body-md rounded-lg pl-10 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="owner-name" oninput="validateField(this, 'check-owner-name')" placeholder="Full name" type="text" value="Aarav Sharma"/>
+</div>
+</div>
+<!-- Mobile & Email -->
+<div class="grid grid-cols-1 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="mobile-num">Mobile Number *</label>
+<span class="material-symbols-outlined text-emerald-600 text-[16px]" id="check-mobile" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="relative flex items-center">
+<span class="font-mono-sm text-mono-sm text-primary font-semibold bg-blue-50 border border-blue-100 px-2 py-1 rounded ml-2 absolute left-1">+91</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-14 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="mobile-num" oninput="validateField(this, 'check-mobile')" placeholder="98765 43210" type="tel" value="98765 43210"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="biz-email">Email Address *</label>
+<span class="material-symbols-outlined text-emerald-600 text-[16px]" id="check-email" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-[18px] absolute left-3">mail</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-body-md text-body-md rounded-lg pl-10 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="biz-email" oninput="validateEmail(this, 'check-email')" placeholder="you@company.com" type="email" value="aarav@ventures.in"/>
+</div>
+</div>
+</div>
+<!-- Address (Optional) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="biz-address">Business Address</label>
+<span class="font-label-sm text-label-sm bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-medium">Optional</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-[18px] absolute left-3">location_on</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-body-md text-body-md rounded-lg pl-10 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="biz-address" placeholder="Street, City, State" type="text"/>
+</div>
+</div>
+<!-- Currency -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="biz-currency">Reporting Currency</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-primary text-[18px] absolute left-3">currency_rupee</span>
+<select class="w-full bg-slate-50 border border-slate-300 text-slate-900 font-body-md text-body-md rounded-lg pl-10 pr-8 py-2.5 appearance-none focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="biz-currency">
+<option selected="" value="INR">INR (₹) — Indian Rupee</option>
+<option value="USD">USD ($) — US Dollar</option>
+<option value="EUR">EUR (€) — Euro</option>
+</select>
+<span class="material-symbols-outlined text-slate-500 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Financial Baseline Card -->
+<section class="bg-white rounded-xl p-space-md border border-slate-200 shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-slate-900">Opening Balances</h3>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">Day 1 Baseline</span>
+</div>
+<!-- Opening Cash Balance -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="cash-balance">Opening Cash Balance (₹)</label>
+<div class="relative flex items-center">
+<span class="font-mono-md text-mono-md text-emerald-600 font-semibold absolute left-3">₹</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-8 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="cash-balance" oninput="updateLiquidity()" placeholder="0" type="number" value="45000"/>
+</div>
+</div>
+<!-- Opening Bank Balance -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="bank-balance">Opening Bank Balance (₹)</label>
+<div class="relative flex items-center">
+<span class="font-mono-md text-mono-md text-primary font-semibold absolute left-3">₹</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-8 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="bank-balance" oninput="updateLiquidity()" placeholder="0" type="number" value="285000"/>
+</div>
+</div>
+<!-- Monthly Fixed Expenses (Optional) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="fixed-expenses">Monthly Fixed Expenses (₹)</label>
+<span class="font-label-sm text-label-sm bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-medium">Optional</span>
+</div>
+<div class="relative flex items-center">
+<span class="font-mono-md text-mono-md text-amber-600 font-semibold absolute left-3">₹</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-8 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="fixed-expenses" placeholder="0" type="number" value="65000"/>
+</div>
+</div>
+<!-- Live Liquidity Summary Pill -->
+<div class="bg-emerald-50/70 border border-emerald-200 rounded-lg p-3 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">insights</span>
+<span class="font-label-md text-label-md text-emerald-900 font-medium">Total Opening Liquidity</span>
+</div>
+<span class="font-mono-md text-mono-md font-bold text-emerald-700" id="total-liquidity">₹3,30,000</span>
+</div>
+</section>
+</div>
+<!-- STEP 3: Workspace Specifics (Industry Switcher) -->
+<div class="hidden flex-col gap-space-md" id="panel-step-3">
+<section class="bg-white rounded-xl p-space-md border border-slate-200 shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-slate-900">Select Your Industry</h3>
+<p class="font-body-sm text-body-sm text-slate-600">Tailors your cashflow categories, alerts, and KPIs.</p>
+</div>
+<!-- Quick Switcher: Education / Salon / Retail -->
+<div class="grid grid-cols-3 gap-space-sm">
+<button class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-primary text-white shadow-sm transition-all font-medium" id="ind-education" onclick="selectIndustry('education')" type="button">
+<span class="material-symbols-outlined text-[22px]">school</span>
+<span class="font-label-md text-label-md">Education</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-all font-medium" id="ind-salon" onclick="selectIndustry('salon')" type="button">
+<span class="material-symbols-outlined text-[22px]">content_cut</span>
+<span class="font-label-md text-label-md">Salon</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-all font-medium" id="ind-retail" onclick="selectIndustry('retail')" type="button">
+<span class="material-symbols-outlined text-[22px]">storefront</span>
+<span class="font-label-md text-label-md">Retail</span>
+</button>
+</div>
+<!-- Dynamic Industry Fields -->
+<div class="flex flex-col gap-space-md pt-1">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="ind-entity-name" id="lbl-entity-name">Institution Name *</label>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-body-md text-body-md rounded-lg px-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="ind-entity-name" type="text" value="BrightFuture Coaching"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="ind-count" id="lbl-count">Number of Students</label>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg px-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="ind-count" type="number" value="180"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="ind-rent">Monthly Rent (₹)</label>
+<div class="relative flex items-center">
+<span class="font-mono-md text-mono-md text-amber-600 font-semibold absolute left-3">₹</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-8 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="ind-rent" type="number" value="35000"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 font-medium" for="ind-payroll" id="lbl-payroll">Teacher Salaries (₹)</label>
+<div class="relative flex items-center">
+<span class="font-mono-md text-mono-md text-primary font-semibold absolute left-3">₹</span>
+<input class="w-full bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 font-mono-md text-mono-md rounded-lg pl-8 pr-3 py-2.5 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-blue-100 transition-colors" id="ind-payroll" type="number" value="120000"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Save Progress Secondary Action -->
+<div class="flex items-center justify-center">
+<button class="flex items-center gap-2 py-2 px-4 rounded-full bg-white border border-slate-300 text-slate-700 hover:text-slate-900 hover:bg-slate-50 shadow-xs font-label-md text-label-md font-medium transition-all" id="btn-save-progress" onclick="saveProgress()" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+<span id="save-progress-text">Save Progress</span>
+</button>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="sticky bottom-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-200/80 pt-3 pb-4 flex items-center gap-space-sm">
+<button class="flex-1 py-3 px-4 rounded-xl bg-white border border-slate-300 text-slate-700 font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-slate-50 hover:text-slate-900 transition-colors font-medium shadow-xs" onclick="handleBack()" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back</span>
+</button>
+<button class="flex-[2] py-3 px-4 rounded-xl bg-primary text-white font-label-md text-label-md font-semibold shadow-md flex items-center justify-center gap-2 hover:bg-blue-700 transition-all" id="btn-finish" onclick="handleFinish()" type="button">
+<span id="finish-label">Finish Setup</span>
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+</div>
+</div>
+<script>
+  let currentStep = 2;
+
+  function switchStep(step) {
+    currentStep = step;
+    const p2 = document.getElementById('panel-step-2');
+    const p3 = document.getElementById('panel-step-3');
+    const t2 = document.getElementById('tab-step-2');
+    const t3 = document.getElementById('tab-step-3');
+    const badge = document.getElementById('step-badge');
+    const title = document.getElementById('step-title');
+    const bar3 = document.getElementById('bar-step-3');
+    const lbl3 = document.getElementById('label-step-3');
+
+    if (step === 2) {
+      p2.classList.remove('hidden');
+      p2.classList.add('flex');
+      p3.classList.add('hidden');
+      p3.classList.remove('flex');
+      t2.className = 'py-2 px-3 rounded-md font-label-md text-label-md bg-white text-slate-900 shadow-sm transition-all flex items-center justify-center gap-1.5 font-medium border border-slate-200/80';
+      t3.className = 'py-2 px-3 rounded-md font-label-md text-label-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 font-medium';
+      badge.textContent = 'Step 2 of 3';
+      title.textContent = 'Business & Financial Setup';
+      bar3.classList.replace('bg-primary', 'bg-slate-200');
+      lbl3.classList.replace('text-primary', 'text-slate-500');
+    } else {
+      p3.classList.remove('hidden');
+      p3.classList.add('flex');
+      p2.classList.add('hidden');
+      p2.classList.remove('flex');
+      t3.className = 'py-2 px-3 rounded-md font-label-md text-label-md bg-white text-slate-900 shadow-sm transition-all flex items-center justify-center gap-1.5 font-medium border border-slate-200/80';
+      t2.className = 'py-2 px-3 rounded-md font-label-md text-label-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 font-medium';
+      badge.textContent = 'Step 3 of 3';
+      title.textContent = 'Workspace Specifics';
+      bar3.classList.replace('bg-slate-200', 'bg-primary');
+      lbl3.classList.replace('text-slate-500', 'text-primary');
+    }
+  }
+
+  function validateField(input, checkId) {
+    const check = document.getElementById(checkId);
+    if (input.value.trim().length > 1) {
+      check.classList.remove('hidden');
+    } else {
+      check.classList.add('hidden');
+    }
+  }
+
+  function validateEmail(input, checkId) {
+    const check = document.getElementById(checkId);
+    if (input.value.includes('@') && input.value.includes('.')) {
+      check.classList.remove('hidden');
+    } else {
+      check.classList.add('hidden');
+    }
+  }
+
+  function updateLiquidity() {
+    const cash = Number(document.getElementById('cash-balance').value) || 0;
+    const bank = Number(document.getElementById('bank-balance').value) || 0;
+    const total = cash + bank;
+    document.getElementById('total-liquidity').innerHTML = '&#8377;' + total.toLocaleString('en-IN');
+  }
+
+  const industryConfig = {
+    education: {
+      entityLabel: 'Institution Name *',
+      entityVal: 'BrightFuture Coaching',
+      countLabel: 'Number of Students',
+      countVal: '180',
+      payrollLabel: 'Teacher Salaries (₹)',
+      payrollVal: '120000'
+    },
+    salon: {
+      entityLabel: 'Salon Name *',
+      entityVal: 'Luxe Studio & Spa',
+      countLabel: 'Number of Employees',
+      countVal: '12',
+      payrollLabel: 'Staff Salaries (₹)',
+      payrollVal: '85000'
+    },
+    retail: {
+      entityLabel: 'Shop Name *',
+      entityVal: 'Urban Mart & Essentials',
+      countLabel: 'Number of Products (SKUs)',
+      countVal: '450',
+      payrollLabel: 'Opening Stock Value (₹)',
+      payrollVal: '210000'
+    }
+  };
+
+  function selectIndustry(type) {
+    ['education', 'salon', 'retail'].forEach(ind => {
+      const btn = document.getElementById('ind-' + ind);
+      if (ind === type) {
+        btn.className = 'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-primary text-white shadow-sm transition-all font-medium';
+      } else {
+        btn.className = 'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-all font-medium';
+      }
+    });
+    const cfg = industryConfig[type];
+    document.getElementById('lbl-entity-name').textContent = cfg.entityLabel;
+    document.getElementById('ind-entity-name').value = cfg.entityVal;
+    document.getElementById('lbl-count').textContent = cfg.countLabel;
+    document.getElementById('ind-count').value = cfg.countVal;
+    document.getElementById('lbl-payroll').textContent = cfg.payrollLabel;
+    document.getElementById('ind-payroll').value = cfg.payrollVal;
+  }
+
+  function saveProgress() {
+    const txt = document.getElementById('save-progress-text');
+    const btn = document.getElementById('btn-save-progress');
+    txt.textContent = 'Progress Saved!';
+    btn.classList.add('border-emerald-300', 'text-emerald-700', 'bg-emerald-50');
+    setTimeout(() => {
+      txt.textContent = 'Save Progress';
+      btn.classList.remove('border-emerald-300', 'text-emerald-700', 'bg-emerald-50');
+    }, 2000);
+  }
+
+  function handleBack() {
+    if (currentStep === 3) {
+      switchStep(2);
+    } else {
+      history.back();
+    }
+  }
+
+  function handleFinish() {
+    const label = document.getElementById('finish-label');
+    const btn = document.getElementById('btn-finish');
+    label.textContent = 'Workspace Ready!';
+    btn.classList.replace('bg-primary', 'bg-emerald-600');
+    btn.classList.replace('hover:bg-blue-700', 'hover:bg-emerald-700');
+    setTimeout(() => {
+      label.textContent = 'Finish Setup';
+      btn.classList.replace('bg-emerald-600', 'bg-primary');
+      btn.classList.replace('hover:bg-emerald-700', 'hover:bg-blue-700');
+    }, 2200);
+  }
+
+  validateField(document.getElementById('biz-name'), 'check-biz-name');
+</script></main>
+<script>
+(function() {
+  function goTo(screenName) {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'NAVIGATE', screen: screenName }, '*');
+    } else {
+      window.location.href = '../' + screenName + '/code.html';
+    }
+  }
+  window.navigateToScreen = goTo;
+
+  function bindEvents() {
+    // Intercept Bottom Navigation
+    document.querySelectorAll('nav a, a[data-path]').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        var p = el.getAttribute('data-path') || el.innerText.trim().toLowerCase();
+        if (p.includes('pos') || p === 'pos-sales') { e.preventDefault(); goTo('pos_sale_quick_invoice'); }
+        else if (p.includes('udhar') || p.includes('credit') || p === 'credit-udhar') { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); }
+        else if (p.includes('inventory') || p.includes('stock')) { e.preventDefault(); goTo('inventory_supplier_reorder'); }
+        else if (p.includes('dash') || p === 'dashboard') { e.preventDefault(); goTo('retail_kirana_dashboard'); }
+        else if (p.includes('more') || p.includes('report') || p.includes('gst')) { e.preventDefault(); goTo('ca_audit_gst_monthly_report'); }
+      });
+    });
+
+    // Intercept action buttons
+    document.querySelectorAll('button, a').forEach(function(btn) {
+      var txt = (btn.innerText || '').trim();
+      var id = btn.id || '';
+      if (txt.includes('New POS Sale') || txt.includes('+ New POS')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('pos_sale_quick_invoice'); });
+      } else if (txt.includes('Record Udhar') || id === 'newUdharBtn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); });
+      } else if (txt.includes('Stock In') || txt.includes('+ Inward Stock') || txt.includes('Inward Stock')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('inward_stock_grn_verification'); });
+      } else if (txt.includes('Cash Flow') || txt.includes('Runway') || id === 'refresh-btn' || txt.includes('Safe Runway')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_simulator'); });
+      } else if (id === 'continue-btn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (window.location.href.includes('business_selection')) goTo('onboarding_wizard');
+          else goTo('retail_kirana_dashboard');
+        });
+      } else if (txt.includes('Draft PO') || txt.includes('Verify GRN')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_post_grn'); });
+      } else if (txt.includes('Sharma General Kirana')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('business_selection_light'); });
+      }
+    });
+
+    // Back buttons
+    document.querySelectorAll('button[aria-label="Go back"], button[onclick*="history.back"], a[href="#"]:has(span:contains("arrow_back"))').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        goTo('retail_kirana_dashboard');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindEvents);
+  } else {
+    bindEvents();
+  }
+})();
+</script>
+
+</body></html>

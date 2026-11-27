@@ -5,6 +5,9 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 // Layout
 import DashboardLayout from './components/layout/DashboardLayout';
 
+// Cashflow AI & Precision Ledger Suite
+import CashflowPortal from './pages/cashflow/CashflowPortal';
+
 // Public & Auth Pages
 import LandingPage from './pages/public/LandingPage';
 import PropertyCatalogPage from './pages/properties/PropertyCatalogPage';
@@ -50,8 +53,22 @@ const ProtectedRoute = ({ children }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Public Pages */}
-      <Route path="/" element={<LandingPage />} />
+      {/* Cashflow AI & Precision Ledger Portal (Stitch UI Suite) */}
+      <Route path="/" element={<CashflowPortal defaultScreen="retail_kirana_dashboard" />} />
+      <Route path="/cashflow" element={<CashflowPortal defaultScreen="retail_kirana_dashboard" />} />
+      <Route path="/kirana" element={<CashflowPortal defaultScreen="retail_kirana_dashboard" />} />
+      <Route path="/pos" element={<CashflowPortal defaultScreen="pos_sale_quick_invoice" />} />
+      <Route path="/udhar" element={<CashflowPortal defaultScreen="customer_udhar_whatsapp_follow_up" />} />
+      <Route path="/runway" element={<CashflowPortal defaultScreen="cash_flow_forecast_simulator" />} />
+      <Route path="/inventory" element={<CashflowPortal defaultScreen="inventory_supplier_reorder" />} />
+      <Route path="/grn" element={<CashflowPortal defaultScreen="inward_stock_grn_verification" />} />
+      <Route path="/post-grn" element={<CashflowPortal defaultScreen="cash_flow_forecast_post_grn" />} />
+      <Route path="/audit" element={<CashflowPortal defaultScreen="ca_audit_gst_monthly_report" />} />
+      <Route path="/business-selection" element={<CashflowPortal defaultScreen="business_selection_light" />} />
+      <Route path="/onboarding" element={<CashflowPortal defaultScreen="onboarding_wizard" />} />
+
+      {/* Gruha Anwesh Real Estate Portal */}
+      <Route path="/real-estate" element={<LandingPage />} />
       <Route path="/catalog" element={<PropertyCatalogPage />} />
       <Route path="/properties" element={<PropertyCatalogPage />} />
       <Route path="/property/:id" element={<PropertyDetailPage />} />

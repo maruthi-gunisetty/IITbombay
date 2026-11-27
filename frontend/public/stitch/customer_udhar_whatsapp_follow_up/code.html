@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#faf8ff", "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-secondary-container": "#00714e", "inverse-surface": "#283044", "surface-container-highest": "#dae2fd", "inverse-primary": "#b4c5ff", "surface-tint": "#0053db", "secondary-container": "#82f5c1", "surface-container-low": "#f2f3ff", "on-error": "#ffffff", "surface-bright": "#faf8ff", "on-primary-fixed-variant": "#003ea8", "primary-fixed-dim": "#b4c5ff", "primary-container": "#2563eb", "outline-variant": "#c3c6d7", "inverse-on-surface": "#eef0ff", "surface-container-lowest": "#ffffff", "primary": "#004ac6", "background": "#faf8ff", "on-tertiary-container": "#ffede1", "surface-variant": "#dae2fd", "outline": "#737686", "error-container": "#ffdad6", "tertiary-container": "#a65900", "on-tertiary-fixed": "#2f1500", "secondary": "#006c4a", "surface-dim": "#d2d9f4", "on-secondary-fixed-variant": "#005137", "secondary-fixed-dim": "#68dba9", "on-secondary-fixed": "#002114", "on-primary": "#ffffff", "tertiary-fixed-dim": "#ffb77d", "surface-container": "#eaedff", "error": "#ba1a1a", "surface-container-high": "#e2e7ff", "on-primary-container": "#eeefff", "on-primary-fixed": "#00174b", "tertiary": "#824500", "on-tertiary": "#ffffff", "on-surface": "#131b2e", "on-tertiary-fixed-variant": "#6e3900", "primary-fixed": "#dbe1ff", "tertiary-fixed": "#ffdcc3", "on-background": "#131b2e", "on-surface-variant": "#434655", "secondary-fixed": "#85f8c4" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "margin": "2rem", "space-xl": "2.5rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"] }, fontSize: { "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.015em", fontWeight: "500" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "700" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.005em", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm min-w-0"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[20px]">account_balance_wallet</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface leading-none">CASHFLOW</span><span class="font-headline-sm text-headline-sm font-bold text-primary leading-none">AI</span></div><button class="flex items-center gap-1 text-left min-w-0 mt-0.5 group"><span class="material-symbols-outlined text-[14px] text-primary shrink-0">storefront</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate max-w-[130px]">Sharma General Kirana</span><span class="material-symbols-outlined text-[14px] text-on-surface-variant shrink-0 group-hover:text-primary transition-colors">arrow_drop_down</span></button></div></div><div class="flex items-center gap-1 shrink-0"><button aria-label="New Sale POS" class="w-11 h-11 rounded-full flex items-center justify-center text-primary-container bg-surface-container-low hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">point_of_sale</span></button><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface relative"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 min-w-[16px] h-4 px-1 rounded-full bg-error text-on-error font-label-sm text-[10px] flex items-center justify-center leading-none font-bold">2</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Screen Header & Actions -->
+<div class="px-gutter-mobile pt-3 pb-3 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-on-surface">Customer Udhar (Khata)</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span>14 active accounts • Sharma General Kirana</span>
+</p>
+</div>
+<div class="flex items-center gap-1.5">
+<button aria-label="Download Ledger" class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors shadow-sm active:scale-95" id="exportBtn">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+</button>
+<button class="flex items-center gap-1 h-10 px-3.5 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md shadow-sm hover:opacity-95 active:scale-95 transition-all" id="newUdharBtn">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Give Udhar</span>
+</button>
+</div>
+</div>
+<!-- High-Impact Summary Metrics Banner -->
+<div class="grid grid-cols-2 gap-2.5 mt-1">
+<!-- Total Outstanding Metric -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Outstanding</span>
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight leading-tight">
+          ₹64,200
+        </div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-body-sm text-[11px]">
+<span class="font-semibold text-primary">14 customers</span> active credit
+        </div>
+</div>
+<!-- Overdue Risk Metric -->
+<div class="bg-error-container/40 p-3.5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-error font-semibold uppercase tracking-wider">Overdue &gt;15d</span>
+<span class="material-symbols-outlined text-[18px] text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-error tracking-tight leading-tight">
+          ₹31,800
+        </div>
+<div class="flex items-center gap-1 mt-1 font-body-sm text-[11px] text-on-error-container">
+<span class="font-semibold">5 accounts</span> high risk
+        </div>
+</div>
+<!-- Collected This Week -->
+<div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Collected (7d)</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">trending_up</span>
+</div>
+<div class="font-headline-sm text-headline-sm font-bold text-secondary tracking-tight">
+          ₹14,500
+        </div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">8 settlements logged</span>
+</div>
+<!-- Expected in next 7 days -->
+<div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Expected (7d)</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">event_upcoming</span>
+</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">
+          ₹22,100
+        </div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Promise-to-pay dates</span>
+</div>
+</div>
+</div>
+<!-- Smart AI Follow-up & Batch Recovery Banner -->
+<div class="px-gutter-mobile mt-2">
+<div class="bg-gradient-to-br from-surface-container to-surface-container-high p-4 rounded-2xl shadow-sm flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 bg-secondary-fixed/40 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shrink-0 shadow-sm text-on-secondary">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Daily Recovery Routine</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold">88% Success</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold leading-snug mt-0.5">
+            5 Customers Need A Follow-up
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            ₹31,800 is past 15 days. Friendly WhatsApp nudges recover most Kirana credit in under 48 hours.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 h-11 rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.98] transition-all" id="batchWhatsappBtn">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Review 5 WhatsApp Nudges</span>
+</button>
+<button class="h-11 px-3 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-bright active:scale-95 transition-all flex items-center justify-center gap-1" id="togglePreviewBtn" title="Toggle Live Preview">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span class="hidden sm:inline">Preview</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive WhatsApp Message Preview Card (High-Risk Highlight) -->
+<div class="px-gutter-mobile mt-3" id="whatsappPreviewSection">
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Auto-Drafted WhatsApp Message</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Top priority: Rajesh Verma • Overdue 18 days</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[11px] font-bold">₹8,200</span>
+</div>
+<!-- Mock Chat Balloon -->
+<div class="p-3.5 rounded-2xl bg-secondary-container/30 text-on-surface font-body-sm text-body-sm flex flex-col gap-2 relative">
+<div class="flex items-center gap-1.5 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock</span> End-to-end encrypted template • UPI direct link embedded
+        </div>
+<p class="leading-relaxed text-on-surface" id="messageBubbleText">
+          “Namaste Rajesh ji 🙏, your monthly grocery udhar at <strong>Sharma General Kirana</strong> is <strong>₹8,200</strong> (pending since Oct 6). You can pay via UPI to <strong>9876543210@upi</strong> or click directly: <span class="text-primary underline cursor-pointer">upi://pay?pa=9876543210@upi&amp;am=8200</span>. Please let us know if you have any questions! — Ramesh Sharma”
+        </p>
+<div class="flex items-center justify-end gap-1 text-on-surface-variant text-[11px]">
+<span>Drafted just now</span>
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+</div>
+</div>
+<!-- Action Row -->
+<div class="grid grid-cols-3 gap-2 pt-1">
+<button class="col-span-2 h-10 rounded-xl bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm" id="sendSingleWhatsappBtn">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send via WhatsApp ↗</span>
+</button>
+<button class="h-10 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 active:scale-95 transition-all" id="copyMessageBtn">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copyBtnText">Copy</span>
+</button>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[11px] px-1">
+<button class="hover:text-primary transition-colors flex items-center gap-1" id="editTemplateBtn">
+<span class="material-symbols-outlined text-[14px]">edit_note</span> Edit message text
+        </button>
+<button class="hover:text-tertiary transition-colors flex items-center gap-1" id="snoozeCustomerBtn">
+<span class="material-symbols-outlined text-[14px]">snooze</span> Snooze 3 days
+        </button>
+</div>
+</div>
+</div>
+<!-- Cash Flow Recovery Impact Simulator -->
+<div class="px-gutter-mobile mt-3">
+<div class="bg-surface-container p-4 rounded-2xl flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-lg bg-primary-container text-on-primary flex items-center justify-center text-[16px]">
+<span class="material-symbols-outlined text-[16px]">insights</span>
+</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Cash Flow Recovery Impact</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-[11px] font-semibold">What-if Simulator</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        If you recover the <strong class="text-on-surface">top 3 overdue accounts (₹25,200)</strong> today:
+      </p>
+<div class="bg-surface-container-lowest p-3 rounded-xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-on-surface-variant">Store Cash Reserve</span>
+<span class="font-label-md text-label-md text-on-surface line-through">₹3,42,850</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">arrow_forward</span>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-[11px] text-secondary font-bold">+₹25,200 Surge</span>
+<span class="font-headline-sm text-headline-sm font-bold text-secondary">₹3,68,050</span>
+</div>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant font-body-sm text-[11px] mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-secondary shrink-0">check_circle</span>
+<span>Fully pays your upcoming ITC &amp; Britannia supply invoices with zero overdraft fee.</span>
+</div>
+</div>
+</div>
+<!-- Filters, Search & Aging Tabs -->
+<div class="px-gutter-mobile mt-4 flex flex-col gap-2.5">
+<!-- Horizontal Pill Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-nowrap">
+<button class="filter-tab px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" data-filter="all">
+        All (14)
+      </button>
+<button class="filter-tab active px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm" data-filter="overdue">
+        Overdue &gt;15d (5)
+      </button>
+<button class="filter-tab px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" data-filter="due-soon">
+        Due Soon 1-7d (4)
+      </button>
+<button class="filter-tab px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" data-filter="good">
+        Good Standing (5)
+      </button>
+</div>
+<!-- Search & Sort Row -->
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none shadow-sm" id="customerSearchInput" placeholder="Search by customer name or phone..." type="text"/>
+</div>
+<button class="h-10 px-3 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-md text-label-md shadow-sm flex items-center gap-1 shrink-0" id="sortDropdownBtn" title="Sort by">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+<span class="text-[12px] font-semibold">Highest</span>
+</button>
+</div>
+</div>
+<!-- Customer Ledger Cards (Rich List) -->
+<div class="px-gutter-mobile mt-3 flex flex-col gap-3" id="customerLedgerList">
+<!-- Card 1: Critical Overdue - Rajesh Verma -->
+<div class="customer-card bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3" data-name="rajesh verma" data-phone="9823411209" data-status="overdue">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-headline-sm">
+            RV
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Rajesh Verma</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-bold">18d Overdue</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>+91 98234 11209</span>
+<span>•</span>
+<span>School Teacher</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md font-bold text-error tracking-tight">₹8,200</span>
+<span class="font-label-sm text-[10px] text-error font-semibold uppercase tracking-wider">High Risk</span>
+</div>
+</div>
+<!-- Ledger Detail Strip -->
+<div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">shopping_bag</span>
+<span class="truncate max-w-[170px]">Oct 6 • Atta, Oil, Sugar 15kg</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-tertiary">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Nudge sent 4d ago</span>
+</div>
+</div>
+<!-- Actions Strip -->
+<div class="flex items-center gap-2 pt-0.5">
+<button class="whatsapp-btn flex-1 h-9 rounded-xl bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" data-amount="8200" data-name="Rajesh Verma" data-phone="9823411209">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+<button class="record-pay-btn px-3 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="8200" data-name="Rajesh Verma">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+<span>Pay</span>
+</button>
+<button class="w-9 h-9 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Bill &amp; Udhar History">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Overdue - Sunita Devi -->
+<div class="customer-card bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3" data-name="sunita devi" data-phone="9711044321" data-status="overdue">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-headline-sm">
+            SD
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Sunita Devi</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-bold">16d Overdue</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>+91 97110 44321</span>
+<span>•</span>
+<span>Flat 402</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md font-bold text-error tracking-tight">₹5,400</span>
+<span class="font-label-sm text-[10px] text-error font-semibold uppercase tracking-wider">Action Needed</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">shopping_bag</span>
+<span class="truncate max-w-[170px]">Oct 8 • Monthly staples &amp; spices</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">done</span>
+<span>Never missed udhar</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<button class="whatsapp-btn flex-1 h-9 rounded-xl bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" data-amount="5400" data-name="Sunita Devi" data-phone="9711044321">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+<button class="record-pay-btn px-3 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="5400" data-name="Sunita Devi">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+<span>Pay</span>
+</button>
+<button class="w-9 h-9 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Bill">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Overdue (Highest) - Vikram Malhotra -->
+<div class="customer-card bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3" data-name="vikram malhotra" data-phone="9988233412" data-status="overdue">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-bold text-headline-sm">
+            VM
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vikram Malhotra</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-bold">15d Overdue</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>+91 99882 33412</span>
+<span>•</span>
+<span>Civil Contractor</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md font-bold text-error tracking-tight">₹11,600</span>
+<span class="font-label-sm text-[10px] text-error font-semibold uppercase tracking-wider">Highest Debt</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">shopping_bag</span>
+<span class="truncate max-w-[170px]">Oct 9 • Bulk tea, biscuits, grains</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-tertiary">
+<span class="material-symbols-outlined text-[14px]">call</span>
+<span>Called yesterday</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<button class="whatsapp-btn flex-1 h-9 rounded-xl bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all" data-amount="11600" data-name="Vikram Malhotra" data-phone="9988233412">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+<button class="record-pay-btn px-3 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="11600" data-name="Vikram Malhotra">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+<span>Pay</span>
+</button>
+<button class="w-9 h-9 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Bill">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Due Soon - Dr. Ananya Sen -->
+<div class="customer-card bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3" data-name="ananya sen" data-phone="9452088123" data-status="due-soon">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-headline-sm">
+            AS
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Dr. Ananya Sen</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px] font-semibold">Due in 3 days</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>+91 94520 88123</span>
+<span>•</span>
+<span>Clinic Next Door</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">₹4,800</span>
+<span class="font-label-sm text-[10px] text-secondary font-semibold uppercase tracking-wider">Good Credit</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="truncate max-w-[170px]">Auto-reminder scheduled on Oct 25</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-secondary">
+<span>Always on-time</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<button class="whatsapp-btn flex-1 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="4800" data-name="Dr. Ananya Sen" data-phone="9452088123">
+<span class="material-symbols-outlined text-[16px] text-secondary">chat</span>
+<span>Send Soft Reminder</span>
+</button>
+<button class="record-pay-btn px-3 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="4800" data-name="Dr. Ananya Sen">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+<span>Pay</span>
+</button>
+<button class="w-9 h-9 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" title="View Bill">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Card 5: Partial Paid / Healthy - Ramesh Kumar -->
+<div class="customer-card bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3" data-name="ramesh kumar" data-phone="9811299014" data-status="good">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-headline-sm">
+            RK
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Ramesh Kumar</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold">Partial Paid</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>+91 98112 99014</span>
+<span>•</span>
+<span>Auto Mechanic</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">₹1,850</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant line-through">was ₹3,050</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]">price_check</span>
+<span class="truncate max-w-[180px]">Paid ₹1,200 yesterday via GPay</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span>Due Nov 1</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<button class="record-pay-btn flex-1 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-high active:scale-95 transition-all" data-amount="1850" data-name="Ramesh Kumar">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+<span>Record ₹1,850 Balance Pay</span>
+</button>
+<button class="px-3 h-9 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-95 transition-all" title="View Statement">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Ledger</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Quick Record Payment Modal Overlay -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity" id="paymentModal">
+<div class="bg-surface-container-lowest w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 shadow-2xl flex flex-col gap-4 transform transition-transform">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">Record Udhar Payment</div>
+<div class="font-body-sm text-[12px] text-on-surface-variant" id="modalCustomerName">Customer: Rajesh Verma</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" id="closeModalBtn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Amount Received (₹)</label>
+<div class="relative">
+<span class="absolute left-3.5 top-2.5 font-bold text-on-surface text-[18px]">₹</span>
+<input class="w-full h-11 pl-9 pr-3 rounded-xl bg-surface-container text-on-surface font-headline-sm text-headline-sm font-bold focus:outline-none" id="modalAmountInput" type="number" value="8200"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Payment Mode</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="pay-mode-btn h-9 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-semibold" data-mode="UPI">UPI / GPay</button>
+<button class="pay-mode-btn h-9 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md font-semibold" data-mode="Cash">Cash</button>
+<button class="pay-mode-btn h-9 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md font-semibold" data-mode="Bank">Transfer</button>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<button class="flex-1 h-11 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all" id="confirmPaymentBtn">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span>Save &amp; Send WhatsApp Receipt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Notification Toast Container -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-inverse-surface text-inverse-on-surface px-4 py-2.5 rounded-full shadow-lg font-label-md text-label-md flex items-center gap-2 transition-all opacity-0 pointer-events-none -translate-y-2" id="toastNotification">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
+<span id="toastMessage">WhatsApp reminder link opened!</span>
+</div>
+</div>
+<script>
+  (function initCustomerUdhar() {
+    // 1. Highlight the Credit (Udhar) tab in global nav
+    try {
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'credit-udhar') {
+          link.classList.remove('text-on-surface-variant');
+          link.classList.add('text-primary-container', 'font-semibold');
+          const icon = link.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.style.fontVariationSettings = "'FILL' 1";
+          }
+        } else {
+          link.classList.remove('text-primary-container', 'font-semibold');
+          link.classList.add('text-on-surface-variant');
+          const icon = link.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.style.fontVariationSettings = "'FILL' 0";
+          }
+        }
+      });
+    } catch (e) {
+      console.warn('Navigation active state sync handled smoothly');
+    }
+
+    // Toast helper
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    function showToast(message) {
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = message;
+      toast.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2600);
+    }
+
+    // Toggle Preview Card
+    const togglePreviewBtn = document.getElementById('togglePreviewBtn');
+    const previewSection = document.getElementById('whatsappPreviewSection');
+    if (togglePreviewBtn && previewSection) {
+      togglePreviewBtn.addEventListener('click', () => {
+        previewSection.classList.toggle('hidden');
+        showToast(previewSection.classList.contains('hidden') ? 'Draft preview hidden' : 'Showing WhatsApp draft');
+      });
+    }
+
+    // Copy draft message
+    const copyBtn = document.getElementById('copyMessageBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
+    const messageBubble = document.getElementById('messageBubbleText');
+    if (copyBtn && messageBubble) {
+      copyBtn.addEventListener('click', () => {
+        const text = messageBubble.innerText;
+        navigator.clipboard?.writeText(text).catch(() => {});
+        copyBtnText.textContent = 'Copied!';
+        showToast('WhatsApp message copied to clipboard');
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copy';
+        }, 2000);
+      });
+    }
+
+    // WhatsApp Action Links
+    function openWhatsAppNudge(name, amount, phone) {
+      const msg = encodeURIComponent(`Namaste ${name} ji 🙏, your monthly grocery udhar at Sharma General Kirana is ₹${amount}. You can pay directly via UPI: 9876543210@upi. Thank you! - Ramesh Sharma`);
+      showToast(`Opening WhatsApp nudge for ${name} (₹${amount})...`);
+      // Standard deep-link
+      setTimeout(() => {
+        window.open(`https://wa.me/91${phone}?text=${msg}`, '_blank');
+      }, 400);
+    }
+
+    document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const name = btn.dataset.name || 'Customer';
+        const amount = btn.dataset.amount || '0';
+        const phone = btn.dataset.phone || '9876543210';
+        openWhatsAppNudge(name, amount, phone);
+      });
+    });
+
+    const sendSingleBtn = document.getElementById('sendSingleWhatsappBtn');
+    if (sendSingleBtn) {
+      sendSingleBtn.addEventListener('click', () => {
+        openWhatsAppNudge('Rajesh Verma', '8200', '9823411209');
+      });
+    }
+
+    // Batch WhatsApp Action
+    const batchWhatsappBtn = document.getElementById('batchWhatsappBtn');
+    if (batchWhatsappBtn) {
+      batchWhatsappBtn.addEventListener('click', () => {
+        showToast('Prepared 5 WhatsApp reminders with 1-tap UPI links!');
+        if (previewSection && previewSection.classList.contains('hidden')) {
+          previewSection.classList.remove('hidden');
+        }
+        previewSection?.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // Edit Template and Snooze
+    const editBtn = document.getElementById('editTemplateBtn');
+    if (editBtn) {
+      editBtn.addEventListener('click', () => {
+        showToast('Template editor enabled. Custom Hindi/English tags loaded.');
+      });
+    }
+
+    const snoozeBtn = document.getElementById('snoozeCustomerBtn');
+    if (snoozeBtn) {
+      snoozeBtn.addEventListener('click', () => {
+        showToast('Rajesh Verma snoozed for 3 days. Reminder scheduled.');
+      });
+    }
+
+    // Filter Pill Tabs
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.customer-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          t.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        tab.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+        const filter = tab.dataset.filter;
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hidden');
+          } else if (card.dataset.status === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Customer Search
+    const searchInput = document.getElementById('customerSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        cards.forEach(card => {
+          const name = card.dataset.name || '';
+          const phone = card.dataset.phone || '';
+          if (name.includes(query) || phone.includes(query)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    }
+
+    // Payment Modal Logic
+    const paymentModal = document.getElementById('paymentModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalCustName = document.getElementById('modalCustomerName');
+    const modalAmtInput = document.getElementById('modalAmountInput');
+    const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+
+    document.querySelectorAll('.record-pay-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const name = btn.dataset.name || 'Customer';
+        const amount = btn.dataset.amount || '0';
+        if (modalCustName) modalCustName.textContent = `Customer: ${name}`;
+        if (modalAmtInput) modalAmtInput.value = amount;
+        if (paymentModal) {
+          paymentModal.classList.remove('hidden');
+          paymentModal.classList.add('flex');
+        }
+      });
+    });
+
+    if (closeModalBtn && paymentModal) {
+      closeModalBtn.addEventListener('click', () => {
+        paymentModal.classList.add('hidden');
+        paymentModal.classList.remove('flex');
+      });
+    }
+
+    if (confirmPaymentBtn && paymentModal) {
+      confirmPaymentBtn.addEventListener('click', () => {
+        const val = modalAmtInput ? modalAmtInput.value : '0';
+        paymentModal.classList.add('hidden');
+        paymentModal.classList.remove('flex');
+        showToast(`Payment of ₹${val} logged & digital receipt queued on WhatsApp!`);
+      });
+    }
+
+    // Quick Actions
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        showToast('Generating Sharma Kirana Udhar Ledger (PDF/Excel)...');
+      });
+    }
+
+    const newUdharBtn = document.getElementById('newUdharBtn');
+    if (newUdharBtn) {
+      newUdharBtn.addEventListener('click', () => {
+        showToast('+ Give Udhar flow opened: select or scan customer barcode.');
+      });
+    }
+
+    // Payment Mode buttons in modal
+    const payModeBtns = document.querySelectorAll('.pay-mode-btn');
+    payModeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        payModeBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        btn.classList.add('bg-primary', 'text-on-primary');
+      });
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm mt-0.5">Dashboard</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="pos-sales" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-sm text-label-sm mt-0.5">POS / Sales</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="inventory" href="#"><span class="material-symbols-outlined text-[22px]">inventory_2</span><span class="font-label-sm text-label-sm mt-0.5">Inventory</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="credit-udhar" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-sm text-label-sm mt-0.5">Credit (Udhar)</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="more" href="#"><span class="material-symbols-outlined text-[22px]">tune</span><span class="font-label-sm text-label-sm mt-0.5">More</span></a></div></nav>
+<script>
+(function() {
+  function goTo(screenName) {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'NAVIGATE', screen: screenName }, '*');
+    } else {
+      window.location.href = '../' + screenName + '/code.html';
+    }
+  }
+  window.navigateToScreen = goTo;
+
+  function bindEvents() {
+    // Intercept Bottom Navigation
+    document.querySelectorAll('nav a, a[data-path]').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        var p = el.getAttribute('data-path') || el.innerText.trim().toLowerCase();
+        if (p.includes('pos') || p === 'pos-sales') { e.preventDefault(); goTo('pos_sale_quick_invoice'); }
+        else if (p.includes('udhar') || p.includes('credit') || p === 'credit-udhar') { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); }
+        else if (p.includes('inventory') || p.includes('stock')) { e.preventDefault(); goTo('inventory_supplier_reorder'); }
+        else if (p.includes('dash') || p === 'dashboard') { e.preventDefault(); goTo('retail_kirana_dashboard'); }
+        else if (p.includes('more') || p.includes('report') || p.includes('gst')) { e.preventDefault(); goTo('ca_audit_gst_monthly_report'); }
+      });
+    });
+
+    // Intercept action buttons
+    document.querySelectorAll('button, a').forEach(function(btn) {
+      var txt = (btn.innerText || '').trim();
+      var id = btn.id || '';
+      if (txt.includes('New POS Sale') || txt.includes('+ New POS')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('pos_sale_quick_invoice'); });
+      } else if (txt.includes('Record Udhar') || id === 'newUdharBtn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('customer_udhar_whatsapp_follow_up'); });
+      } else if (txt.includes('Stock In') || txt.includes('+ Inward Stock') || txt.includes('Inward Stock')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('inward_stock_grn_verification'); });
+      } else if (txt.includes('Cash Flow') || txt.includes('Runway') || id === 'refresh-btn' || txt.includes('Safe Runway')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_simulator'); });
+      } else if (id === 'continue-btn') {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (window.location.href.includes('business_selection')) goTo('onboarding_wizard');
+          else goTo('retail_kirana_dashboard');
+        });
+      } else if (txt.includes('Draft PO') || txt.includes('Verify GRN')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('cash_flow_forecast_post_grn'); });
+      } else if (txt.includes('Sharma General Kirana')) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) { e.preventDefault(); goTo('business_selection_light'); });
+      }
+    });
+
+    // Back buttons
+    document.querySelectorAll('button[aria-label="Go back"], button[onclick*="history.back"], a[href="#"]:has(span:contains("arrow_back"))').forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        goTo('retail_kirana_dashboard');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindEvents);
+  } else {
+    bindEvents();
+  }
+})();
+</script>
+
+</body></html>
