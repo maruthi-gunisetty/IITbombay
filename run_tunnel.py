@@ -2,12 +2,22 @@ import subprocess
 import time
 import re
 import sys
+import os
 
-def main():
+def run_tunnel():
+    print("Starting auto-healing tunnel manager for Gruha Anwesh...")
     while True:
         try:
+            print("Connecting to localhost.run edge tunnel...")
             proc = subprocess.Popen(
-                ["ssh", "-o", "StrictHostKeyChecking=no", "-o", "ServerAliveInterval=15", "-R", "80:127.0.0.1:5173", "nokey@localhost.run"],
+                [
+                    "ssh",
+                    "-o", "StrictHostKeyChecking=no",
+                    "-o", "ServerAliveInterval=20",
+                    "-o", "ServerAliveCountMax=3",
+                    "-R", "80:127.0.0.1:5173",
+                    "nokey@localhost.run"
+                ],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
@@ -18,13 +28,15 @@ def main():
                 sys.stdout.flush()
                 match = re.search(r"https://[a-zA-Z0-9.-]+\.lhr\.life", line)
                 if match:
-                    url = match.group(0)
+                    url = match.group(0).strip()
                     with open("tunnel_url.txt", "w") as f:
-                        f.write(url.strip())
+                        f.write(url)
+                    print(f"\n[ACTIVE_TUNNEL_URL] {url}\n")
             proc.wait()
         except Exception as err:
-            print("Tunnel error:", err)
-        time.sleep(2)
+            print("Tunnel manager error:", err)
+        print("Tunnel connection closed. Reconnecting in 3 seconds...")
+        time.sleep(3)
 
 if __name__ == "__main__":
-    main()
+    run_tunnel()
